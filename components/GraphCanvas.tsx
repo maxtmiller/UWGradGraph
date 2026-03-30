@@ -40,8 +40,13 @@ export default function GraphCanvas() {
     [activeMajorId, activeSubMajorId, activeSubjects, activeLevels, tierFilter, showMyCourses, completedCourses, plannedCourses, getFilteredCourses]
   );
 
-  // Courses that are "next up" — available (unlocked) and in a requirement group.
-  // Required group courses: always highlight. Elective groups: only if ≤3 available.
+  // Courses that are "next up" — available (unlocked) and still needed for the degree.
+  // Rules:
+  //   required group   → highlight each available course individually (all are needed)
+  //   list-one-of      → highlight available courses only if group not yet satisfied
+  //   elective         → highlight only if group unsatisfied AND ≤3 options remain
+  //   or subgroup      → skip entirely if any branch is already satisfied
+  //   at-most/exactly  → highlight only if still short of the required count, ≤3 remain
   const nextUpCodes = useMemo(() => {
     const subMap = SUB_MAJOR_REGISTRY[activeMajorId];
     const major = (subMap && activeSubMajorId && subMap[activeSubMajorId])
@@ -52,20 +57,75 @@ export default function GraphCanvas() {
 
     const next = new Set<string>();
 
-    const findAvailableInGroup = (group: RequirementGroup | SubGroup, type?: string) => {
-      const groupCourses = group.courses ?? [];
-      
-      const available = groupCourses.filter(
+    // Returns how many courses in a list are already completed or planned
+    const doneCount = (courses: string[]) =>
+      courses.filter((c) => {
+        const s = getCourseStatus(c);
+        return s === "completed" || s === "planned";
+      }).length;
+
+    const findAvailableInGroup = (group: RequirementGroup | SubGroup) => {
+      const groupType   = (group as RequirementGroup).type;  // defined on top-level groups
+      const subType     = (group as SubGroup).type;           // defined on subgroups
+      const courses     = group.courses ?? [];
+      const subGroups   = group.subGroups ?? [];
+
+      const available = courses.filter(
         (c) => visibleCodes.has(c) && getCourseStatus(c) === "available"
       );
 
-      const isRequired = type === "required" || (group as RequirementGroup).type === "required";
-      
-      if (isRequired || (available.length > 0 && available.length <= 3)) {
+      if (groupType === "required") {
+        // Every listed course is individually required — highlight all available.
         available.forEach((c) => next.add(c));
-      }
+        // Recurse into any subgroups.
+        subGroups.forEach((sg) => findAvailableInGroup(sg));
 
-      group.subGroups?.forEach((sg) => findAvailableInGroup(sg, type));
+      } else if (groupType === "list-one-of") {
+        // Exactly one must be chosen — skip if already satisfied.
+        if (doneCount(courses) === 0 && available.length > 0 && available.length <= 3) {
+          available.forEach((c) => next.add(c));
+        }
+
+      } else if (groupType === "elective") {
+        // Need minCourses — skip if group already has enough done.
+        const needed = (group as RequirementGroup).minCourses ?? 1;
+        if (doneCount(courses) < needed && available.length > 0 && available.length <= 3) {
+          available.forEach((c) => next.add(c));
+        }
+
+      } else if (groupType === "complex") {
+        // Driven by subGroups — recurse.
+        subGroups.forEach((sg) => findAvailableInGroup(sg));
+
+      } else if (subType === "or") {
+        // OR combinator: if any branch is already satisfied, skip all branches.
+        const anyBranchDone = subGroups.some((sg) => {
+          const sgCourses = sg.courses ?? [];
+          return doneCount(sgCourses) >= (sg.count || 1);
+        });
+        if (!anyBranchDone) {
+          subGroups.forEach((sg) => findAvailableInGroup(sg));
+        }
+
+      } else if (subType === "and") {
+        // AND combinator: all branches required — recurse into each.
+        subGroups.forEach((sg) => findAvailableInGroup(sg));
+
+      } else if (subType === "at-most" || subType === "exactly") {
+        // Pick exactly/at-most N — skip if already satisfied.
+        const needed = (group as SubGroup).count ?? 1;
+        if (doneCount(courses) < needed && available.length > 0 && available.length <= 3) {
+          available.forEach((c) => next.add(c));
+        }
+
+      } else if (subType === "at-least") {
+        // Need at least N — skip if already satisfied, elective-style.
+        const needed = (group as SubGroup).count ?? 1;
+        if (doneCount(courses) < needed && available.length > 0 && available.length <= 3) {
+          available.forEach((c) => next.add(c));
+        }
+        // Note: elective subType subGroups have no static courses to highlight.
+      }
     };
 
     major.requirementGroups.forEach((group: RequirementGroup) => findAvailableInGroup(group));

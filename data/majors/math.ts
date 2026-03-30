@@ -20,7 +20,7 @@ const STATISTICS: Major = {
   id:      "math",
   name:    "Statistics",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: STAT_REQS,
 
@@ -31,7 +31,7 @@ const COMBINATORICS: Major = {
   id:      "math",
   name:    "Combinatorics & Optimization",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: CO_REQS,
 
@@ -42,7 +42,7 @@ const PURE_MATHS: Major = {
   id:      "math",
   name:    "Pure Mathematics",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: PMATH_REQS,
 
@@ -53,7 +53,7 @@ const ACTSCI: Major = {
   id:      "math",
   name:    "Acturial Science",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: ACTSCI_REQS,
 
@@ -64,7 +64,7 @@ const AMATH: Major = {
   id:      "math",
   name:    "Applied Mathematics",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: AMATH_REQS,
 
@@ -75,7 +75,7 @@ const AMATH_SCI: Major = {
   id:      "math",
   name:    "Applied Mathematics with Scientific Comp & ML",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: AMATH_SCI_REQS,
 
@@ -86,7 +86,7 @@ const BIOSTAT: Major = {
   id:      "math",
   name:    "Biostatistics",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: BIOSTAT_REQS,
 
@@ -97,7 +97,7 @@ const COMP_MATH: Major = {
   id:      "math",
   name:    "Computational Mathematics",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: COMP_MATH_REQS,
 
@@ -108,7 +108,7 @@ const IT_MGMT: Major = {
   id:      "math",
   name:    "Information Technology Management",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: IT_MGMT_REQS,
 
@@ -119,7 +119,7 @@ const MATH_ECON: Major = {
   id:      "math",
   name:    "Mathematics Economics",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: MATH_ECON_REQS,
 
@@ -130,7 +130,7 @@ const MATH_FIN: Major = {
   id:      "math",
   name:    "Mathematics Finance",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: MATH_FIN_REQS,
 
@@ -141,7 +141,7 @@ const MATH_OP: Major = {
   id:      "math",
   name:    "Mathematics Optimization",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: MATH_OP_REQS,
 
@@ -152,7 +152,7 @@ const MATH_PHYS: Major = {
   id:      "math",
   name:    "Mathematics Physics",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: MATH_PHYS_REQS,
 
@@ -163,7 +163,7 @@ const MATH_STUD: Major = {
   id:      "math",
   name:    "Mathematics Studies",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: MATH_STUD_REQS,
 
@@ -174,7 +174,7 @@ const MATH_TEACH: Major = {
   id:      "math",
   name:    "Mathematics / Teaching",
   faculty: "Mathematics",
-  color:   "#E879F9",
+  color:   "#FCD34D",
 
   requirementGroups: MATH_TEACH_REQS,
 

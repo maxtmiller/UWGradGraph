@@ -102,7 +102,7 @@ export default function FilterBar() {
         flexDirection: "column", 
         gap: 12, 
         pointerEvents: "auto", 
-        // width: "100%", 
+        width: "max-content", 
         boxSizing: "border-box",
         paddingRight: 8 
       }}>
@@ -148,7 +148,9 @@ export default function FilterBar() {
           })}
 
           {/* 2. The Spacer: Pushes the next item to the far right */}
-          <div style={{ flexGrow: 1 }} />
+          {/* <div style={{ flexGrow: 1 }} /> */}
+
+          <div style={{ width: "1px", height: "18px", background: "rgba(255, 255, 255, 0.15)", margin: "0 4px" }} />
 
           {/* 3. The Roadmap Chip: Now on the same line as 1xx, 2xx, etc. */}
           <Chip
