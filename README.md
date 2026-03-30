@@ -5,7 +5,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
 ![Zustand](https://img.shields.io/badge/Zustand-443E38?style=flat&logo=react&logoColor=white)
 
-**Visualizing the path from MATH 136 to your dream Data Science career with interactive, real-time course graphs.**
+**Blueprint your degree. Trace prerequisites and audit requirements across Waterloo CS, SE, and Math.**
 
 -----
 
