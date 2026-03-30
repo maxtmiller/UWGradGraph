@@ -1,4 +1,3 @@
-import { SERVER_PROPS_ID } from "next/dist/shared/lib/constants";
 import type { Major, MajorId, MajorMap, SubMajorId } from "../types";
 import { CS } from "./majors/cs";
 import { DS_SUB_MAJORS } from "./majors/ds";
@@ -14,7 +13,7 @@ export const MAJORS: MajorMap = { cs: CS, se: SE, ds: DS_SUB_MAJORS["dsbcs"], ma
 
 export const MAJOR_LIST: Major[] = Object.values(MAJORS);
 
-export const DEFAULT_MAJOR_ID: MajorId = "math";
+export const DEFAULT_MAJOR_ID: MajorId = "cs";
 
 export const ALL_DEGREES = [
   { id: "cs", major: MAJORS["cs"], parentLabel: "CS" },
