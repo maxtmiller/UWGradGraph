@@ -4,6 +4,25 @@ import { COURSE_DATA } from "../data/courses";
 import { Requisite } from "../types/index"
 import { getConnectedNodes, getHighlightedEdges } from "../lib/graph";
 
+// Scan all course data once to infer relationships for incomplete courses
+function inferRelationships(code: string) {
+  const inferredLeadsTo: string[] = [];
+  const inferredAntireqs: string[] = [];
+
+  const collectCodes = (req: string | Requisite): string[] => {
+    if (typeof req === "string") return [req];
+    return req.reqs.flatMap(collectCodes);
+  };
+
+  for (const c of Object.values(COURSE_DATA)) {
+    const prereqCodes = c.prereqs.flatMap(collectCodes);
+    if (prereqCodes.includes(code)) inferredLeadsTo.push(c.code);
+    if (c.antireqs.includes(code)) inferredAntireqs.push(c.code);
+  }
+
+  return { inferredLeadsTo, inferredAntireqs };
+}
+
 const TERM_KEYS = ["1A","1B","2A","2B","3A","3B","4A","4B"] as const;
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -20,7 +39,61 @@ export default function CourseDetailPanel() {
 
   if (!selectedNode) return null;
   const course = COURSE_DATA[selectedNode];
-  if (!course) return null;
+
+  // ── Stub panel for courses not yet in COURSE_DATA ─────────────────────────
+  if (!course) {
+    const { inferredLeadsTo, inferredAntireqs } = inferRelationships(selectedNode);
+    return (
+      <div
+        className="slide-in"
+        style={{
+          position: "absolute", top: 16, right: 16, width: 260,
+          background: "rgba(15,23,42,0.95)", border: "1px solid rgba(249,115,22,0.3)",
+          borderRadius: 12, padding: 16, backdropFilter: "blur(12px)", zIndex: 10,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+          <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 700, color: "#FB923C" }}>
+            {selectedNode}
+          </div>
+          <button onClick={clearSelection} style={{ background: "none", border: "none", color: "#475569", cursor: "pointer", fontSize: 18, lineHeight: 1 }}>×</button>
+        </div>
+        <div style={{ fontSize: 10, color: "#FB923C", background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 6, padding: "6px 8px", marginBottom: 12 }}>
+          This course hasn't been fully added yet. Details like prerequisites and description may be incomplete.
+        </div>
+        {inferredLeadsTo.length > 0 && (
+          <div style={{ marginBottom: 10 }}>
+            <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
+              Inferred — Unlocks
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+              {inferredLeadsTo.map((c) => (
+                <button key={c} onClick={() => { const cn = getConnectedNodes(c); setSelectedNode(c); setHighlight(cn, getHighlightedEdges(cn)); setPanToNode(c); }}
+                  style={{ padding: "2px 8px", borderRadius: 4, border: "1px solid #334155", background: "transparent", color: "#64748B", fontSize: 10, cursor: "pointer", fontFamily: "inherit" }}>
+                  {c}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {inferredAntireqs.length > 0 && (
+          <div>
+            <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
+              Inferred — Anti-requisites
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+              {inferredAntireqs.map((c) => (
+                <span key={c} style={{ padding: "2px 8px", borderRadius: 4, border: "1px solid rgba(249,115,22,0.3)", color: "#FB923C", fontSize: 10 }}>{c}</span>
+              ))}
+            </div>
+          </div>
+        )}
+        {inferredLeadsTo.length === 0 && inferredAntireqs.length === 0 && (
+          <div style={{ fontSize: 10, color: "#334155" }}>No relationships could be inferred from existing course data.</div>
+        )}
+      </div>
+    );
+  }
 
   const isOutsideMajor = !getMajorCourses().includes(selectedNode);
 

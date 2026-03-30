@@ -56,6 +56,7 @@ export default function FilterBar() {
         position:      "absolute",
         top:           12,
         left:          12,
+        right:         292,
         zIndex:        20,
         display:       "flex",
         flexDirection: "column",
