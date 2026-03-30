@@ -1,13 +1,17 @@
 # [`UWGradGraph`]()
 
-   
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-443E38?style=flat&logo=react&logoColor=white)
 
 **Visualizing the path from MATH 136 to your dream Data Science career with interactive, real-time course graphs.**
 
 -----
 
-## Demo
+## Preview
 
+<img width="1710" height="988" alt="Screenshot 2026-03-29 at 8 46 25 in the evening" src="https://github.com/user-attachments/assets/a0792dee-f4d5-4d4f-8f52-88478f55574c" />
 
 
 -----
@@ -27,8 +31,7 @@
 
   * **Frontend:** React 18, Next.js (App Router)
   * **State Management:** Zustand with persistence for local plan storage
-  * **Styling:** Tailwind CSS + Framer Motion for graph animations
-  * **Graph Logic:** Custom BFS engine for prerequisite expansion and "Next Up" filtering
+  * **Styling:** Tailwind CSS
   * **Data Layer:** Static University of Waterloo course data and degree requirement objects
   * **Language:** TypeScript (Strict Mode)
 
