@@ -1,0 +1,207 @@
+"use client";
+
+import { useEffect } from "react";
+import { useStore } from "@/lib/store";
+import { MAJORS } from "@/data/majors";
+import Sidebar           from "@/components/Sidebar";
+import GraphCanvas       from "@/components/GraphCanvas";
+import CourseDetailPanel from "@/components/CourseDetailPanel";
+import TermPlanner       from "@/components/TermPlanner";
+import ProgressAudit     from "@/components/ProgressAudit";
+import ChatPanel         from "@/components/ChatPanel";
+import SearchPalette     from "@/components/SearchPalette";
+import MajorSelector     from "@/components/MajorSelector";
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+type Tab = "graph" | "planner" | "progress" | "chat";
+
+const TABS: { key: Tab; label: string }[] = [
+  { key: "graph",    label: "Graph"    },
+  { key: "planner",  label: "Planner"  },
+  { key: "progress", label: "Progress" },
+  { key: "chat",     label: "✦ Ask AI" },
+];
+
+// ── Page ──────────────────────────────────────────────────────────────────────
+
+export default function GradGraphPage() {
+  const {
+    activeMajorId,
+    activeTab,
+    setActiveTab,
+    searchOpen,
+    setSearchOpen,
+    antireqWarning,
+    clearSelection,
+  } = useStore();
+
+  const activeMajor = MAJORS[activeMajorId];
+
+  // ── Global keyboard shortcuts ─────────────────────────────────────────────
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(!searchOpen);
+      }
+      if (e.key === "Escape") {
+        setSearchOpen(false);
+        clearSelection();
+      }
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [searchOpen, setSearchOpen, clearSelection]);
+
+  return (
+    <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
+
+      {/* ── Fixed header ──────────────────────────────────────────────────── */}
+      <header style={{
+        position:       "fixed",
+        top: 0, left: 0, right: 0,
+        zIndex:         100,
+        background:     "rgba(15,23,42,0.95)",
+        borderBottom:   "1px solid rgba(255,213,79,0.2)",
+        backdropFilter: "blur(10px)",
+        padding:        "10px 24px",
+        display:        "flex",
+        alignItems:     "center",
+        justifyContent: "space-between",
+        gap:            16,
+      }}>
+        {/* Left: wordmark + dynamic subtitle */}
+        <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
+          <span style={{
+            fontFamily:    "'Syne', sans-serif",
+            fontSize:      22,
+            fontWeight:    800,
+            color:         "#FFD54F",
+            letterSpacing: "-0.5px",
+          }}>
+            UW<span style={{ color: "#60A5FA" }}>GRAD</span>GRAPH
+          </span>
+          <span style={{
+            fontSize:    11,
+            color:       activeMajor.color,
+            borderLeft:  "1px solid #1E293B",
+            paddingLeft: 16,
+          }}>
+            {activeMajor.name}
+          </span>
+        </div>
+
+        {/* Centre: major selector pill group */}
+        <MajorSelector />
+
+        {/* Right: tab bar + search */}
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexShrink: 0 }}>
+          {TABS.map(({ key, label }) => (
+            <TabButton
+              key={key}
+              label={label}
+              active={activeTab === key}
+              onClick={() => setActiveTab(key)}
+              highlight={key === "chat"}
+            />
+          ))}
+          <button
+            onClick={() => setSearchOpen(true)}
+            style={{
+              padding:      "6px 14px",
+              borderRadius: 6,
+              border:       "1px solid #334155",
+              background:   "#0F172A",
+              color:        "#94A3B8",
+              cursor:       "pointer",
+              fontFamily:   "inherit",
+              fontSize:     11,
+            }}
+          >
+            ⌘K Search
+          </button>
+        </div>
+      </header>
+
+      {/* ── Antirequisite conflict banner ─────────────────────────────────── */}
+      {antireqWarning && (
+        <div
+          className="slide-in"
+          style={{
+            position:       "fixed",
+            top:            64,
+            left:           "50%",
+            transform:      "translateX(-50%)",
+            zIndex:         200,
+            background:     "rgba(239,68,68,0.15)",
+            border:         "1px solid rgba(239,68,68,0.5)",
+            borderRadius:   8,
+            padding:        "10px 20px",
+            fontSize:       12,
+            color:          "#FCA5A5",
+            backdropFilter: "blur(10px)",
+            whiteSpace:     "nowrap",
+          }}
+        >
+          {antireqWarning}
+        </div>
+      )}
+
+      {/* ── Main body (below fixed header) ───────────────────────────────── */}
+      <div style={{ paddingTop: 56, display: "flex", height: "100vh" }}>
+        <Sidebar />
+
+        <main style={{ flex: 1, overflow: "hidden", position: "relative" }}>
+          {activeTab === "graph" && (
+            <>
+              <GraphCanvas />
+              <CourseDetailPanel />
+            </>
+          )}
+          {activeTab === "planner"  && <TermPlanner />}
+          {activeTab === "progress" && <ProgressAudit />}
+          {activeTab === "chat"     && <ChatPanel />}
+        </main>
+      </div>
+
+      {/* ── ⌘K search palette (portal-like, renders over everything) ─────── */}
+      <SearchPalette />
+    </div>
+  );
+}
+
+// ── TabButton ─────────────────────────────────────────────────────────────────
+
+function TabButton({
+  label, active, onClick, highlight = false,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+  highlight?: boolean;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        padding:       "6px 14px",
+        borderRadius:  6,
+        border:        "1px solid",
+        fontSize:      11,
+        fontFamily:    "inherit",
+        cursor:        "pointer",
+        textTransform: "uppercase",
+        letterSpacing: "0.05em",
+        transition:    "all 0.15s",
+        background:    active ? "#FFD54F" : highlight ? "rgba(255,213,79,0.06)" : "transparent",
+        color:         active ? "#0A0F1E" : highlight ? "#FFD54F" : "#64748B",
+        borderColor:   active ? "#FFD54F" : highlight ? "rgba(255,213,79,0.25)" : "#1E293B",
+        fontWeight:    active ? 600       : highlight ? 500 : 400,
+      }}
+    >
+      {label}
+    </button>
+  );
+}
