@@ -160,7 +160,7 @@ export default function ProgressAudit() {
 
 function Sparkline({ pct, color }: { pct: number; color: string }) {
   return (
-    <div style={{ width: 40, height: 3, background: "#1E293B", borderRadius: 2, overflow: "hidden", flexShrink: 0 }}>
+    <div style={{ width: 40, height: 3, background: "var(--gg-border)", borderRadius: 2, overflow: "hidden", flexShrink: 0 }}>
       <div style={{ width: `${pct}%`, height: "100%", background: color, borderRadius: 2, transition: "width 0.4s ease" }} />
     </div>
   );
@@ -183,7 +183,7 @@ function DegreeMiniBar({ label, done, plannedDone, total, color }: {
           <span style={{ color: "#475569" }}>/{total}</span>
         </span>
       </div>
-      <div style={{ height: 3, background: "#1E293B", borderRadius: 2, overflow: "hidden" }}>
+      <div style={{ height: 3, background: "var(--gg-border)", borderRadius: 2, overflow: "hidden" }}>
         <div style={{ height: "100%", display: "flex" }}>
           <div style={{ width: `${completedPct}%`, background: color, transition: "width 0.4s ease" }} />
           <div style={{ width: `${plannedPct}%`, background: `${color}55`, transition: "width 0.4s ease" }} />
@@ -379,11 +379,11 @@ function RequirementGroupCard({
   return (
     <div style={{
       marginBottom: 18,
-      background:   "rgba(15,23,42,0.7)",
-      border:       `1px solid ${isFulfilled ? `${color}40` : "#1E293B"}`,
+      background:   "var(--gg-surface-a)",
+      border:       `1px solid ${isFulfilled ? `${color}40` : "var(--gg-border)"}`,
       borderRadius: 12,
       padding:      16,
-      transition:   "border-color 0.3s",
+      transition:   "border-color 0.3s, background 0.2s",
     }}>
       {/* ── Card header ─────────────────────────────────────────────────── */}
       <div style={{ display: "flex", justifyContent: "space-between",
@@ -441,7 +441,7 @@ function RequirementGroupCard({
       </div>
 
       {/* ── Progress bar ────────────────────────────────────────────────── */}
-      <div style={{ height: 5, background: "#1E293B", borderRadius: 3,
+      <div style={{ height: 5, background: "var(--gg-border)", borderRadius: 3,
                     marginBottom: 12, overflow: "hidden" }}>
         <div style={{ height: "100%", display: "flex" }}>
           <div style={{

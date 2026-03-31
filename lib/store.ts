@@ -43,6 +43,7 @@ interface PersistedSlice {
   /** True once the user has manually edited the term plan (drag/drop).
    *  When true, switching majors no longer resets the term plan. */
   termPlanEditedByUser:  boolean;
+  theme:                 "dark" | "light";
 }
 
 // ── Full state shape ──────────────────────────────────────────────────────────
@@ -52,7 +53,7 @@ interface GradGraphState extends PersistedSlice {
   selectedNode:      string | null;
   highlightedNodes:  Set<string>;
   highlightedEdges:  Set<string>;
-  activeTab:         "graph" | "planner" | "progress" | "chat";
+  activeTab:         "graph" | "planner" | "progress" | "chat" | "help";
   searchOpen:        boolean;
   transform:         CanvasTransform;
   antireqWarning:    string | null;
@@ -82,7 +83,8 @@ interface GradGraphState extends PersistedSlice {
   setSelectedNode:    (code: string | null) => void;
   setHighlight:       (nodes: Set<string>, edges: Set<string>) => void;
   clearSelection:     () => void;
-  setActiveTab:       (tab: "graph" | "planner" | "progress" | "chat") => void;
+  setActiveTab:       (tab: "graph" | "planner" | "progress" | "chat" | "help") => void;
+  toggleTheme:        () => void;
   setSearchOpen:      (open: boolean) => void;
   setTransform:       (t: CanvasTransform | ((prev: CanvasTransform) => CanvasTransform)) => void;
   moveCourseToTerm:   (code: string, term: string) => void;
@@ -128,6 +130,7 @@ export const useStore = create<GradGraphState>()(
       plannedCourses:   new Set([]),
       termPlan:              { "1A": [], "1B": [], "2A": [], "2B": [], "3A": [], "3B": [], "4A": [], "4B": [] },
       termPlanEditedByUser:  false,
+      theme:                 "dark",
 
       // ── Ephemeral ─────────────────────────────────────────────────────────────
       selectedNode:     null,
@@ -209,6 +212,7 @@ export const useStore = create<GradGraphState>()(
       setHighlight:     (nodes, edges) => set({ highlightedNodes: nodes, highlightedEdges: edges }),
       clearSelection:   ()             => set({ selectedNode: null, highlightedNodes: new Set(), highlightedEdges: new Set() }),
       setActiveTab:     (tab)          => set({ activeTab: tab }),
+      toggleTheme: () => set((s) => ({ theme: s.theme === "dark" ? "light" : "dark" })),
       setSearchOpen:    (open)         => set({ searchOpen: open }),
 
       setTransform: (t) =>
@@ -490,6 +494,7 @@ export const useStore = create<GradGraphState>()(
         plannedCourses:       state.plannedCourses,
         termPlan:             state.termPlan,
         termPlanEditedByUser: state.termPlanEditedByUser,
+        theme:                state.theme,
       }),
 
       onRehydrateStorage: () => (rehydrated) => {

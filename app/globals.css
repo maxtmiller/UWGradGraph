@@ -3,17 +3,55 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Theme tokens ────────────────────────────────────────────────────────── */
+:root {
+  --gg-base:         #060B14;
+  --gg-bg:           #0A0F1E;
+  --gg-surface:      #0F172A;
+  --gg-surface-a:    rgba(15,23,42,0.7);
+  --gg-elevated:     #1E293B;
+  --gg-border:       #1E293B;
+  --gg-border-2:     #334155;
+  --gg-text-1:       #F1F5F9;
+  --gg-text-2:       #CBD5E1;
+  --gg-text-3:       #94A3B8;
+  --gg-text-4:       #64748B;
+  --gg-text-5:       #475569;
+  --gg-text-6:       #334155;
+  --gg-header:       rgba(15,23,42,0.95);
+  --gg-overlay:      rgba(15,23,42,0.6);
+}
+
+[data-theme="light"] {
+  --gg-base:         #E2E8F0;
+  --gg-bg:           #F1F5F9;
+  --gg-surface:      #FFFFFF;
+  --gg-surface-a:    rgba(255,255,255,0.9);
+  --gg-elevated:     #F1F5F9;
+  --gg-border:       #E2E8F0;
+  --gg-border-2:     #CBD5E1;
+  --gg-text-1:       #0F172A;
+  --gg-text-2:       #1E293B;
+  --gg-text-3:       #334155;
+  --gg-text-4:       #64748B;
+  --gg-text-5:       #94A3B8;
+  --gg-text-6:       #CBD5E1;
+  --gg-header:       rgba(248,250,252,0.97);
+  --gg-overlay:      rgba(241,245,249,0.85);
+}
+
 html, body { height: 100%; overflow: hidden; }
 
 body {
   font-family: 'DM Mono', 'Fira Code', monospace;
-  background:  #0A0F1E;
-  color:       #E2E8F0;
+  background:  var(--gg-bg);
+  color:       var(--gg-text-1);
+  transition:  background 0.2s, color 0.2s;
 }
 
 ::-webkit-scrollbar         { width: 6px; height: 6px; }
-::-webkit-scrollbar-track   { background: #0F172A; }
-::-webkit-scrollbar-thumb   { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-track   { background: var(--gg-surface); }
+::-webkit-scrollbar-thumb   { background: var(--gg-border-2); border-radius: 3px; }
 
 .node-card { transition: all 0.2s ease; }
 .node-card:hover { transform: scale(1.03); }

@@ -264,12 +264,12 @@ export default function ChatPanel() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", background: "#080D1A" }}>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", background: "var(--gg-base)", transition: "background 0.2s" }}>
 
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <div style={{
         padding:      "14px 20px",
-        borderBottom: "1px solid #1E293B",
+        borderBottom: "1px solid var(--gg-border)",
         display:      "flex",
         alignItems:   "center",
         gap:          10,
@@ -311,9 +311,9 @@ export default function ChatPanel() {
                     textAlign:    "left",
                     padding:      "8px 12px",
                     borderRadius: 8,
-                    border:       "1px solid #1E293B",
-                    background:   "rgba(15,23,42,0.6)",
-                    color:        "#64748B",
+                    border:       "1px solid var(--gg-border)",
+                    background:   "var(--gg-overlay)",
+                    color:        "var(--gg-text-4)",
                     fontSize:     11,
                     cursor:       "pointer",
                     fontFamily:   "inherit",
@@ -618,7 +618,7 @@ const MD_COMPONENTS = {
       fontStyle:   "italic",
     }}>{children}</blockquote>
   ),
-  hr: () => <hr style={{ border: "none", borderTop: "1px solid #1E293B", margin: "10px 0" }} />,
+  hr: () => <hr style={{ border: "none", borderTop: "1px solid var(--gg-border)", margin: "10px 0" }} />,
   a: ({ href, children }: { href?: string; children?: React.ReactNode }) => (
     <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: "#60A5FA", textDecoration: "underline" }}>{children}</a>
   ),

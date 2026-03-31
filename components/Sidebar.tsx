@@ -107,16 +107,17 @@ export default function Sidebar() {
   return (
     <aside style={{
       width:          260,
-      background:     "rgba(15,23,42,0.8)",
-      borderRight:    "1px solid #1E293B",
+      background:     "var(--gg-surface)",
+      borderRight:    "1px solid var(--gg-border)",
       backdropFilter: "blur(10px)",
       display:        "flex",
       flexDirection:  "column",
       overflow:       "hidden",
       flexShrink:     0,
+      transition:     "background 0.2s, border-color 0.2s",
     }}>
       {/* ── Progress section ──────────────────────────────────────────────── */}
-      {/* <div style={{ padding: 16, borderBottom: "1px solid #1E293B" }}>
+      {/* <div style={{ padding: 16, borderBottom: "1px solid var(--gg-border)" }}>
         <Label>Degree Progress</Label>
 
         {previewGroups.map(({ group, doneCount, target }) => (
@@ -129,7 +130,7 @@ export default function Sidebar() {
           />
         ))} */}
 
-      <div style={{ padding: 16, borderBottom: "1px solid #1E293B" }}>
+      <div style={{ padding: 16, borderBottom: "1px solid var(--gg-border)" }}>
         <Label>Degree Progress</Label>
 
         {/* Render specific Core bars */}
@@ -243,7 +244,7 @@ export default function Sidebar() {
       </div>
 
       {/* ── Legend ────────────────────────────────────────────────────────── */}
-      <div style={{ padding: 16, borderTop: "1px solid #1E293B" }}>
+      <div style={{ padding: 16, borderTop: "1px solid var(--gg-border)" }}>
         {(["completed","planned","available","locked"] as const).map((status) => (
           <div key={status} style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
             <div style={{ width: 8, height: 8, borderRadius: 2, background: STATUS_COLORS[status] }} />
@@ -299,7 +300,7 @@ function ProgressBar({
           <span style={{ color: "#64748B" }}>/{total}</span>
         </span>
       </div>
-      <div style={{ height: 4, background: "#1E293B", borderRadius: 2, overflow: "hidden" }}>
+      <div style={{ height: 4, background: "var(--gg-border)", borderRadius: 2, overflow: "hidden" }}>
         <div style={{ height: "100%", display: "flex" }}>
           <div style={{ width: `${completedPct}%`, background: color, transition: "width 0.3s ease" }} />
           <div style={{ width: `${plannedPct}%`, background: `${color}55`, transition: "width 0.3s ease" }} />

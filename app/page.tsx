@@ -11,16 +11,19 @@ import ProgressAudit     from "@/components/ProgressAudit";
 import ChatPanel         from "@/components/ChatPanel";
 import SearchPalette     from "@/components/SearchPalette";
 import MajorSelector     from "@/components/MajorSelector";
+import WelcomeOverlay    from "@/components/WelcomeOverlay";
+import HelpPage          from "@/components/HelpPage";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type Tab = "graph" | "planner" | "progress" | "chat";
+type Tab = "graph" | "planner" | "progress" | "chat" | "help";
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "graph",    label: "Graph"    },
   { key: "planner",  label: "Planner"  },
   { key: "progress", label: "Progress" },
   { key: "chat",     label: "✦ Ask AI" },
+  { key: "help",     label: "? Help"   },
 ];
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -34,6 +37,8 @@ export default function GradGraphPage() {
     setSearchOpen,
     antireqWarning,
     clearSelection,
+    theme,
+    toggleTheme,
   } = useStore();
 
   const activeMajor = MAJORS[activeMajorId];
@@ -58,12 +63,15 @@ export default function GradGraphPage() {
   return (
     <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
 
+      {/* ── First-visit welcome overlay ───────────────────────────────────── */}
+      <WelcomeOverlay />
+
       {/* ── Fixed header ──────────────────────────────────────────────────── */}
       <header style={{
         position:       "fixed",
         top: 0, left: 0, right: 0,
         zIndex:         100,
-        background:     "rgba(15,23,42,0.95)",
+        background:     "var(--gg-header)",
         borderBottom:   "1px solid rgba(255,213,79,0.2)",
         backdropFilter: "blur(10px)",
         padding:        "10px 24px",
@@ -71,6 +79,7 @@ export default function GradGraphPage() {
         alignItems:     "center",
         justifyContent: "space-between",
         gap:            16,
+        transition:     "background 0.2s",
       }}>
         {/* Left: wordmark + dynamic subtitle */}
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -112,16 +121,36 @@ export default function GradGraphPage() {
             style={{
               padding:      "6px 14px",
               borderRadius: 6,
-              border:       "1px solid #334155",
-              background:   "#0F172A",
-              color:        "#94A3B8",
+              border:       "1px solid var(--gg-border-2)",
+              background:   "var(--gg-surface)",
+              color:        "var(--gg-text-3)",
               cursor:       "pointer",
               fontFamily:   "inherit",
               fontSize:     11,
+              transition:   "background 0.2s, border-color 0.2s",
             }}
           >
             ⌘K Search
           </button>
+
+          {/* ── Theme toggle ──────────────────────────────────────────────── */}
+          {/* <button
+            onClick={toggleTheme}
+            title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            style={{
+              padding:      "6px 10px",
+              borderRadius: 6,
+              border:       "1px solid var(--gg-border-2)",
+              background:   "var(--gg-surface)",
+              color:        "var(--gg-text-3)",
+              cursor:       "pointer",
+              fontSize:     13,
+              lineHeight:   1,
+              transition:   "background 0.2s, border-color 0.2s",
+            }}
+          >
+            {theme === "dark" ? "☀" : "☾"}
+          </button> */}
         </div>
       </header>
 
@@ -163,6 +192,7 @@ export default function GradGraphPage() {
           {activeTab === "planner"  && <TermPlanner />}
           {activeTab === "progress" && <ProgressAudit />}
           {activeTab === "chat"     && <ChatPanel />}
+          {activeTab === "help"     && <HelpPage />}
         </main>
       </div>
 
@@ -196,8 +226,8 @@ function TabButton({
         letterSpacing: "0.05em",
         transition:    "all 0.15s",
         background:    active ? "#FFD54F" : highlight ? "rgba(255,213,79,0.06)" : "transparent",
-        color:         active ? "#0A0F1E" : highlight ? "#FFD54F" : "#64748B",
-        borderColor:   active ? "#FFD54F" : highlight ? "rgba(255,213,79,0.25)" : "#1E293B",
+        color:         active ? "#0A0F1E" : highlight ? "#FFD54F" : "var(--gg-text-4)",
+        borderColor:   active ? "#FFD54F" : highlight ? "rgba(255,213,79,0.25)" : "var(--gg-border)",
         fontWeight:    active ? 600       : highlight ? 500 : 400,
       }}
     >

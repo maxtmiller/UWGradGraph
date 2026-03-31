@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react"
 import StoreHydration from "@/components/StoreHydration";
+import ThemeApplier   from "@/components/ThemeApplier";
 import "./globals.css"
 
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Placed here (layout) so it covers all routes automatically.
         */}
         <StoreHydration />
+        <ThemeApplier />
         {children}
         <Analytics />
       </body>

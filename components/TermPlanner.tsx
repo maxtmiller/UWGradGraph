@@ -244,8 +244,8 @@ export default function TermPlanner() {
                   paddingRight:   searchQuery ? 22 : 8,
                   paddingTop:     3,
                   paddingBottom:  3,
-                  background:     "rgba(15,23,42,0.6)",
-                  border:         "1px solid #2D3748",
+                  background:     "var(--gg-overlay)",
+                  border:         "1px solid var(--gg-border)",
                   borderRadius:   5,
                   color:          "#E2E8F0",
                   fontSize:       10,
@@ -276,8 +276,8 @@ export default function TermPlanner() {
 
           {/* Pills */}
           <div
-            style={{ minHeight: 48, background: "rgba(15,23,42,0.4)", borderRadius: 8,
-                     border: "1px dashed #1E293B", padding: "8px", display: "flex",
+            style={{ minHeight: 48, background: "var(--gg-overlay)", borderRadius: 8,
+                     border: "1px dashed var(--gg-border)", padding: "8px", display: "flex",
                      flexWrap: "wrap", gap: 5 }}
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => {
@@ -343,19 +343,19 @@ function TermBucket({
   return (
     <div
       style={{
-        background:   "rgba(15,23,42,0.7)",
-        border:       `1px solid ${allDone ? "#4ADE8030" : "#1E293B"}`,
+        background:   "var(--gg-surface-a)",
+        border:       `1px solid ${allDone ? "#4ADE8030" : "var(--gg-border)"}`,
         borderRadius: 10,
         padding:      12,
         minHeight:    160,
-        transition:   "border-color 0.3s",
+        transition:   "border-color 0.3s, background 0.2s",
       }}
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => onDrop(e, term)}
     >
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",
-                    marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid #1E293B" }}>
+                    marginBottom: 10, paddingBottom: 6, borderBottom: "1px solid var(--gg-border)" }}>
         <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 13, fontWeight: 700,
                        color: allDone ? "#4ADE80" : "#FFD54F" }}>
           {term}
