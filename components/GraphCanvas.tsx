@@ -8,6 +8,7 @@ import {
   computeLayout, buildEdges, getCanvasDimensions,
   getConnectedNodes, getHighlightedEdges,
 } from "../lib/graph";
+
 import { useStore } from "../lib/store";
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -21,6 +22,7 @@ export default function GraphCanvas() {
     tierFilter,
     completedCourses,
     plannedCourses,
+    termPlan,
     showMyCourses,
     selectedNode, highlightedNodes, highlightedEdges,
     transform,
@@ -132,6 +134,24 @@ export default function GraphCanvas() {
 
     return next;
   }, [activeMajorId, activeSubMajorId, visibleCodes, completedCourses, plannedCourses]);
+
+  // Courses in antirequisite conflict (completed/planned/termPlan vs each other)
+  const antireqConflicts = useMemo(() => {
+    const termPlanned = new Set(Object.values(termPlan).flat());
+    const all = new Set([...completedCourses, ...plannedCourses, ...termPlanned]);
+    const conflicts = new Set<string>();
+    for (const code of all) {
+      const course = COURSE_DATA[code];
+      if (!course) continue;
+      for (const anti of course.antireqs) {
+        if (all.has(anti)) {
+          conflicts.add(code);
+          conflicts.add(anti);
+        }
+      }
+    }
+    return conflicts;
+  }, [completedCourses, plannedCourses, termPlan]);
 
   const positions = useMemo(() => computeLayout([...visibleCodes]), [visibleCodes]);
 
@@ -277,6 +297,7 @@ export default function GraphCanvas() {
                 isSelected={isSelected}
                 isDimmed={isDimmed}
                 isNextUp={!isSelected && !isDimmed && nextUpCodes.has(code)}
+                isConflict={antireqConflicts.has(code)}
                 onClick={handleNodeClick}
                 style={{ left: pos.x, top: pos.y }}
               />

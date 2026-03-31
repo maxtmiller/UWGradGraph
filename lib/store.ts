@@ -220,7 +220,7 @@ export const useStore = create<GradGraphState>()(
           transform: typeof t === "function" ? t(state.transform) : t,
         })),
 
-      moveCourseToTerm: (code, term) =>
+      moveCourseToTerm: (code, term) => {
         set((state) => {
           const next = {} as TermPlan;
           for (const [t, cs] of Object.entries(state.termPlan) as [keyof TermPlan, string[]][]) {
@@ -229,7 +229,9 @@ export const useStore = create<GradGraphState>()(
           const key = term as keyof TermPlan;
           if (key in next) next[key] = [...next[key], code];
           return { termPlan: next, termPlanEditedByUser: true };
-        }),
+        });
+        get().checkAntireqs();
+      },
 
       // ── Subject filter ─────────────────────────────────────────────────────
 
@@ -468,7 +470,8 @@ export const useStore = create<GradGraphState>()(
       checkAntireqs: () => {
         const completedCourses = toSet(get().completedCourses);
         const plannedCourses   = toSet(get().plannedCourses);
-        const all = new Set([...completedCourses, ...plannedCourses]);
+        const termPlanned      = new Set(Object.values(get().termPlan).flat());
+        const all = new Set([...completedCourses, ...plannedCourses, ...termPlanned]);
 
         for (const code of all) {
           const course = COURSE_DATA[code];

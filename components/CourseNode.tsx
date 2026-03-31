@@ -4,13 +4,14 @@ import { COURSE_DATA, TAG_COLORS, STATUS_COLORS } from "../data/courses";
 // ── Props ─────────────────────────────────────────────────────────────────────
 
 interface CourseNodeProps {
-  code:       string;
-  status:     CourseStatus;
-  isSelected: boolean;
-  isDimmed:   boolean;
-  isNextUp?:  boolean;
-  onClick:    (code: string) => void;
-  style?:     React.CSSProperties;
+  code:        string;
+  status:      CourseStatus;
+  isSelected:  boolean;
+  isDimmed:    boolean;
+  isNextUp?:   boolean;
+  isConflict?: boolean;
+  onClick:     (code: string) => void;
+  style?:      React.CSSProperties;
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -39,14 +40,14 @@ const STATUS_LABEL: Record<CourseStatus, string> = {
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function CourseNode({
-  code, status, isSelected, isDimmed, isNextUp, onClick, style,
+  code, status, isSelected, isDimmed, isNextUp, isConflict, onClick, style,
 }: CourseNodeProps) {
   const course = COURSE_DATA[code];
   if (!course) return null;
 
-  const borderColor = isSelected ? "#FFD54F" : isNextUp ? "#F97316" : BORDER_COLORS[status];
-  const glowClass   = isSelected ? "glow-gold" : GLOW_CLASS[status];
-  const labelText   = STATUS_LABEL[status];
+  const borderColor = isSelected ? "#FFD54F" : isConflict ? "#F97316" : isNextUp ? "#F97316" : BORDER_COLORS[status];
+  const glowClass   = isSelected ? "glow-gold" : isConflict ? "" : GLOW_CLASS[status];
+  const labelText   = isConflict ? "ANTIREQ ✕" : STATUS_LABEL[status];
   const tagColor    = TAG_COLORS[course.tags[0]] ?? "#64748B";
   const isLocked    = status === "locked";
 
@@ -57,8 +58,9 @@ export default function CourseNode({
         position:        "absolute",
         width:           180,
         height:          80,
-        background:      isLocked ? "rgba(15,23,42,0.6)" : isNextUp ? "rgba(239,68,68,0.06)" : "rgba(15,23,42,0.9)",
+        background:      isConflict ? "rgba(249,115,22,0.08)" : isLocked ? "rgba(15,23,42,0.6)" : isNextUp ? "rgba(249,115,22,0.06)" : "rgba(15,23,42,0.9)",
         border:          `1.5px solid ${borderColor}`,
+        boxShadow:       isConflict ? "0 0 12px rgba(249,115,22,0.3)" : undefined,
         borderRadius:    10,
         padding:         "10px 12px",
         cursor:          "pointer",
@@ -77,7 +79,7 @@ export default function CourseNode({
           fontFamily:  "'DM Mono', monospace",
           fontWeight:  500,
           fontSize:    12,
-          color:       isSelected ? "#FFD54F" : isLocked ? "#475569" : "#E2E8F0",
+          color:       isSelected ? "#FFD54F" : isConflict ? "#F97316" : isLocked ? "#475569" : "#E2E8F0",
         }}>
           {code}
         </span>
@@ -101,18 +103,18 @@ export default function CourseNode({
       {labelText && (
         <div style={{ position: "absolute", bottom: 6, right: 8 }}>
           <span style={{
-            fontSize:    8,
-            color:       STATUS_COLORS[status],
-            border:      `1px solid ${STATUS_COLORS[status]}60`,
+            fontSize:     8,
+            color:        isConflict ? "#F97316" : STATUS_COLORS[status],
+            border:       `1px solid ${isConflict ? "#F9731660" : `${STATUS_COLORS[status]}60`}`,
             borderRadius: 3,
-            padding:     "1px 4px",
+            padding:      "1px 4px",
           }}>
             {labelText}
           </span>
         </div>
       )}
-      {/* Next-up badge */}
-      {isNextUp && (
+      {/* Next-up badge (only when not in conflict) */}
+      {isNextUp && !isConflict && (
         <div style={{ position: "absolute", top: 6, right: 8 }}>
           <span style={{
             fontSize:     7,

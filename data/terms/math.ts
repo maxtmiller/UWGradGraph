@@ -81,7 +81,7 @@ export const COMP_MATH_PLAN = {
     "2A": ["MATH 237", "STAT 231", "CS 230", "CO 250", "ECON 201"],
     "2B": ["MATH 239", "CS 234", "AMATH 242", "CS 245"],
     "3A": ["AMATH 342", "STAT 340", "CO 351", "ECON 301"],
-    "3B": ["CS 475", "CO 367", "CS 341", "CS 431"],
+    "3B": ["CS 475", "CO 367", "CS 479", "CS 431"],
     "4A": ["STAT 441", "CO 487", "CS 480", "ECON 401"],
     "4B": ["STAT 444", "CO 463", "CS 485", "CS 451"]
 };
