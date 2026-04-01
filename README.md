@@ -9,10 +9,11 @@
 
 -----
 
-## Preview
+## Demo
 
-<img width="1710" height="988" alt="Screenshot 2026-03-29 at 8 46 25 in the evening" src="https://github.com/user-attachments/assets/a0792dee-f4d5-4d4f-8f52-88478f55574c" />
-
+<video src="https://github.com/user-attachments/assets/b8548f4a-1f32-4f8f-8459-110e96697c18" width="600" controls>
+    Your browser does not support the video tag.
+</video>
 
 -----
 
