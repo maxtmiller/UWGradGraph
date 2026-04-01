@@ -42,6 +42,14 @@
 
 html, body { height: 100%; overflow: hidden; }
 
+html[data-welcome="true"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: #0A0F1E;
+  z-index: 998;
+}
+
 body {
   font-family: 'DM Mono', 'Fira Code', monospace;
   background:  var(--gg-bg);

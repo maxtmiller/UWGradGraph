@@ -74,22 +74,8 @@ const BCS_CS_CORE: RequirementGroup = {
         {
             title: "Elementary Algorithm Design",
             type: "at-least",
-            count: 2,
-            courses: ["CS 136", "CS 146"],
-            subGroups: [
-                {
-                    title: "Elementary Algorithm Design (Pick 1)",
-                    type: "at-most",
-                    count: 1,
-                    courses: ["CS 136", "CS 146"],
-                },
-                {
-                    title: "Tools and Techniques for Software",
-                    type: "at-least",
-                    count: 1,
-                    courses: ["CS 136L"],
-                }
-            ]
+            count: 1,
+            courses: ["CS 136", "CS 146"]
         },
         {
             title: "Data Structures (Pick 1)",

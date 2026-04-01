@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { MajorId } from "../types";
 import { useStore } from "../lib/store";
 
@@ -69,21 +69,24 @@ export default function WelcomeOverlay() {
   const { setActiveMajor } = useStore();
 
   // SSR-safe: don't render on server, check localStorage after mount
-  const [visible,  setVisible]  = useState(false);
+  const [status, setStatus] = useState<"loading" | "visible" | "hidden">("loading");
+  // const [visible,  setVisible]  = useState(false);
   const [selected, setSelected] = useState<MajorId>("cs");
   const [exiting,  setExiting]  = useState(false);
   const nodesRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+  useLayoutEffect(() => {
+    document.documentElement.removeAttribute("data-welcome");
     if (!localStorage.getItem("gradgraph_seen")) {
-      setVisible(true);
+      setStatus("visible");
+    } else {
+      setStatus("hidden");
     }
   }, []);
 
   // Spawn floating nodes
   useEffect(() => {
-    if (!visible) return;
+    if (status === "hidden") return;
     const layer = nodesRef.current;
     if (!layer) return;
 
@@ -117,18 +120,22 @@ export default function WelcomeOverlay() {
     for (let i = 0; i < 8; i++) setTimeout(spawn, i * 900);
     const interval = setInterval(spawn, 1800);
     return () => clearInterval(interval);
-  }, [visible]);
+  }, [status]);
 
   function handleStart() {
     setActiveMajor(selected);
     setExiting(true);
     setTimeout(() => {
       localStorage.setItem("gradgraph_seen", "1");
-      setVisible(false);
+      setStatus("hidden");
     }, 500);
   }
 
-  if (!visible) return null;
+  if (status === "loading") {
+    return <div style={{ position: "fixed", inset: 0, background: "#060B14", zIndex: 9999 }} />;
+  }
+
+  if (status === "hidden") return null;
 
   return (
     <>
