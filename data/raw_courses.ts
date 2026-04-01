@@ -190,14 +190,14 @@ export const RAW_COURSES: RawCourse[] = [
     antireqs: ["CS 360"],
     tags: ["theory"], majors: ["cs","ds","se"] },
 
-  { code: "CS 370",  title: "Numerical Computation", units: 0.5,
-    prereqs: [{ type: "OR", reqs: ["CS 116","CS 136","CS 138","CS 146"] }, { type: "OR", reqs: ["CS 114","CS 115","CS 135","CS 145"] }, { type: "OR", reqs: ["MATH 235","MATH 245"] }, { type: "OR", reqs: ["MATH 237","MATH 247"] }],
-    antireqs: ["CS 335","CS 370","ECE 204","MTE 204"],
-    tags: ["numerical"], majors: ["cs","ds","se","math"] },
-
-  { code: "CS 371",  title: "Introduction to Computational Mathematics", units: 0.5,
+  { code: "CS 370",  title: "Introduction to Computational Mathematics", units: 0.5,
     prereqs: [{ type: "OR", reqs: ["MATH 106","MATH 114","MATH 115","MATH 136","MATH 146"] }, { type: "OR", reqs: ["MATH 118","MATH 119","MATH 128","MATH 138","MATH 148"] }, { type: "OR", reqs: ["CS 231","CS 234","CS 241","CS 241E","CS 246","CS 246E"] }],
     antireqs: ["AMATH 242","CIVE 121","CS 335","CS 370","ECE 204","MTE 204","CHEM 121"],
+    tags: ["numerical"], majors: ["cs","ds","se","math"] },
+
+  { code: "CS 371",  title: "Numerical Computation", units: 0.5,
+    prereqs: [{ type: "OR", reqs: ["CS 116","CS 136","CS 138","CS 146"] }, { type: "OR", reqs: ["CS 114","CS 115","CS 135","CS 145"] }, { type: "OR", reqs: ["MATH 235","MATH 245"] }, { type: "OR", reqs: ["MATH 237","MATH 247"] }],
+    antireqs: ["CS 335","CS 370","ECE 204","MTE 204"],
     tags: ["numerical"], majors: ["cs","ds","se","math"] },
 
   { code: "CS 383",  title: "Computational Digital Art Studio", units: 0.5,
