@@ -116,6 +116,17 @@ export const STAT_REQS: RequirementGroup[] = [
         }]
     },
     {
+        title: "Additional 300/400 STAT",
+        type: "elective",
+        minCourses: 1,
+        color: "#A5D6A7",
+        courses: [],
+        rules: [{ 
+            prefixes: ["STAT"], 
+            minLevel: 300 
+        }]
+    },
+    {
         title: "Advanced STAT or CS Machine Learning",
         type: "complex",
         color: "#4DB6AC",
@@ -143,17 +154,6 @@ export const STAT_REQS: RequirementGroup[] = [
                 ]
             }
         ],
-    },
-    {
-        title: "Additional 300/400 STAT",
-        type: "elective",
-        minCourses: 1,
-        color: "#A5D6A7",
-        courses: [],
-        rules: [{ 
-            prefixes: ["STAT"], 
-            minLevel: 300 
-        }]
     },
     {
         title: "Upper-Year Math Electives",
@@ -1662,12 +1662,7 @@ export const DS_BMATH_REQS: RequirementGroup[] = [
         courses: [],
         subGroups: [
             { title: "CS 1", type: "at-most", count: 1, courses: ["CS 115", "CS 135", "CS 145"] },
-            { title: "Elementary Algorithm Design", type: "at-least", count: 2, courses: ["CS 136", "CS 146"],
-                subGroups: [
-                    { title: "Elementary Algorithm Design (Pick 1)", type: "at-most", count: 1, courses: ["CS 136", "CS 146"] },
-                    { title: "Tools and Techniques for Software", type: "at-least", count: 1, canDoubleCount: true, courses: ["CS 136L"] }
-                ]
-            },
+            { title: "Elementary Algorithm Design", type: "at-most", count: 1, courses: ["CS 136", "CS 146"] },
             { title: "Data Structures", type: "at-most", count: 1, courses: ["CS 240", "CS 240E"] },
             { title: "Sequential Programs", type: "at-most", count: 1, courses: ["CS 241", "CS 241E"] },
             { title: "Logic & Computation", type: "at-most", count: 1, courses: ["CS 245", "CS 245E"] },
@@ -1685,36 +1680,86 @@ export const DS_BMATH_REQS: RequirementGroup[] = [
             {
                 title: "Required Foundational Core",
                 type: "at-least",
-                count: 10,
+                count: 12,
                 courses: [
-                    "CS 136L","CS 341","CS 348","CS 431","ENGL 378",
-                    "STAT 330","STAT 331","STAT 332","STAT 333","STAT 341"
+                    "CS 136L","CS 230","CS 231","CS 234","CS 338","CS 431",
+                    "DATSC 401","ENGL 378","PHIL 228","STAT 331","STAT 341","STAT 442"
                 ]
             },
             {
-                title: "Advanced Statistical Learning (Pick 2)",
+                title: "Advanced Data & Optimization (Pick 2)",
                 type: "at-least",
                 count: 2,
-                courses: ["STAT 431", "STAT 440", "STAT 441", "STAT 442", "STAT 443", "STAT 444"]
+                courses: ["AMATH 345","AMATH 391","CO 353","CO 365","CO 367","CO 370"]
             },
             {
                 title: "Machine Learning & AI Specialization",
                 type: "at-least",
+                count: 2,
+                courses: ["AMATH 445","STAT 441","STAT 443","STAT 444"]
+            },
+            {
+                title: "Optimization Course",
+                type: "at-most",
                 count: 1,
-                courses: ["CS 480","CS 484","CS 485","CS 486","STAT 441"]
+                courses: ["CO 250","CO 255"],
+            },
+            {
+                title: "Differential Equations Course",
+                type: "at-most",
+                count: 1,
+                courses: ["AMATH 231","AMATH 250","AMATH 251"]
             }
         ]
     },
     {
-        title: "Advanced Math Electives (300/400 Level)",
-        type: "elective",
-        color: "#81C784",
-        minCourses: 1,
+        title: "Specialized Statistics Options",
+        type: "complex",
+        color: "#8B5CF6",
         courses: [],
-        rules: [{ 
-            prefixes: ["ACTSC","AMATH","CS","CO","MATBUS","MATH","PMATH","STAT"], 
-            minLevel: 300
-        }]
-    },
+        subGroups: [
+            {
+                type: "or",
+                count: 2,
+                courses: [],
+                subGroups: [
+                    {
+                        title: "Computational Math Pair",
+                        type: "at-least",
+                        count: 2,
+                        courses: [],
+                        subGroups: [
+                            {
+                                title: "AMATH Path",
+                                type: "at-least",
+                                count: 1,
+                                courses: ["AMATH 242", "CS 335", "CS 370", "CS 371"]
+                            },
+                            {
+                                title: "Neural Networks Path",
+                                type: "at-least",
+                                count: 1,
+                                courses: ["AMATH 449","CS 479"]
+                            }
+                        ],
+                    },
+                    {
+                        title: "Statistical Inference Pair",
+                        type: "at-least",
+                        count: 2,
+                        requiredCourse: "STAT 330",
+                        courses: ["STAT 431", "STAT 440"],
+                    },
+                    {
+                        title: "Experimental Design Pair",
+                        type: "at-least",
+                        count: 2,
+                        requiredCourse: "STAT 332",
+                        courses: ["STAT 430", "STAT 454"],
+                    }
+                ]
+            }
+        ]
+    }
 ];
 

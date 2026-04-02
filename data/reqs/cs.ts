@@ -165,16 +165,47 @@ export const CS_REQS: RequirementGroup[] = [
             }
         ]
     },
-    {
-        title: "Non-Math Electives",
+    {    
+        title: "Elective Requirement",
         type: "complex",
-        minCourses: 10,
-        core: true,
-        color: "#81C784",
-        courses: [], 
-        rules: [{ 
-            prefixes: ["any"],
-        }]
+        color: "#e87b37",
+        minCourses: 8,
+        courses: [],
+        subGroups: [
+            {
+                title: "Arts & Business",
+                type: "elective",
+                count: 2,
+                courses: [],
+                rules: [
+                    { prefixes: ["BET", "BUS", "COMM", "STV"] },
+                ]
+            },
+            {
+                title: "Science, Health & Environment",
+                type: "elective",
+                count: 2,
+                courses: [],
+                rules: [
+                    {
+                        prefixes: [
+                            "SCI", "BIOL", "CHEM", "PHYS", "EARTH",
+                            "HEALTH", "KIN", "GERON",
+                            "PLAN", "ENVS", "ERS", "GEOG", "ENBUS"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Additional Electives",
+                type: "elective",
+                count: 4,
+                courses: [],
+                rules: [
+                    { prefixes: ["BET", "BUS", "COMM", "STV"] }
+                ]
+            }
+        ]
     }
 ]
 
@@ -205,12 +236,7 @@ export const DS_BCS_REQS: RequirementGroup[] = [
         courses: [],
         subGroups: [
             { title: "CS 1", type: "at-most", count: 1, courses: ["CS 115", "CS 135", "CS 145"] },
-            { title: "Elementary Algorithm Design", type: "at-least", count: 2, courses: ["CS 136", "CS 146"],
-                subGroups: [
-                    { title: "Elementary Algorithm Design (Pick 1)", type: "at-most", count: 1, courses: ["CS 136", "CS 146"] },
-                    { title: "Tools and Techniques for Software", type: "at-least", count: 1, courses: ["CS 136L"] }
-                ]
-            },
+            { title: "Elementary Algorithm Design",type: "at-most", count: 1, courses: ["CS 136", "CS 146"] },
             { title: "Data Structures", type: "at-most", count: 1, courses: ["CS 240", "CS 240E"] },
             { title: "Sequential Programs", type: "at-most", count: 1, courses: ["CS 241", "CS 241E"] },
             { title: "Logic & Computation", type: "at-most", count: 1, courses: ["CS 245", "CS 245E"] },
@@ -272,14 +298,14 @@ export const DS_BCS_REQS: RequirementGroup[] = [
         ]
     },
     {
-        title: "Advanced CS Electives (400 Level)",
+        title: "Advanced CS Electives (300 / 400 Level)",
         type: "elective",
         color: "#81C784",
         minCourses: 2,
         courses: [],
         rules: [{ 
             prefixes: ["CS"], 
-            minLevel: 440, 
+            minLevel: 340, 
             maxLevel: 489 
         }]
     },
@@ -312,11 +338,45 @@ export const DS_BCS_REQS: RequirementGroup[] = [
         ]
     },
     {    
-        title: "Non-Math Breadth & Depth",
-        type: "elective",
+        title: "Elective Requirement",
+        type: "complex",
         color: "#e87b37",
-        minCourses: 10,
+        minCourses: 8,
         courses: [],
-        rules: [{ prefixes: [] }]
+        subGroups: [
+            {
+                title: "Arts & Business",
+                type: "elective",
+                count: 2,
+                courses: [],
+                rules: [
+                    { prefixes: ["BET", "BUS", "COMM", "STV"] },
+                ]
+            },
+            {
+                title: "Science, Health & Environment",
+                type: "elective",
+                count: 2,
+                courses: [],
+                rules: [
+                    {
+                        prefixes: [
+                            "SCI", "BIOL", "CHEM", "PHYS", "EARTH",
+                            "HEALTH", "KIN", "GERON",
+                            "PLAN", "ENVS", "ERS", "GEOG", "ENBUS"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Additional Electives",
+                type: "elective",
+                count: 4,
+                courses: [],
+                rules: [
+                    { prefixes: ["BET", "BUS", "COMM", "STV"] }
+                ]
+            }
+        ]
     }
 ];

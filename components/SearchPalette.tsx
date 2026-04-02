@@ -16,9 +16,27 @@ export default function SearchPalette() {
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
-    const q = query.toLowerCase();
+    const q     = query.toLowerCase().trim();
+    const qNorm = q.replace(/\s+/g, "");
+
+    // Split query into letters + digits parts, e.g. "cs371" → ["cs", "371"], "c371" → ["c", "371"]
+    const m = qNorm.match(/^([a-z]*)(\d*)$/);
+    const qLetters = m?.[1] ?? "";
+    const qDigits  = m?.[2] ?? "";
+
     return Object.values(COURSE_DATA)
-      .filter((c) => c.code.toLowerCase().includes(q) || c.title.toLowerCase().includes(q))
+      .filter((c) => {
+        if (c.title.toLowerCase().includes(q)) return true;
+        // Normalise code: "CS 371" → "cs371", split into ["cs","371"]
+        const codeNorm   = c.code.toLowerCase().replace(/\s+/g, "");
+        const cm         = codeNorm.match(/^([a-z]+)(\d+.*)$/);
+        const cLetters   = cm?.[1] ?? codeNorm;
+        const cDigits    = cm?.[2] ?? "";
+        // Letters must be a prefix match; digits (if provided) must match start of course number
+        const lettersOk  = qLetters === "" || cLetters.startsWith(qLetters);
+        const digitsOk   = qDigits  === "" || cDigits.startsWith(qDigits);
+        return lettersOk && digitsOk && (qLetters !== "" || qDigits !== "");
+      })
       .slice(0, 8);
   }, [query]);
 

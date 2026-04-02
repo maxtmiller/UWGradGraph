@@ -103,6 +103,7 @@ interface GradGraphState extends PersistedSlice {
   getFilteredCourses: () => string[];
   getCourseStatus:    (code: string) => CourseStatus;
   checkAntireqs:      () => void;
+  isCourseInCurriculum: (code: string) => boolean;
 }
 
 // ── Custom storage ────────────────────────────────────────────────────────────
@@ -316,6 +317,7 @@ export const useStore = create<GradGraphState>()(
         const allGroups = major.requirementGroups || [];
         
         const processSubGroup = (sub: SubGroup) => {
+          if (sub.requiredCourse) codes.add(sub.requiredCourse);
           sub.courses?.forEach(c => codes.add(c));
           sub.subGroups?.forEach(processSubGroup);
         };
@@ -377,6 +379,36 @@ export const useStore = create<GradGraphState>()(
         }
 
         return Array.from(codes);
+      },
+
+      isCourseInCurriculum: (code: string): boolean => {
+        const { activeMajorId, activeSubMajorId } = get();
+        const subMajorMap = SUB_MAJOR_REGISTRY[activeMajorId];
+
+        // Mirror the same fallback logic as ProgressAudit's resolveActiveCurriculum
+        let major;
+        if (subMajorMap) {
+          const sub = activeSubMajorId ? subMajorMap[activeSubMajorId] : null;
+          const defaultSub = activeMajorId === "math"
+            ? subMajorMap["stat"]
+            : Object.values(subMajorMap)[0];
+          major = sub ?? defaultSub;
+        } else {
+          major = MAJORS[activeMajorId as keyof typeof MAJORS] ?? null;
+        }
+
+        if (!major) return false;
+
+        const scan = (sub: SubGroup): boolean => {
+          if (sub.requiredCourse === code) return true;
+          if (sub.courses?.includes(code)) return true;
+          return sub.subGroups?.some(scan) ?? false;
+        };
+
+        return major.requirementGroups.some((group: RequirementGroup) => {
+          if (group.courses?.includes(code)) return true;
+          return group.subGroups?.some(scan) ?? false;
+        });
       },
 
       getFilteredCourses: (): string[] => {

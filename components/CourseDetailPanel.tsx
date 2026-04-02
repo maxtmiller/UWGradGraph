@@ -32,7 +32,7 @@ export default function CourseDetailPanel() {
     selectedNode, completedCourses, plannedCourses, termPlan,
     toggleCompleted, togglePlanned, moveCourseToTerm,
     setSelectedNode, setHighlight, clearSelection, setPanToNode,
-    getMajorCourses,
+    isCourseInCurriculum,
   } = useStore();
 
   const [showTermPicker, setShowTermPicker] = useState(false);
@@ -95,7 +95,7 @@ export default function CourseDetailPanel() {
     );
   }
 
-  const isOutsideMajor = !getMajorCourses().includes(selectedNode);
+  const isOutsideMajor = !isCourseInCurriculum(selectedNode);
 
   const navigateTo = (code: string) => {
     setShowTermPicker(false);

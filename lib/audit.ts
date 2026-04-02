@@ -110,7 +110,12 @@ function subGroupTarget(sub: SubGroup): number {
     return sub.subGroups.reduce((acc, s) => acc + subGroupTarget(s), 0);
   }
   if (sub.type === "or" && sub.subGroups?.length) {
-    return Math.min(...sub.subGroups.map(subGroupTarget));
+    // sub.count branches must each be satisfied; each contributes min(branch_target) courses
+    return sub.count * Math.min(...sub.subGroups.map(subGroupTarget));
+  }
+  // Non-combinator with nested subGroups (e.g. at-least with sub-paths)
+  if (sub.subGroups?.length) {
+    return sub.subGroups.reduce((acc, s) => acc + subGroupTarget(s), 0);
   }
   return sub.count;
 }
@@ -136,6 +141,10 @@ function collectSubGroupCourses(subs: SubGroup[]): string[] {
   const seen = new Set<string>();
   const out: string[] = [];
   for (const sub of subs) {
+    if (sub.requiredCourse && !seen.has(sub.requiredCourse)) {
+      seen.add(sub.requiredCourse);
+      out.push(sub.requiredCourse);
+    }
     for (const c of sub.courses ?? []) {
       if (!seen.has(c)) { seen.add(c); out.push(c); }
     }
@@ -146,6 +155,24 @@ function collectSubGroupCourses(subs: SubGroup[]): string[] {
     }
   }
   return out;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Branch eligibility helper (used by "or" decomposition)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Returns true if course `c` is eligible for the given branch subGroup,
+ * recursing into nested subGroups when present.
+ */
+function isBranchEligible(c: string, branch: SubGroup): boolean {
+  if (branch.requiredCourse && c === branch.requiredCourse) return true;
+  if (branch.subGroups?.length) {
+    return branch.subGroups.some((sg) => isBranchEligible(c, sg));
+  }
+  if (branch.courses?.includes(c)) return true;
+  if (branch.rules && matchesAnyRule(c, branch.rules)) return true;
+  return false;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -201,8 +228,6 @@ function decomposeGroup(
     const dc = parentDC || (sub.canDoubleCount ?? false);
     const mult = sub.countMultiplier ?? 1;
 
-    const isLocked = sub.requiredCourse && !pool.has(sub.requiredCourse);
-
     if (sub.type === "and") {
       for (let i = 0; i < (sub.subGroups?.length ?? 0); i++) {
         decomposeSubGroup(sub.subGroups![i], dc, `${path}.and[${i}]`);
@@ -211,24 +236,25 @@ function decomposeGroup(
     }
 
     if (sub.type === "or") {
-        const branches = sub.subGroups ?? [];
-        const maxBranchCount = Math.max(...branches.map(b => b.count || 0));
+      const branches = sub.subGroups ?? [];
+      if (branches.length === 0) return;
+      // sub.count = how many branches must be satisfied
+      // each branch contributes minBranchTarget courses
+      const minBranchTarget = Math.min(...branches.map((b) => subGroupTarget(b)));
+      const slotCount = sub.count * minBranchTarget;
 
-        for (let i = 0; i < maxBranchCount; i++) {
-            addSlot((c) => {
-            return branches.some(branch => {
-                if (i >= (branch.count || 0)) return false;
-                return branch.courses?.includes(c) || (branch.rules && matchesAnyRule(c, branch.rules));
-            });
-            }, 
-            dc, 
-            // NEW: The multiplier is 1 / branch.count. 
-            // If PHYS needs 2 courses, each contributes 0.5 to the 'doneCount'.
-            1 / maxBranchCount, 
-            `${path}.leaf.or[slot${i}]`
-            );
-        }
-        return;
+      for (let i = 0; i < slotCount; i++) {
+        // which "slot position" within a single branch's allocation
+        const slotWithinBranch = i % minBranchTarget;
+        addSlot((c) => {
+          return branches.some((branch) => {
+            if (slotWithinBranch >= subGroupTarget(branch)) return false;
+            if (branch.requiredCourse && !pool.has(branch.requiredCourse)) return false;
+            return isBranchEligible(c, branch);
+          });
+        }, dc, 1, `${path}.or[${i}]`);
+      }
+      return;
     }
 
     if (sub.type === "elective") {
@@ -241,16 +267,30 @@ function decomposeGroup(
 
     // Leaf: at-most / at-least / exactly
     const courses = sub.courses ?? [];
-    const rules = sub.rules ?? []; // Add this line
-    for (let i = 0; i < sub.count; i++) {
-        addSlot((c) => {
-            if (isLocked) return false;
+    const rules   = sub.rules   ?? [];
 
-            const isInList = courses.includes(c);
-            const matchesRule = rules.length > 0 && matchesAnyRule(c, rules);
-            
-            return isInList || matchesRule;
-        }, dc, mult, `${path}.leaf[${i}]`);
+    if (sub.requiredCourse) {
+      // If the required course isn't in the pool, the whole subGroup is locked
+      if (!pool.has(sub.requiredCourse)) return;
+      // Dedicated slot for the required course — consumes it from the pool
+      // (doubleCount follows the subGroup's own canDoubleCount, not forced true)
+      const rc = sub.requiredCourse;
+      addSlot((c) => c === rc, dc, mult, `${path}.required`);
+      // Remaining flexible slots (exclude the required course to avoid double-claiming it)
+      for (let i = 0; i < sub.count - 1; i++) {
+        addSlot(
+          (c) => c !== rc && (courses.includes(c) || (rules.length > 0 && matchesAnyRule(c, rules))),
+          dc, mult, `${path}.leaf[${i}]`
+        );
+      }
+      return;
+    }
+
+    for (let i = 0; i < sub.count; i++) {
+      addSlot(
+        (c) => courses.includes(c) || (rules.length > 0 && matchesAnyRule(c, rules)),
+        dc, mult, `${path}.leaf[${i}]`
+      );
     }
   }
 

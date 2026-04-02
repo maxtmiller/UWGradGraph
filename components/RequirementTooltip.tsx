@@ -43,45 +43,60 @@ function subGroupToLines(sub: SubGroup, depth = 0): TooltipLine[] {
   const indent = "  ".repeat(depth);
   const label = sub.title ?? subGroupDefaultLabel(sub);
 
-  // 1. Recursive groups (AND/OR)
+  // 1. Combinator types (AND/OR)
   if (sub.type === "and" || sub.type === "or") {
-    lines.push({ kind: "bullet", text: `${indent}${sub.type === "and" ? "All of:" : "One of:"}` });
+    const combLabel = sub.type === "and"
+      ? "All of:"
+      : sub.count > 1 ? `Any ${sub.count} of:` : "One of:";
+    const titlePrefix = sub.title ? `${sub.title} — ` : "";
+    lines.push({ kind: "bullet", text: `${indent}${titlePrefix}${combLabel}` });
     for (const child of sub.subGroups ?? []) {
       lines.push(...subGroupToLines(child, depth + 1));
     }
     return lines;
   }
 
-  // 2. Multi-Rule/Elective Logic
-  // Check if it's an elective or a hybrid leaf node
-  const hasCourses = sub.courses && sub.courses.length > 0;
-  const hasRules = sub.rules && sub.rules.length > 0;
+  // 2. Non-combinator with nested subGroups (e.g. at-least with sub-paths)
+  if (sub.subGroups?.length) {
+    const extraFlags: string[] = [];
+    if (sub.requiredCourse) extraFlags.push(`requires ${sub.requiredCourse}`);
+    if (sub.canDoubleCount) extraFlags.push("can double-count");
+    const flagText = extraFlags.length ? ` (${extraFlags.join(", ")})` : "";
+    lines.push({ kind: "bullet", text: `${indent}${label}${flagText}:` });
+    for (const child of sub.subGroups) {
+      lines.push(...subGroupToLines(child, depth + 1));
+    }
+    return lines;
+  }
 
-  // Header for this subgroup
+  // 3. Leaf nodes: elective rules / course lists
+  const hasCourses = sub.courses && sub.courses.length > 0;
+  const hasRules   = sub.rules   && sub.rules.length   > 0;
+
   const extraFlags: string[] = [];
+  if (sub.requiredCourse) extraFlags.push(`requires ${sub.requiredCourse}`);
   if (sub.canDoubleCount) extraFlags.push("can double-count");
   if (sub.countMultiplier && sub.countMultiplier > 1) extraFlags.push(`×${sub.countMultiplier} weight`);
   const flagText = extraFlags.length ? ` (${extraFlags.join(", ")})` : "";
 
-  // If it's a complex elective requirement
   if (hasRules && !hasCourses) {
     const ruleTexts = sub.rules!.map(ruleToText).join(" or ");
     lines.push({ kind: "rule", text: `${indent}${sub.count}× ${ruleTexts}${flagText}` });
-  } 
-  // If it's a specific list of courses
-  else if (hasCourses) {
+  } else if (hasCourses) {
     const countLabel = sub.type === "at-most" ? "Up to " : sub.type === "at-least" ? "Min " : "";
+    const allCourses = sub.requiredCourse
+      ? [sub.requiredCourse, ...sub.courses.filter((c) => c !== sub.requiredCourse)]
+      : sub.courses;
     const totalLabel = `${indent}${countLabel}${sub.count} from ${label}${flagText}`;
-    
-    if (sub.courses.length <= MAX_INLINE_COURSES) {
-      lines.push({ kind: "courses", text: totalLabel, courses: sub.courses });
+
+    if (allCourses.length <= MAX_INLINE_COURSES) {
+      lines.push({ kind: "courses", text: totalLabel, courses: allCourses });
     } else {
-      lines.push({ kind: "bullet", text: `${totalLabel} (${sub.courses.length} courses total)` });
+      lines.push({ kind: "bullet", text: `${totalLabel} (${allCourses.length} courses total)` });
     }
 
-    // IMPORTANT: If this specific course list ALSO has rules (e.g. "One of these, but must be 300-level")
     if (hasRules) {
-      sub.rules!.forEach(r => {
+      sub.rules!.forEach((r) => {
         lines.push({ kind: "note", text: `${indent}  Constraint: Must be ${ruleToText(r)}` });
       });
     }
