@@ -149,6 +149,7 @@ export default function ChatPanel() {
   const [pendingAction, setPendingAction] = useState<ChatAction | null>(null);
   const [pendingTerm, setPendingTerm]     = useState<string>("");
   const [confirmedActions, setConfirmedActions] = useState<Set<string>>(new Set());
+  const [errorMessage, setErrorMessage]   = useState<string | null>(null);
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const abortRef  = useRef<AbortController | null>(null);
@@ -189,6 +190,7 @@ export default function ChatPanel() {
 
   const send = async (text: string) => {
     if (!text.trim() || streaming) return;
+    setErrorMessage(null);
 
     const userMsg: Message = { role: "user", content: text.trim() };
     const newMessages = [...messages, userMsg];
@@ -209,6 +211,17 @@ export default function ChatPanel() {
         }),
         signal: ctrl.signal,
       });
+
+      if (res.status === 429) {
+        const errorData = await res.json();
+        const resetTime = res.headers.get('X-RateLimit-Reset');
+        const waitTime = resetTime
+          ? Math.ceil((parseInt(resetTime) - Date.now()) / 1000)
+          : 60;
+        setMessages((prev) => prev.slice(0, -1)); // remove the empty assistant bubble
+        setErrorMessage(`${errorData.error} Please wait ${waitTime}s before trying again.`);
+        return;
+      }
 
       if (!res.ok) throw new Error(`API error: ${res.status}`);
 
@@ -381,6 +394,30 @@ export default function ChatPanel() {
               {s}
             </button>
           ))}
+        </div>
+      )}
+
+      {/* ── Rate limit error ───────────────────────────────────────────────── */}
+      {errorMessage && (
+        <div style={{
+          margin:       "0 20px 8px",
+          padding:      "8px 12px",
+          borderRadius: 8,
+          background:   "rgba(239,68,68,0.08)",
+          border:       "1px solid rgba(239,68,68,0.3)",
+          display:      "flex",
+          alignItems:   "center",
+          gap:          8,
+          flexShrink:   0,
+        }}>
+          <span style={{ fontSize: 13, flexShrink: 0 }}>⏱</span>
+          <span style={{ fontSize: 11, color: "#FCA5A5", flex: 1, lineHeight: 1.4 }}>{errorMessage}</span>
+          <button
+            onClick={() => setErrorMessage(null)}
+            style={{ background: "none", border: "none", color: "#6B7280", cursor: "pointer", fontSize: 14, lineHeight: 1, padding: 0, flexShrink: 0 }}
+          >
+            ×
+          </button>
         </div>
       )}
 
