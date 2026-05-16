@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/maxtmiller/.claude/statusline.sh)",
+      "Bash(npm run *)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

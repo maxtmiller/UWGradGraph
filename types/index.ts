@@ -26,11 +26,27 @@ export interface Course {
 
 export type CourseMap = Record<string, Course>;
 
-// ── Major ─────────────────────────────────────────────────────────────────────
+// ── Faculty / Major / SubMajor ────────────────────────────────────────────────
 
-export type MajorId = string;
-
+export type FacultyId = string;
+export type MajorId   = string;
 export type SubMajorId = string;
+
+export interface Faculty {
+  id:          FacultyId;
+  /** Full official name — "Faculty of Mathematics" */
+  name:        string;
+  /** Short name used in compact UI — "Mathematics" */
+  shortName:   string;
+  color:       string;
+  description: string;
+  /** Display subjects line — "CS · MATH · STAT" */
+  subjects:    string;
+  /** Ordered list of major IDs that belong to this faculty */
+  majorIds:    MajorId[];
+}
+
+export type FacultyMap = Record<FacultyId, Faculty>;
 
 export type RequirementTier = "standard" | "advanced" | "lower";
 
@@ -214,16 +230,16 @@ export interface RequirementGroup {
 export interface Major {
   id:                MajorId;
   name:              string;
-  faculty:           string;
+  faculty:           FacultyId;
   color:             string;
   requirementGroups: RequirementGroup[];
   defaultTermPlan:   Record<string, string[]>;
 }
- 
+
 export interface SubMajor {
   id:                SubMajorId;
   name:              string;
-  faculty:           string;
+  faculty:           FacultyId;
   color:             string;
   requirementGroups: RequirementGroup[];
   defaultTermPlan:   Record<string, string[]>;

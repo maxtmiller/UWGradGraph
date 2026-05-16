@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useStore } from "@/lib/store";
-import { MAJORS } from "@/data/majors";
+import { MAJORS, MAJOR_META, SUB_MAJOR_REGISTRY } from "@/data/majors";
 import Sidebar           from "@/components/Sidebar";
 import GraphCanvas       from "@/components/GraphCanvas";
 import CourseDetailPanel from "@/components/CourseDetailPanel";
@@ -31,6 +31,7 @@ const TABS: { key: Tab; label: string }[] = [
 export default function GradGraphPage() {
   const {
     activeMajorId,
+    activeSubMajorId,
     activeTab,
     setActiveTab,
     searchOpen,
@@ -41,7 +42,23 @@ export default function GradGraphPage() {
     toggleTheme,
   } = useStore();
 
-  const activeMajor = MAJORS[activeMajorId];
+  const subMajorMap  = SUB_MAJOR_REGISTRY[activeMajorId];
+  const activeMajor  = (subMajorMap && activeSubMajorId && subMajorMap[activeSubMajorId])
+    ? subMajorMap[activeSubMajorId]
+    : MAJORS[activeMajorId];
+  const headerColor  = MAJOR_META[activeMajorId]?.color ?? activeMajor?.color ?? "#FFD54F";
+
+  // Dynamically track the header height so content is never obscured
+  const headerRef = useRef<HTMLElement>(null);
+  const [headerH, setHeaderH] = useState(90);
+  useLayoutEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    setHeaderH(el.offsetHeight);
+    const ro = new ResizeObserver(() => setHeaderH(el.offsetHeight));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // ── Global keyboard shortcuts ─────────────────────────────────────────────
   useEffect(() => {
@@ -67,7 +84,7 @@ export default function GradGraphPage() {
       <WelcomeOverlay />
 
       {/* ── Fixed header ──────────────────────────────────────────────────── */}
-      <header style={{
+      <header ref={headerRef} style={{
         position:       "fixed",
         top: 0, left: 0, right: 0,
         zIndex:         100,
@@ -94,11 +111,11 @@ export default function GradGraphPage() {
           </span>
           <span style={{
             fontSize:    11,
-            color:       activeMajor.color,
+            color:       headerColor,
             borderLeft:  "1px solid #1E293B",
             paddingLeft: 16,
           }}>
-            {activeMajor.name}
+            {activeMajor?.name ?? ""}
           </span>
         </div>
 
@@ -160,7 +177,7 @@ export default function GradGraphPage() {
           className="slide-in"
           style={{
             position:       "fixed",
-            top:            64,
+            top:            headerH + 8,
             left:           "50%",
             transform:      "translateX(-50%)",
             zIndex:         200,
@@ -179,7 +196,7 @@ export default function GradGraphPage() {
       )}
 
       {/* ── Main body (below fixed header) ───────────────────────────────── */}
-      <div style={{ paddingTop: 56, display: "flex", height: "100vh" }}>
+      <div style={{ paddingTop: headerH, display: "flex", height: "100vh" }}>
         <Sidebar />
 
         <main style={{ flex: 1, overflow: "hidden", position: "relative" }}>

@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import type { 
-  CourseStatus, MajorId, SubMajorId, TierFilter, TermPlan, CanvasTransform, 
-  RequirementRule, SubGroup, RequirementGroup 
+import type {
+  CourseStatus, MajorId, SubMajorId, FacultyId, TierFilter, TermPlan, CanvasTransform,
+  RequirementRule, SubGroup, RequirementGroup
 } from "../types";
 import { COURSE_DATA } from "../data/courses";
-import { MAJORS, SUB_MAJOR_REGISTRY, DEFAULT_MAJOR_ID } from "../data/majors";
+import { MAJORS, SUB_MAJOR_REGISTRY, DEFAULT_MAJOR_ID, MAJOR_TO_FACULTY } from "../data/majors";
+import { FACULTIES, DEFAULT_FACULTY_ID } from "../data/faculties";
 import { matchesAnyRule } from "./audit";
 
 // ── Module-level helpers ───────────────────────────────────────────────────────
@@ -36,6 +37,7 @@ export function levelsFromCodes(codes: string[]): number[] {
 // ── Persisted slice ───────────────────────────────────────────────────────────
 
 interface PersistedSlice {
+  activeFacultyId:       FacultyId;
   activeMajorId:         MajorId;
   completedCourses:      Set<string>;
   plannedCourses:        Set<string>;
@@ -75,6 +77,7 @@ interface GradGraphState extends PersistedSlice {
   panToNode:     string | null;
 
   // ── Actions ───────────────────────────────────────────────────────────────────
+  setActiveFaculty:   (id: FacultyId) => void;
   setActiveMajor:     (id: MajorId) => void;
   resetTermPlan:      () => void;
   setActiveSubMajor:  (id: SubMajorId | null) => void;
@@ -126,6 +129,7 @@ export const useStore = create<GradGraphState>()(
   persist<GradGraphState, [], [], PersistedSlice>(
     (set, get) => ({
       // ── Persisted ─────────────────────────────────────────────────────────────
+      activeFacultyId:  DEFAULT_FACULTY_ID,
       activeMajorId:    DEFAULT_MAJOR_ID,
       completedCourses: new Set([]),
       plannedCourses:   new Set([]),
@@ -150,11 +154,31 @@ export const useStore = create<GradGraphState>()(
 
       // ── Actions ───────────────────────────────────────────────────────────────
 
+      setActiveFaculty: (id) => {
+        const faculty = FACULTIES[id];
+        if (!faculty) return;
+        const firstMajorId = (faculty.majorIds[0] as MajorId) ?? DEFAULT_MAJOR_ID;
+        set({
+          activeFacultyId:  id,
+          activeMajorId:    firstMajorId,
+          activeSubMajorId: null,
+          selectedNode:     null,
+          highlightedNodes: new Set(),
+          highlightedEdges: new Set(),
+          transform:        { x: 0, y: 0, scale: 1 },
+          activeSubjects:   null,
+          activeLevels:     null,
+          tierFilter:       "all",
+          showMyCourses:    false,
+          panToNode:        null,
+        });
+      },
+
       setActiveMajor: (id) => {
         const major = MAJORS[id];
         if (!major) return;
-        const { termPlanEditedByUser } = get();
         set({
+          activeFacultyId:  MAJOR_TO_FACULTY[id] ?? DEFAULT_FACULTY_ID,
           activeMajorId:    id,
           activeSubMajorId: null,
           selectedNode:     null,
@@ -524,6 +548,7 @@ export const useStore = create<GradGraphState>()(
       skipHydration: true,
 
       partialize: (state): PersistedSlice => ({
+        activeFacultyId:      state.activeFacultyId,
         activeMajorId:        state.activeMajorId,
         completedCourses:     state.completedCourses,
         plannedCourses:       state.plannedCourses,

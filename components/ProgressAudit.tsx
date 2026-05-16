@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useStore } from "../lib/store";
-import { MAJORS, ALL_DEGREES, SUB_MAJOR_REGISTRY } from "../data/majors";
+import { MAJORS, MAJOR_META, MAJOR_TO_FACULTY, SUB_MAJOR_REGISTRY } from "../data/majors";
+import { FACULTIES } from "../data/faculties";
 import { runAudit, groupTarget } from "../lib/audit";
 import { getConnectedNodes, getHighlightedEdges } from "../lib/graph";
 import RequirementHelpIcon from "./RequirementTooltip";
@@ -50,20 +51,6 @@ function getDegreeProgress(major: Major, completed: Set<string>, planned: Set<st
   return { done, planned: plannedN, total, pct };
 }
 
-// All majors + sub-majors as a flat list for "best fit" ranking
-// const ALL_DEGREES: { major: Major; parentLabel: string }[] = [
-//   { major: MAJORS["cs"], parentLabel: "CS" },
-//   { major: MAJORS["se"], parentLabel: "SE" },
-//   ...Object.values(DS_SUB_MAJORS).map((m) => ({ major: m, parentLabel: "DS" })),
-//   ...Object.values(MATH_SUB_MAJORS).map((m) => ({ major: m, parentLabel: "Math" })),
-// ];
-
-const MAJOR_CHIPS = [
-  { id: "cs",   label: "CS",   color: "#FFD54F" },
-  { id: "se",   label: "SE",   color: "#F48FB1" },
-  { id: "ds",   label: "DS",   color: "#80DEEA" },
-  { id: "math", label: "Math", color: "#FCD34D" },
-] as const;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Component
@@ -121,8 +108,8 @@ export default function ProgressAudit() {
 
   return (
     <div style={{ padding: 24, overflow: "auto", height: "100%", boxSizing: "border-box" }}>
-      {/* Degree Explorer */}
-      <DegreeExplorer completedCourses={completedCourses} allPlanned={allPlanned} />
+      {/* Degree Explorer — scoped to sub-majors of the active major */}
+      <DegreeExplorer activeMajorId={activeMajorId} completedCourses={completedCourses} allPlanned={allPlanned} />
 
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
@@ -193,149 +180,174 @@ function DegreeMiniBar({ label, done, plannedDone, total, color }: {
   );
 }
 
-function DegreeExplorer({ completedCourses, allPlanned }: { completedCourses: Set<string>; allPlanned: Set<string> }) {
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [showAll, setShowAll] = useState(false);
+function DegreeExplorer({
+  activeMajorId,
+  completedCourses,
+  allPlanned,
+}: {
+  activeMajorId:    string;
+  completedCourses: Set<string>;
+  allPlanned:       Set<string>;
+}) {
+  const [showAll,     setShowAll]     = useState(false);
+  const [expandedSib, setExpandedSib] = useState<string | null>(null);
 
-  // Rank all degrees by pct descending
-  const ranked = useMemo(() =>
-    ALL_DEGREES
-      .map(({ major, parentLabel }) => ({ major, parentLabel, ...getDegreeProgress(major, completedCourses, allPlanned) }))
-      .sort((a, b) => b.pct - a.pct),
-    [completedCourses, allPlanned]
-  );
+  const subMajorMap = SUB_MAJOR_REGISTRY[activeMajorId];
+  const color       = MAJOR_META[activeMajorId]?.color ?? "#FFD54F";
 
-  const top3 = ranked.slice(0, 3);
-  const rest  = ranked.slice(3);
+  // Sibling majors — same faculty, excluding the active major
+  const facultyId   = MAJOR_TO_FACULTY[activeMajorId];
+  const siblingIds  = (FACULTIES[facultyId]?.majorIds ?? []).filter((id) => id !== activeMajorId);
 
-  // Per-major-chip sparkline pct (best sub-major or the major itself)
-  const chipPct = useMemo(() => {
-    const map: Record<string, number> = {};
+  // Ranked sub-majors for the active major (always computed, guard render below)
+  const ranked = useMemo(() => {
+    if (!subMajorMap) return [];
+    return (Object.values(subMajorMap) as Major[])
+      .map((m) => ({ major: m, ...getDegreeProgress(m, completedCourses, allPlanned) }))
+      .sort((a, b) => b.pct - a.pct);
+  }, [subMajorMap, completedCourses, allPlanned]);
 
-    for (const { id } of MAJOR_CHIPS) {
-      // 1. Check if this ID has sub-majors in our registry
-      const subMap = SUB_MAJOR_REGISTRY[id];
-
-      if (subMap) {
-        // 2. Nested Major: Find the highest completion % among all its sub-majors
-        const subPercentages = Object.values(subMap).map((m) => 
-          getDegreeProgress(m as Major, completedCourses, allPlanned).pct
-        );
-        map[id] = Math.max(0, ...subPercentages);
+  // Best % per sibling major (for sparkline on chip)
+  const siblingPct = useMemo(() => {
+    const out: Record<string, number> = {};
+    for (const id of siblingIds) {
+      const sm = SUB_MAJOR_REGISTRY[id];
+      if (sm) {
+        out[id] = Math.max(0, ...(Object.values(sm) as Major[]).map(
+          (m) => getDegreeProgress(m, completedCourses, allPlanned).pct,
+        ));
       } else {
-        // 3. Flat Major: Just check the single curriculum in MAJORS
-        const major = MAJORS[id as keyof typeof MAJORS];
-        map[id] = major ? getDegreeProgress(major, completedCourses, allPlanned).pct : 0;
+        const m = MAJORS[id as keyof typeof MAJORS];
+        out[id] = m ? getDegreeProgress(m, completedCourses, allPlanned).pct : 0;
       }
     }
+    return out;
+  }, [siblingIds, completedCourses, allPlanned]);
 
-    return map;
-  }, [completedCourses, allPlanned]);
+  const hasSubs     = !!subMajorMap;
+  const hasSiblings = siblingIds.length > 0;
+
+  // Nothing to show at all
+  if (!hasSubs && !hasSiblings) return null;
+
+  const top  = ranked.slice(0, 3);
+  const rest = ranked.slice(3);
 
   return (
     <div style={{ marginBottom: 28, background: "rgba(15,23,42,0.7)", border: "1px solid #1E293B", borderRadius: 12, padding: 16 }}>
-      <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 12, fontWeight: 700, color: "#94A3B8", margin: "0 0 12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+      <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 12, fontWeight: 700, color: "#94A3B8", margin: "0 0 4px", letterSpacing: "0.08em", textTransform: "uppercase" }}>
         Degree Explorer
       </h2>
+      <p style={{ fontSize: 9, color: "#475569", margin: "0 0 12px", letterSpacing: "0.05em" }}>
+        How your courses fit each specialization
+      </p>
 
-      {/* Best Fit */}
-      <div style={{ marginBottom: 14 }}>
-        <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>
-          Best Match
-        </div>
-        {top3.map(({ major, parentLabel, done, planned, total, pct }) => (
-          <div key={major.name} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-            <span style={{ fontSize: 9, color: "#475569", width: 32, flexShrink: 0, fontFamily: "'DM Mono', monospace" }}>{parentLabel}</span>
-            <DegreeMiniBar label={major.name} done={done} plannedDone={planned} total={total} color={major.color} />
-            <span style={{ fontSize: 10, color: major.color, fontWeight: 600, flexShrink: 0, width: 32, textAlign: "right" }}>{pct}%</span>
+      {/* ── Current major sub-majors ─────────────────────────────────────── */}
+      {hasSubs && (
+        <>
+          {top.map(({ major, done, planned, total, pct }) => (
+            <div key={major.name} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+              <DegreeMiniBar label={major.name} done={done} plannedDone={planned} total={total} color={color} />
+              <span style={{ fontSize: 10, color, fontWeight: 600, flexShrink: 0, width: 32, textAlign: "right" }}>{pct}%</span>
+            </div>
+          ))}
+          {rest.length > 0 && (
+            <>
+              <button
+                onClick={() => setShowAll((v) => !v)}
+                style={{ background: "none", border: "none", color: "#475569", fontSize: 10, cursor: "pointer", padding: "2px 0", fontFamily: "inherit", marginTop: 2 }}
+              >
+                {showAll ? "▲ Show less" : `▼ View ${rest.length} more specializations`}
+              </button>
+              {showAll && rest.map(({ major, done, planned, total, pct }) => (
+                <div key={major.name} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, marginTop: 6 }}>
+                  <DegreeMiniBar label={major.name} done={done} plannedDone={planned} total={total} color={color} />
+                  <span style={{ fontSize: 10, color, fontWeight: 600, flexShrink: 0, width: 32, textAlign: "right" }}>{pct}%</span>
+                </div>
+              ))}
+            </>
+          )}
+        </>
+      )}
+
+      {/* ── Sibling majors in same faculty ───────────────────────────────── */}
+      {hasSiblings && (
+        <>
+          <div style={{ height: 1, background: "#1E293B", margin: "12px 0" }} />
+          <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>
+            Other programs in this faculty
           </div>
-        ))}
-
-        {/* Expand rest */}
-        {rest.length > 0 && (
-          <button
-            onClick={() => setShowAll((v) => !v)}
-            style={{ background: "none", border: "none", color: "#475569", fontSize: 10, cursor: "pointer", padding: "2px 0", fontFamily: "inherit", marginTop: 2 }}
-          >
-            {showAll ? "▲ Show less" : `▼ View ${rest.length} other degree paths`}
-          </button>
-        )}
-        {showAll && rest.map(({ major, parentLabel, done, planned, total, pct }) => (
-          <div key={major.name} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-            <span style={{ fontSize: 9, color: "#475569", width: 32, flexShrink: 0, fontFamily: "'DM Mono', monospace" }}>{parentLabel}</span>
-            <DegreeMiniBar label={major.name} done={done} plannedDone={planned} total={total} color={major.color} />
-            <span style={{ fontSize: 10, color: major.color, fontWeight: 600, flexShrink: 0, width: 32, textAlign: "right" }}>{pct}%</span>
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+            {siblingIds.map((id) => {
+              const meta   = MAJOR_META[id];
+              const pct    = siblingPct[id] ?? 0;
+              const isOpen = expandedSib === id;
+              if (!meta) return null;
+              return (
+                <button
+                  key={id}
+                  onClick={() => setExpandedSib(isOpen ? null : id)}
+                  style={{
+                    display:      "flex",
+                    alignItems:   "center",
+                    gap:          7,
+                    padding:      "4px 10px",
+                    borderRadius: 20,
+                    border:       `1px solid ${isOpen ? meta.color : "#334155"}`,
+                    background:   isOpen ? `${meta.color}15` : "transparent",
+                    color:        isOpen ? meta.color : "#64748B",
+                    cursor:       "pointer",
+                    fontSize:     11,
+                    fontFamily:   "'DM Mono', monospace",
+                    transition:   "all 0.15s",
+                  }}
+                >
+                  {meta.label}
+                  <Sparkline pct={pct} color={isOpen ? meta.color : "#334155"} />
+                  <span style={{ fontSize: 10, fontWeight: 600 }}>{pct}%</span>
+                </button>
+              );
+            })}
           </div>
-        ))}
-      </div>
 
-      {/* Divider */}
-      <div style={{ height: 1, background: "#1E293B", marginBottom: 12 }} />
-
-      {/* Major chips with sparklines */}
-      <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>
-        Explore by Major
-      </div>
-      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: expandedId ? 12 : 0 }}>
-        {MAJOR_CHIPS.map(({ id, label, color }) => {
-          const isOpen = expandedId === id;
-          const pct    = chipPct[id] ?? 0;
-          return (
-            <button
-              key={id}
-              onClick={() => setExpandedId(isOpen ? null : id)}
-              style={{
-                display:      "flex",
-                alignItems:   "center",
-                gap:          8,
-                padding:      "5px 10px",
-                borderRadius: 20,
-                border:       `1px solid ${isOpen ? color : "#334155"}`,
-                background:   isOpen ? `${color}15` : "transparent",
-                color:        isOpen ? color : "#64748B",
-                cursor:       "pointer",
-                fontSize:     11,
-                fontFamily:   "'DM Mono', monospace",
-                transition:   "all 0.15s",
-              }}
-            >
-              {label}
-              <Sparkline pct={pct} color={isOpen ? color : "#334155"} />
-              <span style={{ fontSize: 10, fontWeight: 600 }}>{pct}%</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Accordion expansion */}
-      {expandedId && <MajorAccordion majorId={expandedId} completedCourses={completedCourses} allPlanned={allPlanned} />}
+          {/* Expanded sibling breakdown */}
+          {expandedSib && (
+            <SiblingAccordion
+              majorId={expandedSib}
+              completedCourses={completedCourses}
+              allPlanned={allPlanned}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 }
 
-function MajorAccordion({ majorId, completedCourses, allPlanned }: {
-  majorId: string; completedCourses: Set<string>; allPlanned: Set<string>;
+function SiblingAccordion({
+  majorId,
+  completedCourses,
+  allPlanned,
+}: {
+  majorId:          string;
+  completedCourses: Set<string>;
+  allPlanned:       Set<string>;
 }) {
+  const meta      = MAJOR_META[majorId];
+  const color     = meta?.color ?? "#FFD54F";
+  const subMap    = SUB_MAJOR_REGISTRY[majorId];
+
   const entries = useMemo(() => {
-    // 1. Get the sub-major map from the registry
-    const subMap = SUB_MAJOR_REGISTRY[majorId];
-    
-    const source: Major[] = subMap 
-      ? Object.values(subMap) 
+    const source: Major[] = subMap
+      ? (Object.values(subMap) as Major[])
       : (MAJORS[majorId as keyof typeof MAJORS] ? [MAJORS[majorId as keyof typeof MAJORS]] : []);
-
     return source
-      .map((major) => ({ 
-        major, 
-        ...getDegreeProgress(major, completedCourses, allPlanned) 
-      }))
+      .map((m) => ({ major: m, ...getDegreeProgress(m, completedCourses, allPlanned) }))
       .sort((a, b) => b.pct - a.pct);
-  }, [majorId, completedCourses, allPlanned]);
-
-  const color = MAJOR_CHIPS.find((c) => c.id === majorId)?.color ?? "#FFD54F";
+  }, [majorId, subMap, completedCourses, allPlanned]);
 
   return (
-    <div style={{ borderTop: "1px solid #1E293B", paddingTop: 12 }}>
+    <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid #1E293B" }}>
       {entries.map(({ major, done, planned, total, pct }) => (
         <div key={major.name} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
           <DegreeMiniBar label={major.name} done={done} plannedDone={planned} total={total} color={color} />

@@ -62,9 +62,12 @@ export default function TermPlanner() {
     [termPlan]
   );
 
+  // Scope everything to the active major/sub-major
+  const majorCodes    = useMemo(() => getMajorCourses(), [termPlan]);
+  const majorCodesSet = useMemo(() => new Set(majorCodes), [majorCodes]);
+
   // Unplanned = major courses not yet placed in any term bucket
-  const majorCodes  = useMemo(() => getMajorCourses(), [termPlan]);
-  const unplanned   = useMemo(
+  const unplanned = useMemo(
     () => majorCodes.filter((c) => !plannedCodes.has(c)),
     [majorCodes, plannedCodes]
   );
@@ -184,7 +187,7 @@ export default function TermPlanner() {
       {/* ── Term grid ─────────────────────────────────────────────────────── */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}>
         {TERMS.map((term) => {
-          const courses    = termPlan[term] ?? [];
+          const courses    = (termPlan[term] ?? []).filter((c) => majorCodesSet.has(c));
           const totalUnits = courses.reduce((s, c) => s + (COURSE_DATA[c]?.units ?? 0), 0);
           return (
             <TermBucket
