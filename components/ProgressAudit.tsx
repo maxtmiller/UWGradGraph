@@ -82,6 +82,12 @@ export default function ProgressAudit() {
     [activeMajorId, activeSubMajorId, completedCourses, allPlanned],
   );
 
+  // Overall degree progress
+  const overallProgress = useMemo(() => {
+    if (!curriculum) return { done: 0, planned: 0, total: 0, pct: 0 };
+    return getDegreeProgress(curriculum as Major, completedCourses, allPlanned);
+  }, [curriculum, completedCourses, allPlanned]);
+
   if (!curriculum) {
     return <div style={{ padding: 24, color: "#64748B" }}>Select a major to begin audit.</div>;
   }
@@ -104,28 +110,20 @@ export default function ProgressAudit() {
     setHighlight(connected, getHighlightedEdges(connected));
   };
 
-  const subtitle = [curriculum.name, curriculum.faculty].filter(Boolean).join(" · Faculty of ");
-
   return (
     <div style={{ padding: 24, overflow: "auto", height: "100%", boxSizing: "border-box" }}>
+      {/* ── Degree Progress Overview ─────────────────────────────────────── */}
+      <DegreeProgressOverview
+        name={curriculum.name}
+        color={curriculum.color}
+        done={overallProgress.done}
+        planned={overallProgress.planned}
+        total={overallProgress.total}
+        pct={overallProgress.pct}
+      />
+
       {/* Degree Explorer — scoped to sub-majors of the active major */}
       <DegreeExplorer activeMajorId={activeMajorId} completedCourses={completedCourses} allPlanned={allPlanned} />
-
-      {/* Header */}
-      <div style={{ marginBottom: 24 }}>
-        <h2 style={{
-          fontFamily: "'Syne', sans-serif",
-          fontSize:   20,
-          fontWeight: 800,
-          color:      curriculum.color,
-          margin:     "0 0 4px",
-        }}>
-          {curriculum.name}
-        </h2>
-        <p style={{ fontSize: 11, color: "#64748B", margin: 0 }}>
-          {subtitle} · Degree Audit
-        </p>
-      </div>
 
       {auditResults.map((result) => (
         <RequirementGroupCard
@@ -137,6 +135,117 @@ export default function ProgressAudit() {
           onCourseClick={goToGraph}
         />
       ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DegreeProgressOverview
+// ─────────────────────────────────────────────────────────────────────────────
+
+function DegreeProgressOverview({
+  name, color, done, planned, total, pct,
+}: { name: string; color: string; done: number; planned: number; total: number; pct: number }) {
+  const remaining = Math.max(0, total - done - planned);
+  const r = 38;
+  const circumference = 2 * Math.PI * r;
+  const completedPct = total > 0 ? done / total : 0;
+  const plannedPct   = total > 0 ? Math.min(1 - completedPct, planned / total) : 0;
+  const completedDash = circumference * completedPct;
+  const plannedDash   = circumference * plannedPct;
+
+  const statusLabel =
+    pct >= 100 ? "Complete" :
+    pct >= 75  ? "Almost there" :
+    pct >= 50  ? "Halfway" :
+    pct >= 25  ? "In progress" :
+    "Just started";
+
+  return (
+    <div style={{
+      marginBottom:  24,
+      background:    "rgba(15,23,42,0.8)",
+      border:        `1px solid ${color}30`,
+      borderRadius:  14,
+      padding:       "20px 24px",
+      display:       "flex",
+      alignItems:    "center",
+      gap:           24,
+    }}>
+      {/* Ring chart */}
+      <div style={{ position: "relative", flexShrink: 0 }}>
+        <svg width={96} height={96} style={{ transform: "rotate(-90deg)" }}>
+          {/* Track */}
+          <circle cx={48} cy={48} r={r} fill="none" stroke="#1E293B" strokeWidth={8} />
+          {/* Planned arc */}
+          {plannedPct > 0 && (
+            <circle
+              cx={48} cy={48} r={r} fill="none"
+              stroke={`${color}55`} strokeWidth={8}
+              strokeDasharray={`${plannedDash} ${circumference - plannedDash}`}
+              strokeDashoffset={-completedDash}
+              strokeLinecap="round"
+            />
+          )}
+          {/* Completed arc */}
+          {completedPct > 0 && (
+            <circle
+              cx={48} cy={48} r={r} fill="none"
+              stroke={color} strokeWidth={8}
+              strokeDasharray={`${completedDash} ${circumference - completedDash}`}
+              strokeDashoffset={0}
+              strokeLinecap="round"
+            />
+          )}
+        </svg>
+        <div style={{
+          position:   "absolute", inset: 0,
+          display:    "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center",
+        }}>
+          <span style={{ fontFamily: "'Syne', sans-serif", fontSize: 18, fontWeight: 800, color, lineHeight: 1 }}>
+            {pct}%
+          </span>
+          <span style={{ fontSize: 8, color: "#475569", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 2 }}>
+            {statusLabel}
+          </span>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 800, color, margin: "0 0 4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {name}
+        </h2>
+        <div style={{ display: "flex", gap: 16, marginTop: 10 }}>
+          <StatChip value={done} label="Completed" color={color} />
+          <StatChip value={planned} label="Planned" color="#60A5FA" />
+          <StatChip value={remaining} label="Remaining" color="#334155" />
+        </div>
+        <div style={{ marginTop: 10, height: 4, background: "#1E293B", borderRadius: 3, overflow: "hidden" }}>
+          <div style={{ height: "100%", display: "flex" }}>
+            <div style={{ width: `${completedPct * 100}%`, background: color, transition: "width 0.5s ease" }} />
+            <div style={{ width: `${plannedPct * 100}%`, background: `${color}55`, transition: "width 0.5s ease" }} />
+          </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
+          <span style={{ fontSize: 9, color: "#334155" }}>{done + planned} of {total} courses</span>
+          {planned > 0 && <span style={{ fontSize: 9, color: "#60A5FA60" }}>{planned} planned</span>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatChip({ value, label, color }: { value: number; label: string; color: string }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+      <span style={{ fontSize: 20, fontFamily: "'Syne', sans-serif", fontWeight: 800, color, lineHeight: 1 }}>
+        {value}
+      </span>
+      <span style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 2 }}>
+        {label}
+      </span>
     </div>
   );
 }

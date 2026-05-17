@@ -174,19 +174,59 @@ const TOUR_STEPS = [
             background:"#1E293B", color:"#475569", fontSize:9, fontFamily:"'DM Mono',monospace"
           }}>⌘K</div>
         </div>
-        {[{code:"CS 245",name:"Logic & Computation"},{code:"CS 246",name:"OOP"},{code:"CS 341",name:"Algorithms"}].map(r=>(
+        {[{code:"LS 221",name:"Career Development"},{code:"CS 246",name:"OOP"},{code:"CS 341",name:"Algorithms"}].map(r=>(
           <div key={r.code} style={{
             display:"flex", gap:10, padding:"6px 8px", borderRadius:5,
-            background: r.code==="CS 245"?"rgba(255,213,79,0.08)":"transparent",
+            background: r.code==="LS 221"?"rgba(255,213,79,0.08)":"transparent",
             alignItems:"center"
           }}>
             <span style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#FFD54F", minWidth:60 }}>{r.code}</span>
             <span style={{ fontSize:10, color:"#475569" }}>{r.name}</span>
           </div>
         ))}
+        <div style={{ marginTop:8, fontSize:9, color:"#334155", borderTop:"1px solid #1E293B", paddingTop:6 }}>
+          3 more — scroll to load
+        </div>
       </div>
     ),
-    desc: "Press ⌘K (or Ctrl+K on Windows) from anywhere in the app to open the search palette. Type a course code or title to filter instantly. Selecting a result navigates to the Graph tab, clears all active filters so the course is visible, and pans the canvas to center on that node. Press Escape to dismiss.",
+    desc: "Press ⌘K (or Ctrl+K on Windows) from anywhere in the app to open the search palette. Course-code matches (by subject prefix) always appear before title matches — so typing \"ls\" shows LS courses first, not courses that happen to contain those letters mid-word. Title matching requires the query to start a word. If there are more than 8 results, scroll to the bottom to load the next batch. Selecting a result navigates to the Graph tab, clears active filters, and pans to that node. In Explore mode, selecting a result pins the course to the explore canvas instead.",
+  },
+  {
+    title: "✦ Explore Mode",
+    tab: "Explore",
+    color: "#A78BFA",
+    visual: (
+      <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
+        <div style={{ display:"flex", gap:8, alignItems:"center" }}>
+          <div style={{
+            padding:"4px 14px", borderRadius:6, fontSize:10,
+            fontFamily:"'Syne',sans-serif", fontWeight:800,
+            background:"rgba(167,139,250,0.15)", border:"1px solid rgba(167,139,250,0.4)",
+            color:"#A78BFA",
+          }}>✦ Explore</div>
+          <span style={{ fontSize:9, color:"#475569" }}>any course in the catalog</span>
+        </div>
+        <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
+          {[
+            { label:"MUSIC 140", color:"#A78BFA" },
+            { label:"ECON 101",  color:"#A78BFA" },
+            { label:"PSYCH 207", color:"#A78BFA" },
+          ].map(n => (
+            <div key={n.label} style={{
+              borderRadius:8, border:`1.5px solid ${n.color}55`,
+              background:"rgba(15,23,42,0.9)", padding:"8px 12px",
+            }}>
+              <div style={{ fontSize:11, fontWeight:600, color:n.color, fontFamily:"'DM Mono',monospace" }}>{n.label}</div>
+              <div style={{ fontSize:8, color:"#475569", marginTop:2 }}>click × to remove</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:9, color:"#475569", fontFamily:"'DM Mono',monospace" }}>
+          Max 5 courses · full prereq chain shown
+        </div>
+      </div>
+    ),
+    desc: "The ✦ Explore tab lets you browse any course in the full UW catalog — not just courses in your active major. Press ⌘K to pin up to 5 courses to the explore canvas; each one renders with its complete prerequisite chain so you can see what it requires and what it unlocks. Click the × on a node to remove it. Trying to add a 6th course shows a popup reminder. Switching back to the Graph tab returns you to your degree curriculum without affecting your completed/planned data.",
   },
   {
     title: "Term Planner",
@@ -251,7 +291,7 @@ const TOUR_STEPS = [
         ))}
       </div>
     ),
-    desc: "Shows your completion status for every requirement group in the active degree. Groups are marked ✓ Fulfilled (green), ⟳ In Progress with planned courses (blue), or ✗ Incomplete (red). Uses Hopcroft-Karp maximum bipartite matching under the hood to optimally assign your courses to requirement slots — this ensures a course counting for one group doesn't unfairly block another.",
+    desc: "Shows your completion status for every requirement group in the active degree. A ring chart at the top gives an at-a-glance view of overall progress — the inner arc is completed courses, the outer arc adds planned courses on top, and the center shows your percentage and a status label. Below it, groups are marked ✓ Fulfilled (green), ⟳ In Progress with planned courses (blue), or ✗ Incomplete (red). Uses Hopcroft-Karp maximum bipartite matching under the hood to optimally assign courses to requirement slots — ensuring one course counting for a group doesn't unfairly block another.",
   },
   {
     title: "Degree Explorer",
@@ -571,7 +611,7 @@ export default function HelpPage() {
               <div style={{ fontSize:24 }}>🗺️</div>
               <div>
                 <div style={{ fontSize:12, color:"#94A3B8", marginBottom:4 }}>
-                  10-step visual walkthrough of every feature
+                  {TOUR_STEPS.length}-step visual walkthrough of every feature
                 </div>
                 <button
                   onClick={startTour}
@@ -672,6 +712,8 @@ export default function HelpPage() {
                 a:"Prerequisites use AND/OR trees. A locked course might require you to have completed one branch of an OR requirement that you haven't satisfied yet. Click the node to see the full prereq breakdown in the detail panel." },
               { q:"Can I use this for a minor or exchange courses?",
                 a:"The app currently focuses on major requirements only. Minor and elective counting is partially supported via the elective groups in each degree definition." },
+              { q:"What is Explore mode and when should I use it?",
+                a:"The ✦ Explore tab lets you pin any UW course — including ones outside your major — and see its full prerequisite chain. Use it to check if an elective you're curious about has prerequisites you haven't taken, or to visualize how two unrelated courses connect. It's separate from your degree graph and doesn't affect your completed/planned data." },
             ].map((item, i, arr) => (
               <div key={i} style={{ padding:"14px 0", borderBottom:i<arr.length-1?"1px solid #0F172A":"none" }}>
                 <div style={{ fontSize:11, color:"#E2E8F0", fontWeight:500, marginBottom:6 }}>Q: {item.q}</div>

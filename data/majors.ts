@@ -1,95 +1,74 @@
 import type { Major, MajorId, MajorMap, FacultyId } from "../types";
-import { CS } from "./majors/cs";
-import { DS_SUB_MAJORS } from "./majors/ds";
-import { MATH_SUB_MAJORS } from "./majors/math";
-import { SE } from "./majors/se";
+import { ARTS_MAJORS }                               from "./generated/majors/arts";
+import { MATHEMATICS_MAJORS as GEN_MATH_MAJORS, MATHEMATICS_SUB_MAJORS as GEN_MATH_SUB_MAJORS } from "./generated/majors/mathematics";
+import { MATHEMATICS_MAJORS as MAN_MATH_MAJORS, MATHEMATICS_SUB_MAJORS as MAN_MATH_SUB_MAJORS } from "./manual/majors/mathematics";
+import { ENGINEERING_MAJORS as GEN_ENG_MAJORS }      from "./generated/majors/engineering";
+import { ENGINEERING_MAJORS as MAN_ENG_MAJORS }      from "./manual/majors/engineering";
 
-// ── Sub-major registry (majors that have specializations) ─────────────────────
+const MATHEMATICS_MAJORS     = { ...GEN_MATH_MAJORS,              ...MAN_MATH_MAJORS };
+const MATHEMATICS_SUB_MAJORS = Object.fromEntries(
+  Object.entries({ ...(GEN_MATH_SUB_MAJORS ?? {}), ...(MAN_MATH_SUB_MAJORS ?? {}) })
+    .sort(([, a], [, b]) => a.name.localeCompare(b.name))
+);
+const ENGINEERING_MAJORS     = { ...GEN_ENG_MAJORS,               ...MAN_ENG_MAJORS };
+import { SCIENCE_MAJORS }                            from "./generated/majors/science";
+import { ENVIRONMENT_MAJORS }                        from "./generated/majors/environment";
+import { HEALTH_MAJORS }                             from "./generated/majors/health";
+import { FACULTIES }                                 from "./faculties";
 
-export const SUB_MAJOR_REGISTRY: Record<string, Record<string, any>> = {
-  math: MATH_SUB_MAJORS,
-  ds:   DS_SUB_MAJORS,
-};
+// ── Core data ─────────────────────────────────────────────────────────────────
 
-// ── Top-level major map (fallback / non-sub-major access) ─────────────────────
-
-export const MAJORS: MajorMap = {
-  cs:   CS,
-  se:   SE,
-  ds:   DS_SUB_MAJORS["dsbcs"],
-  math: MATH_SUB_MAJORS["stat"],
-};
+export const MAJORS: MajorMap = Object.fromEntries(
+  Object.entries({
+    ...ARTS_MAJORS,
+    ...MATHEMATICS_MAJORS,
+    ...ENGINEERING_MAJORS,
+    ...SCIENCE_MAJORS,
+    ...ENVIRONMENT_MAJORS,
+    ...HEALTH_MAJORS,
+  }).sort(([, a], [, b]) => a.name.localeCompare(b.name))
+);
 
 export const MAJOR_LIST: Major[] = Object.values(MAJORS);
 
-export const DEFAULT_MAJOR_ID: MajorId = "cs";
-
-// ── Faculty membership lookup ──────────────────────────────────────────────────
-
-export const MAJOR_TO_FACULTY: Record<MajorId, FacultyId> = {
-  cs:   "mathematics",
-  se:   "engineering",
-  ds:   "mathematics",
-  math: "mathematics",
+export const SUB_MAJOR_REGISTRY: Record<string, Record<string, Major>> = {
+  mathematics: MATHEMATICS_SUB_MAJORS ?? {},
 };
 
-// ── Per-major display metadata (used by WelcomeOverlay and MajorSelector) ─────
+export const DEFAULT_MAJOR_ID: MajorId =
+  "mathematics" in MAJORS ? "mathematics" : (Object.keys(MAJORS)[0] ?? "mathematics");
 
-export const MAJOR_META: Record<MajorId, {
+// ── Derived lookups ───────────────────────────────────────────────────────────
+
+export const MAJOR_TO_FACULTY: Record<MajorId, FacultyId> = {};
+for (const [facultyId, faculty] of Object.entries(FACULTIES)) {
+  for (const majorId of faculty.majorIds) {
+    MAJOR_TO_FACULTY[majorId] = facultyId;
+  }
+}
+
+// Backward-compat shape expected by MajorSelector, WelcomeOverlay, ProgressAudit
+export const MAJOR_META: Record<string, {
   label:       string;
   fullName:    string;
   color:       string;
   description: string;
   subjects:    string;
   facultyId:   FacultyId;
-}> = {
-  cs: {
-    label:       "CS",
-    fullName:    "Computer Science",
-    color:       "#EC4899",
-    description: "Algorithms, systems, theory, and software — the broadest technical degree at Waterloo.",
-    subjects:    "CS · MATH · STAT",
-    facultyId:   "mathematics",
-  },
-  se: {
-    label:       "SE",
-    fullName:    "Software Engineering",
-    color:       "#A855F7",
-    description: "Software design, reliability, and engineering process in the Faculty of Engineering.",
-    subjects:    "CS · ECE · SE · MATH",
-    facultyId:   "engineering",
-  },
-  ds: {
-    label:       "DS",
-    fullName:    "Data Science",
-    color:       "#80DEEA",
-    description: "Statistics and computation at scale — choose the Math-based or CS-based stream.",
-    subjects:    "CS · STAT · MATH",
-    facultyId:   "mathematics",
-  },
-  math: {
-    label:       "Math",
-    fullName:    "Mathematics",
-    color:       "#FCD34D",
-    description: "Pure Math, Applied Math, Statistics, CO, Actuarial Science and more — 15 specializations.",
-    subjects:    "MATH · STAT · CO · PMATH",
-    facultyId:   "mathematics",
-  },
-};
+}> = Object.fromEntries(
+  Object.entries(MAJORS).map(([id, m]) => [id, {
+    label:       m.name,
+    fullName:    m.name,
+    color:       m.color,
+    description: "",
+    subjects:    "",
+    facultyId:   MAJOR_TO_FACULTY[id] ?? (m.faculty as FacultyId),
+  }])
+);
 
-// ── Legacy flat degree list (used by ProgressAudit degree explorer) ───────────
-
-export const ALL_DEGREES = [
-  { id: "cs", major: MAJORS["cs"], parentLabel: "CS" },
-  { id: "se", major: MAJORS["se"], parentLabel: "SE" },
-  ...Object.entries(DS_SUB_MAJORS).map(([key, m]) => ({
-    id: `ds-${key}`,
-    major: m,
-    parentLabel: "DS",
-  })),
-  ...Object.entries(MATH_SUB_MAJORS).map(([key, m]) => ({
-    id: `math-${key}`,
-    major: m,
-    parentLabel: "Math",
-  })),
-];
+// Flat list for AI context (ChatPanel)
+export const ALL_DEGREES = MAJOR_LIST.map(m => ({
+  id:          m.id,
+  major:       m,
+  parentLabel: m.name,
+}));

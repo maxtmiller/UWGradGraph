@@ -83,7 +83,7 @@ export function computeLayout(codes: string[]): PositionMap {
     const layer = Number(layerStr);
     const x = layer * (NODE_W + GAP_X) + 40;
     const totalH = nodeCodes.length * (NODE_H + GAP_Y) - GAP_Y;
-    const startY = Math.max(100, (Math.max(MIN_H, totalH + 100) - totalH) / 2);
+    const startY = Math.max(24, (Math.max(MIN_H, totalH + 24) - totalH) / 2);
 
     nodeCodes.forEach((code, i) => {
       positions[code] = { x, y: startY + i * (NODE_H + GAP_Y) };
@@ -207,8 +207,8 @@ export function buildEdges(
     const to = positions[code];
     if (!course || !to) continue;
 
-    // 1. Flatten all levels of logic into a simple list of codes
-    const allPrereqCodes = course.prereqs.flatMap((req) => extractFromTree(req));
+    // 1. Flatten all levels of logic into a deduplicated list of codes
+    const allPrereqCodes = [...new Set(course.prereqs.flatMap((req) => extractFromTree(req)))];
 
     for (const dep of allPrereqCodes) {
       // 2. Now 'dep' is strictly a string (e.g., "MATH 135")

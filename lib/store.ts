@@ -11,6 +11,29 @@ import { matchesAnyRule } from "./audit";
 
 // ── Module-level helpers ───────────────────────────────────────────────────────
 
+/** Count explicitly listed courses per subject across a major's requirement groups. */
+function topSubjectsForMajor(requirementGroups: RequirementGroup[], n: number): Set<string> | null {
+  const counts: Record<string, number> = {};
+  const tally = (code: string) => {
+    const subj = code.split(" ")[0];
+    counts[subj] = (counts[subj] ?? 0) + 1;
+  };
+  const scanSub = (sub: SubGroup) => {
+    if (sub.requiredCourse) tally(sub.requiredCourse);
+    sub.courses?.forEach(tally);
+    sub.subGroups?.forEach(scanSub);
+  };
+  requirementGroups.forEach((g: RequirementGroup) => {
+    g.courses?.forEach(tally);
+    g.subGroups?.forEach(scanSub);
+  });
+  const top = Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, n)
+    .map(([s]) => s);
+  return top.length > 0 ? new Set(top) : null;
+}
+
 function toSet(value: unknown): Set<string> {
   if (value instanceof Set) return value;
   if (Array.isArray(value)) return new Set<string>(value);
@@ -31,7 +54,7 @@ export function courseLevel(code: string): number {
 }
 
 export function levelsFromCodes(codes: string[]): number[] {
-  return [...new Set(codes.map(courseLevel))].sort((a, b) => a - b);
+  return [...new Set(codes.map(courseLevel))].filter(l => l <= 400).sort((a, b) => a - b);
 }
 
 // ── Persisted slice ───────────────────────────────────────────────────────────
@@ -55,7 +78,7 @@ interface GradGraphState extends PersistedSlice {
   selectedNode:      string | null;
   highlightedNodes:  Set<string>;
   highlightedEdges:  Set<string>;
-  activeTab:         "graph" | "planner" | "progress" | "chat" | "help";
+  activeTab:         "graph" | "planner" | "progress" | "chat" | "help" | "explore";
   searchOpen:        boolean;
   transform:         CanvasTransform;
   antireqWarning:    string | null;
@@ -76,29 +99,40 @@ interface GradGraphState extends PersistedSlice {
   /** When non-null, GraphCanvas will pan to center on this course code. */
   panToNode:     string | null;
 
+  /** Explore mode: browse any course from the full catalog (not just active major). */
+  exploreMode:          boolean;
+  /** Up to 5 course codes pinned in explore mode. */
+  exploreCodes:         string[];
+  /** True when user tries to add a 6th explore course — shows overflow popup. */
+  exploreOverflowPopup: boolean;
+
   // ── Actions ───────────────────────────────────────────────────────────────────
-  setActiveFaculty:   (id: FacultyId) => void;
-  setActiveMajor:     (id: MajorId) => void;
-  resetTermPlan:      () => void;
-  setActiveSubMajor:  (id: SubMajorId | null) => void;
-  toggleCompleted:    (code: string) => void;
-  togglePlanned:      (code: string) => void;
-  setSelectedNode:    (code: string | null) => void;
-  setHighlight:       (nodes: Set<string>, edges: Set<string>) => void;
-  clearSelection:     () => void;
-  setActiveTab:       (tab: "graph" | "planner" | "progress" | "chat" | "help") => void;
-  toggleTheme:        () => void;
-  setSearchOpen:      (open: boolean) => void;
-  setTransform:       (t: CanvasTransform | ((prev: CanvasTransform) => CanvasTransform)) => void;
-  moveCourseToTerm:   (code: string, term: string) => void;
-  toggleSubject:      (subject: string) => void;
-  isolateSubject:     (subject: string) => void;
-  clearSubjectFilter: () => void;
-  toggleLevel:        (level: number) => void;
-  clearLevelFilter:   () => void;
-  setTierFilter:      (tier: TierFilter) => void;
-  toggleMyCourses:    () => void;
-  setPanToNode:       (code: string | null) => void;
+  setActiveFaculty:        (id: FacultyId) => void;
+  setActiveMajor:          (id: MajorId) => void;
+  resetTermPlan:           () => void;
+  setActiveSubMajor:       (id: SubMajorId | null) => void;
+  toggleCompleted:         (code: string) => void;
+  togglePlanned:           (code: string) => void;
+  setSelectedNode:         (code: string | null) => void;
+  setHighlight:            (nodes: Set<string>, edges: Set<string>) => void;
+  clearSelection:          () => void;
+  setActiveTab:            (tab: "graph" | "planner" | "progress" | "chat" | "help" | "explore") => void;
+  toggleTheme:             () => void;
+  setSearchOpen:           (open: boolean) => void;
+  setTransform:            (t: CanvasTransform | ((prev: CanvasTransform) => CanvasTransform)) => void;
+  moveCourseToTerm:        (code: string, term: string) => void;
+  toggleSubject:           (subject: string) => void;
+  isolateSubject:          (subject: string) => void;
+  clearSubjectFilter:      () => void;
+  toggleLevel:             (level: number) => void;
+  clearLevelFilter:        () => void;
+  setTierFilter:           (tier: TierFilter) => void;
+  toggleMyCourses:         () => void;
+  setPanToNode:            (code: string | null) => void;
+  toggleExploreMode:       () => void;
+  addExploreCode:          (code: string) => void;
+  removeExploreCode:       (code: string) => void;
+  setExploreOverflowPopup: (show: boolean) => void;
 
   // ── Derived queries ───────────────────────────────────────────────────────────
   getTermPlannedCourses: () => Set<string>;
@@ -120,8 +154,6 @@ const setAwareStorage = createJSONStorage<PersistedSlice>(() => localStorage, {
     return value;
   },
 });
-
-const initialMajor = MAJORS[DEFAULT_MAJOR_ID];
 
 // ── Store ─────────────────────────────────────────────────────────────────────
 
@@ -145,29 +177,35 @@ export const useStore = create<GradGraphState>()(
       searchOpen:       false,
       transform:        { x: 0, y: 0, scale: 1 },
       antireqWarning:   null,
-      activeSubjects:   null,
-      activeLevels:     null,
+      activeSubjects:   topSubjectsForMajor(MAJORS[DEFAULT_MAJOR_ID]?.requirementGroups ?? [], 5),
+      activeLevels:     new Set([100, 200, 300, 400]),
       tierFilter:       "all",
-      activeSubMajorId: null,
+      activeSubMajorId: (Object.keys(SUB_MAJOR_REGISTRY[DEFAULT_MAJOR_ID] ?? {})[0] as SubMajorId) ?? null,
       showMyCourses:    false,
       panToNode:        null,
+      exploreMode:          false,
+      exploreCodes:         [],
+      exploreOverflowPopup: false,
 
       // ── Actions ───────────────────────────────────────────────────────────────
 
       setActiveFaculty: (id) => {
         const faculty = FACULTIES[id];
         if (!faculty) return;
-        const firstMajorId = (faculty.majorIds[0] as MajorId) ?? DEFAULT_MAJOR_ID;
+        const firstMajorId  = (faculty.majorIds[0] as MajorId) ?? DEFAULT_MAJOR_ID;
+        const subMap        = SUB_MAJOR_REGISTRY[firstMajorId];
+        const firstSubId    = subMap ? (Object.keys(subMap)[0] as SubMajorId) : null;
+        const activeMajor   = (subMap && firstSubId ? subMap[firstSubId] : MAJORS[firstMajorId]);
         set({
           activeFacultyId:  id,
           activeMajorId:    firstMajorId,
-          activeSubMajorId: null,
+          activeSubMajorId: firstSubId,
           selectedNode:     null,
           highlightedNodes: new Set(),
           highlightedEdges: new Set(),
           transform:        { x: 0, y: 0, scale: 1 },
-          activeSubjects:   null,
-          activeLevels:     null,
+          activeSubjects:   topSubjectsForMajor(activeMajor?.requirementGroups ?? [], 5),
+          activeLevels:     new Set([100, 200, 300, 400]),
           tierFilter:       "all",
           showMyCourses:    false,
           panToNode:        null,
@@ -175,18 +213,21 @@ export const useStore = create<GradGraphState>()(
       },
 
       setActiveMajor: (id) => {
-        const major = MAJORS[id];
+        const major      = MAJORS[id];
         if (!major) return;
+        const subMap     = SUB_MAJOR_REGISTRY[id];
+        const firstSubId = subMap ? (Object.keys(subMap)[0] as SubMajorId) : null;
+        const activeMajor = (subMap && firstSubId ? subMap[firstSubId] : major);
         set({
           activeFacultyId:  MAJOR_TO_FACULTY[id] ?? DEFAULT_FACULTY_ID,
           activeMajorId:    id,
-          activeSubMajorId: null,
+          activeSubMajorId: firstSubId,
           selectedNode:     null,
           highlightedNodes: new Set(),
           highlightedEdges: new Set(),
           transform:        { x: 0, y: 0, scale: 1 },
-          activeSubjects:   null,
-          activeLevels:     null,
+          activeSubjects:   topSubjectsForMajor(activeMajor.requirementGroups, 5),
+          activeLevels:     new Set([100, 200, 300, 400]),
           tierFilter:       "all",
           showMyCourses:    false,
           panToNode:        null,
@@ -205,13 +246,16 @@ export const useStore = create<GradGraphState>()(
       },
 
       setActiveSubMajor: (id) => {
+        const { activeMajorId } = get();
+        const subMajorMap = SUB_MAJOR_REGISTRY[activeMajorId];
+        const resolved = (id && subMajorMap?.[id]) ?? MAJORS[activeMajorId];
         set({
           activeSubMajorId: id,
-          // Clear graph state so stale highlights from the previous sub-major
-          // don't persist when the audit requirement groups change
           selectedNode:     null,
           highlightedNodes: new Set(),
           highlightedEdges: new Set(),
+          activeSubjects:   resolved ? topSubjectsForMajor(resolved.requirementGroups, 5) : null,
+          activeLevels:     new Set([100, 200, 300, 400]),
         });
       },
 
@@ -236,7 +280,11 @@ export const useStore = create<GradGraphState>()(
       setSelectedNode:  (code)         => set({ selectedNode: code }),
       setHighlight:     (nodes, edges) => set({ highlightedNodes: nodes, highlightedEdges: edges }),
       clearSelection:   ()             => set({ selectedNode: null, highlightedNodes: new Set(), highlightedEdges: new Set() }),
-      setActiveTab:     (tab)          => set({ activeTab: tab }),
+      setActiveTab: (tab) => set({
+        activeTab:   tab,
+        exploreMode: tab === "explore",
+        ...(tab !== "explore" ? { exploreOverflowPopup: false } : {}),
+      }),
       toggleTheme: () => set((s) => ({ theme: s.theme === "dark" ? "light" : "dark" })),
       setSearchOpen:    (open)         => set({ searchOpen: open }),
 
@@ -266,6 +314,8 @@ export const useStore = create<GradGraphState>()(
           const allSubjects = new Set(subjectsFromCodes(majorCodes));
           const current     = state.activeSubjects ?? allSubjects;
           const next        = new Set(current);
+          const isAdding    = !next.has(subject);
+          if (isAdding && state.activeTab === "graph" && next.size >= 8) return {};
           next.has(subject) ? next.delete(subject) : next.add(subject);
           const allSelected = [...allSubjects].every((s) => next.has(s));
           return { activeSubjects: allSelected ? null : next };
@@ -291,6 +341,28 @@ export const useStore = create<GradGraphState>()(
       toggleMyCourses:    ()        => set((state) => ({ showMyCourses: !state.showMyCourses })),
       setPanToNode:       (code)    => set({ panToNode: code }),
 
+      toggleExploreMode: () =>
+        set((state) => ({
+          exploreMode:          !state.exploreMode,
+          exploreCodes:         [],
+          exploreOverflowPopup: false,
+          selectedNode:         null,
+          highlightedNodes:     new Set(),
+          highlightedEdges:     new Set(),
+        })),
+
+      addExploreCode: (code) =>
+        set((state) => {
+          if (state.exploreCodes.includes(code)) return {};
+          if (state.exploreCodes.length >= 5) return { exploreOverflowPopup: true };
+          return { exploreCodes: [...state.exploreCodes, code] };
+        }),
+
+      removeExploreCode: (code) =>
+        set((state) => ({ exploreCodes: state.exploreCodes.filter((c) => c !== code) })),
+
+      setExploreOverflowPopup: (show) => set({ exploreOverflowPopup: show }),
+
       // ── Derived queries ────────────────────────────────────────────────────
 
       /** Returns the flat set of all course codes placed in any term bucket. */
@@ -300,7 +372,7 @@ export const useStore = create<GradGraphState>()(
       },
 
       getMajorCourses: (): string[] => {
-        const { activeMajorId, activeSubMajorId } = get();
+        const { activeMajorId, activeSubMajorId, activeTab } = get();
 
         // 1. Resolve Major
         const subMajorMap = SUB_MAJOR_REGISTRY[activeMajorId];
@@ -330,10 +402,6 @@ export const useStore = create<GradGraphState>()(
             whitelist.includes(activeMajorId) || 
             (activeSubMajorId && whitelist.includes(activeMajorId));
 
-          // 3. Handle 'other' logic
-          // If it's marked 'other', it MUST be explicitly whitelisted to show up.
-          if (whitelist.includes("other") && !isAllowed) return false;
-
           return isAllowed;
         };
 
@@ -351,30 +419,41 @@ export const useStore = create<GradGraphState>()(
           group.subGroups?.forEach(processSubGroup);
         });
 
-        // 4. STEP 2: Mine Rules (The "Any STAT 400+" Logic)
-        // We iterate through ALL courses in the database and check if they match 
-        // any rule defined in the major's requirements.
-        const allMajorRules: RequirementRule[] = [];
-        
-        // Collect all rules from groups and subgroups
-        const collectRules = (sub: SubGroup) => {
-          if (sub.rules) allMajorRules.push(...sub.rules);
-          sub.subGroups?.forEach(collectRules);
-        };
-        
-        allGroups.forEach((group: RequirementGroup)  => {
-          if (group.rules) allMajorRules.push(...group.rules);
-          group.subGroups?.forEach(collectRules);
-        });
-
-        // Now, check every course against these rules
+        // 4. STEP 2: Expand to ALL courses from every mentioned subject.
+        // If any course from a subject appears explicitly in the curriculum,
+        // the entire subject is relevant (e.g. all CS courses belong in CS major).
+        // Only hard-block on explicit exclMajors — not the whitelist, which can
+        // be wrong due to parser bugs in the refresh script.
+        const mentionedSubjects = new Set(Array.from(codes).map(c => c.split(" ")[0]));
         Object.keys(COURSE_DATA).forEach(courseCode => {
-          if (matchesAnyRule(courseCode, allMajorRules) && satisfiesMajorRestrictions(courseCode)) {
+          if (!mentionedSubjects.has(courseCode.split(" ")[0])) return;
+          const course = COURSE_DATA[courseCode];
+          if (course && !course.exclMajors?.includes(activeMajorId)) {
             codes.add(courseCode);
           }
         });
 
-        // 5. STEP 3: BFS Prerequisite Expansion
+        // 5. STEP 3: Mine Rules (e.g. "any STAT 400+" elective buckets).
+        // In graph view, restrict to mentioned subjects only to avoid EARTH/ECON noise.
+        const allMajorRules: RequirementRule[] = [];
+        const collectRules = (sub: SubGroup) => {
+          if (sub.rules) allMajorRules.push(...sub.rules);
+          sub.subGroups?.forEach(collectRules);
+        };
+        allGroups.forEach((group: RequirementGroup) => {
+          if (group.rules) allMajorRules.push(...group.rules);
+          group.subGroups?.forEach(collectRules);
+        });
+
+        Object.keys(COURSE_DATA).forEach(courseCode => {
+          if (matchesAnyRule(courseCode, allMajorRules) && satisfiesMajorRestrictions(courseCode)) {
+            if (activeTab !== "graph" || mentionedSubjects.has(courseCode.split(" ")[0])) {
+              codes.add(courseCode);
+            }
+          }
+        });
+
+        // 6. STEP 4: BFS Prerequisite Expansion
         // Ensure we show the paths to get to these required courses
         const queue = Array.from(codes);
         const processed = new Set<string>();
@@ -436,7 +515,35 @@ export const useStore = create<GradGraphState>()(
       },
 
       getFilteredCourses: (): string[] => {
-        const { activeMajorId, activeSubMajorId, activeSubjects, activeLevels, tierFilter, showMyCourses } = get();
+        const { activeMajorId, activeSubMajorId, activeSubjects, activeLevels, tierFilter, showMyCourses, exploreMode, exploreCodes } = get();
+
+        // Explore mode: show pinned courses + their full prereq chains + direct leadsTo
+        if (exploreMode) {
+          if (exploreCodes.length === 0) return [];
+          const result = new Set<string>(exploreCodes);
+          const queue  = [...exploreCodes];
+          const seen   = new Set<string>();
+          while (queue.length > 0) {
+            const code = queue.shift()!;
+            if (seen.has(code)) continue;
+            seen.add(code);
+            const course = COURSE_DATA[code];
+            if (!course) continue;
+            const deps: string[] = course.prereqs.flatMap((req: any) =>
+              req.reqs ? req.reqs.filter((r: any) => typeof r === "string") : (req.courses ?? [])
+            );
+            for (const dep of deps) {
+              if (COURSE_DATA[dep] && !result.has(dep)) {
+                result.add(dep);
+                queue.push(dep);
+              }
+            }
+          }
+          for (const code of exploreCodes) {
+            COURSE_DATA[code]?.leadsTo?.forEach((c) => { if (COURSE_DATA[c]) result.add(c); });
+          }
+          return Array.from(result);
+        }
 
         const subMajorMap = SUB_MAJOR_REGISTRY[activeMajorId];
 
@@ -561,6 +668,18 @@ export const useStore = create<GradGraphState>()(
         if (!rehydrated) return;
         rehydrated.completedCourses = toSet(rehydrated.completedCourses);
         rehydrated.plannedCourses   = toSet(rehydrated.plannedCourses);
+        // Reset stale major IDs from previous data shape
+        if (!MAJORS[rehydrated.activeMajorId]) {
+          rehydrated.activeMajorId = DEFAULT_MAJOR_ID;
+        }
+        // Auto-select first sub-major for majors that require one
+        const subMap = SUB_MAJOR_REGISTRY[rehydrated.activeMajorId];
+        if (subMap) {
+          const firstSubId = Object.keys(subMap)[0] as SubMajorId ?? null;
+          if (!rehydrated.activeSubMajorId || !subMap[rehydrated.activeSubMajorId]) {
+            rehydrated.activeSubMajorId = firstSubId;
+          }
+        }
       },
     }
   )

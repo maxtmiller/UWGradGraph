@@ -2,9 +2,11 @@
 
 import { useMemo } from "react";
 import { useStore, subjectsFromCodes, levelsFromCodes } from "../lib/store";
-import { MAJORS } from "../data/majors";
+import { MAJORS, DEFAULT_MAJOR_ID } from "../data/majors";
 import { TAG_COLORS, COURSE_COLORS } from "../data/courses";
 import type { TierFilter } from "../types";
+
+const MAX_EXPLORE = 5;
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -32,137 +34,168 @@ export default function FilterBar() {
     getMajorCourses,
     toggleSubject,
     toggleLevel,
-    clearLevelFilter,
     setTierFilter,
     toggleMyCourses,
+    exploreMode,
+    exploreCodes,
+    removeExploreCode,
+    setSearchOpen,
   } = useStore();
 
-  const major = MAJORS[activeMajorId];
+  const major = MAJORS[activeMajorId] ?? MAJORS[DEFAULT_MAJOR_ID];
 
-  // Subjects drawn from the FULL major pool, not the filtered one,
-  // so chips don't disappear when you apply a tier filter.
   const majorCodes = useMemo(() => getMajorCourses(), [activeMajorId]);
   const subjects   = useMemo(() => subjectsFromCodes(majorCodes), [majorCodes]);
   const levels     = useMemo(() => levelsFromCodes(majorCodes), [majorCodes]);
 
   const allLevelsActive = activeLevels === null;
-
-  // Only show tier selector when the major actually has tiered groups
   const hasTiers = major.requirementGroups.some((g) => g.tier !== undefined);
 
   return (
     <div
       style={{
-        position:      "absolute",
-        top:           12,
-        left:          12,
-        right:         292,
-        zIndex:        20,
         display:       "flex",
         flexDirection: "column",
         gap:           6,
-        pointerEvents: "none",
+        padding:       "8px 12px 6px",
+        background:    "rgba(10,15,30,0.92)",
+        borderBottom:  "1px solid rgba(255,255,255,0.05)",
+        flexShrink:    0,
       }}
     >
-      {/* ── Tier selector ─────────────────────────────────────────────────── */}
-      {hasTiers && (
-        <div style={{ display: "flex", gap: 3, pointerEvents: "auto" }}>
-          {TIER_OPTIONS.map(({ value, label, title }) => {
-            const active = tierFilter === value;
-            return (
+      {/* ── Explore code chips (shown when on explore tab) ────────────────── */}
+      {exploreMode && (
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+          {exploreCodes.map((code) => (
+            <div
+              key={code}
+              style={{
+                display:      "flex",
+                alignItems:   "center",
+                gap:          4,
+                padding:      "2px 8px 2px 10px",
+                borderRadius: 5,
+                border:       "1px solid #A78BFA60",
+                background:   "#A78BFA15",
+                color:        "#C4B5FD",
+                fontSize:     10,
+                fontFamily:   "'DM Mono', monospace",
+              }}
+            >
+              {code}
               <button
-                key={value}
-                onClick={() => setTierFilter(value)}
-                title={title}
+                onClick={() => removeExploreCode(code)}
+                title={`Remove ${code}`}
                 style={{
-                  padding:        "3px 10px",
-                  borderRadius:   5,
-                  border:         `1px solid ${active ? major.color : "#2D3748"}`,
-                  background:     active ? `${major.color}22` : "rgba(15,23,42,0.8)",
-                  color:          active ? major.color : "#475569",
-                  fontSize:       10,
-                  fontFamily:     "inherit",
-                  fontWeight:     active ? 600 : 400,
-                  cursor:         "pointer",
-                  backdropFilter: "blur(6px)",
-                  transition:     "all 0.15s",
-                  letterSpacing:  "0.04em",
-                  whiteSpace:     "nowrap",
+                  background: "none", border: "none", cursor: "pointer",
+                  color: "#6D5AD0", fontSize: 13, lineHeight: 1, padding: "0 0 0 2px",
                 }}
               >
-                {label}
+                ×
               </button>
-            );
-          })}
+            </div>
+          ))}
+          <button
+            onClick={() => setSearchOpen(true)}
+            style={{
+              padding:       "2px 9px",
+              borderRadius:  5,
+              border:        "1px dashed #334155",
+              background:    "transparent",
+              color:         "#475569",
+              fontSize:      10,
+              fontFamily:    "inherit",
+              cursor:        "pointer",
+              letterSpacing: "0.04em",
+              whiteSpace:    "nowrap",
+              transition:    "all 0.15s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#A78BFA"; e.currentTarget.style.color = "#A78BFA"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#334155"; e.currentTarget.style.color = "#475569"; }}
+          >
+            + Search ⌘K ({exploreCodes.length}/{MAX_EXPLORE})
+          </button>
         </div>
       )}
 
-      <div style={{ 
-        display: "flex", 
-        flexDirection: "column", 
-        gap: 12, 
-        pointerEvents: "auto", 
-        width: "max-content", 
-        boxSizing: "border-box",
-        paddingRight: 8 
-      }}>
+      {/* ── Normal filters (hidden in explore mode) ───────────────────────── */}
+      {!exploreMode && (
+        <>
+          {hasTiers && (
+            <div style={{ display: "flex", gap: 3 }}>
+              {TIER_OPTIONS.map(({ value, label, title }) => {
+                const active = tierFilter === value;
+                return (
+                  <button
+                    key={value}
+                    onClick={() => setTierFilter(value)}
+                    title={title}
+                    style={{
+                      padding:        "3px 10px",
+                      borderRadius:   5,
+                      border:         `1px solid ${active ? major.color : "#2D3748"}`,
+                      background:     active ? `${major.color}22` : "rgba(15,23,42,0.8)",
+                      color:          active ? major.color : "#475569",
+                      fontSize:       10,
+                      fontFamily:     "inherit",
+                      fontWeight:     active ? 600 : 400,
+                      cursor:         "pointer",
+                      backdropFilter: "blur(6px)",
+                      transition:     "all 0.15s",
+                      letterSpacing:  "0.04em",
+                      whiteSpace:     "nowrap",
+                    }}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
-        {/* Row 1: Subject Specific Chips */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-          {subjects.map((subject) => {
-            const active = activeSubjects === null || (activeSubjects?.has(subject) ?? false);
-            return (
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, boxSizing: "border-box", paddingRight: 8 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+              {subjects.map((subject) => {
+                const active = activeSubjects === null || (activeSubjects?.has(subject) ?? false);
+                return (
+                  <Chip
+                    key={subject}
+                    label={subject}
+                    active={active}
+                    color={subjectColor(subject)}
+                    onClick={() => toggleSubject(subject)}
+                    title={`Toggle ${subject} courses`}
+                  />
+                );
+              })}
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 3, width: "100%" }}>
+              {levels.map((level) => {
+                const active = allLevelsActive || (activeLevels?.has(level) ?? false);
+                return (
+                  <Chip
+                    key={level}
+                    label={`${level / 100}xx`}
+                    active={active}
+                    color={major.color}
+                    onClick={() => toggleLevel(level)}
+                    title={`Toggle ${level / 100}xx level courses`}
+                  />
+                );
+              })}
+              <div style={{ width: "1px", height: "18px", background: "rgba(255, 255, 255, 0.15)", margin: "0 4px" }} />
               <Chip
-                key={subject}
-                label={subject}
-                active={active}
-                color={subjectColor(subject)}
-                onClick={() => toggleSubject(subject)}
-                title={`Toggle ${subject} courses`}
+                label="My Roadmap"
+                active={showMyCourses}
+                color="#A78BFA"
+                onClick={toggleMyCourses}
+                title="Show only completed & planned courses with their prerequisites"
               />
-            );
-          })}
-        </div>
-
-        {/* Row 2: Level Chips + My Plan (Combined) */}
-        <div style={{ 
-          display: "flex", 
-          flexWrap: "wrap", 
-          alignItems: "center", 
-          gap: 3, 
-          width: "100%" 
-        }}>
-          {/* 1. The Levels */}
-          {levels.map((level) => {
-            const active = allLevelsActive || (activeLevels?.has(level) ?? false);
-            return (
-              <Chip
-                key={level}
-                label={`${level / 100}xx`}
-                active={active}
-                color={major.color}
-                onClick={() => toggleLevel(level)}
-                title={`Toggle ${level / 100}xx level courses`}
-              />
-            );
-          })}
-
-          {/* 2. The Spacer: Pushes the next item to the far right */}
-          {/* <div style={{ flexGrow: 1 }} /> */}
-
-          <div style={{ width: "1px", height: "18px", background: "rgba(255, 255, 255, 0.15)", margin: "0 4px" }} />
-
-          {/* 3. The Roadmap Chip: Now on the same line as 1xx, 2xx, etc. */}
-          <Chip
-            label="My Roadmap"
-            active={showMyCourses}
-            color="#A78BFA"
-            onClick={toggleMyCourses}
-            title="Show only completed & planned courses with their prerequisites"
-            // style={{ marginRight: 15 }} 
-          />
-        </div>
-      </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -11,13 +11,14 @@ export interface Course {
   code: string;
   title: string;
   units: number;
+  description?: string;
   prereqs: Requisite[] | [];
   antireqs: string[];
   /** Domain tags for visual colour-coding (e.g. "core", "ml", "systems") */
   tags: string[];
   /** Which major IDs include this course in their curriculum */
-  majors: (MajorId | "any" | "other")[];
-  exclMajors?: (MajorId | "other")[];
+  majors: (MajorId | "any")[];
+  exclMajors?: MajorId[];
   offered?: string[];
   term?: string;
   /** Computed at init: courses that list this one as a prerequisite */

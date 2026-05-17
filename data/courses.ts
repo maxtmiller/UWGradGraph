@@ -1,5 +1,6 @@
-import type { CourseMap, MajorId, Requisite } from "../types";
+import type { CourseMap, MajorId, Requisite, Major, SubGroup } from "../types";
 import { RAW_COURSES } from "./raw_courses";
+import { MAJORS, SUB_MAJOR_REGISTRY } from "./majors";
 
 
 // ── Build CourseMap (with computed leadsTo) ───────────────────────────────────
@@ -57,7 +58,67 @@ function buildCourseMap(): CourseMap {
   return map;
 }
 
+// ── Major → explicit course codes (from req groups) ──────────────────────────
+
+function collectCodesInMajor(major: Major): Set<string> {
+  const codes = new Set<string>();
+
+  function walkSubGroup(sg: SubGroup) {
+    for (const c of sg.courses) codes.add(c);
+    for (const child of sg.subGroups ?? []) walkSubGroup(child);
+  }
+
+  for (const group of major.requirementGroups) {
+    for (const c of group.courses) codes.add(c);
+    for (const sg of group.subGroups ?? []) walkSubGroup(sg);
+  }
+  return codes;
+}
+
+function buildReqGroupMajorSets(): Map<MajorId, Set<string>> {
+  const mathSubMajors = Object.values(SUB_MAJOR_REGISTRY["mathematics"] ?? {});
+  const entries: Array<[MajorId, Major]> = [
+    MAJORS["computer-science"]    && ["cs",   MAJORS["computer-science"]],
+    MAJORS["software-engineering"] && ["se",  MAJORS["software-engineering"]],
+    MAJORS["data-science"]        && ["ds",   MAJORS["data-science"]],
+    MAJORS["mathematics"]         && ["math", MAJORS["mathematics"]],
+    ...mathSubMajors.map(m => ["math", m] as [MajorId, Major]),
+  ].filter(Boolean) as Array<[MajorId, Major]>;
+
+  const map = new Map<MajorId, Set<string>>();
+  for (const [id, major] of entries) {
+    const existing = map.get(id) ?? new Set<string>();
+    for (const code of collectCodesInMajor(major)) existing.add(code);
+    map.set(id, existing);
+  }
+  return map;
+}
+
 export const COURSE_DATA: CourseMap = buildCourseMap();
+
+// After initial build, derive major memberships from req groups for courses
+// whose `majors` field was set to ["any"] by the refresh script (unrestricted courses).
+// Courses already carrying specific program restrictions are left unchanged.
+;(function deriveMajorsFromReqGroups() {
+  const reqSets = buildReqGroupMajorSets();
+  const courseToMajors = new Map<string, Set<MajorId>>();
+
+  for (const [majorId, codes] of reqSets) {
+    for (const code of codes) {
+      if (!courseToMajors.has(code)) courseToMajors.set(code, new Set());
+      courseToMajors.get(code)!.add(majorId);
+    }
+  }
+
+  for (const course of Object.values(COURSE_DATA)) {
+    if (!course.majors.includes("any")) continue; // already has specific restrictions
+    const derived = courseToMajors.get(course.code);
+    if (derived && derived.size > 0) {
+      course.majors = [...derived] as (MajorId | "any")[];
+    }
+    // Courses not in any req group stay as "any"
+  }
+})();
 
 // ── Tag Colors ────────────────────────────────────────────────────────────────
 

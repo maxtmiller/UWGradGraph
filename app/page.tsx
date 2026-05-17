@@ -16,13 +16,14 @@ import HelpPage          from "@/components/HelpPage";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type Tab = "graph" | "planner" | "progress" | "chat" | "help";
+type Tab = "graph" | "planner" | "progress" | "chat" | "help" | "explore";
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "graph",    label: "Graph"    },
+  { key: "explore",  label: "✦ Explore" },
   { key: "planner",  label: "Planner"  },
   { key: "progress", label: "Progress" },
-  { key: "chat",     label: "✦ Ask AI" },
+  { key: "chat",     label: "Ask AI"   },
   { key: "help",     label: "? Help"   },
 ];
 
@@ -130,7 +131,7 @@ export default function GradGraphPage() {
               label={label}
               active={activeTab === key}
               onClick={() => setActiveTab(key)}
-              highlight={key === "chat"}
+              highlight={key === "chat" ? "gold" : key === "explore" ? "purple" : undefined}
             />
           ))}
           <button
@@ -200,7 +201,7 @@ export default function GradGraphPage() {
         <Sidebar />
 
         <main style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-          {activeTab === "graph" && (
+          {(activeTab === "graph" || activeTab === "explore") && (
             <>
               <GraphCanvas />
               <CourseDetailPanel />
@@ -222,13 +223,14 @@ export default function GradGraphPage() {
 // ── TabButton ─────────────────────────────────────────────────────────────────
 
 function TabButton({
-  label, active, onClick, highlight = false,
+  label, active, onClick, highlight,
 }: {
   label: string;
   active: boolean;
   onClick: () => void;
-  highlight?: boolean;
+  highlight?: "gold" | "purple";
 }) {
+  const accentColor = highlight === "purple" ? "#A78BFA" : "#FFD54F";
   return (
     <button
       onClick={onClick}
@@ -242,10 +244,10 @@ function TabButton({
         textTransform: "uppercase",
         letterSpacing: "0.05em",
         transition:    "all 0.15s",
-        background:    active ? "#FFD54F" : highlight ? "rgba(255,213,79,0.06)" : "transparent",
-        color:         active ? "#0A0F1E" : highlight ? "#FFD54F" : "var(--gg-text-4)",
-        borderColor:   active ? "#FFD54F" : highlight ? "rgba(255,213,79,0.25)" : "var(--gg-border)",
-        fontWeight:    active ? 600       : highlight ? 500 : 400,
+        background:    active ? accentColor : highlight ? `${accentColor}0F` : "transparent",
+        color:         active ? "#0A0F1E"   : highlight ? accentColor : "var(--gg-text-4)",
+        borderColor:   active ? accentColor : highlight ? `${accentColor}40` : "var(--gg-border)",
+        fontWeight:    active ? 600         : highlight ? 500 : 400,
       }}
     >
       {label}

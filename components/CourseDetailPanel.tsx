@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStore } from "../lib/store";
 import { COURSE_DATA } from "../data/courses";
+import { MAJORS } from "../data/majors";
 import { Requisite } from "../types/index"
 import { getConnectedNodes, getHighlightedEdges } from "../lib/graph";
 
@@ -29,10 +30,9 @@ const TERM_KEYS = ["1A","1B","2A","2B","3A","3B","4A","4B"] as const;
 
 export default function CourseDetailPanel() {
   const {
-    selectedNode, completedCourses, plannedCourses, termPlan,
+    selectedNode, completedCourses, plannedCourses, termPlan, activeMajorId,
     toggleCompleted, togglePlanned, moveCourseToTerm,
     setSelectedNode, setHighlight, clearSelection, setPanToNode,
-    isCourseInCurriculum,
   } = useStore();
 
   const [showTermPicker, setShowTermPicker] = useState(false);
@@ -95,7 +95,24 @@ export default function CourseDetailPanel() {
     );
   }
 
-  const isOutsideMajor = !isCourseInCurriculum(selectedNode);
+  // Compute program restriction info for this course
+  const programRestriction = (() => {
+    const majorsList = course.majors ?? [];
+    const exclList   = course.exclMajors ?? [];
+    if (exclList.includes(activeMajorId)) {
+      const name = MAJORS[activeMajorId as keyof typeof MAJORS]?.name ?? activeMajorId;
+      return { type: "excluded" as const, message: `Not available to ${name} students` };
+    }
+    const specificMajors = majorsList.filter((id): id is string => id !== "any");
+    if (specificMajors.length > 0 && !specificMajors.includes(activeMajorId)) {
+      const names = specificMajors
+        .map((id) => MAJORS[id as keyof typeof MAJORS]?.name ?? id)
+        .slice(0, 4);
+      const suffix = specificMajors.length > 4 ? ` +${specificMajors.length - 4} more` : "";
+      return { type: "restricted" as const, message: `Only for: ${names.join(", ")}${suffix}` };
+    }
+    return null;
+  })();
 
   const navigateTo = (code: string) => {
     setShowTermPicker(false);
@@ -142,18 +159,20 @@ export default function CourseDetailPanel() {
         </button>
       </div>
 
-      {/* Not in major warning */}
-      {isOutsideMajor && (
+      {/* Program restriction info */}
+      {programRestriction && (
         <div style={{
           marginBottom:  10,
           padding:       "6px 8px",
-          background:    "rgba(249,115,22,0.08)",
-          border:        "1px solid rgba(249,115,22,0.3)",
+          background:    programRestriction.type === "excluded"
+            ? "rgba(239,68,68,0.08)" : "rgba(96,165,250,0.08)",
+          border:        programRestriction.type === "excluded"
+            ? "1px solid rgba(239,68,68,0.25)" : "1px solid rgba(96,165,250,0.2)",
           borderRadius:  6,
           fontSize:      10,
-          color:         "#FB923C",
+          color:         programRestriction.type === "excluded" ? "#FCA5A5" : "#93C5FD",
         }}>
-          This course is not part of your current major's curriculum.
+          {programRestriction.message}
         </div>
       )}
 

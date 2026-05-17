@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { useStore } from "../lib/store";
 import { COURSE_DATA, TAG_COLORS, STATUS_COLORS } from "../data/courses";
 import { getConnectedNodes, getHighlightedEdges } from "../lib/graph";
@@ -8,36 +8,55 @@ const QUICK_PICKS = ["CS 135","CS 246","CS 341","CS 350","CS 480","STAT 230"];
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function SearchPalette() {
-  const { searchOpen, setSearchOpen, setActiveTab, setSelectedNode, setHighlight, getCourseStatus, setPanToNode, clearSubjectFilter, clearLevelFilter } = useStore();
+  const {
+    searchOpen, setSearchOpen, setActiveTab, setSelectedNode, setHighlight,
+    getCourseStatus, setPanToNode, clearSubjectFilter, clearLevelFilter,
+    exploreMode, exploreCodes, addExploreCode, setExploreOverflowPopup,
+  } = useStore();
   const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(8);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Reset query on close
+  // Reset query and visible count on close
   useEffect(() => { if (!searchOpen) setQuery(""); }, [searchOpen]);
+  // Reset visible count on new query
+  useEffect(() => { setVisibleCount(8); }, [query]);
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
     const q     = query.toLowerCase().trim();
     const qNorm = q.replace(/\s+/g, "");
 
-    // Split query into letters + digits parts, e.g. "cs371" → ["cs", "371"], "c371" → ["c", "371"]
     const m = qNorm.match(/^([a-z]*)(\d*)$/);
     const qLetters = m?.[1] ?? "";
     const qDigits  = m?.[2] ?? "";
 
-    return Object.values(COURSE_DATA)
-      .filter((c) => {
-        if (c.title.toLowerCase().includes(q)) return true;
-        // Normalise code: "CS 371" → "cs371", split into ["cs","371"]
-        const codeNorm   = c.code.toLowerCase().replace(/\s+/g, "");
-        const cm         = codeNorm.match(/^([a-z]+)(\d+.*)$/);
-        const cLetters   = cm?.[1] ?? codeNorm;
-        const cDigits    = cm?.[2] ?? "";
-        // Letters must be a prefix match; digits (if provided) must match start of course number
-        const lettersOk  = qLetters === "" || cLetters.startsWith(qLetters);
-        const digitsOk   = qDigits  === "" || cDigits.startsWith(qDigits);
-        return lettersOk && digitsOk && (qLetters !== "" || qDigits !== "");
-      })
-      .slice(0, 8);
+    const codeMatches: (typeof COURSE_DATA)[string][] = [];
+    const titleMatches: (typeof COURSE_DATA)[string][] = [];
+
+    for (const c of Object.values(COURSE_DATA)) {
+      const codeNorm  = c.code.toLowerCase().replace(/\s+/g, "");
+      const cm        = codeNorm.match(/^([a-z]+)(\d+.*)$/);
+      const cLetters  = cm?.[1] ?? codeNorm;
+      const cDigits   = cm?.[2] ?? "";
+      const lettersOk = qLetters === "" || cLetters.startsWith(qLetters);
+      const digitsOk  = qDigits  === "" || cDigits.startsWith(qDigits);
+
+      if (lettersOk && digitsOk && (qLetters !== "" || qDigits !== "")) {
+        codeMatches.push(c);
+      } else if (c.title.toLowerCase().split(/\s+/).some((w) => w.startsWith(q))) {
+        titleMatches.push(c);
+      }
+    }
+
+    // Exact subject match (e.g. "LS 221") before partial (e.g. "LSC 100")
+    codeMatches.sort((a, b) => {
+      const aExact = a.code.toLowerCase().replace(/\s+/g, "").startsWith(qLetters + (qDigits || "")) ? 0 : 1;
+      const bExact = b.code.toLowerCase().replace(/\s+/g, "").startsWith(qLetters + (qDigits || "")) ? 0 : 1;
+      return aExact - bExact || a.code.localeCompare(b.code);
+    });
+
+    return [...codeMatches, ...titleMatches];
   }, [query]);
 
   const navigate = (code: string) => {
@@ -50,6 +69,28 @@ export default function SearchPalette() {
     setHighlight(connected, getHighlightedEdges(connected));
     setPanToNode(code);
   };
+
+  const addToExplore = (code: string) => {
+    if (exploreCodes.length >= 5) {
+      setExploreOverflowPopup(true);
+      setSearchOpen(false);
+      return;
+    }
+    addExploreCode(code);
+    setSearchOpen(false);
+    setActiveTab("graph");
+    setPanToNode(code);
+  };
+
+  const onSelect = exploreMode ? addToExplore : navigate;
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    if (el.scrollTop + el.clientHeight >= el.scrollHeight - 40) {
+      setVisibleCount((n) => Math.min(n + 8, results.length));
+    }
+  }, [results.length]);
 
   if (!searchOpen) return null;
 
@@ -69,12 +110,14 @@ export default function SearchPalette() {
         {/* Input */}
         <div style={{ display: "flex", alignItems: "center", gap: 10,
                       padding: "12px 16px", borderBottom: "1px solid #1E293B" }}>
-          <span style={{ color: "#FFD54F", fontSize: 16 }}>⌘</span>
+          <span style={{ color: exploreMode ? "#A78BFA" : "#FFD54F", fontSize: 16 }}>
+            {exploreMode ? "✦" : "⌘"}
+          </span>
           <input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search courses by code or title…"
+            placeholder={exploreMode ? "Search any course to explore…" : "Search courses by code or title…"}
             style={{ flex: 1, background: "none", border: "none", outline: "none",
                      color: "#E2E8F0", fontSize: 14, fontFamily: "'DM Mono', monospace" }}
           />
@@ -82,25 +125,30 @@ export default function SearchPalette() {
         </div>
 
         {/* Results */}
-        <div style={{ maxHeight: 360, overflow: "auto" }}>
+        <div ref={scrollRef} onScroll={handleScroll} style={{ maxHeight: 360, overflow: "auto" }}>
           {!query && (
-            <QuickPicks picks={QUICK_PICKS} getCourseStatus={getCourseStatus} onSelect={navigate} />
+            <QuickPicks picks={QUICK_PICKS} getCourseStatus={getCourseStatus} onSelect={onSelect} />
           )}
           {query && results.length === 0 && (
             <div style={{ padding: 24, textAlign: "center", color: "#475569", fontSize: 12 }}>
               No courses found for "{query}"
             </div>
           )}
-          {results.map((course) => (
+          {results.slice(0, visibleCount).map((course) => (
             <ResultRow
               key={course.code}
               code={course.code}
               title={course.title}
               tags={course.tags}
               status={getCourseStatus(course.code)}
-              onSelect={() => navigate(course.code)}
+              onSelect={() => onSelect(course.code)}
             />
           ))}
+          {query && visibleCount < results.length && (
+            <div style={{ padding: "8px 16px", textAlign: "center", color: "#475569", fontSize: 11 }}>
+              {results.length - visibleCount} more — scroll to load
+            </div>
+          )}
         </div>
       </div>
     </div>

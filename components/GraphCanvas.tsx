@@ -29,6 +29,7 @@ export default function GraphCanvas() {
     panToNode, setPanToNode,
     setSelectedNode, setHighlight, clearSelection, setTransform,
     getCourseStatus, getFilteredCourses,
+    exploreMode, exploreCodes, exploreOverflowPopup, setExploreOverflowPopup,
   } = useStore();
 
   const canvasRef    = useRef<HTMLDivElement>(null);
@@ -39,7 +40,7 @@ export default function GraphCanvas() {
   const visibleCodes = useMemo(
     () => new Set(getFilteredCourses()),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeMajorId, activeSubMajorId, activeSubjects, activeLevels, tierFilter, showMyCourses, completedCourses, plannedCourses, getFilteredCourses]
+    [activeMajorId, activeSubMajorId, activeSubjects, activeLevels, tierFilter, showMyCourses, completedCourses, plannedCourses, exploreMode, exploreCodes, getFilteredCourses]
   );
 
   // Courses that are "next up" — available (unlocked) and still needed for the degree.
@@ -221,16 +222,16 @@ export default function GraphCanvas() {
   const handleMouseUp = () => { isPanningRef.current = false; panStart.current = null; };
 
   return (
-    <div style={{ width: "100%", height: "100%", overflow: "hidden", position: "relative" }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
 
-      {/* ── Filter bar (sits above the canvas, does not pan/zoom) ─────────── */}
+      {/* ── Filter bar (in-flow above canvas, does not pan/zoom) ─────────── */}
       <FilterBar />
 
       {/* ── Pannable / zoomable canvas ──────────────────────────────────── */}
       <div
         ref={canvasRef}
-        style={{ width: "100%", height: "100%", overflow: "hidden", position: "absolute",
-                 inset: 0, cursor: isPanningRef.current ? "grabbing" : "grab" }}
+        style={{ flex: 1, overflow: "hidden", position: "relative",
+                 cursor: isPanningRef.current ? "grabbing" : "grab" }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -323,19 +324,71 @@ export default function GraphCanvas() {
           ))}
         </div>
 
-        {/* Empty state when all courses filtered out */}
+        {/* Empty state */}
         {visibleCodes.size === 0 && (
           <div style={{
-            position:   "absolute", inset: 0,
-            display:    "flex", flexDirection: "column",
+            position: "absolute", inset: 0,
+            display: "flex", flexDirection: "column",
             alignItems: "center", justifyContent: "center",
-            color:      "#334155", pointerEvents: "none",
+            color: "#334155", pointerEvents: "none",
           }}>
-            <div style={{ fontSize: 32, marginBottom: 8 }}>◎</div>
-            <div style={{ fontSize: 13 }}>No courses match the current filters</div>
+            {exploreMode ? (
+              <>
+                <div style={{ fontSize: 32, marginBottom: 8 }}>✦</div>
+                <div style={{ fontSize: 13, color: "#475569" }}>Search any course to explore it</div>
+                <div style={{ fontSize: 11, color: "#334155", marginTop: 4 }}>Press ⌘K to search the full catalog</div>
+              </>
+            ) : (
+              <>
+                <div style={{ fontSize: 32, marginBottom: 8 }}>◎</div>
+                <div style={{ fontSize: 13 }}>No courses match the current filters</div>
+              </>
+            )}
           </div>
         )}
+
+        {/* Explore overflow popup */}
+        {exploreOverflowPopup && (
+          <ExploreOverflowPopup onDismiss={() => setExploreOverflowPopup(false)} />
+        )}
       </div>
+    </div>
+  );
+}
+
+function ExploreOverflowPopup({ onDismiss }: { onDismiss: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onDismiss, 4000);
+    return () => clearTimeout(t);
+  }, [onDismiss]);
+
+  return (
+    <div style={{
+      position:       "absolute",
+      bottom:         24,
+      left:           "50%",
+      transform:      "translateX(-50%)",
+      background:     "rgba(15,23,42,0.97)",
+      border:         "1px solid rgba(167,139,250,0.4)",
+      borderRadius:   10,
+      padding:        "10px 16px",
+      zIndex:         30,
+      display:        "flex",
+      alignItems:     "center",
+      gap:            10,
+      backdropFilter: "blur(12px)",
+      boxShadow:      "0 8px 32px rgba(0,0,0,0.5)",
+      whiteSpace:     "nowrap",
+    }}>
+      <span style={{ fontSize: 11, color: "#C4B5FD" }}>
+        Explore limit reached — max 5 courses at once. Remove one to add another.
+      </span>
+      <button
+        onClick={onDismiss}
+        style={{ background: "none", border: "none", color: "#6D5AD0", cursor: "pointer", fontSize: 16, lineHeight: 1 }}
+      >
+        ×
+      </button>
     </div>
   );
 }
