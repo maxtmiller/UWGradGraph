@@ -312,13 +312,24 @@ export const useStore = create<GradGraphState>()(
         set((state) => {
           const majorCodes  = get().getMajorCourses();
           const allSubjects = new Set(subjectsFromCodes(majorCodes));
-          const current     = state.activeSubjects ?? allSubjects;
-          const next        = new Set(current);
-          const isAdding    = !next.has(subject);
-          if (isAdding && state.activeTab === "graph" && next.size >= 8) return {};
-          next.has(subject) ? next.delete(subject) : next.add(subject);
-          const allSelected = [...allSubjects].every((s) => next.has(s));
-          return { activeSubjects: allSelected ? null : next };
+          
+          // Use current activeSubjects or initialize with all subjects if it was 'null'
+          // However, to enforce a 5-subject limit, we should never really be in a 'null' (all) state
+          // if the major has more than 5 subjects.
+          const current = state.activeSubjects ?? allSubjects;
+          const next    = new Set(current);
+          const isAdding = !next.has(subject);
+          
+          if (isAdding) {
+            if (next.size >= 5) return {}; // Strict limit of 5
+            next.add(subject);
+          } else {
+            // Don't allow deselecting the last subject
+            if (next.size <= 1) return {};
+            next.delete(subject);
+          }
+          
+          return { activeSubjects: next };
         }),
 
       isolateSubject:     (subject) => set({ activeSubjects: new Set([subject]) }),

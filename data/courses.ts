@@ -76,17 +76,17 @@ function collectCodesInMajor(major: Major): Set<string> {
 }
 
 function buildReqGroupMajorSets(): Map<MajorId, Set<string>> {
+  const allMajors = Object.entries(MAJORS) as Array<[MajorId, Major]>;
   const mathSubMajors = Object.values(SUB_MAJOR_REGISTRY["mathematics"] ?? {});
+  
   const entries: Array<[MajorId, Major]> = [
-    MAJORS["computer-science"]    && ["cs",   MAJORS["computer-science"]],
-    MAJORS["software-engineering"] && ["se",  MAJORS["software-engineering"]],
-    MAJORS["data-science"]        && ["ds",   MAJORS["data-science"]],
-    MAJORS["mathematics"]         && ["math", MAJORS["mathematics"]],
-    ...mathSubMajors.map(m => ["math", m] as [MajorId, Major]),
-  ].filter(Boolean) as Array<[MajorId, Major]>;
+    ...allMajors,
+    ...mathSubMajors.map(m => [m.id as MajorId, m] as [MajorId, Major]),
+  ].filter(Boolean);
 
   const map = new Map<MajorId, Set<string>>();
   for (const [id, major] of entries) {
+    if (!id || !major) continue;
     const existing = map.get(id) ?? new Set<string>();
     for (const code of collectCodesInMajor(major)) existing.add(code);
     map.set(id, existing);

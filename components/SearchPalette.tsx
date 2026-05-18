@@ -62,8 +62,6 @@ export default function SearchPalette() {
   const navigate = (code: string) => {
     setSearchOpen(false);
     setActiveTab("graph");
-    clearSubjectFilter();
-    clearLevelFilter();
     const connected = getConnectedNodes(code);
     setSelectedNode(code);
     setHighlight(connected, getHighlightedEdges(connected));
@@ -78,7 +76,9 @@ export default function SearchPalette() {
     }
     addExploreCode(code);
     setSearchOpen(false);
-    setActiveTab("graph");
+    const connected = getConnectedNodes(code);
+    setSelectedNode(code);
+    setHighlight(connected, getHighlightedEdges(connected));
     setPanToNode(code);
   };
 
