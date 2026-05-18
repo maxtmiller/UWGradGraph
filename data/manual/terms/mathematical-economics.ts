@@ -1,0 +1,12 @@
+
+
+export const MATHEMATICAL_ECONOMICS_PLAN = {
+    "1A": ["MATH 135", "MATH 137", "CS 135", "ECON 101", "COMMST 100"],
+    "1B": ["MATH 136", "MATH 138", "CS 136", "ECON 290", "ECON 102", "CS 136L"],
+    "2A": ["MATH 237", "ECON 391", "CO 250", "STAT 230", "MATH 235"],
+    "2B": ["STAT 330", "STAT 331", "STAT 231", "PMATH 333", "ECON 306"],
+    "3A": ["AMATH 350", "STAT 333", "STAT 340", "ECON 393", "ECON 322"],
+    "3B": ["STAT 443", "STAT 441", "ECON 472", "ECON 323", "ECON 371"],
+    "4A": ["ECON 491", "ECON 406", "ECON 401", "AMATH 242", "PHIL 224"],
+    "4B": ["ECON 496", "STAT 431", "CO 351"]
+};

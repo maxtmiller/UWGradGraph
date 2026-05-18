@@ -1,0 +1,12 @@
+
+
+export const ACTUARIAL_SCIENCE_PLAN = {
+    "1A": ["MATH 135", "MATH 137", "CS 135", "MTHEL 131", "ECON 101"],
+    "1B": ["MATH 136", "MATH 138", "CS 136", "STAT 230", "ECON 102", "CS 136L"],
+    "2A": ["MATH 237", "STAT 231", "ACTSC 231", "AFM 101", "AMATH 250"],
+    "2B": ["STAT 330", "ACTSC 232", "STAT 340", "ENGL 378"],
+    "3A": ["STAT 331", "STAT 333", "ACTSC 331", "ACTSC 372"],
+    "3B": ["ACTSC 363", "ACTSC 431", "ACTSC 371"],
+    "4A": ["ACTSC 446", "ACTSC 432", "STAT 443"],
+    "4B": ["ACTSC 433", "STAT 431", "CO 351"]
+};

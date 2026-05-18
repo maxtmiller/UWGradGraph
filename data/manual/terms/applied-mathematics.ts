@@ -1,0 +1,12 @@
+
+
+export const APPLIED_MATHEMATICS_PLAN = {
+    "1A": ["MATH 135", "MATH 137", "CS 135", "PHYS 121"],
+    "1B": ["MATH 136", "MATH 138", "CS 136", "STAT 230", "PHYS 122", "CS 136L"],
+    "2A": ["MATH 237", "AMATH 250", "AMATH 242", "STAT 231", "PHYS 234"],
+    "2B": ["AMATH 231", "AMATH 271", "PMATH 333", "PHYS 263"],
+    "3A": ["AMATH 353", "AMATH 342", "AMATH 333", "PHYS 334"],
+    "3B": ["AMATH 451", "AMATH 361", "PHYS 375"],
+    "4A": ["AMATH 456", "AMATH 473", "AMATH 442"],
+    "4B": ["AMATH 475", "AMATH 463", "AMATH 391"]
+};

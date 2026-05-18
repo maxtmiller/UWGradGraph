@@ -44,5 +44,3 @@ next-env.d.ts
 
 # actions
 /scripts
-/data/generated
-/data/manual
