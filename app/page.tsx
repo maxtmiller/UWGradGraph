@@ -2,7 +2,6 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useStore } from "@/lib/store";
-import { MAJORS, MAJOR_META, SUB_MAJOR_REGISTRY } from "@/data/majors";
 import Sidebar           from "@/components/Sidebar";
 import GraphCanvas       from "@/components/GraphCanvas";
 import CourseDetailPanel from "@/components/CourseDetailPanel";
@@ -13,6 +12,7 @@ import SearchPalette     from "@/components/SearchPalette";
 import MajorSelector     from "@/components/MajorSelector";
 import WelcomeOverlay    from "@/components/WelcomeOverlay";
 import HelpPage          from "@/components/HelpPage";
+import ShareLinkLoader   from "@/components/ShareLinkLoader";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -31,8 +31,6 @@ const TABS: { key: Tab; label: string }[] = [
 
 export default function GradGraphPage() {
   const {
-    activeMajorId,
-    activeSubMajorId,
     activeTab,
     setActiveTab,
     searchOpen,
@@ -40,12 +38,6 @@ export default function GradGraphPage() {
     antireqWarning,
     clearSelection,
   } = useStore();
-
-  const subMajorMap  = SUB_MAJOR_REGISTRY[activeMajorId];
-  const activeMajor  = (subMajorMap && activeSubMajorId && subMajorMap[activeSubMajorId])
-    ? subMajorMap[activeSubMajorId]
-    : MAJORS[activeMajorId];
-  const headerColor  = MAJOR_META[activeMajorId]?.color ?? activeMajor?.color ?? "#FFD54F";
 
   // Dynamically track the header height so content is never obscured
   const headerRef = useRef<HTMLElement>(null);
@@ -81,6 +73,7 @@ export default function GradGraphPage() {
 
       {/* ── First-visit welcome overlay ───────────────────────────────────── */}
       <WelcomeOverlay />
+      <ShareLinkLoader />
 
       {/* ── Fixed header ──────────────────────────────────────────────────── */}
       <header ref={headerRef} style={{
@@ -97,7 +90,7 @@ export default function GradGraphPage() {
         gap:            16,
         transition:     "background 0.2s",
       }}>
-        {/* Left: wordmark + dynamic subtitle */}
+        {/* Left: wordmark */}
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
           <span style={{
             fontFamily:    "'Syne', sans-serif",
@@ -107,14 +100,6 @@ export default function GradGraphPage() {
             letterSpacing: "-0.5px",
           }}>
             UW<span style={{ color: "#60A5FA" }}>GRAD</span>GRAPH
-          </span>
-          <span style={{
-            fontSize:    11,
-            color:       headerColor,
-            borderLeft:  "1px solid #1E293B",
-            paddingLeft: 16,
-          }}>
-            {activeMajor?.name ?? ""}
           </span>
         </div>
 

@@ -10,30 +10,34 @@ import { FACULTIES, DEFAULT_FACULTY_ID } from "../data/faculties";
 import { matchesAnyRule } from "./audit";
 import { getAncestors, getDescendants } from "./graph";
 import { areRequisitesSatisfied, getAllRequisiteCourseCodes } from "./requisites";
+import { SHARE_TERMS, type ShareSnapshotV1 } from "./share";
 
 // ── Module-level helpers ───────────────────────────────────────────────────────
 
 /** Count explicitly listed courses per subject across a major's requirement groups. */
 function topSubjectsForMajor(requirementGroups: RequirementGroup[], n: number): Set<string> | null {
+  const { codes: explicitCodes } = collectRequirementInfo(requirementGroups);
+  const coreSubjects = new Set<string>();
+  const collectCoreSubjects = (group: RequirementGroup) => {
+    if (!group.core && group.type !== "required") return;
+    const { codes } = collectRequirementInfo([group]);
+    codes.forEach((code) => coreSubjects.add(courseSubject(code)));
+  };
+  requirementGroups.forEach(collectCoreSubjects);
+
   const counts: Record<string, number> = {};
   const tally = (code: string) => {
-    const subj = code.split(" ")[0];
+    const subj = courseSubject(code);
     counts[subj] = (counts[subj] ?? 0) + 1;
   };
-  const scanSub = (sub: SubGroup) => {
-    if (sub.requiredCourse) tally(sub.requiredCourse);
-    sub.courses?.forEach(tally);
-    sub.subGroups?.forEach(scanSub);
-  };
-  requirementGroups.forEach((g: RequirementGroup) => {
-    g.courses?.forEach(tally);
-    g.subGroups?.forEach(scanSub);
-  });
+  explicitCodes.forEach(tally);
+
   const top = Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
     .slice(0, n)
     .map(([s]) => s);
-  return top.length > 0 ? new Set(top) : null;
+  top.forEach((subject) => coreSubjects.add(subject));
+  return coreSubjects.size > 0 ? coreSubjects : null;
 }
 
 function toSet<T = string>(value: unknown): Set<T> {
@@ -57,6 +61,38 @@ export function courseLevel(code: string): number {
 
 export function levelsFromCodes(codes: string[]): number[] {
   return [...new Set(codes.map(courseLevel))].filter(l => l <= 400).sort((a, b) => a - b);
+}
+
+function collectRequirementInfo(requirementGroups: RequirementGroup[]) {
+  const codes = new Set<string>();
+  const rules: RequirementRule[] = [];
+  const subjects = new Set<string>();
+
+  const addCode = (code: string) => {
+    codes.add(code);
+    subjects.add(courseSubject(code));
+  };
+
+  const scanSubGroup = (sub: SubGroup) => {
+    if (sub.requiredCourse) addCode(sub.requiredCourse);
+    sub.courses?.forEach(addCode);
+    sub.rules?.forEach((rule) => {
+      rules.push(rule);
+      rule.prefixes?.forEach((prefix) => subjects.add(prefix));
+    });
+    sub.subGroups?.forEach(scanSubGroup);
+  };
+
+  requirementGroups.forEach((group) => {
+    group.courses?.forEach(addCode);
+    group.rules?.forEach((rule) => {
+      rules.push(rule);
+      rule.prefixes?.forEach((prefix) => subjects.add(prefix));
+    });
+    group.subGroups?.forEach(scanSubGroup);
+  });
+
+  return { codes, rules, subjects };
 }
 
 function buildExploreCourseSet(exploreCodes: string[]): Set<string> {
@@ -195,6 +231,7 @@ interface GradGraphState extends PersistedSlice {
   addExploreCode:          (code: string) => void;
   removeExploreCode:       (code: string) => void;
   setExploreOverflowPopup: (show: boolean) => void;
+  applyShareSnapshot:      (snapshot: ShareSnapshotV1) => void;
 
   // ── Derived queries ───────────────────────────────────────────────────────────
   getTermPlannedCourses: () => Set<string>;
@@ -467,6 +504,52 @@ export const useStore = create<GradGraphState>()(
 
       setExploreOverflowPopup: (show) => set({ exploreOverflowPopup: show }),
 
+      applyShareSnapshot: (snapshot) => {
+        const activeMajorId = MAJORS[snapshot.activeMajorId] ? snapshot.activeMajorId : DEFAULT_MAJOR_ID;
+        const subMap = SUB_MAJOR_REGISTRY[activeMajorId];
+        const activeSubMajorId = subMap
+          ? (snapshot.activeSubMajorId && subMap[snapshot.activeSubMajorId]
+            ? snapshot.activeSubMajorId
+            : (Object.keys(subMap)[0] as SubMajorId) ?? null)
+          : null;
+
+        const activeMajor = activeSubMajorId && subMap
+          ? subMap[activeSubMajorId]
+          : MAJORS[activeMajorId];
+        const activeFacultyId = MAJOR_TO_FACULTY[activeMajorId] ?? (
+          FACULTIES[snapshot.activeFacultyId] ? snapshot.activeFacultyId : DEFAULT_FACULTY_ID
+        );
+
+        const validCourseCodes = new Set(Object.keys(COURSE_DATA));
+        const uniqueValidCourses = (codes: string[]) => [...new Set(codes)].filter((code) => validCourseCodes.has(code));
+        const completedCourses = new Set(uniqueValidCourses(snapshot.completedCourses));
+        const plannedCourses = new Set(uniqueValidCourses(snapshot.plannedCourses).filter((code) => !completedCourses.has(code)));
+        const termPlan = {} as TermPlan;
+
+        for (const term of SHARE_TERMS) {
+          termPlan[term] = uniqueValidCourses(Array.isArray(snapshot.termPlan[term]) ? snapshot.termPlan[term] : []);
+        }
+
+        set({
+          activeFacultyId,
+          activeMajorId,
+          activeSubMajorId,
+          activeSubjects: topSubjectsForMajor(activeMajor?.requirementGroups ?? [], 5),
+          exploreActiveSubjects: topSubjectsForMajor(activeMajor?.requirementGroups ?? [], 5),
+          completedCourses,
+          plannedCourses,
+          termPlan,
+          termPlanEditedByUser: snapshot.termPlanEditedByUser || Object.values(termPlan).some((courses) => courses.length > 0),
+          activeTab: "planner",
+          selectedNode: null,
+          highlightedNodes: new Set(),
+          highlightedEdges: new Set(),
+          antireqWarning: null,
+        });
+
+        get().checkAntireqs();
+      },
+
       // ── Derived queries ────────────────────────────────────────────────────
 
       /** Returns the flat set of all course codes placed in any term bucket. */
@@ -522,20 +605,9 @@ export const useStore = create<GradGraphState>()(
 
         // 3. STEP 1: Mine Explicit Course Lists & Rule Subjects
         const allGroups = major.requirementGroups || [];
-        const ruleSubjects = new Set<string>();
-        
-        const processSubGroup = (sub: SubGroup) => {
-          if (sub.requiredCourse) codes.add(sub.requiredCourse);
-          sub.courses?.forEach(c => codes.add(c));
-          sub.rules?.forEach(r => r.prefixes?.forEach(p => ruleSubjects.add(p)));
-          sub.subGroups?.forEach(processSubGroup);
-        };
-
-        allGroups.forEach((group: RequirementGroup) => {
-          group.courses?.forEach(c => codes.add(c));
-          group.rules?.forEach(r => r.prefixes?.forEach(p => ruleSubjects.add(p)));
-          group.subGroups?.forEach(processSubGroup);
-        });
+        const requirementInfo = collectRequirementInfo(allGroups);
+        const explicitRequirementCodes = new Set(requirementInfo.codes);
+        requirementInfo.codes.forEach((code) => codes.add(code));
 
         // 4. STEP 2: Expand to ALL courses from every mentioned subject.
         // If any course from a subject appears explicitly in the curriculum,
@@ -543,7 +615,7 @@ export const useStore = create<GradGraphState>()(
         // Only hard-block on explicit exclMajors — not the whitelist, which can
         // be wrong due to parser bugs in the refresh script.
         const mentionedSubjects = new Set(Array.from(codes).map(c => c.split(" ")[0]));
-        ruleSubjects.forEach(s => mentionedSubjects.add(s));
+        requirementInfo.subjects.forEach(s => mentionedSubjects.add(s));
 
         Object.keys(COURSE_DATA).forEach(courseCode => {
           if (!mentionedSubjects.has(courseCode.split(" ")[0])) return;
@@ -553,17 +625,17 @@ export const useStore = create<GradGraphState>()(
           }
         });
 
+        // The planner is a forward-looking workspace, so include every course
+        // this program/faculty can plausibly take, not only requirement subjects.
+        if (activeTab === "planner") {
+          Object.keys(COURSE_DATA).forEach((courseCode) => {
+            if (satisfiesMajorRestrictions(courseCode)) codes.add(courseCode);
+          });
+        }
+
         // 5. STEP 3: Mine Rules (e.g. "any STAT 400+" elective buckets).
         // In graph view, restrict to mentioned subjects only to avoid EARTH/ECON noise.
-        const allMajorRules: RequirementRule[] = [];
-        const collectRules = (sub: SubGroup) => {
-          if (sub.rules) allMajorRules.push(...sub.rules);
-          sub.subGroups?.forEach(collectRules);
-        };
-        allGroups.forEach((group: RequirementGroup) => {
-          if (group.rules) allMajorRules.push(...group.rules);
-          group.subGroups?.forEach(collectRules);
-        });
+        const allMajorRules = requirementInfo.rules;
 
         Object.keys(COURSE_DATA).forEach(courseCode => {
           if (matchesAnyRule(courseCode, allMajorRules) && satisfiesMajorRestrictions(courseCode)) {
@@ -603,9 +675,10 @@ export const useStore = create<GradGraphState>()(
         // If a course requires prerequisites that aren't allowed for this major,
         // it's unreachable and should be removed.
         let changed = true;
-        while (changed) {
+        while (activeTab !== "planner" && changed) {
           changed = false;
           for (const code of codes) {
+            if (explicitRequirementCodes.has(code)) continue;
             const course = COURSE_DATA[code];
             if (!course || !course.prereqs || course.prereqs.length === 0) continue;
             
@@ -700,7 +773,10 @@ export const useStore = create<GradGraphState>()(
         }
 
         if (activeSubjects !== null) {
-          codes = codes.filter((c) => activeSubjects.has(courseSubject(c)));
+          const explicitRequirementCodes = major
+            ? collectRequirementInfo(major.requirementGroups).codes
+            : new Set<string>();
+          codes = codes.filter((c) => activeSubjects.has(courseSubject(c)) || explicitRequirementCodes.has(c));
         }
 
         if (activeLevels !== null) {

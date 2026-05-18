@@ -228,7 +228,7 @@ export default function MajorSelector() {
           label={activeMeta?.label ?? activeMajorId}
           color={accentColor}
           open={open === "major"}
-          filled
+          filled={!subMajorMap}
           onClick={() => toggle("major")}
         />
         {open === "major" && (
@@ -263,6 +263,7 @@ export default function MajorSelector() {
               }
               color={accentColor}
               open={open === "submajor"}
+              filled
               onClick={() => toggle("submajor")}
             />
             {open === "submajor" && (

@@ -13,7 +13,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces financial markets and institutions, examining the role of finance in the global economy while introducing foundational principles of financial decision making. The course utilizes analytic and computational approaches to the topics, enabling students to develop data management and analysis competencies.",
     prereqs: [
-      { type: "OR", reqs: ["CS 115", "CS 135"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 115"] }, { type: "AND", reqs: ["CS 135"] }] }
     ],
     antireqs: ["CFM 101", "AFM 121"],
     tags: [],
@@ -38,7 +38,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The theory of rates of interest and discount including the theoretical continuous case of forces of interest and discount. Annuities and sinking funds, including the continuous case. Practical and theoretical applications primarily to mortgages and bonds. Yield rates.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 137", "STAT 220", "STAT 230", "STAT 240"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 137"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 220"] }, { type: "AND", reqs: ["STAT 230"] }] }] },
       { type: "AND", reqs: ["ACTSC 232"] }
     ],
     antireqs: ["ACTSC 221"],
@@ -53,7 +53,8 @@ export const RAW_COURSES: RawCourse[] = [
     description: "The future lifetime random variable: probability and survival functions; force of mortality; complete and curtate expectation of life; Makeham and Gompertz mortality laws. Life tables: characteristics of population and insurance life tables; selection; fractional age assumptions. Life insurance payments and annuity payments: present value random variables; expected present values; higher moments; actuarial notation. Annual, 1/mthly, and continuous cases. Relationships between insurance and annuity functions. Premiums: expense loadings. Present value of future loss random variables and distribution, net and gross cases. Equivalence principle. Portfolio percentile principle. Extra risks.",
     prereqs: [
       { type: "OR", reqs: ["STAT 230", "STAT 240"] },
-      { type: "AND", reqs: ["ACTSC 231"] }
+      { type: "AND", reqs: ["ACTSC 231"] },
+      { type: "AND", reqs: ["MTHEL 131"] }
     ],
     antireqs: ["ACTSC 331"],
     tags: [],
@@ -66,7 +67,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an overview of global capital markets and asset valuation. Topics may include an overview of financial markets and instruments, time value of money, valuation of financial assets, and financial risk and portfolio management. The course utilizes an analytic and computational approach to the topics, enabling students to develop data management and analysis competencies.",
     prereqs: [
-      { type: "OR", reqs: ["CFM 101", "AFM 127", "ACTSC 127"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CFM 101"] }, { type: "AND", reqs: ["AFM 127", "ACTSC 127"] }] }
     ],
     antireqs: ["AFM 273", "ACTSC 372", "ECON 371"],
     tags: [],
@@ -92,7 +93,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to property and casualty coverages. Claim payment process, development triangles, and diagnostic testing. Estimating ultimate claims using development, frequency-severity, expected and Bornhuetter Ferguson methods. Estimating unpaid claim and unallocated loss adjustment expense liabilities. Ratemaking process, including expense provisions, profit and contingencies, and adjustments for catastrophes and large losses. Pricing for deductibles and increased limits. Introduction to reinsurance pricing and reserving. Commercial lines pricing.",
     prereqs: [
-      { type: "AND", reqs: ["ACTSC 231"] }
+      { type: "AND", reqs: ["ACTSC 231"] },
+      { type: "AND", reqs: ["STAT 231"] }
     ],
     antireqs: [],
     tags: [],
@@ -104,7 +106,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Casualty and Health Insurance Mathematics 1",
     units: 0.5,
     description: "Introduction to the collective risk model; models for loss frequency: (a, b, 0) and (a, b, 1) classes of distributions, compound distributions and mixtures; models for loss severity: exponential, gamma, lognormal, Pareto, Weibull, and mixtures; measures of distribution tails; impact of policy adjustments on loss frequency and severity; estimation of frequency and severity models.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["STAT 330"] }
+    ],
     antireqs: ["ACTSC 431"],
     tags: [],
     majors: ["math"],
@@ -116,9 +120,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to financial markets. Different return and risk measures. Investment rules and capital budgeting. Rigorous derivations of Markowitz portfolio optimization and its application in investment decisions. Capital Asset Pricing Model (CAPM) and Arbitrage Pricing Theory (APT). Weighted average cost of capital (WACC) and efficient market hypothesis (EMH). Long-term financing, capital structure (MM propositions), and dividend policies. Introduction to options, forwards, and swaps.",
     prereqs: [
-      { type: "OR", reqs: ["ACTSC 231", "MATH 237", "MATH 247"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ACTSC 231"] }, { type: "AND", reqs: ["MATH 235", "MATH 245"] }, { type: "AND", reqs: ["MATH 237", "MATH 247"] }] }
     ],
-    antireqs: ["AFM 272", "ACTSC 291", "AFM 273", "AFM 275", "AFM 372", "ACTSC 391", "BUS 393W", "ECON 371", "MATBUS 371"],
+    antireqs: ["AFM 272", "ACTSC 291", "AFM 273", "AFM 274", "AFM 275", "AFM 372", "ACTSC 391", "BUS 393W", "ECON 371", "MATBUS 371"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -129,7 +133,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the first in a two-course sequence that deals with corporate financial decision making. Topics may include capital budgeting, cost of capital, security issuance, capital structure, payout policy and dividends, and short-term finance. Where suitable, topics are treated from a mathematical and quantitative perspective.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "ACTSC 291"] }
+      { type: "AND", reqs: ["AFM 272", "ACTSC 291"] }
     ],
     antireqs: ["AFM 274", "AFM 372", "ACTSC 372", "ECON 371"],
     tags: [],
@@ -157,7 +161,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ACTSC 363"] },
       { type: "AND", reqs: ["STAT 330"] },
-      { type: "OR", reqs: ["STAT 331", "STAT 371"] }
+      { type: "OR", reqs: ["STAT 331", "STAT 371", "STAT 373"] }
     ],
     antireqs: [],
     tags: [],
@@ -170,7 +174,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Credibility theory: American credibility, Bayesian, Bühlmann, Bühlmann-Straub, and empirical Bayes parameter estimation. Risk theory: claim arrival dynamics, surplus models, first-passage times, applications to solvency, and their analytical and numerical analyses.",
     prereqs: [
-      { type: "AND", reqs: ["ACTSC 363"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ACTSC 363"] }, { type: "AND", reqs: ["STAT 330"] }, { type: "AND", reqs: ["STAT 333"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -183,7 +187,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces enterprise risk management, with a focus on quantitative analysis and economic capital. Risk classification is first discussed with an emphasis on the types of risk most suited to quantitative methods. Risk measures, such as Value-at-Risk (VaR) and Conditional Tail Expectation (CTE or TVaR), are then introduced and their use by firms and regulators to determine risk capital requirements is further highlighted. Different approaches are considered for developing loss distributions, including frequency/severity analysis and extreme value theory. Copulas and economic scenario generators are used to aggregate dependent risks. Different strategies for mitigating or transferring risk are reviewed. Additional topics that may be covered include credit risk, capital allocation, and regulation of financial institutions.",
     prereqs: [
-      { type: "OR", reqs: ["ACTSC 372", "BUS 393W", "STAT 334"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ACTSC 372"] }, { type: "AND", reqs: ["BUS 393W"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 330", "STAT 333"] }, { type: "AND", reqs: ["STAT 334"] }] }] }
     ],
     antireqs: ["AFM 422", "MATBUS 472", "BUS 433W", "BUS 439W"],
     tags: [],
@@ -196,7 +200,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course covers mathematical techniques for no-arbitrage pricing and hedging financial derivatives. Topics to be covered can be classified into three broad areas: derivatives markets (options; forwards and futures; other derivatives; put-call parity), discrete-time financial models (binomial models; general multi-period models; Fundamental Theorems of Asset Pricing; risk-neutral probability), and continuous-time financial models (basic stochastic calculus and Itô's lemma; Black-Scholes model; interest rate models and bond pricing).",
     prereqs: [
-      { type: "OR", reqs: ["ACTSC 372", "BUS 393W", "BUS 334"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ACTSC 372"] }, { type: "AND", reqs: ["BUS 393W"] }] }, { type: "AND", reqs: ["STAT 333"] }] }
     ],
     antireqs: ["AFM 322", "BUS 423W", "ECON 372", "MATBUS 470"],
     tags: [],
@@ -209,8 +213,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The interaction of financial models, numerical methods, and computing environments. Basic computational aspects of option pricing and hedging. Numerical methods for stochastic differential equations, strong and weak convergence. Generating correlated random numbers. Time-stepping methods. Finite difference methods for the Black-Scholes equation. Discretization, stability, convergence. Methods for portfolio optimization, effect of data errors on portfolio weights.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 242", "CS 371", "CS 370"] },
-      { type: "OR", reqs: ["STAT 206", "STAT 231", "STAT 241"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 242", "CS 371"] }, { type: "AND", reqs: ["CS 370"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["STAT 206"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 231"] }, { type: "AND", reqs: ["STAT 241"] }] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -236,7 +239,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Kaplan-Meier and Nelson-Aalen estimators for survival functions. Kernel density models. Validation of mortality tables. Estimators for Markov multiple state transition intensities. Longevity models, including deterministic and stochastic models such as Lee-Carter and Cairns-Blake-Dowd.",
     prereqs: [
-      { type: "AND", reqs: ["ACTSC 331"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ACTSC 331"] }, { type: "AND", reqs: ["STAT 330"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -249,7 +252,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Profit testing for traditional and non-traditional life insurance. Pricing and valuation of embedded options in life insurance products. Defined benefit and defined contribution pension plan design. Theory and practice of unit credit methods for pension plan funding and valuation for final average salary, career average earnings, and career average revalued earnings pension plans; post-retirement health benefits.",
     prereqs: [
-      { type: "AND", reqs: ["ACTSC 331"] }
+      { type: "AND", reqs: ["ACTSC 331"] },
+      { type: "AND", reqs: ["ACTSC 446"] }
     ],
     antireqs: [],
     tags: [],
@@ -341,7 +345,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Linear systems of equations, matrices, and determinants. Introduction to the eigenvalue problem. Applications.",
     prereqs: [],
-    antireqs: ["CIVE 115", "MATH 114"],
+    antireqs: ["CIVE 115", "MATH 114", "MATH 115", "MATH 125", "MATH 136", "MATH 146"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -424,7 +428,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Frames, arches, and suspended structures. Stress and strain transformations. Strain energy. Energy methods. Virtual work. Buckling of columns.",
     prereqs: [
-      { type: "AND", reqs: ["AE 204"] }
+      { type: "AND", reqs: ["AE 204", "AE 221"] }
     ],
     antireqs: ["CIVE 205"],
     tags: [],
@@ -511,7 +515,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to fluid mechanics and thermal sciences. Aspects of heat transfer via conduction, convection, and radiation. Fluid properties. Fluid statics. Bernoulli equation. The momentum equation and applications. Laminar and turbulent flow. Dimensionless numbers. Closed conduit flow. Pipe network analysis. Steady flow in pipes.",
     prereqs: [
-      { type: "AND", reqs: ["CIVE 105"] }
+      { type: "AND", reqs: ["CIVE 105", "CIVE 221"] }
     ],
     antireqs: ["CIVE 280", "ENVE 280"],
     tags: [],
@@ -810,7 +814,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an introduction to the preparation and use of accounting information for management decision-making and reporting. Cost behaviour, cost accumulation systems, and short- and long-term decision models are discussed.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["AFM 101"] }, { type: "AND", reqs: ["AFM 191"] }] }, { type: "AND", reqs: ["BUS 127W", "BUS 227W"] }] }
     ],
     antireqs: ["AFM 182", "AFM 123", "ARBUS 102", "BUS 247W", "MSCI 262"],
     tags: [],
@@ -869,7 +873,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed for non-accountants who will use accounting information for planning, control, and decision-making.",
     prereqs: [],
-    antireqs: ["AFM 101", "BUS 127W", "BUS 227W", "MSCI 262"],
+    antireqs: ["AFM 101", "AFM 102", "AFM 121", "BUS 127W", "BUS 227W", "BUS 247W", "MSCI 262"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -880,7 +884,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces financial markets and institutions, examining the role of finance in the global economy while introducing foundational principles of financial decision making. The course utilizes analytic and computational approaches to the topics, enabling students to develop data management and analysis competencies.",
     prereqs: [
-      { type: "OR", reqs: ["CS 115", "CS 135"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 115"] }, { type: "AND", reqs: ["CS 135"] }] }
     ],
     antireqs: ["CFM 101", "AFM 121"],
     tags: [],
@@ -1004,7 +1008,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course develops an in-depth understanding of financial statements as a system for analysis and planning as a foundation for upper-year accounting and finance courses.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 101", "AFM 191"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 101"] }, { type: "AND", reqs: ["AFM 191"] }] }
     ],
     antireqs: ["AFM 211"],
     tags: [],
@@ -1029,9 +1033,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is an introductory course focusing both on foundational concepts and emerging trends in the impacts and usage of technology in accounting and finance. Potential topics include strategic investment, planning and spending for technology in businesses, and current disruptive technologies impacting global business processes.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 102", "AFM 182"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 102"] }, { type: "AND", reqs: ["AFM 182"] }] }
     ],
-    antireqs: ["CS 330"],
+    antireqs: ["CS 330", "CS 480", "CS 490"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -1055,7 +1059,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an overview of global capital markets and asset valuation. Topics may include an overview of financial markets and instruments, time value of money, valuation of financial assets, and financial risk and portfolio management. The course utilizes an analytic and computational approach to the topics, enabling students to develop data management and analysis competencies.",
     prereqs: [
-      { type: "OR", reqs: ["CFM 101", "AFM 127", "ACTSC 127"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CFM 101"] }, { type: "AND", reqs: ["AFM 127", "ACTSC 127"] }] }
     ],
     antireqs: ["AFM 273", "ACTSC 372", "ECON 371"],
     tags: [],
@@ -1068,8 +1072,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is the second in a two-course sequence which offers an overview of global capital markets. The course focuses on valuation of financial instruments and the theories of financial risk and diversification.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 121", "AFM 127", "ACTSC 127"] },
-      { type: "OR", reqs: ["AFM 113", "STAT 211"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 121"] }, { type: "AND", reqs: ["AFM 127", "ACTSC 127"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 113"] }, { type: "AND", reqs: ["STAT 211"] }] }
     ],
     antireqs: ["AFM 272", "ACTSC 291", "ECON 371"],
     tags: [],
@@ -1082,7 +1086,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is the first in a two-course sequence that deals with corporate financial decision-making. Topics may include capital budgeting, cost of capital, security issuance, capital structure, payout policy and dividends, and short-term finance.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: ["ACTSC 372", "AFM 275", "AFM 372", "ACTSC 391", "ECON 371"],
     tags: [],
@@ -1095,7 +1099,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the first in a two-course sequence that deals with corporate financial decision making. Topics may include capital budgeting, cost of capital, security issuance, capital structure, payout policy and dividends, and short-term finance. Where suitable, topics are treated from a mathematical and quantitative perspective.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "ACTSC 291"] }
+      { type: "AND", reqs: ["AFM 272", "ACTSC 291"] }
     ],
     antireqs: ["AFM 274", "AFM 372", "ACTSC 372", "ECON 371"],
     tags: [],
@@ -1108,7 +1112,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces fundamental tools of analysis and valuation to prepare students to research, interpret, and analyze financial statements. The course examines financial reporting from the perspective of the financial statement user with an emphasis on interpretation of financial disclosures for cash flow analysis, risk assessment, forecasting, and decision making.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 191", "AFM 273"] }
+      { type: "AND", reqs: ["AFM 191", "AFM 272"] }
     ],
     antireqs: ["AFM 492"],
     tags: [],
@@ -1143,7 +1147,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A first course in intermediate accounting dealing with the theory and practice of financial statement preparation and reporting. The emphasis will be on asset valuation and the related impact on income measurement.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 101", "AFM 191"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 101"] }, { type: "AND", reqs: ["AFM 191"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1180,7 +1184,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will further develop students' understanding and knowledge of an important area of financial markets by introducing derivatives, their financial applications, value, and how they can be used to manage financial risk. Derivatives discussed may include options, futures, forwards, and swaps. Students will learn how to utilize derivatives to manage financial risk.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "ACTSC 291", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272", "ACTSC 291"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: ["ACTSC 446", "ECON 372", "MATBUS 470", "STAT 446"],
     tags: [],
@@ -1193,7 +1197,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces analytical and statistical methods commonly used in finance, with applications to investment management and corporate finance.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "ACTSC 291", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272", "ACTSC 291"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: ["ECON 321", "STAT 321", "STAT 331", "STAT 371", "STAT 373"],
     tags: [],
@@ -1206,7 +1210,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students will learn core wealth management concepts that will give them a greater understanding of the wealth management industry. The content will focus on key areas of wealth management including portfolio management, asset allocation, risk management, performance evaluation, manager selection, tax efficient strategies as well as the use of new technologies in the wealth management industry.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "ACTSC 291", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272", "ACTSC 291"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: ["AFM 416", "LEC 002"],
     tags: [],
@@ -1218,7 +1222,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Student Venture Fund - Analyst",
     units: 0.5,
     description: "This course provides students hands-on training in early-stage (angel and venture capital) investing with guidance from industry experts and supervision by faculty. This will generally be the first course that students take when they join the Student Venture Fund team. Analysts will attend investor meetings, assist in market research and specific deal due diligence, and prepare investment proposals.",
-    prereqs: [],
+    prereqs: [
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -1229,7 +1235,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Investment Management - Junior Analyst",
     units: 0.5,
     description: "This course provides students hands-on training in equity valuation and enables students to follow one industry sector. As a junior analyst, a student will understand why funds management is broken into different sectors, monitor existing equity holdings in a particular sector, make new equity selections in the sector, prepare equity research reports, and present trading recommendations to an investment team in a student-run investment portfolio.",
-    prereqs: [],
+    prereqs: [
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -1241,7 +1249,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students hands-on training in equity valuation and enables students to follow more than one industry sector. As a senior analyst, a student will monitor existing equity holdings in different sectors, make new equity selections in the sectors, prepare equity research reports, and present trading recommendations to an investment team in a student-run investment portfolio.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1254,7 +1262,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the opportunities, risks, and challenges faced by businesses in international markets, as well as the preparation required to operate them.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 131", "ARBUS 101", "AFM 132"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 131", "ARBUS 101"] }, { type: "AND", reqs: ["AFM 132"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1350,9 +1358,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on the theory of financial management using cases to illustrate a variety of corporate financial decisions.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 372", "ACTSC 391"] }
+      { type: "AND", reqs: ["AFM 372", "ACTSC 391"] }
     ],
-    antireqs: ["AFM 476"],
+    antireqs: ["AFM 476", "ACTSC 471"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -1363,7 +1371,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores the fundamentals of the private equity industry. Topics include raising capital, structuring deals, creating a leveraged buyout model (LBO), and unlocking value through various strategies.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
     ],
     antireqs: ["AFM 416"],
     tags: [],
@@ -1376,7 +1384,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Consideration of more complex topics in management planning and control. Emphasis is on traditional and contemporary cost accumulation systems and their application in modern day organizations. Cases, simulations, projects, and presentations are the key instructional methods used to understand and integrate the course material. At the end of the course, students will have a solid understanding of how the correct choice of a costing model adds value to the organization.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 102", "AFM 191"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 102"] }, { type: "AND", reqs: ["AFM 191"] }] }
     ],
     antireqs: ["AFM 481"],
     tags: [],
@@ -1402,7 +1410,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A review of accounting theory as a background for applying underlying concepts to current accounting problems. Emphasis is on current literature, with a major term paper required.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 391", "AFM 491"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 391"] }, { type: "AND", reqs: ["AFM 491"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1459,7 +1467,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the economics of financial institutions, particularly commercial banks. Issues related to commercial and investment banking and other financial intermediaries as well as financial markets and regulatory entities are examined.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "ACTSC 291", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272", "ACTSC 291"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: ["ACTSC 445", "MATBUS 472"],
     tags: [],
@@ -1498,7 +1506,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to various aspects of fixed income investments, including valuation, risk management, portfolio management, interest rate models, interest rate derivatives, and institutional features of bond markets.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "ACTSC 291", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272", "ACTSC 291"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: ["MATBUS 471"],
     tags: [],
@@ -1511,7 +1519,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students with hands-on training in early stage (angel and venture capital) investing. Students will develop their understanding of early stage financing as well as learn how to conduct investment meetings, organize due diligence as part of an investment decision, learn how to supervise other student analysts, as well as the how to obtain and analyze relevant information for the purpose of making investment recommendations. Students will also manage the ongoing portfolio of existing investments made by previous Student Venture Fund Participants.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1525,7 +1533,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course focusses on the theory and practice of passive and active portfolio management focusing on both traditional and alternative investment assets. The course traces the process of development of the portfolio objective and investment thesis, asset selection, performance and risk measurement, and monitoring and stakeholder reporting. The course utilizes business analytics practices with a focus on the role of the financial analyst in an increasingly automated world.",
     prereqs: [
       { type: "AND", reqs: ["AFM 244"] },
-      { type: "OR", reqs: ["AFM 272", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1538,7 +1546,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students hands-on training in equity valuation and portfolio management. As a junior portfolio manager, a student will make allocations in two sectors, monitor the performance of the existing equity holdings in these two sectors, mentor two analysts, make equity trading decisions for these two sectors, and present portfolio performance reports to the investment team and the advisory board.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1551,7 +1559,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students hands-on training in equity valuation and portfolio management. As a senior portfolio manager, a student will make allocations in different industry sectors, monitor the performance of the existing equity holdings in these sectors, mentor analysts, make equity trading decisions for these sectors, and present portfolio performance reports to the investment team and the advisory board.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1564,7 +1572,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on strategic management of the total enterprise. Managers contribute to the organization through their analytical and leadership capabilities as well as their technical expertise. The course provides a framework for developing and implementing strategy that fits the firm's environment, managerial values, and organization.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 272", "ACTSC 291"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 272", "ACTSC 291"] }] }, { type: "AND", reqs: ["AFM 291"] }] }
     ],
     antireqs: ["ENBUS 302"],
     tags: [],
@@ -1588,7 +1596,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the role of integrated company-wide information systems in improving organizational performances. The course will focus on the selection, acquisition, and implementation of these systems, including consideration of business process alignment, change management, and development of business cases to support their acquisition. The role of enterprise systems in inter-organizational systems and e-commerce will also be considered. The course will make use of case studies as well as examine selected current enterprise software.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 241", "CS 330"] }
+      { type: "OR", reqs: ["AFM 241", "CS 330", "CS 490"] }
     ],
     antireqs: [],
     tags: [],
@@ -1601,7 +1609,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines key topics in electronic commerce such as the structure of the Internet, basic e-commerce processes and technologies (website, catalogs, customer attraction, ordering processes, payment processes, and fulfilment processes), control issues (availability, security, integrity, and maintainability), business-to-consumer models, business-to-business models, business-to-employee models, e-business strategies, integration of e-commerce activities into other business operations, performance measurement, legal and regulatory issues, and assurance services.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 241", "CS 330"] }
+      { type: "OR", reqs: ["AFM 241", "CS 330", "CS 490"] }
     ],
     antireqs: [],
     tags: [],
@@ -1627,7 +1635,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on the development of knowledge about, as well as skills in using, data analytics by allowing students, as users and interpreters of model output, to learn through a range of cases that focus on controls for information systems and audit applications.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 244", "AFM 451"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AFM 244"] }, { type: "AND", reqs: ["AFM 351", "AFM 451"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1640,7 +1648,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on the development of knowledge about, as well as skills in using, data analytics by allowing students, as users and interpreters of model output, to learn through a range of data analytics cases that focus on performance management and tax applications.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 244", "AFM 481"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AFM 244"] }, { type: "AND", reqs: ["AFM 362"] }, { type: "AND", reqs: ["AFM 382", "AFM 481"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1666,7 +1674,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students hands-on training in monitoring emerging technologies and in contributing through big data competitions. If selected, students monitor emerging technologies and generate reports regarding their state of adoption. Students also participate in business analytics competitions which contributes to student learning and knowledge creation.",
     prereqs: [
-      { type: "AND", reqs: ["AFM 345"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AFM 345"] }, { type: "AND", reqs: ["AFM 346"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1679,7 +1687,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of elements of audit strategy and their interrelationships, including financial assertions, types and sources of audit assurance, and evidence-gathering procedures within a framework of professional judgment.",
     prereqs: [
-      { type: "AND", reqs: ["AFM 291"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AFM 291"] }, { type: "AND", reqs: ["AFM 341"] }] }
     ],
     antireqs: ["AFM 351"],
     tags: [],
@@ -1729,7 +1737,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Designed for students seeking careers within high growth companies or financing/advising them, this course develops the ability to relate to entrepreneurial ventures and provide \"value added\" financial management. This is an experiential based course focused on small group financial consulting projects with high growth companies in Kitchener-Waterloo or Greater Toronto Area. Classes may encompass lecture, case analysis, guest speakers, and discussion of groups' projects. The course includes a substantial class participation requirement leading to the in-depth financial consulting project.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 373", "AFM 476"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 373"] }, { type: "AND", reqs: ["AFM 476"] }] }
     ],
     antireqs: ["AFM 417"],
     tags: [],
@@ -1742,7 +1750,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course develops understanding of the strategic acquisition and divestiture process, particularly as it relates to corporations in Canada. The course focuses on integrating key analytical skills in the interpretation of financial statements and valuation methodologies in the context of mergers and acquisitions of existing firms, as well as spin-offs, restructurings, buyouts and divestitures of existing assets. The course concentrates on value creation and institutional, strategic, ethical, governance, and control issues.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1755,7 +1763,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines various aspects of corporate decision-making in a global firm, such as cross-border investments and financing, international risk management, multinational working capital management, and the impact of the international regulatory environment.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 274", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 274"] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1790,7 +1798,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will trace the evolution of the role of performance measurement systems in supporting areas of organization control. Topics will include the role of both financial and non-financial performance measures in: the DuPont method of control, the Harvard model of control, internal control, contemporary approaches to governance, and strategic management systems. After completing this course students will be able to evaluate the nature and suitability of a proposed performance measurement system given its design and purpose.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 433", "AFM 481"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AFM 433"] }, { type: "AND", reqs: ["AFM 382", "AFM 481"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1816,7 +1824,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course addresses the significant shift in the composition of enterprise value from tangible assets tracked by traditional accounting practices to a range of intangible assets. The course provides a survey of approaches used to identify, measure, report, and create value that consider these intangibles.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 291", "AFM 481"] }
+      { type: "AND", reqs: ["AFM 291", "AFM 382", "AFM 481"] }
     ],
     antireqs: [],
     tags: [],
@@ -1842,9 +1850,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Vector integral calculus-line integrals, surface integrals and vector fields, Green's theorem, the Divergence theorem, and Stokes' theorem. Applications include conservation laws, fluid flow and electromagnetic fields. An introduction to Fourier analysis. Fourier series and the Fourier transform. Parseval's formula. Frequency analysis of signals. Discrete and continuous spectra.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 237"] }
     ],
-    antireqs: ["MATH 207", "ECE 206", "MATH 217"],
+    antireqs: ["MATH 207", "MATH 212", "ECE 206", "MATH 217", "MATH 227"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -1857,8 +1865,8 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 146"] },
       { type: "OR", reqs: ["CS 114", "CS 115", "CS 135", "CS 145"] },
-      { type: "OR", reqs: ["MATH 235", "MATH 245"] },
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 235"] }, { type: "AND", reqs: ["MATH 245"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 237"] }, { type: "AND", reqs: ["MATH 247"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -1871,10 +1879,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Physical systems which lead to differential equations (examples include mechanical vibrations, population dynamics, and mixing processes). Dimensional analysis and dimensionless variables. Solving linear differential equations: first- and second-order scalar equations and first-order vector equations. Laplace transform methods of solving differential equations. Introduction to series solutions and special functions.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "NE 112"] },
-      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "NE 112", "MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
     ],
-    antireqs: ["AMATH 251", "MATH 218"],
+    antireqs: ["AMATH 251", "AMATH 350", "MATH 218", "MATH 228"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -1885,10 +1892,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "AMATH251 is an advanced-level version of AMATH250. Basic techniques for ODEs: integrating factors, undetermined coefficients and variation of parameters. Introduction to existence and uniqueness theorems. Systems of n-dimensional coupled ODEs and high order ODEs. Matrix Exponential. Laplace Transform. Stability and nonlinear ODEs. Phase space analysis and chaos. Introduction to numerical methods. Series solutions and special functions.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "NE 112"] },
-      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "NE 112", "MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
     ],
-    antireqs: ["AMATH 250", "MATH 218"],
+    antireqs: ["AMATH 250", "AMATH 350", "MATH 218", "MATH 228"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -1899,7 +1905,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Newtonian dynamics, gravity and the two-body problem, introduction to Lagrangian mechanics, introduction to Hamiltonian mechanics, non-conservative forces, oscillations, introduction to special relativity.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] },
+      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "MATH 228", "MATH 227", "MATH 237", "MATH 247"] }
     ],
     antireqs: ["PHYS 263"],
     tags: [],
@@ -1912,7 +1919,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topology of Euclidean spaces, continuity, norms, completeness. Contraction mapping principle. Fourier series. Various applications, for example, to ordinary differential equations, optimization and numerical approximation.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 237"] }
     ],
     antireqs: ["PMATH 333", "PMATH 351"],
     tags: [],
@@ -1925,7 +1932,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Complex numbers, Cauchy-Riemann equations, analytic functions, conformal maps and applications to the solution of Laplace's equation, contour integrals, Cauchy integral formula, Taylor and Laurent expansions, residue calculus and applications.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 237"] }
     ],
     antireqs: ["PHYS 365", "PMATH 352"],
     tags: [],
@@ -1952,8 +1959,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to numerical methods for ordinary and partial differential equations. Ordinary differential equations: multistep and Runge-Kutta methods; stability and convergence; systems and stiffness; boundary value problems. Partial differential equations: finite difference methods for elliptic, hyperbolic and parabolic equations; stability and convergence. The course focuses on introducing widely used methods and highlights applications in the natural sciences, the health sciences, engineering, and finance.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 242", "CS 371", "CS 370"] },
-      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "MATH 218", "MATH 228"] }
+      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "AMATH 350", "MATH 218", "MATH 228"] }
     ],
     antireqs: [],
     tags: [],
@@ -1966,7 +1972,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Difference equations and discrete dynamical systems. Mathematical models are taken from ecology, biology, economics, and other fields.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
+      { type: "AND", reqs: ["MATH 128"] }
     ],
     antireqs: [],
     tags: [],
@@ -1994,9 +2000,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "First order ordinary differential equations. Applications to continuous compounding and the dynamics of supply and demand. Higher order linear ordinary differential equations. Systems of linear ordinary differential equations. Introduction to linear partial differential equations. The Fourier Transform and the diffusion equation. Discussion of the Black-Scholes partial differential equations, and solutions thereof.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "AFM 372"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 136", "MATH 146", "MATH 237", "MATH 247", "AFM 272", "ACTSC 291", "ACTSC 371", "ACTSC 372", "ECON 371", "BUS 393W"] }
     ],
-    antireqs: [],
+    antireqs: ["AMATH 250", "AMATH 251", "AMATH 353", "CIVE 222", "ENVE 223", "MATH 211", "ECE 205", "MATH 218", "MATH 228", "ME 203", "PHYS 364", "SYDE 211"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -2008,7 +2014,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Linear differential equations with non-constant coefficients, Sturm comparison, oscillation and separation theorems, series solutions and special functions. Boundary value problems. Linear systems in Rn, an introduction to dynamical systems. Laplace transforms applied to linear systems, transfer functions, the convolution theorem. An introduction to dynamical systems and stability. Perturbation methods for differential equations. Applications are discussed throughout.",
     prereqs: [
       { type: "OR", reqs: ["AMATH 250", "AMATH 251", "AMATH 350"] },
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 237"] }
     ],
     antireqs: [],
     tags: [],
@@ -2021,8 +2027,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Second order linear partial differential equations - the diffusion equation, wave equation, and Laplace's equation. Methods of solution - separation of variables and eigenfunction expansions, the Fourier transform. Physical interpretation of solutions in terms of diffusion, waves, and steady states. First order non-linear partial differential equations and the method of characteristics. Applications are emphasized throughout.",
     prereqs: [
-      { type: "AND", reqs: ["AMATH 231"] },
-      { type: "OR", reqs: ["AMATH 250", "MATH 211", "ECE 205", "MATH 218", "MATH 228"] }
+      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "MATH 211", "ECE 205", "MATH 218", "MATH 228"] }
     ],
     antireqs: ["AMATH 350", "PHYS 364"],
     tags: [],
@@ -2035,8 +2040,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Stress and strain tensors; analysis of stress and strain. Lagrangian and Eulerian methods for describing flow. Equations of continuity, motion and energy, constitutive equations. Navier-Stokes equation. Basic equations of elasticity. Various applications.",
     prereqs: [
-      { type: "AND", reqs: ["AMATH 231"] },
-      { type: "OR", reqs: ["AMATH 271", "PHYS 263"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AMATH 231"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 271"] }, { type: "AND", reqs: ["PHYS 263"] }] }] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AMATH 351"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 353"] }, { type: "AND", reqs: ["PHYS 364"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -2064,8 +2069,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Critical experiments and old quantum theory. Basic concepts of quantum mechanics: observables, wavefunctions, Hamiltonians, and the Schroedinger equation. Uncertainty, correspondence, and superposition principles. Simple applications to finite and extended one-dimensional systems, harmonic oscillator, rigid rotor, and hydrogen atom.",
     prereqs: [
-      { type: "AND", reqs: ["AMATH 231"] },
-      { type: "OR", reqs: ["AMATH 271", "PHYS 263"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AMATH 231"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 271"] }, { type: "AND", reqs: ["PHYS 263"] }] }] }
     ],
     antireqs: ["PHYS 334"],
     tags: [],
@@ -2091,9 +2095,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the mathematical modelling of biological processes, with emphasis on population biology. Topics include ecology, epidemiology, microbiology, and physiology. Techniques include difference equations, ordinary differential equations, partial differential equations, stability analysis, phase plane analysis, travelling wave solutions, mathematical software. Includes collaborative projects and computer labs.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"] },
-      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "MATH 218", "MATH 228"] },
-      { type: "OR", reqs: ["STAT 202", "STAT 206", "STAT 211", "STAT 220", "STAT 230", "STAT 231", "STAT 241"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "AMATH 250", "AMATH 251", "AMATH 350", "MATH 218", "MATH 228", "STAT 202", "STAT 206", "STAT 211", "STAT 220", "STAT 230", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -2119,8 +2121,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fourier and wavelet methods are fundamental tools in data analysis ranging from time-series data to image and audio compression. These methods are increasingly finding application in areas such as machine learning and quantum computing alongside traditional application areas such as signal processing for images and audio. This course covers the mathematical development of Fourier and wavelet analysis, with an emphasis on both theory and practical application. Students will learn the necessary theory to apply Fourier and wavelet methods to the analysis of a variety of practical problems with hands on coding experience through a number of assignments.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 231", "ECE 207", "PHYS 364", "SYDE 252"] },
-      { type: "OR", reqs: ["MATH 114", "MATH 115", "MATH 136", "MATH 146", "SYDE 114"] }
+      { type: "OR", reqs: ["AMATH 231", "ECE 207", "PHYS 364", "SYDE 252", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "SYDE 114"] }
     ],
     antireqs: [],
     tags: [],
@@ -2159,7 +2160,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to neural network methods, with some discussion of their relation to neuroscience. Simple neuron models and networks of neurons. Training feedforward networks. Backpropagation of errors and stochastic gradient descent. Unsupervised learning methods. Recurrent neural networks. Convolutional neural networks. Continuous time models. Adversarial attacks. Advanced topics may include neural engineering, biologically plausible learning methods.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 230", "STAT 240"] }
+      { type: "OR", reqs: ["STAT 230", "STAT 240", "STAT 206"] },
+      { type: "OR", reqs: ["AMATH 242", "CS 335", "CS 370", "CS 371"] }
     ],
     antireqs: [],
     tags: [],
@@ -2172,7 +2174,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A unified view of linear and nonlinear systems of ordinary differential equations in Rn. Flow operators and their classification: contractions, expansions, hyperbolic flows. Stable and unstable manifolds. Phase-space analysis. Nonlinear systems, stability of equilibria, and Lyapunov functions. The special case of flows in the plane, Poincare-Bendixson theorem, and limit cycles. Applications to physical problems will be a motivating influence.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 250", "AMATH 251"] }
+      { type: "AND", reqs: ["AMATH 250"] }
     ],
     antireqs: [],
     tags: [],
@@ -2186,7 +2188,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "A thorough discussion of the class of second order linear partial differential equations with constant coefficients, in two independent variables. Laplace's equation, the wave equation and the heat equation in higher dimensions. Theoretical/qualitative aspects: well-posed problems, maximum principles for elliptic and parabolic equations, continuous dependence results, uniqueness results (including consideration of unbounded domains), domain of dependence for hyperbolic equations. Solution procedures: elliptic equations -- Green functions, conformal mapping; hyperbolic equations -- generalized d'Alembert solution, spherical means, method of descent; transform methods -- Fourier, multiple Fourier, Laplace, Hankel (for all three types of partial differential equations); Duhamel's method for inhomogeneous hyperbolic and parabolic equations.",
     prereqs: [
       { type: "AND", reqs: ["AMATH 353"] },
-      { type: "AND", reqs: ["AMATH 250"] }
+      { type: "OR", reqs: ["AMATH 250", "AMATH 251"] }
     ],
     antireqs: [],
     tags: [],
@@ -2199,7 +2201,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Feedback control with applications. System theory in both time and frequency domain, state-space computations, stability, system uncertainty, loopshaping, linear quadratic regulators, and estimation.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 250", "AMATH 251"] },
+      { type: "AND", reqs: ["AMATH 250"] },
       { type: "OR", reqs: ["AMATH 332", "PMATH 332", "PMATH 352"] }
     ],
     antireqs: [],
@@ -2213,7 +2215,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Concept of functional and its variations. The solution of problems using variational methods - the Euler-Lagrange equations. Applications include an introduction to Hamilton's principle and optimal control.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "AMATH 250", "MATH 211", "ECE 205"] }
+      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "MATH 211", "ECE 205", "MATH 218", "MATH 228"] }
     ],
     antireqs: [],
     tags: [],
@@ -2226,8 +2228,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Incompressible, irrotational flow. Incompressible viscous flow. Introduction to wave motion and geophysical fluid mechanics. Elements of compressible flow.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 353", "PHYS 364"] },
-      { type: "AND", reqs: ["AMATH 361"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 353"] }, { type: "AND", reqs: ["PHYS 364"] }] }, { type: "AND", reqs: ["AMATH 361"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -2240,7 +2241,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The Hilbert space of states, observables, and time evolution. Feynman path integral and Greens functions. Approximation methods. Co-ordinate transformations, angular momentum, and spin. The relation between symmetries and conservation laws. Density matrix, Ehrenfest theorem, and decoherence. Multiparticle quantum mechanics. Bell inequality and basics of quantum computing.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 231", "AMATH 373", "PHYS 334"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["AMATH 231"] }, { type: "AND", reqs: ["PMATH 343"] }] }, { type: "AND", reqs: ["AMATH 373"] }, { type: "AND", reqs: ["PHYS 334"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -2253,7 +2254,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Theory of correlations and entanglement; theory of quantum channels, detectors; the measurement problem, in quantum mechanics; phase space formulation of quantum mechanics; entanglement in infinite dimensional quantum systems; introduction to open quantum systems; and exploration of current research directions in quantum information.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 473", "PHYS 454"] }
+      { type: "AND", reqs: ["AMATH 473", "PHYS 454"] }
     ],
     antireqs: [],
     tags: [],
@@ -2266,7 +2267,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Tensor analysis. Curved space-time and the Einstein field equations. The Schwarzschild solution and applications. The Friedmann-Robertson-Walker cosmological models.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 231", "MATH 227", "PHYS 263"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 231"] }, { type: "AND", reqs: ["MATH 227"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 271"] }, { type: "AND", reqs: ["PHYS 263"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -2279,7 +2280,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Random variables, expectations, conditional probabilities, conditional expectations, convergence of a sequence of random variables, limit theorems, minimum mean square error estimation, the orthogonality principle, random process, discrete-time and continuous-time Markov chains and applications, forward and backward equation, invariant distribution, Gaussian process and Brownian motion, expectation maximization algorithm, linear discrete stochastic equations, linear innovation sequences, Kalman filter, various applications.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "AMATH 350", "MATH 211", "ECE 205", "MATH 218", "STAT 230"] }
+      { type: "OR", reqs: ["AMATH 250", "AMATH 251", "AMATH 350", "MATH 211", "ECE 205", "MATH 218", "MATH 228", "STAT 230", "STAT 240"] }
     ],
     antireqs: [],
     tags: [],
@@ -2532,7 +2533,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines past Indigenous lifeways in North America north of Mexico from the time of earliest settlement to contact with Europeans. It provides a broad survey of space-time systematics as well as conceptual, methodological, and ethical issues relevant to study of the North American archaeological record.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 201", "CLAS 221"] }
+      { type: "AND", reqs: ["ANTH 201", "CLAS 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -2567,7 +2568,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Detailed consideration of prehistoric cultural developments from earliest toolmaking to the transition to agriculture. An examination of the human mode of adaptation and the increasing complexity of cultural systems among prehistoric hunters and gatherers. Areas and periods of emphasis will vary from year to year.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 201", "CLAS 221"] }
+      { type: "AND", reqs: ["ANTH 201", "CLAS 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -2580,7 +2581,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Cultural development from the agricultural revolution to the rise of literacy. Special attention to the development of agriculture as a means of subsistence and to the rise of early civilization. Areas and periods of emphasis will vary from year to year.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 201", "CLAS 221"] }
+      { type: "AND", reqs: ["ANTH 201", "CLAS 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -2593,7 +2594,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An in-depth study of the archaeological evidence for prehistoric cultures in the Great Lakes area from their arrival ca. 11,000 years ago to the coming of Europeans. Cultural ecology and cultural evolution will be stressed.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 201", "CLAS 221"] }
+      { type: "AND", reqs: ["ANTH 201", "CLAS 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -2813,7 +2814,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the ways in which past peoples experienced, transformed, remembered, represented, and controlled landscapes. Readings and discussions emphasize both contemporary theoretical approaches and case studies from various settings in an effort to illuminate the social, political, economic, and ideological dimensions of landscape.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 201", "CLAS 221"] }
+      { type: "AND", reqs: ["ANTH 201", "CLAS 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -2837,7 +2838,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of contemporary archaeological method and theory with emphasis on the process of deriving inferences concerning past peoples and societies from different kinds of archaeological materials and data. Students will be required to carry out an analysis of an actual archaeological assemblage. Specific topics will vary from year to year.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 201", "CLAS 221"] }
+      { type: "AND", reqs: ["ANTH 201", "CLAS 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -2861,7 +2862,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This laboratory course focuses on the evaluation of human skeletal remains in archaeological and forensic contexts. Topics include determination of basic biological categories (e.g., age, sex, race), evaluation of paleopathological conditions, and aspects of forensic anthropology.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 355", "ANTH 370W"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ANTH 355"] }, { type: "AND", reqs: ["ANTH 370W"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -3012,7 +3013,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This special topics course will be offered from time to time as announced by the Applied Language Studies program. The topics will focus on areas of faculty research and include teaching-related experiential learning opportunities.",
     prereqs: [
-      { type: "AND", reqs: ["APPLS 205R"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["APPLS 205R"] }, { type: "AND", reqs: ["APPLS 304R"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -3036,7 +3037,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "Language structures and verb conjugations will be covered at a beginner level. Students will exchange conversations in varied contexts and build compound sentences and short paragraphs on topics of interest.",
     prereqs: [
-      { type: "OR", reqs: ["ARABIC 101R", "SI 101R"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ARABIC 101R"] }, { type: "AND", reqs: ["SI 101R"] }] }
     ],
     antireqs: ["ARABIC 120R", "SI 102R", "SI 120R", "AB 102W"],
     tags: [],
@@ -3060,7 +3061,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This is an intermediate course focusing on reading comprehension of authentic Arabic materials. Students are introduced to verb patterns and subject-verb agreement rules and write longer paragraphs and short essays.",
     prereqs: [
-      { type: "OR", reqs: ["ARABIC 102R", "SI 102R"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ARABIC 102R"] }, { type: "AND", reqs: ["SI 102R"] }] }
     ],
     antireqs: ["ARABIC 120R", "SI 120R", "SI 201R"],
     tags: [],
@@ -3086,7 +3087,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This is an advanced course focusing on honing reading comprehension skills. Students write longer essays using advanced grammatical structures, and they participate in longer conversations.",
     prereqs: [
-      { type: "OR", reqs: ["ARABIC 202R", "SI 202R"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ARABIC 202R"] }, { type: "AND", reqs: ["SI 202R"] }] }
     ],
     antireqs: ["SI 301R"],
     tags: [],
@@ -3099,7 +3100,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This is an advanced course that provides additional practice of the four integrated language skills. Students examine and analyze texts more deeply and confidently, responding to the texts in oral presentations and class discussions.",
     prereqs: [
-      { type: "OR", reqs: ["ARABIC 301R", "SI 301R"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ARABIC 301R"] }, { type: "AND", reqs: ["SI 301R"] }] }
     ],
     antireqs: ["SI 302R"],
     tags: [],
@@ -3136,7 +3137,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed for non-accountants who will use accounting information for planning, control, and decision-making.",
     prereqs: [],
-    antireqs: ["AFM 101", "BUS 127W", "BUS 227W", "MSCI 262"],
+    antireqs: ["AFM 101", "AFM 102", "BUS 127W", "BUS 227W", "BUS 247W", "MSCI 262"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -3184,7 +3185,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the opportunities, risks, and challenges faced by businesses in international markets, as well as the preparation required to operate them.",
     prereqs: [
-      { type: "OR", reqs: ["ARBUS 101", "AFM 132"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ARBUS 101"] }, { type: "AND", reqs: ["AFM 132"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -3210,7 +3211,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Building on the fundamentals introduced in Principles of Marketing, students are given an opportunity to apply these concepts to real world situations in an interactive learning environment. Using cases and simulated markets, students make strategic decisions, defend their decisions, and see the repercussions in real time.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 344", "MGMT 244", "ARBUS 302", "ENBUS 211", "ENBUS 311"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 344", "MGMT 244", "ARBUS 302"] }, { type: "AND", reqs: ["ENBUS 211", "ENBUS 311"] }] }
     ],
     antireqs: ["BUS 352W", "ECON 345", "ARBUS 303", "ENBUS 211", "ENBUS 311", "GBDA 304"],
     tags: [],
@@ -3426,7 +3427,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Architectural case studies are used to examine conceptual development, structural design, building process, and the selection of structural timber systems. Topics such as flexural, compression and truss members, connections, and plywood construction are studied using calculations, design aids, rules of thumb, and the latest CSA design standards.",
     prereqs: [
-      { type: "OR", reqs: ["ARCH 260", "ARCH 262", "CIVE 204"] }
+      { type: "OR", reqs: ["ARCH 260", "ARCH 262", "CIVE 204", "CIVE 205"] }
     ],
     antireqs: [],
     tags: [],
@@ -3511,8 +3512,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Architectural case studies are used to examine conceptual development, structural design, building process, and the selection of structural steel and concrete systems. Topics such as tension, flexural, and compression members; and connections are studied using calculations, design aids, rules of thumb, and the latest CSA design standards.",
     prereqs: [
-      { type: "OR", reqs: ["ARCH 262", "ARCH 260"] },
-      { type: "AND", reqs: ["ARCH 276"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ARCH 262"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["ARCH 260"] }, { type: "AND", reqs: ["ARCH 276"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -3574,7 +3574,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Rome and the Campagna (Rome)",
     units: 0.5,
     description: "History of settlement and building in Rome and the surrounding area from antiquity to the present. Acts of design in architecture, urban form and landscape related to political, cultural, and spiritual authority of Rome. Comparison drawn between the image of the city, represented in literature and art, and the material facts of the place. Field trips, lecture.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["ARCH 492"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -3609,7 +3611,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Italian Urban History (Rome)",
     units: 0.5,
     description: "The course provides a survey of the history of settlement and urban form on the Italian peninsula from antiquity to the present day. In it the influences upon the structure of public and private space are outlined for each historical period. These include constants such as geography and climate, but more especially the factors that induce and manifest change: politics, warfare, economics, social structure, the arts, and theory.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["ARCH 492"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -3620,7 +3624,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "The Development of Modern Italian Architecture (Rome)",
     units: 0.5,
     description: "The course addresses the issues of architecture and urbanism in Rome and Italy from 1750 to the present. It explores the relationship between cultural, political, and artistic phenomena such as Futurism, Novecento, and Rationalism, that anticipate and create modernism in Italy.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["ARCH 492"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -3631,7 +3637,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Integrated Environmental Systems",
     units: 0.5,
     description: "This course is focused on the integrated environmental systems of buildings with an aim to develop the knowledge and skills appropriate to architectural practice. Subjects covered include environmental parameters, air and water systems, heating and cooling loads, energy conservation, ventilating and air conditioning systems, plumbing and waste systems, artificial source lighting and daylighting, acoustics, and fire protection criteria and systems, with reference to building codes and standards.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["ARCH 493"] }
+    ],
     antireqs: ["ARCH 263"],
     tags: [],
     majors: ["any"],
@@ -3642,7 +3650,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Technical Report",
     units: 0.5,
     description: "Students will investigate and report on technical issues as they relate to the development of the comprehensive building project in the parallel Design Studio. Innovation and integration in architectural design will be stressed with respect to structure, building envelope, environmental systems, health and life safety, movement systems, site planning, and the integration of information technology.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["ARCH 493"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -3768,7 +3778,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A basic course in social statistics for Faculty of Arts students. Introduces descriptive statistics (measures of central tendency, dispersion, cross-tabular analysis) and inferential statistics (sampling, statistical significance, hypothesis testing, test assumptions). Covers a range of statistical techniques including t-tests, one-way ANOVA, Chi square, and bivariate correlation/regression.",
     prereqs: [],
-    antireqs: ["ECON 221", "ENVS 278", "GBDA 205", "HLTH 204", "LS 280", "PSCI 214", "PSCI 314", "STAT 202"],
+    antireqs: ["ECON 221", "ENVS 278", "GBDA 205", "HLTH 204", "ISS 250A", "ISS 250R", "KIN 222", "KIN 232", "LS 280", "PSCI 214", "PSCI 314", "PSYCH 292", "REC 371", "SDS 250R", "SRF 230", "STAT 202", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241", "SWREN 250A", "SWREN 250R"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -3951,7 +3961,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Professional Pilot Program Course 1",
     units: 0.5,
     description: "This course provides the ground school required to prepare the student to write the Transport Canada Private Pilot Licence - Airplane examination. The course provides a solid base for the knowledge required to be a safe and proficient professional pilot.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["AVIA 141"] }
+    ],
     antireqs: ["AVIA 101"],
     tags: [],
     majors: ["any"],
@@ -4026,7 +4038,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides the first part of the ground school knowledge required to write the Transport Canada Commercial Pilot Licence ¿ Airplane examination.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 121"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 121"] }, { type: "AND", reqs: ["AVIA 142"] }] },
+      { type: "AND", reqs: ["AVIA 243"] }
     ],
     antireqs: ["AVIA 203"],
     tags: [],
@@ -4039,7 +4052,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides the second part of the ground school knowledge required to write the Transport Canada Commercial Pilot Licence ¿ Airplane examination.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 222"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 222"] }, { type: "AND", reqs: ["AVIA 243"] }] },
+      { type: "AND", reqs: ["AVIA 244"] }
     ],
     antireqs: ["AVIA 204"],
     tags: [],
@@ -4052,7 +4066,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on AVIA142 and provides the required Preparatory Ground Instruction to prepare students for the air exercises to be completed during in-aircraft instruction. The course provides a solid base of knowledge required to be a safe and proficient professional pilot.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 121"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 121"] }, { type: "AND", reqs: ["AVIA 142"] }] }
     ],
     antireqs: ["AVIA 203"],
     tags: [],
@@ -4065,7 +4079,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on AVIA243 and provides the required Preparatory Ground Instruction to prepare students for the air exercises to be completed during in-aircraft instruction. The course provides a solid base of knowledge required to be a safe and proficient professional pilot.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 222"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 222"] }, { type: "AND", reqs: ["AVIA 243"] }] }
     ],
     antireqs: ["AVIA 204"],
     tags: [],
@@ -4078,7 +4092,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on AVIA244 and provides the required Preparatory Ground Instruction to prepare students for the air exercises to be completed during in-aircraft instruction. The course provides a solid base of knowledge required to be a safe and proficient professional pilot.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 223"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 223"] }, { type: "AND", reqs: ["AVIA 244"] }] }
     ],
     antireqs: ["AVIA 205"],
     tags: [],
@@ -4151,7 +4165,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A continuation of AVIA223, this course includes ground school to prepare students to write the Transport Canada Instrument Rating examination.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 245"] }
+      { type: "AND", reqs: ["AVIA 245"] },
+      { type: "AND", reqs: ["AVIA 346"] }
     ],
     antireqs: ["AVIA 306"],
     tags: [],
@@ -4164,7 +4179,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course continues from AVIA324 and provides the ground school knowledge required to prepare the student to write the Transport Canada Airline Transport Pilot Licence - Aeroplane examination.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 324"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 324"] }, { type: "AND", reqs: ["AVIA 346"] }] },
+      { type: "AND", reqs: ["AVIA 347"] }
     ],
     antireqs: ["AVIA 307"],
     tags: [],
@@ -4190,7 +4206,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an exploration of airline operations, emphasizing Standard Operating Procedures, advanced aircraft systems, and effective multi-crew coordination. Students will gain the critical skills and knowledge necessary for a career in the airline industry.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 324"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 324"] }, { type: "AND", reqs: ["AVIA 346"] }] }
     ],
     antireqs: ["AVIA 307"],
     tags: [],
@@ -4253,7 +4269,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course continues from AVIA325 and completes the Professional Pilot Program Course.",
     prereqs: [
-      { type: "AND", reqs: ["AVIA 325"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AVIA 325"] }, { type: "AND", reqs: ["AVIA 347"] }] }
     ],
     antireqs: ["AVIA 408"],
     tags: [],
@@ -4444,7 +4460,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Leaders make things happen. Leaders make things possible. This course explores the relevant concepts, theories, and skills needed to lead successfully in any environment, from new ventures to change management in large corporations, government, and not-for-profits. Course topics include leadership and followership, group and team dynamics, change management, interpersonal dynamics, and supporting leadership skills such as self-awareness, conflict management, and communications. Course topics will be enriched through a critical study of leadership exemplars in popular media.",
     prereqs: [],
-    antireqs: ["MSE 411", "COMMST 204"],
+    antireqs: ["MSE 411", "COMMST 204", "COMMST 227"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -4498,7 +4514,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Cell Biology Laboratory",
     units: 0.25,
     description: "Experiments to study the principles of cell biology that are elaborated in BIOL130.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["BIOL 130"] }
+    ],
     antireqs: ["BIOL 230"],
     tags: [],
     majors: ["any"],
@@ -4591,7 +4609,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces fundamental approaches used to study the biomolecules that mediate cellular processes. Topics include the central dogma of molecular biology, the theoretical basis for molecular methods, scientific principles of hypothesis development, and experimental design in molecular biology research. The laboratory will cover essential experimental techniques for analyzing biomolecules (DNA, RNA, and protein).",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 130"] }
+      { type: "AND", reqs: ["BIOL 130", "BIOL 239"] }
     ],
     antireqs: ["BIOL 309"],
     tags: [],
@@ -4625,7 +4643,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Microbiology Laboratory",
     units: 0.25,
     description: "Experiments to study the principles of microbiology that are elaborated in BIOL240.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -4637,7 +4657,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to microbial ecology, environmental microbiology, food microbiology, and medical microbiology explored through lectures and laboratory exercises. Topics in environmental microbiology include biogeochemical cycling and biological treatment of wastes and pollutants. Topics in medical microbiology include concepts of immunology and host-pathogen relationships.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 140", "BIOL 240"] }
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240"] }
     ],
     antireqs: [],
     tags: [],
@@ -4700,7 +4720,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A hierarchical approach to biological structure with an emphasis on functional morphology. Starting with the cell, the fundamental unit of structure and function, the material progressively develops how cells organize to form tissues such as epithelium, connective tissue, and muscle. Emphasis on how these tissue building blocks cooperate to form the major organs and organ systems of the human body. The laboratory component includes preparation and staining of tissues for microscopy, and use of virtual tools for viewing high resolution tissue scans.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 130"] }
+      { type: "AND", reqs: ["BIOL 130", "BIOL 273"] }
     ],
     antireqs: [],
     tags: [],
@@ -4713,7 +4733,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fundamental processes and concepts in embryonic development including the acquisition of multicellularity, organization of the early embryo, morphogenesis of tissues, major organ systems, fetal membranes, growth, differentiation, and analysis of common developmental defects.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 130", "BIOL 239"] }
+      { type: "AND", reqs: ["BIOL 130", "BIOL 139", "BIOL 239"] }
     ],
     antireqs: [],
     tags: [],
@@ -4726,7 +4746,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Prokaryote and eukaryote genome structure and replication; mechanisms of gene expression and regulation.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 130", "BIOL 239"] }
+      { type: "AND", reqs: ["BIOL 130", "BIOL 139", "BIOL 239"] }
     ],
     antireqs: [],
     tags: [],
@@ -4739,7 +4759,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The diversity of invertebrate animals will be explored in this class. Topics covered in lectures and laboratory will include reproduction, development, life history, feeding, locomotion, and behaviour.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 165"] }
+      { type: "AND", reqs: ["BIOL 110"] }
     ],
     antireqs: [],
     tags: [],
@@ -4752,7 +4772,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce students to the diversity of freshwater organisms and their habitats. Emphasis will be placed on sampling techniques, taxonomic identification, life histories, and adaptations to aquatic environments. The course will introduce students to the use of aquatic organisms in environmental impact and biodiversity assessments. Students must be prepared to work outdoors in potentially inclement weather.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 165"] }
+      { type: "AND", reqs: ["BIOL 110"] }
     ],
     antireqs: [],
     tags: [],
@@ -4765,7 +4785,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of plant physiological processes with an emphasis on the role of key metabolic pathways in plant growth and development. Topics such as photosynthesis, nitrogen assimilation, growth regulators, mineral nutrition, water relations, and stress physiology will be covered through lectures and laboratory experiments.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 120"] }
+      { type: "AND", reqs: ["BIOL 120", "BIOL 220", "BIOL 130"] }
     ],
     antireqs: [],
     tags: [],
@@ -4789,8 +4809,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The functional organization of cells with particular reference to cell-cell interaction, the structure, function, and development of organelles and the biological roles of cellular membranes. Laboratory exercises apply techniques for isolation and analysis of cellular components.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 235"] },
-      { type: "OR", reqs: ["CHEM 233", "CHEM 237", "BIOL 235"] }
+      { type: "OR", reqs: ["BIOL 235", "BIOL 308", "BIOL 309"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 233"] }, { type: "AND", reqs: ["BIOL 235", "BIOL 308", "BIOL 309"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 233"] }, { type: "AND", reqs: ["CHEM 237"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -4804,7 +4825,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Selected experiments to provide students with a range of laboratory skills in recombinant DNA technology.",
     prereqs: [
       { type: "AND", reqs: ["BIOL 240L"] },
-      { type: "OR", reqs: ["BIOL 235", "BIOL 309"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 235"] }, { type: "AND", reqs: ["BIOL 309"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -4817,7 +4838,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide students with an understanding of the fundamental concepts of the vertebrate immune system. Topics will focus on the components of the immune system, innate and adaptive immunity, immune cell development, communication, and recognition of non-self leading to an immune response. Theory will be complemented with laboratory experiments applying immunological techniques.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 240"] },
+      { type: "AND", reqs: ["BIOL 240", "BIOL 240L"] },
       { type: "AND", reqs: ["BIOL 241"] }
     ],
     antireqs: [],
@@ -4832,7 +4853,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Molecular biotechnology applies the principles of recombinant DNA technology (genetic engineering, gene cloning) to the development of commercial products. The methods of recombinant DNA technology, molecular diagnostic systems for detecting diseases, and transgenic organisms will be examined in lectures and tutorial sessions.",
     prereqs: [
       { type: "AND", reqs: ["BIOL 240"] },
-      { type: "OR", reqs: ["BIOL 235", "BIOL 309"] }
+      { type: "AND", reqs: ["BIOL 235"] }
     ],
     antireqs: [],
     tags: [],
@@ -4845,7 +4866,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Food preservation, spoilage, poisoning and modern concepts in quality assurance programs are studied. The aim is to understand factors governing microbial changes in foods. Problem solving in the food industry is emphasized. Laboratory work will reflect current practices in quality control and testing.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 240"] }
+      { type: "AND", reqs: ["BIOL 240", "BIOL 240L", "BIOL 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -4858,7 +4879,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Examples from terrestrial and aquatic ecosystems, and plant- and animal-associated environments, will be used to illustrate the activities and diversity of microorganisms in these habitats. The importance of the ecological roles of microbes to aspects of agriculture, geochemistry, human biology, and the biology of extreme environments will be considered. Laboratory work will apply current methods in environmental microbiology.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 140"] }
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240", "BIOL 140L", "BIOL 240L", "BIOL 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -4871,7 +4892,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments to provide students with a range of laboratory skills in microbiology.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 140"] }
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240", "BIOL 140L", "BIOL 240L", "BIOL 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -4922,7 +4943,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will study the dynamics of interactions within and among species. The course explores key population and community topics such as population growth, predator-prey, competitive, and mutualistic interactions, ecological networks, food webs, species coexistence, community assembly, and ecological succession.¿",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 150"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 150"] }, { type: "AND", reqs: ["BIOL 251"] }] }
     ],
     antireqs: ["BIOL 456"],
     tags: [],
@@ -4961,7 +4982,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of the processes of evolution; the differentiation of populations and the origin of new forms of life.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 139", "BIOL 239"] }
+      { type: "AND", reqs: ["BIOL 139", "BIOL 239"] }
     ],
     antireqs: [],
     tags: [],
@@ -5014,8 +5035,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A comparative study of salt and water balance, circulation, respiratory systems, nitrogenous excretion, and mechanisms of energy acquisition and metabolism in animals. Adaptations to different environments will be emphasized.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 211"] },
-      { type: "OR", reqs: ["BIOL 273", "BIOL 310"] }
+      { type: "AND", reqs: ["BIOL 110"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["BIOL 310"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5028,7 +5049,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A comparative study of neural, sensory, endocrine, digestive, and reproductive strategies across animal taxa. The emphasis will be on evolutionary themes at the organismal, cellular, and molecular levels.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 211"] },
+      { type: "AND", reqs: ["BIOL 110"] },
       { type: "AND", reqs: ["BIOL 273"] }
     ],
     antireqs: [],
@@ -5054,7 +5075,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Human Physiology Laboratory",
     units: 0.25,
     description: "Laboratory exercises to study the principles of human physiology.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["BIOL 373"] }
+    ],
     antireqs: ["BIOL 273L"],
     tags: [],
     majors: ["any"],
@@ -5105,7 +5128,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores the cellular and molecular basis of developmental phenomena in animals. Fundamental processes and concepts in embryonic development will be discussed including the acquisition of multicellularity, morphogenesis of tissues, major organ systems, fetal membranes, growth, differentiation, and analysis of common developmental defects. Lectures will emphasize the experimental basis for animal development with a focus on the major developmental systems in model organisms.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 273"] }
+      { type: "AND", reqs: ["BIOL 273", "BIOL 308"] }
     ],
     antireqs: ["BIOL 303"],
     tags: [],
@@ -5119,7 +5142,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Through lectures and tutorials, this course will explore how parasites affect their host(s) and interact with other parasites. Attention will be given to eukaryotic parasites impacting human and domestic animal health. Public measures of parasite control will be covered with special attention to the importance of a One Health approach.",
     prereqs: [
       { type: "AND", reqs: ["BIOL 359"] },
-      { type: "OR", reqs: ["BIOL 110", "BIOL 241"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 110"] }, { type: "AND", reqs: ["BIOL 241"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5132,8 +5155,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Bacterial molecular biology with an emphasis on the use of genetic tools to study the biology of microorganisms. Topics include mutagenesis, conjugation, recombination, gene regulation, plasmids, transposons, bacteriophage, and genomics.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 240"] },
-      { type: "OR", reqs: ["BIOL 235", "BIOL 309"] }
+      { type: "AND", reqs: ["BIOL 240", "BIOL 240L", "BIOL 308"] },
+      { type: "AND", reqs: ["BIOL 235"] }
     ],
     antireqs: [],
     tags: [],
@@ -5159,7 +5182,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Biotechnological approaches and their applications in plant genetic manipulation, transformation and cell culture for plant improvement, propagation, and biochemical production.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 120"] }
+      { type: "AND", reqs: ["BIOL 120", "BIOL 220", "BIOL 130", "BIOL 239"] }
     ],
     antireqs: [],
     tags: [],
@@ -5172,7 +5195,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Recent advances in human molecular genetics will be examined with emphasis on how human disease-causing genes are mapped, identified, isolated, and characterized. Examples will draw from research on Duchenne muscular dystrophy, Huntington disease, cystic fibrosis, Alzheimer disease, cancer, vision defects, and other disorders.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 235", "BIOL 309"] },
+      { type: "AND", reqs: ["BIOL 235"] },
       { type: "AND", reqs: ["BIOL 308"] }
     ],
     antireqs: [],
@@ -5186,8 +5209,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course deals with the functions, distribution, and environmental ramifications of natural compounds produced by plants and other biological systems. Natural products are those compounds usually described as secondary metabolites, i.e., those apparently non-essential products whose physiological and ecological functions are either obscure or are of peripheral importance to the organism. However, many of these non-essential products have profound competitive, economic, and pharmacological significance; and as research proceeds, their physiological roles within the parent organisms are becoming clearer. As well, this course has a strong emphasis on how environmental chemical and physical processes impact on living organisms and their biochemistry.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 233", "CHEM 237"] },
-      { type: "OR", reqs: ["CHEM 264", "CHEM 266"] }
+      { type: "AND", reqs: ["CHEM 233"] },
+      { type: "AND", reqs: ["CHEM 264"] }
     ],
     antireqs: [],
     tags: [],
@@ -5200,7 +5223,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A survey of the recent advances in the vertebrate immune response; the cells and tissues of the lymphoid system; humoral and cell-mediated immunity; initiation and regulation of the immune response; the immune system and disease, emerging techniques used in immunology.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 308"] }
+      { type: "AND", reqs: ["BIOL 308", "BIOL 341"] }
     ],
     antireqs: [],
     tags: [],
@@ -5213,7 +5236,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is the primary introduction to viruses, the role they play in our world, and their connection to health and disease. Students will have an in-depth exploration of virus structures, infection, and replication. Topics include the evolution and classification of viruses, laboratory methods in virology and use of viruses as tools in biotechnology. The laboratory component includes isolating viruses from environmental samples, plaque assay for quantification, animal cell culture use in virology, and screening to determine the presence of viral infections in animals.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 241"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 241"] }, { type: "AND", reqs: ["BIOL 308"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5226,7 +5249,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Biology of industrial micro-organisms: fermentation systems; fermentation raw materials; downstream processing; biomass production; food fermentations; production of industrial chemicals, food additives, enzymes, and other products by fermentation. This course includes practical examples in the laboratory.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 140"] }
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240", "BIOL 140L", "BIOL 240L", "BIOL 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -5239,7 +5262,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of the bacteria involved in pathogenesis, their mode of infection, symptoms, and prevention of diseases. The laboratory will focus on identification of bacterial isolates.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 140"] }
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240", "BIOL 140L", "BIOL 240L", "BIOL 241", "BIOL 341"] }
     ],
     antireqs: [],
     tags: [],
@@ -5252,7 +5275,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of the environmental impact of microorganisms. Aspects of pollution, waste treatment, biodegradation of environmental contaminants, and nutrient cycling will be examined. Tutorials emphasize critical analysis of primary literature.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 140"] }
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240", "BIOL 140L", "BIOL 240L", "BIOL 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -5265,7 +5288,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of the physiology of microorganisms through lectures and laboratories. Provides biochemical- and molecular-level detail on the diverse structures and metabolic functions of bacterial, archaeal, and eukaryal cells. Aspects of microbial growth, nutrition, and metabolism are examined in the context of how microorganisms develop diverse solutions for meeting essential requirements for life.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 140"] }
+      { type: "AND", reqs: ["BIOL 140", "BIOL 240", "BIOL 240L", "BIOL 241", "BIOL 308"] }
     ],
     antireqs: [],
     tags: [],
@@ -5292,7 +5315,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Ecological processes and evolutionary adaptation are explored in the world's largest and most diverse ecosystems. The major ocean habitats will be characterized, stressing their importance as resources, moderators of climate and reservoirs of biodiversity.",
     prereqs: [
       { type: "AND", reqs: ["BIOL 359"] },
-      { type: "OR", reqs: ["BIOL 150", "BIOL 251"] }
+      { type: "AND", reqs: ["BIOL 150"] }
     ],
     antireqs: [],
     tags: [],
@@ -5305,8 +5328,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will read and analyze scientific papers to deepen their understanding of core topics in ecology and evolution and how they are related. These topics include the ecological niche, plasticity, competition, community ecology, and climate change. Topics are explored through in-class discussions, written reports, and oral presentations. Students will also improve their proficiency at understanding primary literature and identifying key elements such as research questions, hypotheses, experimental design, and main results.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 150", "BIOL 251"] },
-      { type: "AND", reqs: ["BIOL 359"] }
+      { type: "AND", reqs: ["BIOL 150"] },
+      { type: "AND", reqs: ["BIOL 359", "BIOL 361"] }
     ],
     antireqs: [],
     tags: [],
@@ -5319,7 +5342,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The practices of fisheries science including the effects of industrial fisheries on fish stocks; methods of capture, obtaining, using, and interpretation of vital statistics of fish stocks; population estimation; stock-recruitment; growth; mortality; and fecundity. Emphasis is placed on the use of statistical information for making ecological inferences about the status of fish populations.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 150", "BIOL 251"] },
+      { type: "AND", reqs: ["BIOL 150"] },
       { type: "AND", reqs: ["STAT 202"] }
     ],
     antireqs: [],
@@ -5333,8 +5356,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Examination of the use of scientific information characterizing the risks posed to the environment by anthropogenic stresses. Discussions will take place in the context of aquatic ecology and presume a background of standard aquatic toxicology methods. Methods for assessing risks, including environmental impact assessment, risk quotients, national, and international risk assessment paradigms, and cumulative effects assessment will be examined. Critical connections between assessment and management will be discussed in lectures and tutorials.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 150", "BIOL 251"] },
-      { type: "AND", reqs: ["BIOL 354"] }
+      { type: "AND", reqs: ["BIOL 150"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 354"] }, { type: "AND", reqs: ["STAT 202"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5415,8 +5438,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Analysis of proteins using structural and bioinformatics approaches. Topics explored in lectures and labs include methods of protein structure determination and visualization, structure comparison and prediction, prediction of protein function and interactions, molecular dynamics, and protein design.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 266", "BIOL 366", "BIOL 365"] },
-      { type: "OR", reqs: ["CHEM 233", "CHEM 237"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 266", "BIOL 366"] }, { type: "AND", reqs: ["BIOL 365"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 233"] }, { type: "AND", reqs: ["CHEM 237"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5430,7 +5453,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "An applied course on the computational exploration of genomes. Topics include comparative and evolutionary genomics, metagenomics, and genomics applications in health/medicine. The lab will involve analysis of genomic datasets using scripting and bioinformatic software.",
     prereqs: [
       { type: "AND", reqs: ["BIOL 239"] },
-      { type: "OR", reqs: ["BIOL 266", "BIOL 366", "BIOL 365"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 266", "BIOL 366"] }, { type: "AND", reqs: ["BIOL 365"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5443,7 +5466,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to methods used to sample and characterize the ecological structure and function of aquatic ecosystems, including basic aspects of the abiotic environment. Field trips to lake and stream sites are combined with laboratory analysis of samples and data. While the main emphasis is on the techniques, the exercises also provide direct experience with some of the natural and anthropogenic variation observable in aquatic systems.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 350", "BIOL 351"] }
+      { type: "AND", reqs: ["BIOL 350"] }
     ],
     antireqs: [],
     tags: [],
@@ -5456,7 +5479,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the nature and mechanisms of disease processes. Abnormalities in the structure and function of cells, tissues and organs that underlie disease are explored. Emphasis is placed on current research aimed at understanding the mechanisms of disease and disease therapy, covering topics including inherited disorders, cellular pathology and immunology, diabetes, and cancer.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 273"] }
+      { type: "AND", reqs: ["BIOL 273", "BIOL 331"] }
     ],
     antireqs: [],
     tags: [],
@@ -5469,7 +5492,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide an in-depth coverage of reproductive biology in a range of mammalian species. Emphasis will be on the principles underlying the regulation of key reproductive processes, from the whole animal to the molecular level. Topics will include applications of these principles to human and veterinary medicine, and ethical problems posed by some reproductive technologies.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 130L"] }
+      { type: "AND", reqs: ["BIOL 130L", "BIOL 373"] }
     ],
     antireqs: [],
     tags: [],
@@ -5507,7 +5530,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Techniques in Animal Physiology",
     units: 0.25,
     description: "Laboratory exercises and computer-based data collection to study the functions of the cardiovascular, respiratory, nervous, digestive, and excretory systems of vertebrates and invertebrate animals. Students will learn animal handling techniques, data collection with state of the art physiological equipment, and data analysis using computer software. Tutorials will allow students to investigate and discuss current animal physiology research topics in greater detail.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["BIOL 370", "BIOL 371"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -5519,7 +5544,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an overview of the interplay among mutation, random and non-random mating, genetic drift, gene flow, and selection within and among natural populations. Special emphasis is placed on the dynamic role these factors play in the process of population divergence, and ultimately speciation. Case studies will illustrate the application of population genetic methodology in fields such as ecology, conservation biology, and forensic sciences.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 139"] }
+      { type: "AND", reqs: ["BIOL 139", "BIOL 239", "BIOL 359"] }
     ],
     antireqs: [],
     tags: [],
@@ -5545,7 +5570,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The role of classical genetic analysis in the context of today's genomic era. Topics discussed in lectures and labs include meiotic recombination, meiosis, complementation analysis, chromosome aberrations, and genetic interactions. Methods used in model eukaryotic genetic organisms such as forward and reverse genetic screens, genetic mosaics, conditional mutants, and genetic mapping will be discussed. Examples will illustrate how genes continue to be identified using classical-based approaches in a variety of biological processes, including cell cycle progression, cancer and metastasis, learning and memory, as well as pattern formation and embryonic development. Alternatives to traditional mutagenesis-based screens and the links between classical and molecular genetics will also be discussed.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 130"] }
+      { type: "AND", reqs: ["BIOL 130", "BIOL 139", "BIOL 239", "BIOL 308"] }
     ],
     antireqs: [],
     tags: [],
@@ -5558,7 +5583,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to conservation biology and the ongoing biodiversity crisis. Topics will include the history of conservation biology and impacts on populations, communities, and ecosystems.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 150", "BIOL 251"] },
+      { type: "AND", reqs: ["BIOL 150"] },
       { type: "AND", reqs: ["BIOL 359"] }
     ],
     antireqs: [],
@@ -5598,9 +5623,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A two-week field study of terrestrial, aquatic, and/or marine biology offered by the Ontario Universities Program in Field Biology (OUPFB). OUPFB offers a diverse array of courses annually that normally take place at off campus locations. Field courses consist of lectures, field exercises, and a small project chosen in consultation with the course instructor(s). Contact the Department of Biology field course co-ordinator for additional information.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 220"] },
+      { type: "AND", reqs: ["BIOL 110", "BIOL 120", "BIOL 220"] },
       { type: "OR", reqs: ["BIOL 150", "BIOL 251", "ENVS 200"] },
-      { type: "OR", reqs: ["STAT 202", "ENVS 278"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5613,9 +5638,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A two-week field study of terrestrial, aquatic, and/or marine biology offered by the Ontario Universities Program in Field Biology (OUPFB). OUPFB offers a diverse array of courses annually that normally take place at off campus locations. Field courses consist of lectures, field exercises, and a small project chosen in consultation with the course instructor(s). Contact the Department of Biology field course co-ordinator for additional information.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 220"] },
+      { type: "AND", reqs: ["BIOL 110", "BIOL 120", "BIOL 220"] },
       { type: "OR", reqs: ["BIOL 150", "BIOL 251", "ENVS 200"] },
-      { type: "OR", reqs: ["STAT 202", "ENVS 278"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5628,9 +5653,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A two-week field study of terrestrial, aquatic, and/or marine biology offered by the Ontario Universities Program in Field Biology (OUPFB). OUPFB offers a diverse array of courses annually that normally take place at off campus locations. Field courses consist of lectures, field exercises, and a small project chosen in consultation with the course instructor(s). Contact the Department of Biology field course co-ordinator for additional information.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 220"] },
+      { type: "AND", reqs: ["BIOL 110", "BIOL 120", "BIOL 220"] },
       { type: "OR", reqs: ["BIOL 150", "BIOL 251", "ENVS 200"] },
-      { type: "OR", reqs: ["STAT 202", "ENVS 278"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5643,9 +5668,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A two-week field study of terrestrial, aquatic, and/or marine biology offered by the Ontario universities program in field biology (OUPFB). OUPFB offers a diverse array of courses annually that normally take place at off campus locations. Field courses consist of lectures, field exercises, and a small project chosen in consultation with the course instructor(s). Contact the Department of Biology field course co-ordinator for additional information.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 220"] },
+      { type: "AND", reqs: ["BIOL 110", "BIOL 120", "BIOL 220"] },
       { type: "OR", reqs: ["BIOL 150", "BIOL 251", "ENVS 200"] },
-      { type: "OR", reqs: ["STAT 202", "ENVS 278"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5658,9 +5683,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A one-week field study of terrestrial, aquatic, and/or marine biology offered by the Ontario Universities Program in Field Biology (OUPFB). OUPFB offers a diverse array of courses annually that normally take place at off campus locations. Field courses consist of lectures, field exercises, and a small project chosen in consultation with the course instructor(s). Contact the Department of Biology field course co-ordinator for additional information.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 220"] },
+      { type: "AND", reqs: ["BIOL 110", "BIOL 120", "BIOL 220"] },
       { type: "OR", reqs: ["BIOL 150", "BIOL 251", "ENVS 200"] },
-      { type: "OR", reqs: ["STAT 202", "ENVS 278"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -5673,9 +5698,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A one-week field study of terrestrial, aquatic, and/or marine biology offered by the Ontario Universities Program in Field Biology (OUPFB). OUPFB offers a diverse array of courses annually that normally take place at off campus locations. Field courses consist of lectures, field exercises, and a small project chosen in consultation with the course instructor(s). Contact the Department of Biology field course co-ordinator for additional information.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 110", "BIOL 220"] },
+      { type: "AND", reqs: ["BIOL 110", "BIOL 120", "BIOL 220"] },
       { type: "OR", reqs: ["BIOL 150", "BIOL 251", "ENVS 200"] },
-      { type: "OR", reqs: ["STAT 202", "ENVS 278"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -6128,7 +6153,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fundamentals of probability and statistics, and applications to biomedical engineering. Random variables and statistical distributions, statistical estimation, hypothesis testing, regression, and experiment design considerations. Applications to biomedical experiments, biomedical imaging data, and clinical trials.",
     prereqs: [],
-    antireqs: ["BIOL 361", "CHE 220", "CIVE 224", "ENVE 224", "KIN 222", "MSCI 252", "ME 202", "MTE 201", "NE 215", "PSYCH 292", "STAT 202", "SYDE 212"],
+    antireqs: ["BIOL 361", "CHE 220", "CIVE 224", "ENVE 224", "KIN 222", "MSCI 252", "ME 202", "MTE 201", "NE 215", "PSYCH 292", "STAT 202", "STAT 206", "STAT 211", "SYDE 212"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6359,7 +6384,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fundamental concepts in systems involving fluid flow. Basic treatment of statics, kinematics, and dynamics of fluids. Mass transfer, conservation of mass, momentum and energy for a control volume. Dimensional analysis and similarity. Discussion of flow in pipes and channels and brief introduction to boundary layers, lift and drag, ideal and compressible flow will be specifically covered in the context of the cardiovascular system (macrocirculation and microcirculation).",
     prereqs: [],
-    antireqs: ["SYDE 381"],
+    antireqs: ["SYDE 381", "SYDE 383"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6414,7 +6439,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A work-term presentation. The presentation provides an opportunity for students to effectively communicate and reflect on their engineering experience gained during their co-op work terms. In the presentation, students draw connections between the theoretical aspects of engineering taught in the classroom and the practical applications of that theory in the workplace.",
     prereqs: [],
-    antireqs: ["WKRPT 400"],
+    antireqs: ["WKRPT 400", "WKRPT 401"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6515,7 +6540,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
-    antireqs: ["AFM 101"],
+    antireqs: ["AFM 101", "AFM 121", "AFM 123"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6538,11 +6563,10 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [
       { type: "AND", reqs: ["BUS 121W"] },
-      { type: "AND", reqs: ["AFM 131"] },
-      { type: "AND", reqs: ["AFM 101"] },
-      { type: "AND", reqs: ["AFM 102"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["AFM 131"] }, { type: "AND", reqs: ["BUS 111W"] }] },
+      { type: "AND", reqs: ["AFM 101", "BUS 127W", "AFM 102", "BUS 247W", "AFM 123", "BUS 237W"] }
     ],
-    antireqs: ["AFM 271", "AFM 273", "AFM 275", "AFM 372", "BUS 283W"],
+    antireqs: ["ACTSC 371", "ACTSC 372", "AFM 271", "AFM 273", "AFM 274", "AFM 371", "ACTSC 291", "AFM 272", "AFM 275", "AFM 372", "ACTSC 391", "BUS 283W", "BUS 393W", "ECON 371"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6556,7 +6580,7 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["BUS 121W"] },
       { type: "OR", reqs: ["AFM 131", "BUS 111W"] }
     ],
-    antireqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"],
+    antireqs: ["BUS 288W", "BUS 398W", "MSCI 211", "PSYCH 238", "PSYCH 338"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6606,7 +6630,7 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["BUS 121W"] },
       { type: "OR", reqs: ["AFM 131", "BUS 111W"] }
     ],
-    antireqs: ["AFM 101", "BUS 227W", "MSCI 262"],
+    antireqs: ["AFM 101", "AFM 102", "AFM 121", "AFM 122", "AFM 123", "AFM 281", "BUS 227W", "BUS 247W", "MSCI 262"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6619,7 +6643,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["AFM 101", "BUS 127W"] }
     ],
-    antireqs: ["AFM 102", "MSCI 262"],
+    antireqs: ["AFM 102", "AFM 122", "AFM 123", "AFM 281", "MSCI 262"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6645,7 +6669,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BUS 255W"] }
     ],
-    antireqs: ["CO 227", "MSCI 331"],
+    antireqs: ["CO 227", "CO 250", "CO 350", "CO 255", "CO 355", "MSCI 331"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -6659,7 +6683,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
     ],
-    antireqs: ["ACTSC 291", "AFM 272", "ACTSC 371", "AFM 275", "AFM 372", "ACTSC 391", "AFM 271", "AFM 273", "BUS 223W", "ECON 371"],
+    antireqs: ["ACTSC 291", "AFM 272", "ACTSC 371", "ACTSC 372", "AFM 275", "AFM 372", "ACTSC 391", "AFM 271", "AFM 273", "AFM 274", "AFM 371", "BUS 223W", "ECON 371"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6673,7 +6697,7 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["BUS 121W"] },
       { type: "OR", reqs: ["AFM 131", "ARBUS 101", "BUS 111W"] }
     ],
-    antireqs: ["BUS 228W", "MSE 211", "PSYCH 238", "PSYCH 338"],
+    antireqs: ["BUS 228W", "MSE 211", "MSE 311", "PSYCH 238", "PSYCH 338"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6709,7 +6733,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "AND", reqs: ["BUS 111W"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BUS 111W"] }, { type: "AND", reqs: ["BUS 121W"] }] },
+      { type: "AND", reqs: ["BUS 352W"] }
     ],
     antireqs: ["BUS 461W"],
     tags: [],
@@ -6748,7 +6773,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["ACTSC 291", "ACTSC 371", "AFM 271", "AFM 273", "AFM 272", "BUS 283W", "ECON 371"] }
     ],
-    antireqs: ["MTHEL 305A"],
+    antireqs: ["MTHEL 305A", "MTHEL 305B"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6761,7 +6786,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BUS 121W"] },
       { type: "OR", reqs: ["AFM 131", "ARBUS 101", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSE 211", "PSYCH 238"] }
+      { type: "OR", reqs: ["BUS 288W", "MSE 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: ["HRM 200", "PSYCH 339"],
     tags: [],
@@ -6774,7 +6799,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details. [",
     prereqs: [
-      { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 101"] }, { type: "AND", reqs: ["BUS 127W", "BUS 227W"] }] }
     ],
     antireqs: ["AFM 361"],
     tags: [],
@@ -6869,7 +6894,7 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["BUS 283W", "BUS 383W", "ECON 371"] },
       { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
     ],
-    antireqs: ["ACTSC 372", "AFM 271", "AFM 273", "ACTSC 291", "AFM 272", "AFM 275", "AFM 372", "ACTSC 391", "BUS 223W"],
+    antireqs: ["ACTSC 372", "AFM 271", "AFM 273", "AFM 274", "AFM 371", "ACTSC 291", "AFM 272", "AFM 275", "AFM 372", "ACTSC 391", "BUS 223W"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6908,7 +6933,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BUS 288W"] }
     ],
-    antireqs: ["BUS 228W", "MSE 211", "PSYCH 238", "PSYCH 338"],
+    antireqs: ["BUS 228W", "MSE 211", "MSE 311", "PSYCH 238", "PSYCH 338"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -6975,7 +7000,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
     ],
     antireqs: [],
@@ -6989,8 +7013,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "AND", reqs: ["BUS 395W"] },
-      { type: "AND", reqs: ["MSCI 432"] },
       { type: "OR", reqs: ["CO 250", "CO 255", "MSCI 331"] }
     ],
     antireqs: [],
@@ -7004,10 +7026,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "AND", reqs: ["BUS 121W"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -7043,7 +7062,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "[Note: Formerly BUS 461SW]",
     prereqs: [
-      { type: "OR", reqs: ["BUS 398W", "MSCI 311", "MSCI 338"] }
+      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -7069,7 +7088,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 227W"] }
     ],
     antireqs: [],
@@ -7083,9 +7101,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 338"] }
     ],
     antireqs: ["HRM 305"],
     tags: [],
@@ -7113,7 +7129,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
     ],
     antireqs: [],
@@ -7127,7 +7142,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 427W", "BUS 457W"] }
+      { type: "OR", reqs: ["BUS 427W", "BUS 457W"] },
+      { type: "AND", reqs: ["BUS 467W"] }
     ],
     antireqs: ["AFM 492", "AFM 276", "COMM 421"],
     tags: [],
@@ -7140,10 +7156,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "AND", reqs: ["BUS 121W"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -7156,7 +7169,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wifrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "AND", reqs: ["ACTSC 363"] }
+      { type: "AND", reqs: ["ACTSC 363"] },
+      { type: "AND", reqs: ["BUS 353W"] }
     ],
     antireqs: [],
     tags: [],
@@ -7168,7 +7182,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Retirement and Estate Planning (WLU)",
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["BUS 413W"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -7180,9 +7196,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details. [Note: Formerly BUS 428W]",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -7210,7 +7224,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
     ],
     antireqs: ["STAT 446", "AFM 322", "AFM 474", "ECON 372"],
@@ -7237,7 +7250,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BUS 397W"] }
     ],
-    antireqs: ["AFM 401", "BUS 457W"],
+    antireqs: ["AFM 401", "AFM 491", "BUS 457W", "BUS 487W"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -7248,7 +7261,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 227W"] }
     ],
     antireqs: [],
@@ -7299,7 +7311,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
     ],
     antireqs: ["MATBUS 472"],
@@ -7313,8 +7324,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [
-      { type: "AND", reqs: ["BUS 395W"] },
-      { type: "AND", reqs: ["MSE 432"] },
       { type: "OR", reqs: ["CO 250", "CO 350", "CO 255", "CO 355", "MSE 331"] }
     ],
     antireqs: ["MSE 434"],
@@ -7328,9 +7337,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -7343,7 +7350,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BUS 393W"] }, { type: "AND", reqs: ["ACTSC 372"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -7386,7 +7393,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 227W"] }
     ],
     antireqs: ["ECON 332"],
@@ -7400,8 +7406,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 375W", "BUS 395W", "BUS 350", "BUS 255", "BUS 355", "MSE 331"] },
-      { type: "AND", reqs: ["MSE 432"] }
+      { type: "OR", reqs: ["BUS 375W", "BUS 395W", "CO 250", "CO 350", "CO 255", "CO 355", "MSE 331", "MSE 432"] }
     ],
     antireqs: [],
     tags: [],
@@ -7427,9 +7432,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 338"] }
     ],
     antireqs: ["HRM 303"],
     tags: [],
@@ -7441,7 +7444,7 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Fixed Income Analysis (WLU)",
     units: 0.5,
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BUS 393W"] }, { type: "AND", reqs: ["ACTSC 372"] }] }
     ],
     antireqs: ["MATBUS 471", "AFM 425"],
     tags: [],
@@ -7480,7 +7483,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 227W"] }
     ],
     antireqs: [],
@@ -7494,8 +7496,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 375W", "BUS 395W", "BUS 350", "BUS 255", "BUS 355", "MSE 331"] },
-      { type: "AND", reqs: ["MSE 432"] }
+      { type: "OR", reqs: ["BUS 375W", "BUS 395W", "CO 250", "CO 350", "CO 255", "CO 355", "MSE 331", "MSE 432"] }
     ],
     antireqs: [],
     tags: [],
@@ -7535,9 +7536,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 288W", "BUS 121W"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "MSCI 211", "PSYCH 238", "PSYCH 338"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BUS 354W"] }, { type: "AND", reqs: ["HRM 200"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -7616,8 +7616,11 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Ethics and the Conduct of Business (WLU)",
     units: 0.5,
     prereqs: [
-      { type: "OR", reqs: ["AFM 101", "BUS 227W"] },
-      { type: "OR", reqs: ["AFM 102", "BUS 247W"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 101"] }, { type: "AND", reqs: ["BUS 227W"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 102"] }, { type: "AND", reqs: ["BUS 247W"] }] },
+      { type: "AND", reqs: ["MSCI 432"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BUS 352W"] }, { type: "AND", reqs: ["ECON 344"] }] },
+      { type: "OR", reqs: ["ACTSC 291", "ACTSC 371", "AFM 271", "AFM 272", "BUS 383W", "ECON 371"] }
     ],
     antireqs: ["AFM 431", "PHIL 215"],
     tags: [],
@@ -7629,7 +7632,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Social Entrepreneurship (WLU)",
     units: 0.5,
     prereqs: [
-      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 227W", "BUS 247W"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["AFM 131"] }, { type: "AND", reqs: ["BUS 111W"] }] }, { type: "AND", reqs: ["BUS 121W"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 101"] }, { type: "AND", reqs: ["BUS 227W"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 102"] }, { type: "AND", reqs: ["BUS 247W"] }] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BUS 352W"] }, { type: "AND", reqs: ["ECON 344"] }] },
+      { type: "OR", reqs: ["ACTSC 291", "ACTSC 371", "AFM 271", "AFM 273", "AFM 272", "BUS 383W", "ECON 371"] }
     ],
     antireqs: ["ECON 220", "ARBUS 200", "ARBUS 201"],
     tags: [],
@@ -7722,7 +7727,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 227W"] }
     ],
     antireqs: ["AFM 473", "ACTSC 471", "AFM 476"],
@@ -7736,9 +7740,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "OR", reqs: ["AFM 131", "ARBUS 101", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "ARBUS 101", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: ["HRM 307"],
     tags: [],
@@ -7777,10 +7779,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 398W", "BUS 121W"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "AND", reqs: ["MSCI 311"] },
-      { type: "OR", reqs: ["MSCI 211", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "MSCI 311", "MSCI 211", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -7818,7 +7817,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "International Strategic Management (WLU)",
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["BUS 481W"] }
+    ],
     antireqs: ["AFM 333"],
     tags: [],
     majors: ["any"],
@@ -7843,9 +7844,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "AND", reqs: ["BUS 393W"] },
-      { type: "OR", reqs: ["ACTSC 372", "ECON 371"] },
-      { type: "OR", reqs: ["AFM 101", "BUS 227W"] }
+      { type: "OR", reqs: ["ACTSC 372", "ECON 371", "AFM 101", "BUS 227W"] }
     ],
     antireqs: ["AFM 472"],
     tags: [],
@@ -7858,10 +7857,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 398W", "BUS 121W"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "AND", reqs: ["MSCI 311"] },
-      { type: "OR", reqs: ["MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "MSCI 311", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: ["PSYCH 340"],
     tags: [],
@@ -7876,7 +7872,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BUS 387W"] }
     ],
-    antireqs: ["AFM 241", "BUS 415W", "CS 330", "CS 480", "CS 490", "MSCI 441"],
+    antireqs: ["AFM 241", "BUS 415W", "BUS 486W", "CS 330", "CS 480", "CS 490", "MSCI 441"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -7900,10 +7896,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 354W", "HRM 200"] },
-      { type: "AND", reqs: ["BUS 121W"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "OR", reqs: ["BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "BUS 288W", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -8142,7 +8135,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 393W", "ACTSC 372"] },
       { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
     ],
     antireqs: [],
@@ -8156,8 +8148,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 375W", "BUS 395W", "BUS 350", "BUS 255", "BUS 355", "MSE 331"] },
-      { type: "AND", reqs: ["MSE 432"] }
+      { type: "OR", reqs: ["BUS 375W", "BUS 395W", "CO 250", "CO 350", "CO 255", "CO 355", "MSE 331", "MSE 432"] }
     ],
     antireqs: [],
     tags: [],
@@ -8170,9 +8161,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "aught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [
-      { type: "AND", reqs: ["BUS 387W"] }
+      { type: "AND", reqs: ["BUS 387W"] },
+      { type: "AND", reqs: ["BUS 477W"] }
     ],
-    antireqs: ["BUS 415W", "CS 330", "CS 490"],
+    antireqs: ["BUS 415W", "BUS 456W", "BUS 476W", "CS 330", "CS 490"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -8196,10 +8188,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 398W", "BUS 121W"] },
-      { type: "OR", reqs: ["AFM 131", "BUS 111W"] },
-      { type: "AND", reqs: ["MSCI 311"] },
-      { type: "OR", reqs: ["MSCI 211", "PSYCH 238", "PSYCH 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "MSCI 311", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -8212,10 +8201,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details. [Note: Enrolment is restricted; see Notes 1 and 2 above.]",
     prereqs: [
-      { type: "OR", reqs: ["BUS 398W", "BUS 121W"] },
-      { type: "AND", reqs: ["AFM 131"] },
-      { type: "AND", reqs: ["MSCI 311"] },
-      { type: "OR", reqs: ["MSCI 211", "MSCI 338"] }
+      { type: "OR", reqs: ["AFM 131", "BUS 111W", "MSCI 311", "MSCI 211", "PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: [],
     tags: [],
@@ -8282,8 +8268,7 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Marketing & Society (WLU)",
     units: 0.5,
     prereqs: [
-      { type: "AND", reqs: ["BUS 362"] },
-      { type: "AND", reqs: ["BUS 432"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BUS 362"] }, { type: "AND", reqs: ["BUS 432"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -8450,7 +8435,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [
-      { type: "OR", reqs: ["BUS 275W", "CO 250"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BUS 275W"] }, { type: "AND", reqs: ["CO 250"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -8573,7 +8558,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "AND", reqs: ["BUS 352W"] }
+      { type: "AND", reqs: ["BUS 352W", "BUS 354W", "BUS 383W", "BUS 385W"] }
     ],
     antireqs: [],
     tags: [],
@@ -8586,7 +8571,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [
-      { type: "AND", reqs: ["BUS 352W"] }
+      { type: "AND", reqs: ["BUS 352W", "BUS 354W", "BUS 383W", "BUS 385W"] }
     ],
     antireqs: [],
     tags: [],
@@ -8697,7 +8682,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course covers financial data analytics in the areas of asset pricing, securities trading, and portfolio management. It covers data usage and application in basic testing of asset pricing theories, trading algorithms and strategies, back-testing techniques, and aspects of portfolio management associated with trading strategies.",
     prereqs: [
-      { type: "OR", reqs: ["CFM 101", "ACTSC 291"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CFM 101"] }, { type: "AND", reqs: ["AFM 272", "ACTSC 291"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -9209,7 +9194,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A major undergraduate research project carried out as a technical elective (TE) under the supervision of a faculty member. An oral presentation of results and a written report are the minimum requirements. Other requirements may be set by the faculty supervisor or department.",
     prereqs: [
-      { type: "AND", reqs: ["CHE 398"] }
+      { type: "OR", reqs: ["CHE 398", "CHE 399", "CHE 498"] }
     ],
     antireqs: [],
     tags: [],
@@ -9232,7 +9217,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "General Chemistry Laboratory 1",
     units: 0.25,
     description: "Selected experiments based on introductory-level chemistry topics. This course is an introduction to the chemistry laboratory environment and focuses on the development of basic lab skills.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["CHEM 120"] }
+    ],
     antireqs: ["CHEM 121L"],
     tags: [],
     majors: ["any"],
@@ -9254,7 +9241,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Chemical Reaction Laboratory 1",
     units: 0.25,
     description: "Selected experiments for students taking CHEM121. This course is an introduction to the chemistry laboratory environment and focuses on the development of basic lab skills.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["CHEM 121"] }
+    ],
     antireqs: ["CHEM 120L"],
     tags: [],
     majors: ["any"],
@@ -9266,7 +9255,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Properties of liquids and solutions. Introduction to chemical equilibria. Principles of acid-base equilibria, solubility and electrochemical processes. Chemical kinetics.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 120", "CHE 102"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 120"] }, { type: "AND", reqs: ["CHE 102"] }] }
     ],
     antireqs: ["CHEM 125"],
     tags: [],
@@ -9279,7 +9268,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments based on introductory-level chemistry topics. This course is a continuation of CHEM120L, with increased emphasis on assessment of experimental design.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 120L"] }
+      { type: "AND", reqs: ["CHEM 120L"] },
+      { type: "AND", reqs: ["CHEM 123"] }
     ],
     antireqs: ["CHEM 125L"],
     tags: [],
@@ -9305,7 +9295,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments for student taking CHEM125. This course is a continuation of CHEM121L, with increased emphasis on assessment of experimental design.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 121L"] }
+      { type: "AND", reqs: ["CHEM 121L"] },
+      { type: "AND", reqs: ["CHEM 125"] }
     ],
     antireqs: ["CHEM 123L"],
     tags: [],
@@ -9318,7 +9309,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The application of numeric computing software to perform basic calculations, data analysis, regression analysis, plotting of scientific graphs, data manipulation, and equation solving will be covered in this course, with an emphasis placed upon chemical and biochemical concepts and applications.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 120", "CHEM 121"] }
+      { type: "AND", reqs: ["CHEM 120"] }
     ],
     antireqs: [],
     tags: [],
@@ -9332,7 +9323,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an introduction to practical laboratory skills. Laboratory techniques will include: the separation, isolation and purification of compounds (through extraction, reflux, distillation, chromatography, and recrystallization), analysis techniques, and the application of these techniques in synthesis. The subjects covered in this biweekly laboratory provide the foundation for more advanced laboratory courses and the basic training needed for an industrial or research laboratory position. The seminar portion of this course will focus on communication and technical skills; the latter will include analysis of Material Safety Data Sheets (MSDS), use of search engines, and learning of citation formats.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 125"] }
+      { type: "AND", reqs: ["CHEM 125", "CHEM 125L"] }
     ],
     antireqs: [],
     tags: [],
@@ -9358,7 +9349,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the principles of chemical structure and bonding, with emphasis on their application to inorganic systems. Topics include atoms, orbitals, and periodicity; localized bonding models; symmetry and group theory; and molecular orbital theory. The subjects treated in this course are foundational components for advanced studies in all areas of chemistry.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123", "CHEM 125"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123"] }, { type: "AND", reqs: ["CHEM 125"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -9371,7 +9362,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Quantitative and analytical chemistry including ionic equilibria, classical and more recent methods. Emphasis on planning and decision-making in the analytical process.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123", "CHEM 125"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123"] }, { type: "AND", reqs: ["CHEM 125"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -9384,7 +9375,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments for students taking CHEM220.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123L", "CHEM 125L"] }
+      { type: "AND", reqs: ["CHEM 123L"] },
+      { type: "AND", reqs: ["CHEM 220"] }
     ],
     antireqs: [],
     tags: [],
@@ -9397,7 +9389,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Instrumental analytical chemistry, including traditional and more recent methods. Emphasis on planning and decision-making in the analytical process.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 220"] }
+      { type: "AND", reqs: ["CHEM 220", "CHEM 220L"] }
     ],
     antireqs: [],
     tags: [],
@@ -9410,7 +9402,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Extensive lab experience for students who have taken CHEM220.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 220"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CHEM 220"] }, { type: "AND", reqs: ["CHEM 220L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -9423,7 +9415,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Chemistry of amino acids, carbohydrates, lipids and nucleic acids, with special emphasis on representative proteins and enzymes, including hemoglobin, cytochrome c and chymotrypsin.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 264", "CHEM 262"] }
+      { type: "AND", reqs: ["CHEM 264"] }
     ],
     antireqs: ["CHEM 237", "CHEM 239", "NE 224"],
     tags: [],
@@ -9436,7 +9428,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments for students taking CHEM233.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123L", "CHEM 125L"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123L"] }, { type: "AND", reqs: ["CHEM 125L"] }] },
+      { type: "AND", reqs: ["CHEM 233"] }
     ],
     antireqs: ["CHEM 237L"],
     tags: [],
@@ -9461,7 +9454,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introductory Biochemistry Laboratory",
     units: 0.25,
     description: "Selected experiments for students taking CHEM237.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["CHEM 237"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -9499,7 +9494,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the first, second, and third laws of thermodynamics and the application of these laws to ideal systems, mixtures, and chemical reactions. Thermodynamic principles are used to study changes in state, including phase changes, and to establish the link between the equilibrium constant and the properties of the substances involved in a chemical reaction.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123", "CHEM 125"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123"] }, { type: "AND", reqs: ["CHEM 125"] }] },
       { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
     ],
     antireqs: ["PHYS 358", "ECE 403"],
@@ -9513,9 +9508,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Bonding, structure, and nomenclature in organic chemistry. Physical properties and simple reactions associated with the important functional groups.",
     prereqs: [
-      { type: "OR", reqs: ["BME 186", "CHE 102", "NE 121"] }
+      { type: "OR", reqs: ["BME 186", "CHE 102", "NE 121"] },
+      { type: "AND", reqs: ["CHEM 262L"] }
     ],
-    antireqs: ["CHEM 264", "NE 122", "NE 222"],
+    antireqs: ["CHEM 264", "CHEM 266", "NE 122", "NE 222"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -9525,7 +9521,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Organic Chemistry Laboratory for Engineering Students",
     units: 0.25,
     description: "Selected experiments for engineering students taking CHEM262.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["CHEM 262"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -9537,9 +9535,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Structure and bonding in organic chemistry. Isomerism and stereoisomerism in organic compounds. Acidity of organic compounds and substituent effects on acidity. Reaction mechanisms and energetics. Chemistry of alkanes, haloalkanes, alcohols and ethers, alkenes and alkynes.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123", "CHEM 125"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123"] }, { type: "AND", reqs: ["CHEM 125"] }] }
     ],
-    antireqs: ["CHEM 262", "NE 122", "NE 222"],
+    antireqs: ["CHEM 262", "CHEM 266", "NE 122", "NE 222"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -9563,7 +9561,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments for students taking CHEM265.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123L", "CHEM 125L"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123L"] }, { type: "AND", reqs: ["CHEM 125L"] }] },
+      { type: "AND", reqs: ["CHEM 265"] }
     ],
     antireqs: [],
     tags: [],
@@ -9576,9 +9575,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Structure, nomenclature, and reactions of important classes of organic compounds. Stereochemistry and its role in reaction mechanisms.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123", "CHEM 125"] }
+      { type: "AND", reqs: ["CHEM 123"] }
     ],
-    antireqs: ["CHEM 262", "NE 222"],
+    antireqs: ["CHEM 262", "CHEM 264", "NE 222"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -9589,7 +9588,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments for students taking (or who have taken) CHEM266.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123L", "CHEM 125L"] }
+      { type: "AND", reqs: ["CHEM 123L"] },
+      { type: "AND", reqs: ["CHEM 266"] }
     ],
     antireqs: [],
     tags: [],
@@ -9615,7 +9615,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments for students taking CHEM267.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 266L"] }
+      { type: "AND", reqs: ["CHEM 266L"] },
+      { type: "AND", reqs: ["CHEM 267"] }
     ],
     antireqs: [],
     tags: [],
@@ -9641,7 +9642,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Synthesis of transition and non-transition metal compounds. Characterization of compounds using IR, UV-VIS, and NMR spectroscopy.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123L", "CHEM 212"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123L"] }, { type: "AND", reqs: ["CHEM 212"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -9667,7 +9668,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Introduction to synthetic inorganic chemistry.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123L", "CHEM 125L"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123L"] }, { type: "AND", reqs: ["CHEM 125L"] }] },
+      { type: "AND", reqs: ["CHEM 212"] }
     ],
     antireqs: [],
     tags: [],
@@ -9694,7 +9696,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Thermodynamics of metabolism. Metabolism of carbohydrates and lipids. Chemistry of oxidative phosphorylation and photosynthesis. Emphasis is put on the role and chemical mechanisms of the enzymes in these processes.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 233"] }
+      { type: "AND", reqs: ["CHEM 233", "CHEM 265"] }
     ],
     antireqs: ["CHEM 333"],
     tags: [],
@@ -9708,7 +9710,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Metabolism of carbohydrates, lipids, and amino acids.",
     prereqs: [
       { type: "OR", reqs: ["CHEM 233", "CHEM 237", "NE 224"] },
-      { type: "OR", reqs: ["CHEM 265", "CHEM 267"] }
+      { type: "AND", reqs: ["CHEM 265"] }
     ],
     antireqs: ["CHEM 331"],
     tags: [],
@@ -9721,7 +9723,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments for students having completed or concurrently taking CHEM331. Topics to be covered include NMR, allostery, enzymology, electrophoresis, carbohydrates, lipids, photosynthesis, and respiration.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 233L"] }
+      { type: "AND", reqs: ["CHEM 233L"] },
+      { type: "AND", reqs: ["CHEM 331"] },
+      { type: "AND", reqs: ["CHEM 357"] }
     ],
     antireqs: [],
     tags: [],
@@ -9787,7 +9791,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The use of diffusion, ultracentrifugation, osmotic pressure, electrophoresis and X-ray diffraction to study the properties of biopolymers. Hyperbolic and allosteric enzyme kinetics, inhibition, and regulation. Some spectroscopies important to the life sciences.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123", "MATH 128"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123"] }, { type: "AND", reqs: ["MATH 128"] }] },
       { type: "OR", reqs: ["CHEM 233", "CHEM 237", "NE 224"] }
     ],
     antireqs: [],
@@ -9814,7 +9818,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected microscale synthetic experiments for students in year three chemistry and biochemistry programs, including spectroscopic identification of organic compounds.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 265"] }
+      { type: "AND", reqs: ["CHEM 265", "CHEM 265L"] },
+      { type: "AND", reqs: ["CHEM 360"] }
     ],
     antireqs: [],
     tags: [],
@@ -9841,7 +9846,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Basic definitions and polymer nomenclature, molecular weight distributions and averages, molecular weight measurements, step-growth and free radical chain-growth polymerization reactions, chain conformations, glass transition, crystallization, and mechanical properties of polymers.",
     prereqs: [
       { type: "AND", reqs: ["CHEM 254"] },
-      { type: "OR", reqs: ["CHEM 265", "CHEM 267"] }
+      { type: "AND", reqs: ["CHEM 265"] }
     ],
     antireqs: ["CHE 541", "MNS 322", "NE 333"],
     tags: [],
@@ -9854,7 +9859,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of stereochemistry, racemic and enantioselective syntheses of amino acids, peptide synthesis, development of peptides into drugs, physical properties and structures of monosaccharides, reactions of monosaccharides, glycoside synthesis, structures of disaccharides and polysaccharides, synthesis of oligosaccharides, physical properties and synthesis of nucleosides, nucleotides, and nucleic acids, nucleotides and nucleic acids as drugs, general drug development.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 233"] }
+      { type: "AND", reqs: ["CHEM 233", "CHEM 265"] }
     ],
     antireqs: [],
     tags: [],
@@ -9867,7 +9872,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "A laboratory course intended for students in the Medicinal Chemistry Specialization of the Honours Chemistry plan. The purpose of this course is to introduce students to advanced laboratory techniques used in synthetic organic chemistry.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 360"] }
+      { type: "AND", reqs: ["CHEM 360", "CHEM 360L"] }
     ],
     antireqs: [],
     tags: [],
@@ -9880,7 +9885,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course discusses the drug discovery process and drug synthesis. Topics include enzymes and receptors, hit and lead discovery, lead optimization, QSAR, prodrugs, drug delivery, drug metabolism, mechanisms of selected drugs, and laboratory and process scale synthesis of selected drugs.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 233"] }
+      { type: "AND", reqs: ["CHEM 233", "CHEM 237", "CHEM 360"] }
     ],
     antireqs: [],
     tags: [],
@@ -9929,7 +9934,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Properties of water; chemicals in the environment; environmental fate of inorganic and organic pollutants; basic phenomena affecting the fate of water pollutants (vapor pressure; activity, solubility, partitioning, diffusion, sorption); acids and bases in water; dissolved carbon dioxide; trace metals in water.",
     prereqs: [
       { type: "AND", reqs: ["CHEM 254"] },
-      { type: "AND", reqs: ["CHEM 123"] },
+      { type: "OR", reqs: ["CHEM 123", "CHEM 125"] },
       { type: "OR", reqs: ["CHEM 262", "CHEM 264", "CHEM 266"] }
     ],
     antireqs: [],
@@ -9943,7 +9948,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "For a current list of offerings see the undergraduate officer.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 331", "CHEM 333"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 331"] }, { type: "AND", reqs: ["CHEM 333"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -9956,7 +9961,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Properties and metabolism of porphyrins, purines, pyrimidines and biogenic amines. Biosynthesis and mode of action of selected cofactors. Structure-function relationships of enzymes. Regulation of enzyme activity.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 331", "CHEM 333"] }
+      { type: "AND", reqs: ["CHEM 331"] }
     ],
     antireqs: [],
     tags: [],
@@ -9969,7 +9974,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Nitrogen fixation. Assimilation of nitrogen. Amino acid metabolism. Metabolic regulation. Proteolytic enzymes, ubiquitin. Blood coagulation. Signal transduction and amplification. Biochemistry of nitric oxide. Biochemistry of vision.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 331", "CHEM 333"] }
+      { type: "AND", reqs: ["CHEM 331"] }
     ],
     antireqs: [],
     tags: [],
@@ -9995,7 +10000,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an introduction to strategies for design of potential drug candidates. It builds upon molecular modelling principles introduced in CHEM340 and will apply them to specific problems in drug design. Topics include conformational analysis, molecular mechanics, and molecular dynamics; computational studies of drug-receptor interactions, docking of small organic molecules to biological receptors, and alteration of molecular structures for improvement of bioactivity.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 233"] }
+      { type: "AND", reqs: ["CHEM 233", "CHEM 237", "CHEM 340", "CHEM 360"] }
     ],
     antireqs: [],
     tags: [],
@@ -10089,7 +10094,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "Equivalent to CHINA101R and CHINA102R but covered in one term. This introductory Chinese course is designed for two major groups of students who have different initial advantages in learning Chinese: 1) students who have substantial aural-oral proficiency but limited ability in reading and writing Chinese characters and 2) those who know characters but cannot speak Mandarin (Putonghua).",
     prereqs: [],
-    antireqs: ["CHINA 101R"],
+    antireqs: ["CHINA 101R", "CHINA 102R"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -10100,7 +10105,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course helps strengthen students' speaking and listening competence. Classes are structured around themes, integrating discussions, student presentations, and question/answer exchanges. This structure provides opportunities for pronunciation practice, vocabulary building, and sentence pattern formation, helping students develop oral/aural proficiency in elaborating opinions on socio-cultural topics relevant in a Chinese community.",
     prereqs: [
-      { type: "OR", reqs: ["CHINA 102R", "CHINA 120R"] }
+      { type: "AND", reqs: ["CHINA 102R"] }
     ],
     antireqs: [],
     tags: [],
@@ -10113,7 +10118,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "Development of speaking, writing, reading, and listening skills. This course and its follow-up (CHINA202R) include a survey of grammar, complex sentences, and logical stress.",
     prereqs: [
-      { type: "OR", reqs: ["CHINA 102R", "CHINA 120R"] }
+      { type: "AND", reqs: ["CHINA 102R"] }
     ],
     antireqs: [],
     tags: [],
@@ -10333,7 +10338,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this seminar students work on an interdisciplinary term-long knowledge mobilization project under the direction of a faculty member. The seminar aims to help students to integrate their knowledge of cultural identities with personal and/or professional interests.",
     prereqs: [
-      { type: "OR", reqs: ["CI 100", "CI 200", "GER 200"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CI 100"] }, { type: "AND", reqs: ["CI 200", "GER 200"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -10381,7 +10386,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Linear systems of equations, matrices, and determinants. Introduction to the eigenvalue problem. Applications.",
     prereqs: [],
-    antireqs: ["MATH 106"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -10449,7 +10454,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Frames, arches, and suspended structures. Stress and strain transformations. Strain energy. Energy methods. Virtual work. Buckling of columns.",
     prereqs: [
-      { type: "AND", reqs: ["CIVE 204"] }
+      { type: "AND", reqs: ["CIVE 204", "CIVE 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -10501,7 +10506,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces the concept of sustainability and how it applies to decision-making in civil engineering. The course begins by defining sustainability, both practically and technically, and describing the concepts of systems, and systems interactions. Quantitative methods and measures of effectiveness are derived and applied to components of sustainability; air quality, water quality, energy, transportation and solid waste. Economic concepts and their applicability to sustainability are described for both developed and developing countries.",
     prereqs: [
-      { type: "OR", reqs: ["CIVE 224", "GEOE 224"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 224"] }, { type: "AND", reqs: ["GEOE 224"] }] },
+      { type: "AND", reqs: ["ENVE 392"] }
     ],
     antireqs: [],
     tags: [],
@@ -10514,7 +10520,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Application of scientific principles to the planning, design, maintenance and management of transportation systems. The basic principles of transportation engineering for contemporary urban transportation modes; auto, transit, cycling and walking, and intercity modes; rail and air. Transportation economics, environmental impacts, and demand estimation.",
     prereqs: [
-      { type: "OR", reqs: ["ENVE 224", "GEOE 224"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ENVE 224"] }, { type: "AND", reqs: ["GEOE 224"] }] },
+      { type: "AND", reqs: ["CIVE 224"] }
     ],
     antireqs: [],
     tags: [],
@@ -10538,7 +10545,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to fluid mechanics. Fluid properties. Review of fluid statics. Buoyancy. Bernoulli equation. The momentum equation and applications. Laminar and turbulent flow. Dimensionless numbers. Closed conduit flow including friction losses. Pipe network analysis. Pump systems. Four lab sessions.",
     prereqs: [
-      { type: "AND", reqs: ["CIVE 105"] }
+      { type: "AND", reqs: ["CIVE 105", "CIVE 221"] }
     ],
     antireqs: ["ENVE 280"],
     tags: [],
@@ -10612,7 +10619,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to conceptual planning, construction, management, optimization, and life-cycle performance assessment of civil engineering systems including capital projects. Fundamentals of decision theory including concepts of risk, uncertainty, utility, probability, value of information, and game theory. Tools for supporting decision-making process, including linear and integer programming, network models, optimization, and Monte Carlo simulation. Risk- and cost-benefit analysis of public projects and their impact on sustainability, and quality of life.",
     prereqs: [
-      { type: "OR", reqs: ["AE 221", "GEOE 221", "AE 223", "CIVE 222", "AE 224", "CIVE 224"] }
+      { type: "OR", reqs: ["AE 221", "CIVE 221", "GEOE 221", "AE 223", "CIVE 222", "GEOE 223", "AE 224", "CIVE 224", "GEOE 224"] }
     ],
     antireqs: ["ENVE 335", "MSE 331", "SYDE 411"],
     tags: [],
@@ -10625,7 +10632,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Traffic engineering and travel forecasting. Evaluation, design and management of urban transport systems through advanced traffic control techniques. Quantitative methods for evaluating investments in transportation infrastructure or operational changes.",
     prereqs: [
-      { type: "OR", reqs: ["CIVE 224", "ENVE 224"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 224"] }, { type: "AND", reqs: ["ENVE 224"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -10638,7 +10645,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fundamental knowledge on the principles and applications of traffic simulations. System theory, traffic flow dynamics, stochastic simulation methods. Calibration and validation of simulation models, and interpretation and analysis of simulation output. Applications of state-of-the-art computer simulation software packages for solving real traffic engineering problems, involving scenario analysis, prediction, and optimization.",
     prereqs: [
-      { type: "AND", reqs: ["CIVE 224"] }
+      { type: "AND", reqs: ["CIVE 224", "CIVE 341"] }
     ],
     antireqs: [],
     tags: [],
@@ -10651,7 +10658,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to geologic processes. Subsurface exploration. Classification systems. Weight-volume relationships. Soil mechanics principles including state of stress, ground water flow, consolidation and shear strength. Four lab sessions.",
     prereqs: [
-      { type: "OR", reqs: ["CIVE 153", "EARTH 121"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 153"] }, { type: "AND", reqs: ["EARTH 121", "EARTH 121L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -10677,7 +10684,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Water quality, air pollution, fate and transport of contaminants in natural and engineered systems, and pollution prevention. Solid and hazardous waste management. Water and wastewater treatment systems and design principles. Four lab sessions.",
     prereqs: [
-      { type: "OR", reqs: ["CHE 102", "GEOE 280"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CHE 102"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 280"] }, { type: "AND", reqs: ["GEOE 280"] }] }] }
     ],
     antireqs: ["ENVE 375"],
     tags: [],
@@ -10690,7 +10697,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to the water cycle, flood frequency analysis, design storms. Analysis of hydrographs and rainfall-runoff response mechanisms in urban and natural systems. Mass continuity and water budgets at the watershed scale. Impact of land use change on hydrologic response. Quantification of open channel flow; subcritical and supercritical flow regimes. Dynamic forces on submerged structures and low/scour beneath bridges.",
     prereqs: [
-      { type: "AND", reqs: ["CIVE 105"] }
+      { type: "AND", reqs: ["CIVE 105", "CIVE 224", "CIVE 280"] }
     ],
     antireqs: [],
     tags: [],
@@ -10760,7 +10767,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Advanced coverage of design of structural steel members and connections, building on CIVE310. Design of laterally-unsupported beams, compression members and beam-columns. Plate girders. Connections. Special topics in design of structural steel or other metals.",
     prereqs: [
-      { type: "OR", reqs: ["AE 310", "CIVE 310"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AE 310"] }, { type: "AND", reqs: ["CIVE 310"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -10773,7 +10780,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Advanced analysis and design of concrete members for flexure. Beam shear analysis and design. D-region shear design. Column design. Special topics.",
     prereqs: [
-      { type: "OR", reqs: ["AE 310", "CIVE 310"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AE 310"] }, { type: "AND", reqs: ["CIVE 310"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -10786,7 +10793,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Building loads. Lateral load systems. Floor systems for buildings. Composite construction. Introduction to bridge design. Special topics.",
     prereqs: [
-      { type: "OR", reqs: ["AE 310", "CIVE 310"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["AE 310"] }, { type: "AND", reqs: ["CIVE 310"] }] }, { type: "AND", reqs: ["CIVE 413"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -10799,7 +10806,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the development of the basic fundamentals of finite element method with applications in fluid flow, mass transport, solid mechanics, and structures. Topics include discrete problems, matrix methods, variational principle, method of weighted residuals, element shapes, and interpolation functions.",
     prereqs: [
-      { type: "OR", reqs: ["AE 223", "CIVE 222", "ENVE 223", "GEOE 223"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AE 223"] }, { type: "AND", reqs: ["CIVE 222"] }, { type: "AND", reqs: ["ENVE 223"] }, { type: "AND", reqs: ["GEOE 223"] }] }
     ],
     antireqs: ["ME 559"],
     tags: [],
@@ -11157,7 +11164,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Cultural development from the agricultural revolution to the rise of literacy. Special attention to the development of agriculture as a means of subsistence and to the rise of early civilization. Areas and periods of emphasis will vary from year to year.",
     prereqs: [
-      { type: "OR", reqs: ["ANTH 201", "CLAS 221"] }
+      { type: "AND", reqs: ["ANTH 201", "CLAS 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -11207,7 +11214,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An in-depth examination, through English translation, of a genre(s), author(s), or selected topic(s) in Greek and/or Roman literature. Material studied may include the genres of epic, tragedy, comedy, lyric, and satire, and authors such as Homer, Virgil, Sophokles, Seneca, Aristophanes, Menander, Plautus, Sappho, Pindar, Catullus, and Horace.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 231", "CLAS 232"] }
+      { type: "AND", reqs: ["CLAS 231"] }
     ],
     antireqs: [],
     tags: [],
@@ -11220,7 +11227,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An advanced survey of the art and architecture from a selected time period of Greek history. Material studied may include the art and architecture of the Aegean Bronze Age, and the Archaic, Classical, and Hellenistic periods. Archaeological, historical, and cultural issues specific to each time period will be discussed through the important media of the day.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 241", "FINE 241"] }
+      { type: "AND", reqs: ["CLAS 241", "FINE 241"] }
     ],
     antireqs: ["FINE 341"],
     tags: [],
@@ -11233,7 +11240,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An advanced survey of the art and architecture from a selected time period of Roman History. Material studied may include the art and architecture of the Etruscans, the Roman Republic, and the Roman Empire. Archaeological, historical, and cultural issues specific to each time period will be discussed through the important media of the day.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 242", "FINE 242"] }
+      { type: "AND", reqs: ["CLAS 242", "FINE 242"] }
     ],
     antireqs: ["FINE 342"],
     tags: [],
@@ -11246,7 +11253,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An advanced study of aspects of Greek history, through the examination of a specific time period, event(s), or theme(s). Topics studied may include the Archaic Age and the rise of the Polis, the Persian Wars, the Peloponnesian War, conflict in the fourth century BCE, the history of the Hellenistic period, and Greek social history.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 251", "HIST 242"] }
+      { type: "AND", reqs: ["CLAS 251", "HIST 242"] }
     ],
     antireqs: [],
     tags: [],
@@ -11259,7 +11266,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An advanced study of aspects of Roman history, through the examination of a specific time period, event(s) or theme(s). Topics studied may include the Punic Wars, the end of the Republic, the Julio-Claudian Dynasty, history of the High Empire, later Roman history, and Roman social history.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 252", "HIST 252"] }
+      { type: "AND", reqs: ["CLAS 252", "HIST 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -11283,7 +11290,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of scientific thought and achievements in such areas as astronomy, biology, anatomy, and medicine, and of the technological skills which produced and distributed raw materials, manufactured goods, and agricultural products.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 201", "CLAS 202", "CLAS 251"] }
+      { type: "OR", reqs: ["CLAS 201", "CLAS 202", "CLAS 251", "CLAS 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -11318,9 +11325,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Each fall and winter term a senior seminar on some aspect of Greek or Roman civilization will be offered.",
     prereqs: [
-      { type: "AND", reqs: ["CLAS 251"] },
-      { type: "OR", reqs: ["CLAS 231", "CLAS 232"] },
-      { type: "OR", reqs: ["CLAS 241", "CLAS 242"] }
+      { type: "AND", reqs: ["CLAS 251", "CLAS 252"] },
+      { type: "AND", reqs: ["CLAS 231"] },
+      { type: "AND", reqs: ["CLAS 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -11425,7 +11432,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"] }
     ],
-    antireqs: ["CO 250"],
+    antireqs: ["CO 250", "CO 255", "CO 352"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -11436,9 +11443,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A broad introduction to the field of optimization, discussing applications, and solution techniques. Mathematical models for real life applications; algorithms; aspects of computational complexity; geometry; linear programming duality, focusing on the development of algorithms.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"] }
     ],
-    antireqs: ["CO 227"],
+    antireqs: ["CO 227", "CO 255"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -11449,9 +11456,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Linear optimization: feasibility theorems, duality, the simplex algorithm. Discrete optimization: integer linear programming, cutting planes, network flows. Continuous optimization: local and global optima, feasible directions, convexity, necessary optimality conditions.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 235"] }
     ],
-    antireqs: ["CO 227"],
+    antireqs: ["CO 227", "CO 250", "CO 352"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -11475,7 +11482,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The algebra of formal power series. The combinatorics of the ordinary and exponential generating series. Lagrange's implicit function theorem, applications to the enumeration of permutations, functions, trees and graphs. Integer partitions, geometric methods, enumerating linear transformations. Introduction to the pattern algebra, applications to the enumeration of strings. Lattice paths, Wiener-Hopf factorization. Enumeration under symmetries.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 239", "MATH 249"] }
+      { type: "AND", reqs: ["MATH 239"] }
     ],
     antireqs: [],
     tags: [],
@@ -11488,7 +11495,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A first course in error-correcting codes. Linear block codes, Hamming-Golay codes, and multiple error-correcting BCH codes are studied. Various encoding and decoding schemes are considered.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 225", "MATH 235", "MATH 245"] }
+      { type: "AND", reqs: ["MATH 225"] }
     ],
     antireqs: [],
     tags: [],
@@ -11501,7 +11508,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Models of computation. An overview of complexity: P, NP, and NP-complete problems. Introduction to the analysis of algorithms through development of number-theoretic algorithms. Computation over rings and finite fields. Graph-theoretic algorithms and applications, including search, planarity testing, and shortest-path problems. [Note: Lab is not scheduled and students are expected to find time in open hours to complete their work. Offered: W,S]",
     prereqs: [
-      { type: "OR", reqs: ["CS 234", "MATH 239", "MATH 249"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 234"] }, { type: "AND", reqs: ["MATH 239"] }] }
     ],
     antireqs: ["CS 341", "SE 240"],
     tags: [],
@@ -11515,7 +11522,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to some of the key topics in graph theory: connectivity, planarity, and matchings. Connectivity: Menger's theorem, 3-connected graphs. Planarity: Kuratowski's theorem, uniqueness of planar embeddings. Matchings: Review of Konig's theorem, Tutte's theorem.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 239", "MATH 249"] }
+      { type: "AND", reqs: ["MATH 239"] }
     ],
     antireqs: [],
     tags: [],
@@ -11528,7 +11535,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of linear programming. Shortest path problems. The max-flow min-cut theorem and applications. Minimum cost flow problems. Network simplex and primal-dual algorithms. Applications to problems of transportation, distribution, job assignments, and critical-path planning.",
     prereqs: [
-      { type: "AND", reqs: ["CO 250"] }
+      { type: "OR", reqs: ["CO 250", "CO 255", "CO 352"] }
     ],
     antireqs: [],
     tags: [],
@@ -11541,7 +11548,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Formulations of combinatorial optimization problems, greedy algorithms, dynamic programming, branch-and-bound, cutting plane algorithms, decomposition techniques in integer programming, approximation algorithms.",
     prereqs: [
-      { type: "AND", reqs: ["CO 250"] }
+      { type: "OR", reqs: ["CO 250", "CO 255", "CO 352"] }
     ],
     antireqs: [],
     tags: [],
@@ -11554,8 +11561,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A course on the fundamentals of nonlinear optimization, including both the mathematical and the computational aspects. Necessary and sufficient optimality conditions for unconstrained and constrained problems. Convexity and its applications. Computational techniques and their analysis.",
     prereqs: [
-      { type: "OR", reqs: ["CO 250", "CO 255", "CO 352"] },
-      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["CO 250", "CO 255", "CO 352", "MATH 128", "MATH 138", "MATH 148"] }
     ],
     antireqs: [],
     tags: [],
@@ -11568,7 +11574,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An applications-oriented course that illustrates how various mathematical models and methods of optimization can be used to solve problems arising in business, industry, and science.",
     prereqs: [
-      { type: "OR", reqs: ["CO 250", "CO 255", "CO 352"] }
+      { type: "AND", reqs: ["CO 250"] }
     ],
     antireqs: ["CO 327"],
     tags: [],
@@ -11582,7 +11588,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Computational optimization methodologies underlying portfolio problems in finance. Computational linear algebra, determining derivatives, quadratic, and nonlinear optimization. The efficient frontier problem. Applications of optimization in finance such as volatility surface determination and global minimization for value-at-risk.",
     prereqs: [
       { type: "OR", reqs: ["AFM 272", "ACTSC 291", "ACTSC 371", "ACTSC 372", "BUS 393W", "ECON 371"] },
-      { type: "OR", reqs: ["CO 227", "CO 250"] }
+      { type: "OR", reqs: ["CO 250", "CO 255", "CO 352"] }
     ],
     antireqs: ["CO 370"],
     tags: [],
@@ -11595,7 +11601,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A course in problem solving. 100 problems are studied. Problems are taken mainly from the elementary parts of algebra, geometry, number theory, combinatorics, and probability.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 135", "MATH 106", "MATH 136", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 135"] }, { type: "AND", reqs: ["MATH 106"] }, { type: "AND", reqs: ["MATH 138"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -11621,7 +11627,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The ring of symmetric functions, standard bases, the Hall inner product. Young tableaux. The Robinson-Schensted-Knuth correspondence, the hook-length formula, the Jacobi-Trudi formula, the Pieri rule, the Littlewood-Richardson rule. Representation theory of the symmetric groups. Enumeration of plane partitions. Enumeration of maps on surfaces. Other topics.",
     prereqs: [
-      { type: "OR", reqs: ["PMATH 336", "PMATH 347"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PMATH 336"] }, { type: "AND", reqs: ["PMATH 347"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -11635,8 +11641,8 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Basics of information theory; Shannon entropy, KL divergence, and mutual information; basic properties of entropic quantities; chain rule, Pinsker's Inequality, Data Processing Inequality; compression; Channel Coding Theorem; error-correction; applications to combinatorics, optimization, cryptography, and computer science.",
     prereqs: [
       { type: "OR", reqs: ["CO 250", "CO 255", "CS 231", "CS 241"] },
-      { type: "OR", reqs: ["MATH 239", "MATH 249"] },
-      { type: "OR", reqs: ["STAT 230", "STAT 240"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 239"] }, { type: "AND", reqs: ["MATH 249"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 230"] }, { type: "AND", reqs: ["STAT 240"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -11649,7 +11655,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Pairwise orthogonal latin squares. Transversal designs and finite planes. Balanced incomplete block designs, group divisible designs, and pairwise balanced designs. Symmetric designs and Hadamard matrices. Recursive constructions. Wilson's fundamental construction.",
     prereqs: [
-      { type: "OR", reqs: ["PMATH 336", "PMATH 346", "PMATH 347"] }
+      { type: "AND", reqs: ["PMATH 336"] }
     ],
     antireqs: [],
     tags: [],
@@ -11686,7 +11692,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Connectivity (Menger's theorem, ear decomposition, and Tutte's wheels theorem) and matchings (Hall's theorem and Tutte's theorem). Flows: integer and group-valued flows, the flow polynomial, the 6-flow theorem. Ramsey theory: upper and lower bounds, explicit constructions. External graph theory: Turan's theorem, the Erdos-Gallai theorem. Probabilistic methods.",
     prereqs: [
-      { type: "OR", reqs: ["CO 342", "CO 245"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CO 342"] }, { type: "AND", reqs: ["MATH 235"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -11699,7 +11705,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the methods of and some interesting current topics in algebraic graph theory. Topics covered will include vertex-transitive graphs, eigenvalue methods, strongly regular graphs and may include graph homomorphisms, Laplacians or knot and link invariants.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 239", "PMATH 336", "PMATH 346", "PMATH 347"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 239"] }, { type: "AND", reqs: ["PMATH 336"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -11725,7 +11731,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Characterizations of optimal solutions and efficient algorithms for optimization problems over discrete structures. Topics include network flows, optimal matchings, T-joins and postman tours, matroid optimization.",
     prereqs: [
-      { type: "OR", reqs: ["CO 255", "CO 351"] }
+      { type: "AND", reqs: ["CO 255"] }
     ],
     antireqs: [],
     tags: [],
@@ -11738,7 +11744,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Formulation of problems as integer linear programs. Solution by branch-and-bound and cutting plane algorithms. Introduction to the theory of valid inequalities and polyhedral combinatorics.",
     prereqs: [
-      { type: "OR", reqs: ["CO 255", "CO 351"] }
+      { type: "AND", reqs: ["CO 255"] }
     ],
     antireqs: [],
     tags: [],
@@ -11751,7 +11757,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An overview of practical optimization problems that can be posed as scheduling problems. Characterizations of optimal schedules. Simple and efficient combinatorial algorithms for easy problems. A brief overview of computational complexity, definition of P, NP, NP-complete and NP-hard. Integer programming formulations, the travelling salesman problem, heuristics, dynamic programming, and branch-and-bound approaches. Polynomial-time approximation algorithms.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 229", "MATH 239", "MATH 249"] },
       { type: "OR", reqs: ["CO 227", "CO 250", "CO 255", "CO 352"] }
     ],
     antireqs: [],
@@ -11765,7 +11770,6 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A broad introduction to game theory and its applications to the modeling of competition and cooperation in business, economics, and society. Two-person games in strategic form and Nash equilibria. Extensive form games, including multi-stage games. Coalition games and the core. Bayesian games, mechanism design, and auctions.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 229", "MATH 239", "MATH 249"] },
       { type: "OR", reqs: ["CO 227", "CO 250", "CO 255", "CO 352"] }
     ],
     antireqs: [],
@@ -11790,7 +11794,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the modern theory of convex programming, its extensions and applications. Structure of convex sets, separation and support, subgradient calculus for convex functions, Fenchel conjugacy and duality, Lagrange multipliers. Ellipsoid method for convex optimization.",
     prereqs: [
-      { type: "OR", reqs: ["CO 255", "PMATH 331"] }
+      { type: "OR", reqs: ["PMATH 331", "PMATH 333", "PMATH 351"] }
     ],
     antireqs: [],
     tags: [],
@@ -11803,7 +11807,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Numerical algorithms for nonlinear optimization. Newton, variable-metric, quasi-Newton and conjugate gradient methods. Obtaining derivatives. Convexity. Trust region methods. Constrained optimization including optimality conditions, sequential quadratic programming, interior point, and active set strategies.",
     prereqs: [
-      { type: "OR", reqs: ["CO 367", "CO 255"] }
+      { type: "OR", reqs: ["CO 250", "CO 352", "CO 255"] }
     ],
     antireqs: [],
     tags: [],
@@ -11816,9 +11820,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Optimization over convex sets described as the intersection of the set of symmetric, positive semidefinite matrices with affine spaces. Formulations of problems from combinatorial optimization, graph theory, number theory, probability and statistics, engineering design, and control theory. Theoretical and practical consequences of these formulations. Duality theory and algorithms.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 239", "MATH 249"] },
-      { type: "OR", reqs: ["PMATH 331", "PMATH 333"] },
-      { type: "OR", reqs: ["CO 255", "CO 367"] }
+      { type: "AND", reqs: ["MATH 239"] },
+      { type: "OR", reqs: ["PMATH 331", "PMATH 333", "PMATH 351"] },
+      { type: "AND", reqs: ["CO 255"] }
     ],
     antireqs: [],
     tags: [],
@@ -11832,8 +11836,8 @@ export const RAW_COURSES: RawCourse[] = [
     description: "An in-depth examination of the origins of mathematics, beginning with examples of Babylonian mathematics. Topics may include Pythagorean triples, solution of equations, estimation of pi, duplication of the cube, trisection of an angle, the Fibonacci sequence, the origins of calculus.",
     prereqs: [
       { type: "OR", reqs: ["ECE 108", "MATH 135", "MATH 145"] },
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115"] },
-      { type: "OR", reqs: ["MATH 118", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"] },
+      { type: "AND", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138"] }
     ],
     antireqs: [],
     tags: [],
@@ -11884,7 +11888,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "A broad introduction to modern cryptography, highlighting the tools and techniques used to secure internet and messaging applications. Symmetric-key encryption, hash functions, message authentication, authenticated encryption, public-key encryption and digital signatures, key establishment, key management.",
     prereqs: [
       { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 146"] },
-      { type: "OR", reqs: ["MATH 135", "MATH 145"] },
+      { type: "AND", reqs: ["MATH 135"] },
       { type: "OR", reqs: ["STAT 206", "STAT 220", "STAT 230", "STAT 240"] }
     ],
     antireqs: [],
@@ -11933,7 +11937,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an introduction to the basic concepts and tools of micro and macro economic analysis of individuals, businesses, and government in the global world. Topics may include consumers, producers, market structures, national income accounting, unemployment, and inflation.",
     prereqs: [],
-    antireqs: ["ECON 101"],
+    antireqs: ["ECON 101", "ECON 102"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -11944,7 +11948,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This intermediate level accounting course will focus on the usage of financial information from a management perspective.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 101", "BUS 127W", "BUS 227W"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 101"] }, { type: "AND", reqs: ["BUS 127W", "BUS 227W"] }] }
     ],
     antireqs: ["AFM 291", "BUS 387W"],
     tags: [],
@@ -11968,7 +11972,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This advanced course in financial statement analysis provides a framework for using financial statement data in a variety of business analysis and valuation contexts.",
     prereqs: [
-      { type: "OR", reqs: ["COMM 321", "BUS 387W"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["COMM 321"] }, { type: "AND", reqs: ["BUS 387W"] }] },
+      { type: "AND", reqs: ["ACTSC 372"] }
     ],
     antireqs: ["AFM 492", "AFM 276", "BUS 417W"],
     tags: [],
@@ -11982,7 +11987,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course will introduce students to approaches, techniques, and terminology used in project management. In particular, students will learn project planning principles, product and process metrics, people and organizational issues, task allocation and scheduling, monitoring and control, change management, and methods for cost estimation and risk assessment. Students will also be introduced to current project management tools, and will manage their own term project.",
     prereqs: [
       { type: "AND", reqs: ["AFM 102"] },
-      { type: "OR", reqs: ["MSE 211", "PSYCH 238"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MSE 211"] }, { type: "AND", reqs: ["PSYCH 238"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -11995,8 +12000,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce students to approaches, techniques, and terminology used in electronic business. Students will also study issues in disciplines related to electronic business. They will review a number of sites and identify efficient e-commerce analysis, design and development techniques. Students will be introduced to current electronic business tools and standards, and will construct their own simple electronic business site.",
     prereqs: [
-      { type: "OR", reqs: ["MGMT 244", "ARBUS 302", "BUS 352W"] },
-      { type: "OR", reqs: ["CS 330", "CS 490"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MGMT 244", "ARBUS 302"] }, { type: "AND", reqs: ["BUS 352W"] }] },
+      { type: "AND", reqs: ["CS 330"] }
     ],
     antireqs: ["AFM 443"],
     tags: [],
@@ -12221,7 +12226,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Theory and practice of interviewing. A workshop course which teaches theory, design, and presentation of interviews. Videotaping student exercises will enhance interview design and delivery, as well as listening and critical skills.",
     prereqs: [
-      { type: "OR", reqs: ["EMLS 101R", "ENGL 129R"] }
+      { type: "OR", reqs: ["EMLS 101R", "EMLS 102R", "ENGL 129R", "ENGL 109", "COMMST 100", "COMMST 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -12247,7 +12252,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A workshop course in leadership combining theoretical and experiential perspectives. Students will develop and apply knowledge, skills, and attitudes necessary to be effective and perceptive communicators in a leadership position.",
     prereqs: [
-      { type: "OR", reqs: ["EMLS 101R", "ENGL 129R"] }
+      { type: "OR", reqs: ["EMLS 101R", "EMLS 102R", "ENGL 129R", "ENGL 109", "COMMST 100", "COMMST 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -12260,7 +12265,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces a theoretical framework for understanding the nature and significance of public communication. Strategies and techniques typically employed in political and commercial contexts are examined.",
     prereqs: [
-      { type: "OR", reqs: ["COMMST 101", "EMLS 101R", "ENGL 129R"] }
+      { type: "OR", reqs: ["EMLS 101R", "EMLS 102R", "ENGL 129R", "ENGL 109", "COMMST 100", "COMMST 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -12374,7 +12379,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students explore techniques to access and develop the voice as a resource for performance.",
     prereqs: [
-      { type: "OR", reqs: ["THPERF 102", "COMMST 102"] }
+      { type: "AND", reqs: ["THPERF 102", "COMMST 102"] }
     ],
     antireqs: [],
     tags: [],
@@ -12688,7 +12693,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the fundamentals of computer programming through media computation. Students will learn to write interactive graphical programs. Fundamental language concepts such as variables, conditionals, loops, functions, and arrays. Programming concepts such as coding style, modular design, testing, and debugging. Media concepts such as 2D graphics drawing, input, animation, and image processing.",
     prereqs: [],
-    antireqs: ["BME 121", "CS 115", "CHE 121", "CIVE 121", "ECE 150", "MTE 121", "GENE 121", "NE 111", "MSE 121", "PHYS 236", "SYDE 121"],
+    antireqs: ["BME 121", "CS 115", "CS 135", "CS 137", "CS 145", "CHE 121", "CIVE 121", "ECE 150", "MTE 121", "GENE 121", "NE 111", "MSE 121", "PHYS 236", "SYDE 121"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -12702,7 +12707,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["CS 105"] }
     ],
-    antireqs: ["BME 121", "CS 115", "CHE 121", "CIVE 121", "ECE 150", "MTE 121", "GENE 121", "NE 111", "MSE 121", "SYDE 121"],
+    antireqs: ["BME 121", "CS 115", "CS 135", "CS 137", "CS 145", "CHE 121", "CIVE 121", "ECE 150", "MTE 121", "GENE 121", "NE 111", "MSE 121", "SYDE 121"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -12714,7 +12719,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to basic imperative programming principles; programming concepts including functions, flow control, lists, arrays; numerical accuracy and efficiency; data analysis and general-purpose algorithms. Introduction to object-oriented programming concepts.",
     prereqs: [],
-    antireqs: ["CS 116", "BME 121", "CHE 120", "CIVE 121", "ECE 150", "GENE 121", "MTE 121", "ME 101", "MSE 121", "NE 111", "PHYS 236", "SYDE 121"],
+    antireqs: ["CS 116", "CS 135", "CS 136", "CS 137", "CS 138", "CS 145", "CS 146", "BME 121", "CHE 120", "CIVE 121", "ECE 150", "GENE 121", "MTE 121", "ME 101", "MSE 121", "NE 111", "PHYS 236", "SYDE 121"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -12725,7 +12730,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the fundamentals of computer science through the application of elementary programming patterns in the functional style of programming. Function definition and application. Tracing via substitution. Design, testing, and documentation. Recursive data definitions. Lists and trees. Functional and data abstraction.",
     prereqs: [],
-    antireqs: ["BME 121", "CS 135", "CHE 121", "CIVE 121", "ECE 150", "GENE 121", "MTE 121", "ME 101", "NE 111", "MSE 121", "PHYS 139", "SYDE 121"],
+    antireqs: ["BME 121", "CS 135", "CS 137", "CS 138", "CS 145", "CHE 121", "CIVE 121", "ECE 150", "GENE 121", "MTE 121", "ME 101", "NE 111", "MSE 121", "PHYS 139", "SYDE 121"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -12736,9 +12741,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on the techniques and patterns learned in CS115 while making the transition to use of an imperative language. Generative and structural recursion. Mutation (assignment) and its role in an imperative language. Primitive types and basic I/O. Sequencing, selection, looping. Function definition and use. File and console I/O. Issues in computer science.",
     prereqs: [
-      { type: "OR", reqs: ["CS 115", "CS 135", "CS 145"] }
+      { type: "AND", reqs: ["CS 115"] }
     ],
-    antireqs: ["CS 114", "PHYS 236", "MSE 240", "NE 111"],
+    antireqs: ["CS 114", "CS 136", "CS 137", "CS 138", "CS 146", "PHYS 236", "PHYS 239", "MSE 240", "NE 111"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -12749,7 +12754,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the fundamentals of computer science through the application of elementary programming patterns in the functional style of programming. Syntax and semantics of a functional programming language. Tracing via substitution. Design, testing, and documentation. Linear and nonlinear data structures. Recursive data definitions. Abstraction and encapsulation. Generative and structural recursion. Historical context.",
     prereqs: [],
-    antireqs: ["AE 121", "BME 121", "CS 115", "CIVE 121", "ECE 150", "ME 101", "MSE 121", "PHYS 236", "SYDE 121"],
+    antireqs: ["AE 121", "BME 121", "CS 115", "CS 137", "CS 138", "CS 145", "CIVE 121", "ECE 150", "ME 101", "MSE 121", "PHYS 236", "SYDE 121"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -12760,9 +12765,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on the techniques and patterns learned in CS135 while making the transition to use an imperative language. It introduces the design and analysis of algorithms, the management of information, and the programming mechanisms and methodologies required in implementations. Topics discussed include iterative and recursive sorting algorithms; lists, stacks, queues, trees, and their application; abstract data types and their implementations.",
     prereqs: [
-      { type: "OR", reqs: ["CS 145", "CS 115", "CS 116", "CS 135"] }
+      { type: "OR", reqs: ["CS 145", "CS 115", "CS 116", "CS 135"] },
+      { type: "AND", reqs: ["CS 136L"] }
     ],
-    antireqs: ["CS 137", "PHYS 239"],
+    antireqs: ["CS 137", "CS 138", "CS 146", "PHYS 239"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -12773,7 +12779,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "This course introduces students to tools and techniques useful in the software development lifecycle. Students learn to navigate and leverage commands and utilities in the Linux Command Line Shell. Students gain experience in version control software, writing scripts to automate tasks, and creating effective test cases to identify bugs. Tracing and debugging strategies are discussed. Students also gain experience in using built-in support for version control, testing, debugging, build automation, etc. in integrated development environments (IDEs).",
     prereqs: [
-      { type: "OR", reqs: ["CS 145", "CS 115", "CS 116", "CS 135"] }
+      { type: "OR", reqs: ["CS 145", "CS 115", "CS 116", "CS 135"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 136"] }, { type: "AND", reqs: ["CS 146"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -12810,7 +12817,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "CS145 is an advanced-level version of CS135.",
     prereqs: [],
-    antireqs: ["CS 115"],
+    antireqs: ["CS 115", "CS 135", "CS 137", "CS 138"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -12821,9 +12828,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "CS146 is an advanced-level version of CS136.",
     prereqs: [
-      { type: "AND", reqs: ["CS 145"] }
+      { type: "AND", reqs: ["CS 145"] },
+      { type: "AND", reqs: ["CS 136L"] }
     ],
-    antireqs: ["CS 116"],
+    antireqs: ["CS 116", "CS 136", "CS 137", "CS 138"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -12846,10 +12854,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Basic computer architecture, organization, system services, and software. Typology of processors, memory, I/O devices, and their performance.",
     prereqs: [
-      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 114"] },
-      { type: "OR", reqs: ["CS 115", "CS 135"] }
+      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 146", "CS 114", "CS 115", "CS 135"] }
     ],
-    antireqs: ["BME 292", "BME 393", "CS 241", "CS 241E", "SYDE 192"],
+    antireqs: ["BME 292", "BME 393", "CS 241", "CS 241E", "CS 251", "CS 251E", "SYDE 192"],
     tags: [],
     majors: ["any"],
     exclMajors: ["cs", "ds", "se"],
@@ -12861,8 +12868,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The study of the steps required to solve real-world problems on a computer, including problem specification, choice of algorithmic paradigm, analysis, and implementation. Topics include exhaustive search, divide and conquer, greedy, and dynamic programming approaches.",
     prereqs: [
-      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 114"] },
-      { type: "OR", reqs: ["CS 115", "CS 135"] }
+      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 146", "CS 114", "CS 115", "CS 135"] }
     ],
     antireqs: ["BME 122", "CS 341", "ECE 250", "MSE 240", "MTE 140", "SYDE 223"],
     tags: [],
@@ -12876,8 +12882,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Top-down design of data structures. Using representation-independent data types. Introduction to commonly used data types, including lists, sets, mappings, and trees. Selection of data representation.",
     prereqs: [
-      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 114"] },
-      { type: "OR", reqs: ["CS 115", "CS 135"] }
+      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 146", "CS 114", "CS 115", "CS 135"] }
     ],
     antireqs: ["BME 122", "CS 240", "CS 240E", "ECE 250", "MSE 240", "MTE 140", "SYDE 223"],
     tags: [],
@@ -12891,7 +12896,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to widely used and effective methods of data organization, focusing on data structures, their algorithms, and the performance of these algorithms. Specific topics include priority queues, sorting, dictionaries, data structures for text processing.",
     prereqs: [
-      { type: "OR", reqs: ["CS 245", "CS 245E", "SE 212", "STAT 206"] }
+      { type: "OR", reqs: ["CS 241", "CS 241E", "CS 246", "CS 246E", "CS 247", "STAT 206", "STAT 230", "STAT 240"] }
     ],
     antireqs: ["BME 122", "CS 234", "CS 240E", "ECE 250", "MTE 140", "SYDE 223"],
     tags: [],
@@ -12904,7 +12909,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Enriched version of CS240.",
     prereqs: [
-      { type: "OR", reqs: ["CS 136", "CS 146"] }
+      { type: "OR", reqs: ["CS 136", "CS 138", "CS 146"] },
+      { type: "OR", reqs: ["STAT 206", "STAT 230", "STAT 240"] }
     ],
     antireqs: ["CS 234", "CS 240", "ECE 250"],
     tags: [],
@@ -12917,7 +12923,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The relationship between high-level languages and the computer architecture that underlies their implementation, including basic machine architecture, assemblers, specification and translation of programming languages, linkers and loaders, block-structured languages, parameter passing mechanisms, and comparison of programming languages.",
     prereqs: [
-      { type: "OR", reqs: ["CS 138", "CS 246", "CS 136L", "CS 136L", "CS 136", "CS 146"] }
+      { type: "OR", reqs: ["CS 136", "CS 146"] }
     ],
     antireqs: ["CS 230", "CS 241E", "ECE 351"],
     tags: [],
@@ -12930,7 +12936,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Enriched version of CS241.",
     prereqs: [
-      { type: "OR", reqs: ["CS 136L", "CS 136", "CS 146", "CS 138"] }
+      { type: "OR", reqs: ["CS 136", "CS 146", "CS 138"] }
     ],
     antireqs: ["CS 230", "ECE 351"],
     tags: [],
@@ -12943,7 +12949,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Logic as a tool for representation, reasoning, and computation. Propositional and predicate logic. Formalizing the notions of correct and incorrect reasoning, defining what is computable, and exploring the limits of computation. Godel's Incompleteness Theorem. Applications of logic to computer science.",
     prereqs: [
-      { type: "OR", reqs: ["CS 136", "CS 138", "MATH 135"] }
+      { type: "OR", reqs: ["CS 136", "CS 138", "CS 146", "MATH 135", "MATH 145"] }
     ],
     antireqs: ["CS 245E", "PMATH 330", "ECE 208", "SE 212"],
     tags: [],
@@ -12969,7 +12975,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to object-oriented programming and to tools and techniques for software development. Designing, coding, debugging, testing, and documenting medium-sized programs: reading specifications and designing software to implement them; selecting appropriate data structures and control structures; writing reusable code; reusing existing code; basic performance issues; debuggers; test suites.",
     prereqs: [
-      { type: "OR", reqs: ["CS 146", "CS 138", "CS 136L", "CS 136"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["CS 146"] }, { type: "AND", reqs: ["CS 136L"] }] }, { type: "AND", reqs: ["CS 138"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["CS 136L"] }, { type: "AND", reqs: ["CS 136"] }] }] }
     ],
     antireqs: ["CS 246E", "CS 247", "MSE 342", "SYDE 322"],
     tags: [],
@@ -12982,7 +12988,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Enriched version of CS246.",
     prereqs: [
-      { type: "OR", reqs: ["CS 136L", "CS 146"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["CS 136L"] }, { type: "AND", reqs: ["CS 136"] }] }, { type: "AND", reqs: ["CS 146"] }] }
     ],
     antireqs: ["CS 246", "SYDE 322"],
     tags: [],
@@ -12995,7 +13001,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Systematic methods for designing, coding, testing, and documenting medium-sized programs. Major topics include abstraction, modularity, software modelling, object-oriented programming and design, generic programming, testing and debugging.",
     prereqs: [
-      { type: "OR", reqs: ["CS 241", "CS 241E"] }
+      { type: "AND", reqs: ["CS 241", "CS 241E"] }
     ],
     antireqs: ["CS 246", "CS 246E", "MSE 342", "SYDE 322"],
     tags: [],
@@ -13034,9 +13040,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to information systems and their strategic role in business. Topics include types of information systems, organizational requirements, systems development strategies, decision support systems, data and information management, and information systems management, control, and implementation.",
     prereqs: [
-      { type: "OR", reqs: ["CS 106", "CS 116", "CS 136", "CS 138", "CS 146", "CS 114", "CS 135", "CS 145"] }
+      { type: "OR", reqs: ["CS 106", "CS 116", "CS 136", "CS 138", "CS 146", "CS 114", "CS 115", "CS 135", "CS 145"] }
     ],
-    antireqs: ["AFM 241", "BUS 415W", "CS 480", "CS 490", "MSCI 441"],
+    antireqs: ["AFM 241", "BUS 415W", "BUS 486W", "CS 480", "CS 490", "MSCI 441"],
     tags: [],
     majors: ["any"],
     exclMajors: ["cs"],
@@ -13048,10 +13054,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to numerical methods for business and finance. Floating-point arithmetic, interpolation. Methods for portfolio optimization and contingent-claims valuation. Solution of nonlinear equations. Monte Carlo methods, lattice methods, simulation of hedging strategies.",
     prereqs: [
-      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 114"] },
-      { type: "OR", reqs: ["CS 115", "CS 135"] },
-      { type: "OR", reqs: ["MATH 106", "MATH 136"] },
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] },
+      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 146", "CS 114", "CS 115", "CS 135"] },
+      { type: "OR", reqs: ["MATH 106", "MATH 136", "MATH 146"] },
+      { type: "AND", reqs: ["MATH 237"] },
       { type: "OR", reqs: ["STAT 206", "STAT 231", "STAT 241"] }
     ],
     antireqs: ["AMATH 242", "CS 371", "CS 370", "MTE 204"],
@@ -13067,9 +13072,9 @@ export const RAW_COURSES: RawCourse[] = [
     description: "A user-oriented approach to the management of large collections of data. Methods used for the storage, selection, and presentation of data. Common database management systems.",
     prereqs: [
       { type: "OR", reqs: ["CS 230", "CS 231", "CS 234", "CS 246", "CS 246E", "CS 330"] },
-      { type: "OR", reqs: ["AFM 341", "CS 136", "CS 146"] }
+      { type: "AND", reqs: ["AFM 341", "CS 116", "CS 136", "CS 146"] }
     ],
-    antireqs: ["CS 348", "MSCI 346"],
+    antireqs: ["CS 348", "CS 448", "MSCI 346"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -13080,7 +13085,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Models of computation. An overview of complexity: P, NP, and NP-complete problems. Introduction to the analysis of algorithms through development of number-theoretic algorithms. Computation over rings and finite fields. Graph-theoretic algorithms and applications, including search, planarity testing, and shortest-path problems. [Note: Lab is not scheduled and students are expected to find time in open hours to complete their work. Offered: W,S]",
     prereqs: [
-      { type: "OR", reqs: ["CS 234", "MATH 239", "MATH 249"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 234"] }, { type: "AND", reqs: ["MATH 239"] }] }
     ],
     antireqs: ["CS 341", "SE 240"],
     tags: [],
@@ -13094,9 +13099,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The study of efficient algorithms and effective algorithm design techniques. Program design with emphasis on pragmatic and mathematical aspects of program efficiency. Topics include divide and conquer algorithms, recurrences, greedy algorithms, dynamic programming, graph search and backtrack, problems without algorithms, NP-completeness and its implications.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 240E"] },
+      { type: "AND", reqs: ["CS 240"] },
       { type: "OR", reqs: ["CS 245", "CS 245E", "SE 212"] },
-      { type: "OR", reqs: ["MATH 239", "MATH 249"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 239"] }, { type: "AND", reqs: ["MATH 249"] }] },
       { type: "OR", reqs: ["STAT 206", "STAT 230", "STAT 240"] }
     ],
     antireqs: ["CS 231", "ECE 406"],
@@ -13110,7 +13115,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to concurrent and parallel programming, with an emphasis on language constructs. Major topics include exceptions, coroutines, atomic operations, critical sections, mutual exclusion, semaphores, high-level concurrency, deadlock, interprocess communication, process structuring, shared memory, and distributed architectures. Students will learn how to structure, implement, and debug concurrent programs.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13123,7 +13128,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to full-stack application design and development. Students will work in project teams to design and build complete, working applications and services using standard tools. Topics include best-practices in design, development, testing, and deployment.",
     prereqs: [
-      { type: "OR", reqs: ["CS 246", "CS 246E", "CS 247"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 246", "CS 246E"] }, { type: "AND", reqs: ["CS 247"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13135,8 +13140,10 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introduction to Database Management",
     units: 0.5,
     description: "The main objective of this course is to introduce students to fundamentals of database technology by studying databases from three viewpoints: those of the database user, the database designer, and the database administrator. It teaches the use of a database management system (DBMS) by treating it as a black box, focusing only on its functionality and its interfaces. Topics include introduction to database systems, relational database systems, database design methodology, SQL and interfaces, database application development, concept of transactions, ODBC, JDBC, database tuning, database administration, and current topics (distributed databases, data warehouses, data mining).",
-    prereqs: [],
-    antireqs: ["CS 338", "ECE 356", "MSCI 346"],
+    prereqs: [
+      { type: "AND", reqs: ["CS 240", "CS 240E"] }
+    ],
+    antireqs: ["CS 338", "ECE 356", "ECE 456", "MSCI 346"],
     tags: [],
     majors: ["cs", "ds", "se"],
     offered: ["F", "W", "S"]
@@ -13147,7 +13154,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to contemporary user interface implementation concepts, including event abstraction, graphical components, layout, feedback, testing, accessibility, and architectures to develop user interfaces. One or more types of interface toolkit paradigms are considered.",
     prereqs: [
-      { type: "OR", reqs: ["CS 241", "CS 241E"] }
+      { type: "OR", reqs: ["MATH 115", "MATH 136", "MATH 146"] }
     ],
     antireqs: [],
     tags: [],
@@ -13160,9 +13167,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the fundamentals of operating system function, design, and implementation. Topics include concurrency, synchronization, processes, threads, scheduling, memory management, file systems, device management, and security.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 251", "CS 251E", "ECE 222"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CS 251", "CS 251E"] }, { type: "AND", reqs: ["ECE 222"] }] }] }
     ],
-    antireqs: ["ECE 254", "MTE 241", "SE 350"],
+    antireqs: ["ECE 254", "ECE 350", "MTE 241", "SE 350"],
     tags: [],
     majors: ["cs", "ds", "se"],
     offered: ["F", "W", "S"]
@@ -13173,7 +13180,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Models of computers including finite automata and Turing machines. Basics of formal languages with applications to the syntax of programming languages. Alternate characterizations of language classes. Proving unrecognizability. Unsolvable problems and their relevance to the semantics of programming.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 241E", "CS 249"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "AND", reqs: ["CS 241E"] }] }, { type: "AND", reqs: ["MATH 239"] }] }
     ],
     antireqs: ["CS 365"],
     tags: [],
@@ -13186,7 +13193,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Finite automata and regular expressions. Pushdown automata and context-free grammars. Turing machines and undecidability. Time and space complexity. Diagonalization and hierarchies. CS365 covers the material in CS360 at an accelerated pace plus additional topics in computational complexity.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 241E", "CS 249"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "AND", reqs: ["CS 241E"] }] }, { type: "AND", reqs: ["MATH 239"] }] }
     ],
     antireqs: ["CS 360"],
     tags: [],
@@ -13199,7 +13206,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Principles and practices of basic numerical computation as a key aspect of scientific computation. Visualization of results. Approximation by splines, fast Fourier transforms, solution of linear and nonlinear equations, differential equations, floating point number systems, error, stability. Presented in the context of specific applications to image processing, analysis of data, scientific modelling.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 106", "MATH 114", "MATH 115", "MATH 136", "CS 231", "CS 234", "CS 241", "CS 241E", "CS 246", "CS 246E"] }
+      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148", "MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "CS 231", "CS 234", "CS 241", "CS 241E", "CS 246", "CS 246E"] }
     ],
     antireqs: ["AMATH 242", "CS 371", "CHE 121", "CIVE 121", "CS 335", "ECE 204", "MTE 204"],
     tags: [],
@@ -13214,8 +13221,8 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 146"] },
       { type: "OR", reqs: ["CS 114", "CS 115", "CS 135", "CS 145"] },
-      { type: "OR", reqs: ["MATH 235", "MATH 245"] },
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 235"] }, { type: "AND", reqs: ["MATH 245"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 237"] }, { type: "AND", reqs: ["MATH 247"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13228,8 +13235,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An upper-level studio course to create computational projects that function as art works and aesthetic experiences. Students will work in an interdisciplinary environment to combine computer science principles with fine art technical and conceptual skills.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 240E"] },
-      { type: "OR", reqs: ["FINE 228", "FINE 247"] }
+      { type: "AND", reqs: ["CS 240", "CS 240E"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["FINE 228"] }, { type: "AND", reqs: ["FINE 247"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13242,7 +13249,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "See the Course Offerings List for topics available.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 246", "CS 246E", "CS 247"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "AND", reqs: ["CS 246", "CS 246E"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13255,7 +13262,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Reading course as announced by the School.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 246", "CS 246E", "CS 247"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "AND", reqs: ["CS 246", "CS 246E"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13281,7 +13288,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduces non-CS major students to infrastructure for data-intensive analytics, with a focus on abstractions, frameworks, and algorithms that allow developers to distribute computation across many machines. Topics include core concepts (partitioning, replication, locality, consistency), computational models (MapReduce, dataflows, stream processing, bulk-synchronous parallel), and applications.",
     prereqs: [
-      { type: "OR", reqs: ["CS 231", "CS 234", "CS 251", "CS 251E", "CS 330"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 231"] }, { type: "AND", reqs: ["CS 251", "CS 251E"] }] }
     ],
     antireqs: ["CS 451"],
     tags: [],
@@ -13296,7 +13303,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["CS 230", "CS 241", "CS 241E", "CS 246", "CS 246E", "CS 251", "CS 251E"] }
     ],
-    antireqs: ["CS 454", "ECE 454"],
+    antireqs: ["CS 454", "CS 456", "ECE 454"],
     tags: [],
     majors: ["any"],
     exclMajors: ["cs"],
@@ -13308,7 +13315,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An exposure to important concepts and issues in contemporary programming languages. Data types, abstraction, and polymorphism. Program structure. Lambda calculus and functional programming, logic programming, object-oriented programming. Semantics of programming languages. Critical comparison of language features and programming methodologies using examples drawn from a variety of programming languages including Lisp, Prolog, ML, Ada, Smalltalk, Icon, APL, and Lucid. Programming assignments involve the use of some of these languages.",
     prereqs: [
-      { type: "OR", reqs: ["CS 241", "CS 241E"] },
+      { type: "AND", reqs: ["CS 241"] },
       { type: "OR", reqs: ["CS 245", "CS 245E", "SE 212"] },
       { type: "OR", reqs: ["CS 246", "CS 246E", "CS 247"] }
     ],
@@ -13323,7 +13330,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Phases of compilation. Lexical analysis and a review of parsing. Compiler-compilers and translator writing systems. LEX and YACC. Scope rules, block structure, and symbol tables. Runtime stack management. Parameter passage mechanisms. Stack storage organization and templates. Heap storage management. Intermediate code. Code generation. Macros.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13336,7 +13343,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduces students to the requirements definition phase of software development. Models, notations, and processes for software requirements identification, representation, analysis, and validation. Cost estimation from early documents and specifications.",
     prereqs: [
-      { type: "OR", reqs: ["CS 341", "CS 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 341"] }, { type: "AND", reqs: ["CS 350"] }] }
     ],
     antireqs: ["SE 463"],
     tags: [],
@@ -13375,7 +13382,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The objective of this course is to introduce students to fundamentals of building a relational database management system. The course focuses on the database engine core technology by studying topics such as storage management (data layout, disk-based data structures), indexing, query processing algorithms, query optimization, transactional concurrency control, logging and recovery.",
     prereqs: [
-      { type: "OR", reqs: ["CS 348", "SE 350"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 348"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13388,7 +13395,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the fundamental theories, methods, and research in the design and evaluation of novel computational artifacts designed to meet real-world human needs.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 241E"] }
+      { type: "AND", reqs: ["CS 240", "CS 240E", "CS 241E"] }
     ],
     antireqs: ["SYDE 348", "SYDE 548"],
     tags: [],
@@ -13401,7 +13408,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course is intended to provide the student with an appreciation of modern computer design and its relation to system architecture, compiler technology, and operating system functionality. The course places an emphasis on design based on the measurement of performance and its dependency on parallelism, efficiency, latency, and resource utilization.",
     prereqs: [
-      { type: "OR", reqs: ["CS 245", "CS 245E", "SE 212", "SE 350"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["CS 245", "CS 245E"] }, { type: "AND", reqs: ["SE 212"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }] }
     ],
     antireqs: ["ECE 320", "ECE 429"],
     tags: [],
@@ -13414,7 +13421,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduces students to infrastructure for data-intensive computing, with a focus on abstractions, frameworks, and algorithms that allow developers to distribute computations across many machines. Topics include core concepts (partitioning, replication, locality, consistency), computational models (MapReduce, dataflows, stream processing, bulk-synchronous parallel), and applications.",
     prereqs: [
-      { type: "OR", reqs: ["CS 341", "SE 350"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 341", "CS 348"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13427,7 +13434,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Intended to give students experience with tools and techniques of real-time programming, this course includes not only issues of microcomputer architecture and a real-time programming language and operating system, but also hands-on experience programming a microcomputer for applications such as process control, data acquisition and communication.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13440,7 +13447,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to security issues in modern software, operating systems, and other computing platforms (e.g., mobile and cloud environments). Causes of security breaches and methods to help detect, isolate, and prevent them. Specific topics include comparing security and privacy, program security, operating system security, mobile security, hardware security, administrating security, and legal and ethical issues.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }
     ],
     antireqs: ["CS 489"],
     tags: [],
@@ -13453,7 +13460,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to distributed systems, emphasizing the multiple levels of software in such systems. Specific topics include fundamentals of data communications, network architecture and protocols, local-area networks, concurrency control in distributed systems, recovery in distributed systems, and clock synchronization.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13466,7 +13473,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to network architectures and protocols, placing emphasis on protocols used in the Internet. Specific topics include application layer protocols, network programming, transport protocols, routing, multicast, data link layer issues, multimedia networking, network security, and network management.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }
     ],
     antireqs: ["CS 436", "ECE 358", "ECE 416"],
     tags: [],
@@ -13479,7 +13486,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Basic techniques of system performance evaluation. Specific topics include performance modelling, discrete event simulation, verification and validation of simulation models, analysis of simulation output, analysis of single server queue and queueing networks, modelling of computer systems, networks, and other queueing or non-queueing systems.",
     prereqs: [
-      { type: "OR", reqs: ["CS 246", "CS 246E", "STAT 206"] }
+      { type: "OR", reqs: ["STAT 206", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -13492,8 +13499,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to privacy and security using cryptography and related techniques in networks, distributed systems, and data science. The course examines how data and metadata can be protected at rest, in transit, and during computation. For at-rest protection, specific topics include the basics of cryptography and relevant ethics/policy concepts. For in-transit protection, specific topics include network defenses, authentication, and secure and anonymous communication protocols. For during-computation protection, specific topics include data inference, differential privacy, homomorphic encryption, multi-party computations, and related protocols.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 135", "MATH 145"] },
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 135"] }, { type: "AND", reqs: ["MATH 145"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 454"] }, { type: "AND", reqs: ["CS 456"] }] }
     ],
     antireqs: ["CS 489"],
     tags: [],
@@ -13506,7 +13514,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Languages and their representations. Grammars --Chomsky hierarchy. Regular sets and sequential machines. Context-free grammars -- normal forms, basic properties. Pushdown automata and transducers. Operations on languages. Undecidable problems in language theory. Applications to the design of programming languages and compiler construction.",
     prereqs: [
-      { type: "OR", reqs: ["CS 360", "CS 365"] }
+      { type: "AND", reqs: ["CS 360"] }
     ],
     antireqs: [],
     tags: [],
@@ -13545,7 +13553,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Basic concepts and implementation of numerical linear algebra techniques and their use in solving application problems. Special methods for solving linear systems having special features. Direct methods: symmetric, positive definite, band, general sparse structures, ordering methods. Iterative methods: Jacobi, Gauss-Seidel, SOR, conjugate gradient. Computing and using orthogonal factorizations of matrices. QR and SVD methods for solving least squares problems. Eigenvalue and singular value decompositions. Computation and uses of these decompositions in practice.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 242", "CS 371", "CS 370"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 242", "CS 371"] }, { type: "AND", reqs: ["CS 370"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13558,8 +13566,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The interaction of financial models, numerical methods, and computing environments. Basic computational aspects of option pricing and hedging. Numerical methods for stochastic differential equations, strong and weak convergence. Generating correlated random numbers. Time-stepping methods. Finite difference methods for the Black-Scholes equation. Discretization, stability, convergence. Methods for portfolio optimization, effect of data errors on portfolio weights.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 242", "CS 371", "CS 370"] },
-      { type: "OR", reqs: ["STAT 206", "STAT 231", "STAT 241"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 242", "CS 371"] }, { type: "AND", reqs: ["CS 370"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["STAT 206"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 231"] }, { type: "AND", reqs: ["STAT 241"] }] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13572,7 +13579,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to neural network methods, with some discussion of their relation to neuroscience. Simple neuron models and networks of neurons. Training feedforward networks. Backpropagation of errors and stochastic gradient descent. Unsupervised learning methods. Recurrent neural networks. Convolutional neural networks. Continuous time models. Adversarial attacks. Advanced topics may include neural engineering, biologically plausible learning methods.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 230", "STAT 240"] }
+      { type: "OR", reqs: ["STAT 230", "STAT 240", "STAT 206"] },
+      { type: "OR", reqs: ["AMATH 242", "CS 335", "CS 370", "CS 371"] }
     ],
     antireqs: [],
     tags: [],
@@ -13585,7 +13593,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to modelling and algorithmic techniques for machines to learn concepts from data. Generalization: underfitting, overfitting, cross-validation. Tasks: classification, regression, clustering. Optimization-based learning: loss minimization. regularization. Statistical learning: maximum likelihood, Bayesian learning. Algorithms: nearest neighbour, (generalized) linear regression, mixtures of Gaussians, Gaussian processes, kernel methods, support vector machines, deep learning, sequence learning, ensemble techniques. Large scale learning: distributed learning and stream learning. Applications: Natural language processing, computer vision, data mining, human computer interaction, information retrieval.",
     prereqs: [
-      { type: "OR", reqs: ["CS 341", "CS 231", "CS 241"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 341"] }, { type: "AND", reqs: ["STAT 206"] }] }
     ],
     antireqs: ["MSCI 446"],
     tags: [],
@@ -13598,8 +13606,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Computer science principles and algorithms in biological sequence analysis. Topics include algorithms for sequence comparison, for large-scale database search in biological databases, for sequence assembly, for evolutionary tree reconstruction, for identifying important features in DNA and RNA sequences, and underlying computational techniques for understanding strings and trees and for making probabilistic inferences.",
     prereqs: [
-      { type: "AND", reqs: ["CS 341"] },
-      { type: "OR", reqs: ["STAT 206", "STAT 231", "STAT 241"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 341"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["STAT 206"] }, { type: "AND", reqs: ["STAT 231"] }, { type: "AND", reqs: ["STAT 241"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13612,7 +13619,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to image and vision understanding by computer. Camera-system geometry, image formation and lighting, and image acquisition. Basic visual processes for recognition of edges, regions, lines, and surfaces. Processing of stereo images, and motion in image sequences. Object recognition. Applications of computer-vision systems.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 242", "CS 371", "CS 370", "MATH 235", "MATH 245", "STAT 230"] }
+      { type: "OR", reqs: ["AMATH 242", "CS 371", "CS 370", "MATH 235", "MATH 245", "STAT 206", "STAT 230", "STAT 240"] }
     ],
     antireqs: [],
     tags: [],
@@ -13625,7 +13632,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Extracting meaningful patterns from random samples of large data sets. Statistical analysis of the resulting problems. Common algorithmic paradigms for such tasks. Central concepts: VC-dimension, margins of a classifier, sparsity and description length, other types of regularization. Performance guarantees: generalization bounds, data dependent error bounds, and computational complexity of learning algorithms. Common paradigms: neural networks, kernel methods and support-vector machines, boosting, nearest neighbor classifiers. Applications to data mining.",
     prereqs: [
-      { type: "OR", reqs: ["CS 341", "CS 230", "CS 240"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 341"] }, { type: "AND", reqs: ["STAT 206"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13638,7 +13645,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Goals and methods of artificial intelligence. Methods of general problem solving. Knowledge representation and reasoning. Planning. Reasoning about uncertainty. Machine learning. Multi-agent systems. Natural language processing.",
     prereqs: [
-      { type: "AND", reqs: ["CS 341"] }
+      { type: "AND", reqs: ["CS 341"] },
+      { type: "AND", reqs: ["STAT 206"] }
     ],
     antireqs: ["SYDE 522"],
     tags: [],
@@ -13651,7 +13659,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the use of computers for symbolic mathematical computation, involving traditional mathematical computations such as solving linear equations (exactly), analytic differentiation and integration of functions, and analytic solution of differential equations.",
     prereqs: [
-      { type: "OR", reqs: ["CS 231", "CS 234", "CS 240", "CS 240E"] }
+      { type: "AND", reqs: ["CS 231"] }
     ],
     antireqs: [],
     tags: [],
@@ -13664,7 +13672,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Software and hardware for interactive computer graphics. Implementation of device drivers, 3-D transformations, clipping, perspective, and input routines. Data structures, hidden surface removal, colour shading techniques, and some additional topics will be covered.",
     prereqs: [
-      { type: "OR", reqs: ["CS 341", "SE 350", "SE 371"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 341"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }, { type: "AND", reqs: ["CS 370"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -13688,9 +13696,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The integration of business and technical considerations in the design, implementation and management of information systems. Topics include: IS planning and development; business, management, executive, and strategic information systems, including case studies of selected large- scale systems; decision support systems; end-user training and development; systems security, disaster planning and recovery. Practical examples of information systems in industry.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "SE 350"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CS 350"] }, { type: "AND", reqs: ["SE 350"] }] }
     ],
-    antireqs: ["BUS 415W"],
+    antireqs: ["BUS 415W", "BUS 486W"],
     tags: [],
     majors: ["cs", "ds", "se"],
     offered: ["F", "W", "S"]
@@ -13701,7 +13709,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to consider the problems encountered by individuals, organizations and society as computer technology is adopted, with a view towards assessing possible courses of action.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 240E"] }
+      { type: "AND", reqs: ["CS 240", "CS 240E"] }
     ],
     antireqs: [],
     tags: [],
@@ -13714,7 +13722,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students work in teams on substantial open-ended computer science problems as part of the CS493/494 course sequence. Lectures describe project management fundamentals and ethical and legal issues in computing. Students form teams, select projects, define project goals, perform risk assessment, establish a project plan, and develop a prototype. Possible project topics can include development of software systems, analysis of extensions to existing systems across the field, and experimental computer science.",
     prereqs: [
-      { type: "AND", reqs: ["CS 341"] }
+      { type: "AND", reqs: ["CS 341", "CS 350"] }
     ],
     antireqs: [],
     tags: [],
@@ -13795,7 +13803,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to the principles of designing time-based multi-modal communication in a social context. Students will analyze, design, and produce video for use in a variety of digital platforms.",
     prereqs: [],
-    antireqs: ["GBDA 201"],
+    antireqs: ["GBDA 201", "GBDA 202"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -14060,7 +14068,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introductory Earth Sciences Laboratory",
     units: 0.25,
     description: "For students taking EARTH121. Laboratory exercises cover selected topics from EARTH121 lectures.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["EARTH 121"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -14082,7 +14092,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introductory Environmental Sciences Laboratory",
     units: 0.25,
     description: "For students taking EARTH122. Laboratory exercises cover selected topics from EARTH122 lectures.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["EARTH 122"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -14105,7 +14117,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Origin, abundance, and geochemistry of elements. Introduction to environmental isotope geochemistry and radiometric dating. Basic aqueous geochemistry: pH, carbonate equilibrium, and common ions in natural waters.",
     prereqs: [
-      { type: "AND", reqs: ["CHEM 123"] }
+      { type: "AND", reqs: ["CHEM 123", "CHEM 125"] }
     ],
     antireqs: [],
     tags: [],
@@ -14117,7 +14129,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Field Methods in Hydrology",
     units: 0.5,
     description: "This course consists of field exercises and lectures designed to provide students with practical hands-on experience conducting a variety of hydrological monitoring techniques. Emphasis will be placed on the collection, analysis, and interpretation of field measurements. Field exercises will cover groundwater, surface water, meteorological, and water quality.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["EARTH 123"] }
+    ],
     antireqs: ["EARTH 123L"],
     tags: [],
     majors: ["any"],
@@ -14129,7 +14143,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides a systematic study of the physical and chemical properties of the major rock-forming silicate minerals. Study of mineral chemistry, the internal geometry of crystalline solids and the interrelationship of crystal structure to the physical and chemical properties of minerals. Laboratory work focuses on observing and evaluating the physical properties of minerals and rocks in hand sample in order to identity them. This course includes a weekend field trip to Bancroft, Ontario.",
     prereqs: [
-      { type: "OR", reqs: ["EARTH 121", "CIVE 153", "GEOE 153", "ENVE 153"] }
+      { type: "OR", reqs: ["EARTH 121", "EARTH 121L", "CIVE 153", "GEOE 153", "ENVE 153"] }
     ],
     antireqs: [],
     tags: [],
@@ -14155,7 +14169,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to stratigraphic principles and methods used in deciphering geological history. Techniques of collecting surface and subsurface geologic data and representation of stratigraphic data. Procedures applicable to the classification and nomenclature of stratigraphic units using the North American Stratigraphic Code. The development of stratigraphic sequences as controlled by global and regional tectonics and sea level fluctuations. Interrelating aspects of Earth's physical, chemical, and biological history. Examples are drawn primarily from Canadian geology. Laboratory work will include construction and interpretation of various types of learning media such as traditional maps, cross sections, new physical and digital models, as well as extended reality.",
     prereqs: [
-      { type: "OR", reqs: ["EARTH 121", "CIVE 153", "GEOE 153", "ENVE 153"] }
+      { type: "OR", reqs: ["EARTH 121", "EARTH 121L", "CIVE 153", "GEOE 153", "ENVE 153"] }
     ],
     antireqs: [],
     tags: [],
@@ -14168,8 +14182,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Concepts of stress and strain; elementary rock mechanics; description and classification of folds, faults, foliations, lineations and joints; use of primary structures; introduction to geometrical analysis. Labs will emphasize geometrical problems, including geological maps and cross sections, and stereographic projection.",
     prereqs: [
-      { type: "AND", reqs: ["EARTH 121"] },
-      { type: "OR", reqs: ["EARTH 153", "CIVE 153", "GEOE 153", "ENVE 153"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["EARTH 121"] }, { type: "AND", reqs: ["EARTH 153", "CIVE 153", "GEOE 153", "ENVE 153"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -14230,7 +14243,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the global fluxes and transformations of nutrient elements (C, N, P and Si) and metals along the aquatic continuum. Students explore both natural and anthropogenically-driven changes to the chemical composition of water that occur in the atmosphere, rivers, reservoirs, lakes, groundwater, estuaries and oceans. The content will be interdisciplinary and quantitative, with a strong focus on biogeochemical processes that influence the chemical composition and quality of water at different stages of the global water cycle; the content will also include aspects of microbiology, ecology, hydrology and geology. Students will be introduced to geochemical modelling tools used to interpret changes to water quality through the application of equilibrium thermodynamics.",
     prereqs: [
-      { type: "AND", reqs: ["EARTH 121"] }
+      { type: "AND", reqs: ["EARTH 121", "EARTH 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -14269,7 +14282,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to sediment properties, sedimentation processes, and sedimentary deposits in a variety of depositional environments and climatic conditions. Processes affecting sediments after initial deposition, such as those involved in the transformation of sediments into sedimentary rocks are also examined. Laboratories will focus on the different methods to describe and interpret sediments and sedimentary rocks.",
     prereqs: [
-      { type: "AND", reqs: ["EARTH 232"] }
+      { type: "AND", reqs: ["EARTH 232", "EARTH 235"] }
     ],
     antireqs: [],
     tags: [],
@@ -14308,7 +14321,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores approaches for interpreting environmental data to support water decisions using theoretical and computational techniques. These approaches focus on statistical methods, including descriptive statistics, probability, hypothesis testing, frequency and time series analyses, point patterns, and correlation and regression, and also include discussion of analytical and numerical approaches.",
     prereqs: [
-      { type: "OR", reqs: ["EARTH 121", "EARTH 122"] }
+      { type: "OR", reqs: ["EARTH 121", "EARTH 122", "EARTH 123"] }
     ],
     antireqs: ["EARTH 491"],
     tags: [],
@@ -14335,7 +14348,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Field study in Sudbury and Whitefish Falls areas. Held for at least nine days at end of the winter term. Geological and geotechnical field techniques, map construction, and report writing.",
     prereqs: [
-      { type: "AND", reqs: ["EARTH 235"] }
+      { type: "AND", reqs: ["EARTH 235"] },
+      { type: "AND", reqs: ["EARTH 238", "EARTH 333"] }
     ],
     antireqs: [],
     tags: [],
@@ -14435,7 +14449,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Glacial-interglacial cycles and sub-Milankovitch oscillations from ocean sediments and ice cores. Quaternary geochronology. Glacial sediment-land systems. Mineral exploration techniques pertaining to glaciated terrains and hydrostratigraphic analyses of Quaternary basins. Local field trips. Laboratory studies on glacial sediments.",
     prereqs: [
-      { type: "OR", reqs: ["EARTH 333", "EARTH 342"] }
+      { type: "AND", reqs: ["EARTH 333"] }
     ],
     antireqs: [],
     tags: [],
@@ -14461,9 +14475,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the theory and practice of groundwater flow and contaminant transport modeling. Topics related to variably-saturated flow will focus on derivation of Richard's equation, a control volume finite difference discretization, assembly and solution of the flow equation, material balance error, truncation error analysis, stability and monotonicity. Topics related to contaminant transport will focus on derivation of the contaminant transport equation, a control volume finite difference discretization along with various spatial and temporal weighting schemes and their associated accuracy, monotonicity, and material balance error. Hands-on experience is provided using software applied to industry-standard variably-saturated flow and transport problems, with an emphasis on visualization and interpretation of results.",
     prereqs: [
-      { type: "AND", reqs: ["EARTH 458"] },
-      { type: "OR", reqs: ["MATH 106", "MATH 114"] },
-      { type: "AND", reqs: ["MATH 128"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["EARTH 458", "MATH 106"] }, { type: "AND", reqs: ["MATH 114", "MATH 128"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -14476,8 +14488,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to physical hydrogeology, including Darcy's law, the groundwater flow equations for steady-state and transient conditions, applications to flow nets, aquifer testing, groundwater resources, and groundwater protection. The role of groundwater in the hydrologic cycle is explored with emphasis on natural groundwater flow systems and their influence on stream flow. Physical processes controlling groundwater contamination are introduced.",
     prereqs: [
-      { type: "AND", reqs: ["EARTH 123"] },
-      { type: "AND", reqs: ["CIVE 153"] }
+      { type: "OR", reqs: ["CIVE 153", "ENVE 153", "GEOE 153"] }
     ],
     antireqs: [],
     tags: [],
@@ -14489,7 +14500,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Field Methods in Hydrogeology",
     units: 0.25,
     description: "This course exposes students to a wide variety of field and laboratory techniques for collecting hydrogeologic data and to gain experience in interpreting the data. Advantages and limitations of various measurement and data reduction techniques for evaluating groundwater flow systems are demonstrated in a set of field exercises carried out at the groundwater demonstration facility located on the university North Campus. These exercises illustrate the complexity of natural systems and the need for good data collection and interpretation skills when characterizing such systems .",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["EARTH 458"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -14541,7 +14554,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the principles and theories of mineral deposit genesis. Basic technical, economic, legal, and ethical aspects of mineral exploration and responsible development of natural resources are also covered. Laboratories involve hand sample and ore petrology of suites from diverse deposits.",
     prereqs: [
-      { type: "AND", reqs: ["EARTH 221"] }
+      { type: "AND", reqs: ["EARTH 221", "EARTH 232"] }
     ],
     antireqs: [],
     tags: [],
@@ -14730,7 +14743,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "An intensive study of the culture and language of an East Asian country. With the guidance of a course director, students complete readings, attend lectures, and visit cultural sites for six weeks or more on location.",
     prereqs: [
-      { type: "OR", reqs: ["CHINA 101R", "CHINA 102R", "KOREA 101R", "JAPAN 101R", "JAPAN 102R"] }
+      { type: "OR", reqs: ["CHINA 101R", "CHINA 102R", "CHINA 120R", "CHINA 180R", "KOREA 101R", "JAPAN 101R", "JAPAN 102R"] }
     ],
     antireqs: [],
     tags: [],
@@ -14842,7 +14855,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course examines the legal system, legal culture, and socio-cultural traditions of the Republic of Korea from a comparative legal perspective.",
     prereqs: [
-      { type: "OR", reqs: ["EASIA 204R", "KOREA 272R"] }
+      { type: "AND", reqs: ["EASIA 204R", "KOREA 272R"] }
     ],
     antireqs: [],
     tags: [],
@@ -15055,7 +15068,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ECE 105"] }
     ],
-    antireqs: ["NE 241", "PHYS 112"],
+    antireqs: ["NE 241", "PHYS 112", "PHYS 112L"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15066,9 +15079,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to discrete mathematics, including propositional/Boolean logic, syntax and semantics, proof theory, and model theory; set theory, relations and functions, combinatorics (counting techniques, permutations, and combinations), graph theory. Applications in electrical, computing, and software engineering.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 150"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 150"] }, { type: "AND", reqs: ["MATH 117"] }] }
     ],
-    antireqs: ["ECE 103", "MATH 229"],
+    antireqs: ["ECE 103", "ECE 155", "MATH 229", "MATH 239", "MATH 249"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15178,9 +15191,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Ensemble model of randomness. Conditional probability, independence, and Bayes' theorem. Random variables, probability distribution functions. Expected values. Collections of random variables, joint and marginal probability distributions, and correlation. Introduction to random processes.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 108", "MATH 211"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 108"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 205"] }, { type: "AND", reqs: ["MATH 211"] }] }, { type: "AND", reqs: ["MATH 119"] }] }
     ],
-    antireqs: ["ECE 306"],
+    antireqs: ["ECE 306", "ECE 316"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15191,7 +15204,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Application of computational methods to engineering problems. Number systems, errors and error propagation. Roots of nonlinear equations. Introduction to numerical linear algebra. Interpolation and numerical integration. Introduction to numerical solutions of ordinary differential equations, optimization. Emphasis will be placed on algorithm development.",
     prereqs: [],
-    antireqs: ["AMATH 342", "CS 370", "ECE 204A", "MTE 204"],
+    antireqs: ["AMATH 342", "CS 370", "CS 371", "ECE 204A", "ECE 204B", "MTE 204"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15224,8 +15237,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Discrete, continuous and periodic signals, time- and frequency-domain analysis of continuous- and discrete-time linear systems, periodic signals and Fourier series, non-periodic signals, and Fourier transforms.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 140"] },
-      { type: "AND", reqs: ["ECE 140"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 140", "ECE 240"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 140"] }, { type: "AND", reqs: ["MATH 213"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -15278,7 +15290,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to the physical principles and electrical behaviour of semiconductor materials and devices; electronic band structure, charge carriers, doping, carrier transport, pn-junctions, metal-oxide-semiconductor capacitors, transistors, and bipolar junction devices.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 106"] }
+      { type: "AND", reqs: ["ECE 106", "ECE 109"] }
     ],
     antireqs: ["NE 242"],
     tags: [],
@@ -15291,7 +15303,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to electronic signal processing; second-order circuits; operational amplifier circuits; diode device and circuits; metal-oxide-semiconductor (MOS) biasing networks; load-line analysis; diode and MOS small-signal equivalent circuits; single-stage small-signal MOS amplifiers; complementary metal-oxide-semiconductor (CMOS) logic circuits.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 106"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 106"] }, { type: "AND", reqs: ["MATH 119"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 205"] }, { type: "AND", reqs: ["MATH 211"] }, { type: "AND", reqs: ["MATH 213"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -15304,7 +15317,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Data structures, abstract data types, recursive algorithms, algorithm analysis, sorting and searching, and problem-solving strategies.",
     prereqs: [],
-    antireqs: ["CS 234", "SE 240"],
+    antireqs: ["CS 234", "CS 240", "CS 240E", "CS 341", "SE 240"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15317,7 +15330,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["BME 122", "ECE 250", "MSE 240", "MTE 140", "SYDE 223"] }
     ],
-    antireqs: ["CS 343", "SE 350"],
+    antireqs: ["CS 343", "CS 350", "SE 350"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15330,7 +15343,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ECE 106"] }
     ],
-    antireqs: ["ECE 261", "ME 269", "MTE 320"],
+    antireqs: ["ECE 261", "ECE 361", "ME 269", "MTE 320"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15374,8 +15387,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to quantization, wave-particle duality, and the uncertainty principle. The Schroedinger equation and solvable examples. Topics include stationary states of particle- in-a-box, harmonic oscillator, and the hydrogen atom. Quantization of angular momentum and spin. Introduction to approximation methods including time-independent perturbation theory. Modern applications of quantum mechanics.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 105"] },
-      { type: "OR", reqs: ["ECE 305", "MATH 211"] }
+      { type: "OR", reqs: ["ECE 105", "ECE 106"] },
+      { type: "OR", reqs: ["ECE 305", "MATH 211", "MATH 213"] }
     ],
     antireqs: [],
     tags: [],
@@ -15390,7 +15403,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ECE 203"] }
     ],
-    antireqs: ["STAT 330"],
+    antireqs: ["STAT 330", "STAT 331", "STAT 332"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15401,7 +15414,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fourier representations in discrete and continuous time. Discrete Fourier transform and fast Fourier transform algorithms. Sampling theory. Sampling and quantization errors. Transform analysis of linear time-invariant systems. Filter design. Discrete Hilbert transform. Introduction to filter banks and discrete wavelet transform.",
     prereqs: [
-      { type: "AND", reqs: ["MATH 213"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 213"] }, { type: "AND", reqs: ["STAT 206"] }] }
     ],
     antireqs: ["ECE 413"],
     tags: [],
@@ -15414,7 +15427,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to random processes, power spectral density. Thermal noise and the white noise model. Amplitude and angle modulation, generation and detection schemes. Sampling and reconstruction, quantization. Digital baseband transmission. Overview of digital passband communications.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 203", "MATH 211"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 203"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 205"] }, { type: "AND", reqs: ["MATH 211"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -15427,7 +15440,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Organization and performance of uniprocessors, pipelined processors, dynamically scheduled processors, parallel processors and multiprocessors; memory and cache structures; multiprocessor algorithms and synchronization techniques; special-purpose architectures.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 222"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 222"] }, { type: "AND", reqs: ["ECE 327"] }] }
     ],
     antireqs: ["ECE 429"],
     tags: [],
@@ -15440,8 +15453,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Design and modelling of digital hardware systems using a hardware description language. Development process. Impact of implementation technologies. Performance analysis and optimization. Functional verification. Timing analysis. Power analysis and optimization. Faults and testability. Reliability and fault tolerance.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 222", "MTE 241"] },
-      { type: "OR", reqs: ["ECE 124", "MTE 262", "SYDE 192"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 222"] }, { type: "AND", reqs: ["MTE 241"] }] },
+      { type: "OR", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ECE 124"] }, { type: "AND", reqs: ["MTE 262"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["SYDE 192"] }, { type: "AND", reqs: ["SYDE 192L"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -15492,7 +15505,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Programming paradigms, compilation, interpretation, virtual machines. Lexical analysis, regular expressions, and finite automata. Parsing, context-free grammars, and push-down automata. Semantic analysis, scope and name analysis, type checking. Intermediate representations. Control flow. Data types and storage management. Code generation.",
     prereqs: [
       { type: "OR", reqs: ["BME 122", "ECE 250", "MSE 240", "MTE 140", "SYDE 223"] },
-      { type: "OR", reqs: ["CS 245", "CS 245E", "ECE 208"] }
+      { type: "OR", reqs: ["CS 245", "CS 245E", "ECE 208", "SE 212"] }
     ],
     antireqs: [],
     tags: [],
@@ -15505,7 +15518,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Data models, file systems, database system architectures, query languages, integrity and security, database design.",
     prereqs: [
-      { type: "OR", reqs: ["BME 122", "ECE 250", "MSE 240", "MTE 140", "SYDE 223", "SYDE 245E", "ECE 208", "SE 212"] }
+      { type: "OR", reqs: ["BME 122", "ECE 250", "MSE 240", "MTE 140", "SYDE 223", "CS 245", "CS 245E", "ECE 208", "SE 212"] }
     ],
     antireqs: ["CS 348"],
     tags: [],
@@ -15531,7 +15544,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fundamentals of power systems, analysis techniques including power flow and symmetrical fault analyses, and the basics of distribution systems and smart grids.",
     prereqs: [],
-    antireqs: ["ECE 361"],
+    antireqs: ["ECE 361", "ECE 362"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15542,7 +15555,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of transmission line and scattering matrix representation of radiofrequency (RF) circuits, multiport RF networks, modern RF and microwave planar technology, lumped and distributed microstrip circuits, microwave couplers, Hybrids, resonators, filters, Low-noise amplifiers (LNAs), RF oscillators and mixers, computer-aided design (CAD) tools for RF circuits, hybrid and monolithic RF circuits.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 375", "MATH 212"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 375"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 206"] }, { type: "AND", reqs: ["MATH 212"] }] }] }
     ],
     antireqs: ["ECE 473"],
     tags: [],
@@ -15555,7 +15568,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Maxwell's equations; plane waves; time-harmonic fields; waves at planar boundaries; boundary conditions; reflection and transmission; transmission lines; electric fields in matter; magnetic fields in matter.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 106", "MATH 212"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 106"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 206"] }, { type: "AND", reqs: ["MATH 212"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -15568,8 +15581,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to control systems. Advantages of closed-loop feedback systems. The role of the system mathematical model. Block diagrams and signal flow graphs. The basic control system design problem, stability in control systems. Frequency response analysis techniques. Root-locus analysis. Elementary lead-lag compensation.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 207"] },
-      { type: "AND", reqs: ["MATH 213"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 207"] }, { type: "AND", reqs: ["MATH 213"] }] }
     ],
     antireqs: ["ME 360", "MTE 360", "SE 380", "SYDE 352"],
     tags: [],
@@ -15604,10 +15616,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Temperature and thermodynamic equilibrium. Work, internal energy and heat; first law, with examples. Kinetic theory of gases. Basic probability theory. Microscopic states and entropy. Absolute temperature, reversibility and the second law. Thermodynamic Functions and Maxwell's relations. Phase transitions. Third Law. Other applications of thermodynamics.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 105", "PHYS 112", "PHYS 122"] },
-      { type: "OR", reqs: ["ECE 205", "MATH 211", "MATH 227", "MATH 237", "MATH 228", "AMATH 250", "AMATH 251"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 105", "ECE 106"] }, { type: "AND", reqs: ["PHYS 112"] }] },
+      { type: "OR", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ECE 205"] }, { type: "AND", reqs: ["MATH 211"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 227"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 228"] }, { type: "AND", reqs: ["AMATH 250"] }] }] }] }
     ],
-    antireqs: ["CHEM 254", "MTE 309", "ME 250", "PHYS 358", "SYDE 381"],
+    antireqs: ["CHEM 254", "MTE 309", "ME 250", "ME 354", "PHYS 358", "SYDE 381"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15618,10 +15630,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Electromagnetic waves and the nature of light. Geometrical optics, aberrations. Physical optics: interference, Fraunhofer and Fresnel diffraction, polarization. Optical instruments.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 112", "ECE 105", "ECE 106"] },
+      { type: "OR", reqs: ["PHYS 112", "PHYS 122", "ECE 105", "ECE 106"] },
       { type: "OR", reqs: ["MATH 108", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
     ],
-    antireqs: ["PHYS 226"],
+    antireqs: ["PHYS 226", "PHYS 246", "PHYS 256"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15686,7 +15698,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["BME 122", "ECE 250", "MSE 240", "MTE 140", "SYDE 223"] }
     ],
-    antireqs: ["CS 341", "SYDE 423"],
+    antireqs: ["CS 341", "CS 466", "SYDE 423"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15708,7 +15720,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Overview of wireless communications including standards. Characterization of mobile radio propagation channels. Signal representations. Transmission and reception techniques for wireless channels. Fundamentals of cellular communications and multiple-access schemes.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 307"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 307"] }, { type: "AND", reqs: ["ECE 318"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -15745,7 +15757,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Specification and design of embedded systems, specification languages, hardware/software co-design, performance estimation, co-simulation, verification, validation, embedded architectures, processor architectures and software synthesis, system-on-a-chip paradigm, retargetable code generation and optimization, verification and validation, environmental issues and considerations.",
     prereqs: [
-      { type: "OR", reqs: ["CS 350", "ECE 252", "MTE 241"] }
+      { type: "OR", reqs: ["CS 350", "ECE 252", "MTE 241", "SE 350", "ECE 224", "MTE 325"] }
     ],
     antireqs: ["SYDE 524"],
     tags: [],
@@ -15758,7 +15770,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the theory and practice of Radio Frequency (RF) Integrated Circuit design. Physics and modelling of RF integrated components such as resistor, inductor, capacitor (RLC) passives, diodes, metal oxide semiconductor field-effect transistors (MOSFETs), high electron mobility transistors, hetero-junction bipolar transistors. RF integrated components properties and representation such as short channel effects, noise parameters, transit frequency (ft), maximum frequency of oscillation (fmax), and quality factor.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 242", "ECE 340"] }
+      { type: "AND", reqs: ["ECE 242"] }
     ],
     antireqs: [],
     tags: [],
@@ -15784,7 +15796,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Analog electronics exploits the physical behaviour of electronic devices to create electronic systems. The performance of single and multiple transistor amplifying stages are studied. Followed by a study of biasing, current mirror, and output stages, which are then combined in the study of operational amplifier circuits. Frequency response and feedback are then reviewed leading to a detailed study of stability and compensation for multistage and operational amplifiers. The course finishes with a look at selected topics from A/D (analog-to-digital) converters, oscillators, and phase-locked loops.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 242", "ECE 340"] }
+      { type: "AND", reqs: ["ECE 242"] }
     ],
     antireqs: ["MTE 421"],
     tags: [],
@@ -15848,9 +15860,9 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Principles of distributed computing; architectures and middleware; servers, processes, and virtualization; upper-layer network protocols, interprocess communication and remote procedure calling; concurrency, synchronization and distributed algorithms, dependable distributed systems and fault tolerance.",
     prereqs: [
       { type: "AND", reqs: ["ECE 358"] },
-      { type: "OR", reqs: ["ECE 252", "MTE 241"] }
+      { type: "OR", reqs: ["ECE 252", "MTE 241", "SE 350"] }
     ],
-    antireqs: ["CS 454"],
+    antireqs: ["CS 454", "CS 654"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -15913,7 +15925,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to computer security. Models of security. Elementary cryptography. Software security, vulnerabilities, threats, defenses, and secure-software development processes. Threats to networks and defenses. Security issues at the application layer. Secure design principles, techniques, and security evaluation. Privacy, ethics, and legal issues.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 252", "MTE 241"] },
+      { type: "OR", reqs: ["ECE 252", "MTE 241", "SE 350"] },
       { type: "AND", reqs: ["CS 458"] }
     ],
     antireqs: [],
@@ -15984,7 +15996,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Modern transmitter and receiver architectures, Noise and linearity in radio and wireless systems, Design considerations of RF/microwave subsystems, radio and wireless system designs, CAD tools for radio and wireless systems, Antennas, Radio wave propagation models, Indoor radio, Satellite communication, Personal communication systems (PCSs).",
     prereqs: [
-      { type: "OR", reqs: ["ECE 375", "MATH 212"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 375"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 206"] }, { type: "AND", reqs: ["MATH 212"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -15997,7 +16009,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of Maxwell's equations and uniform plane waves. Electromagnetic wave propagation, reflection and transmission through different uniform media, metallic waveguides, multilayer structures, radiation theory, transmitting and receiving antenna, antenna arrays and applications, simple radio-wave propagation models, radio transmission systems and wireless networks.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 375", "MATH 212"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 375"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 206"] }, { type: "AND", reqs: ["MATH 212"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16010,7 +16022,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of Maxwell's equations and electromagnetic plane waves, dielectric waveguides, optical fibers, lasers and photonic transmitters, photodetectors and photonic receivers, optical amplifiers, and photonic systems and networks.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 375", "MATH 212"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 375"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 206"] }, { type: "AND", reqs: ["MATH 212"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16023,8 +16035,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Performance specifications for design. Dynamic system modelling and basic system identification. Dealing with basic nonlinear effects. Sampled data systems. Discrete-time system stability and dynamic performance. Digital control system design: emulation methods, z-domain, frequency domain, pole placement. Implementation of digital controllers.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 380", "MTE 360", "SYDE 352"] },
-      { type: "AND", reqs: ["ECE 207"] }
+      { type: "OR", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ECE 380"] }, { type: "AND", reqs: ["MTE 360"] }, { type: "AND", reqs: ["SYDE 352"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["ECE 207"] }, { type: "AND", reqs: ["SE 380"] }] }] }
     ],
     antireqs: ["ECE 484"],
     tags: [],
@@ -16037,8 +16048,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Dynamic system modelling: linear, nonlinear, state-space, sample data systems, computer simulation, system identification. Discrete system stability and dynamic performance. Nonlinear system analysis, limit cycles. Digital control system design: emulation methods, z-domain, frequency domain, pole placement. Implementation of digital controllers. Laboratory projects in computer control of mechatronic and other systems.",
     prereqs: [
-      { type: "AND", reqs: ["ME 360"] },
-      { type: "AND", reqs: ["SYDE 352"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ME 360"] }, { type: "AND", reqs: ["SYDE 352"] }] }
     ],
     antireqs: ["ECE 481", "MTE 484"],
     tags: [],
@@ -16051,11 +16061,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to the study of robotics focusing on the mechanics and control of serial manipulators. Topics include rigid body motion, forward and inverse kinematics, differential kinematics, forward and inverse dynamics, trajectory generation, motion planning, and feedback control.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 380"] },
-      { type: "AND", reqs: ["SE 380"] },
-      { type: "AND", reqs: ["MTE 360"] },
-      { type: "AND", reqs: ["ME 360"] },
-      { type: "AND", reqs: ["SYDE 352"] }
+      { type: "AND", reqs: ["ECE 380", "SE 380", "MTE 360", "ME 360", "SYDE 352"] }
     ],
     antireqs: ["ME 547"],
     tags: [],
@@ -16068,11 +16074,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of feedback control design fundamentals; SISO controller parameterizations; the fundamental effect of MIMO interaction; introduction to state-space models in continuous and discrete time; SISO techniques for MIMO design; optimal control; model-predictive control design; state estimation; decoupling, MIMO PID control design; applications in areas such as aerospace systems.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 380"] },
-      { type: "AND", reqs: ["SE 380"] },
-      { type: "AND", reqs: ["MTE 360"] },
-      { type: "AND", reqs: ["ME 360"] },
-      { type: "AND", reqs: ["SYDE 352"] }
+      { type: "AND", reqs: ["ECE 380", "SE 380", "MTE 360", "ME 360", "SYDE 352"] }
     ],
     antireqs: [],
     tags: [],
@@ -16175,7 +16177,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an introduction to the theory of market based economies. Topics include consumer choice, production, price and output under perfect and imperfect competition, price discrimination and two part pricing, vertical and horizontal firm boundaries and integration, and market structure.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16188,7 +16190,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an overview of the functioning of the financial system both in Canada and abroad. It includes discussions of money and inflation, financial assets, and financial institutions and intermediaries.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
     antireqs: [],
@@ -16202,7 +16204,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an overview of the enormous differences in living standards across countries and over time, and it considers how these can be traced to differences in economic productivity, investment, population, natural resources, government, inequality, and culture.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
     antireqs: [],
@@ -16216,7 +16218,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to mathematical techniques of particular use in economics. Topics include matrix algebra, differentation, partial derivatives, optimization techniques including constrained optimization - all developed within the context of economic problems.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["MATH 104"] }
     ],
     antireqs: [],
@@ -16241,7 +16243,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to describing economic data and drawing inferences from features of economic data. Starting from fundamental axioms of probability, students will learn about the calculation of probabilities of basic events and the features of random variables, the most important tool for representing the outcomes of complex economic phenomena. Students will describe discrete and continuous random variables via their probability distributions and summary statistics such as means and standard deviations, as well as the relationships between two random variables in terms of covariance, correlation, and simple regression models. The concepts of hypothesis testing and confidence intervals, and the fundamentals of statistical inference are discussed for basic features of random variables and for comparing the features of more than one random variable.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
+      { type: "AND", reqs: ["ECON 211"] }
     ],
     antireqs: [],
     tags: [],
@@ -16254,7 +16257,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores international trade in goods and services, as well as the international exchange of financial assets. Economic theories will be examined, which help explain how international transactions affect the world's economies. Topics include the theory of comparative advantage and the gains from trade, tariff theory, concepts and measurement of balance of payments, exchange rate systems, and the international monetary system.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
     antireqs: [],
@@ -16268,7 +16271,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the scope and level of government involvement in economic activity. The main focus is on historical trends and recent developments in the extent and composition of government spending, taxation, and regulation in developed nations. A secondary focus is to introduce the current policy debates in these areas.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
     antireqs: [],
@@ -16282,7 +16285,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course will develop fundamental economic concepts in the context of the sports industry. The course begins with an investigation of some of the primary aspects of the way that the sports industry is organized. The course then considers labour economics in the context of sport. Finally, the course examines the issues that arise with the introduction of various levels of government and/or regulatory bodies in the sports industry, looking at competition between cities for sports teams.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16295,7 +16298,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course uses economic theory to explore environmental and natural resource management problems. The meaning and implications of resource scarcity and common property ownership are explored, as well as how the insights of economics can be used to guide policies to promote a more sustainable path for our future. The course examines issues of economic efficiency and equity in specific resource sectors such as energy resources, fisheries, forestry, and water.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16308,7 +16311,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Why are some people healthy and others not? Why is health different from other goods and services? How do the many stakeholders interact in health care markets? Why do countries have different health care systems? This course introduces students to how the theories and tools of economics can be used when examining health, health care, and health care policies. Concepts such as supply and demand, uncertainty, and utility will be introduced in the context of health and health care markets. While international institutions may be discussed, the course will emphasize Canadian health care markets.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16332,7 +16335,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course studies approaches to economic problems in historical context. Authors examined may include Smith, Malthus, Ricardo, Marx, J.S. Mill, Walras, Marshall, Veblen, Keynes, Hayek, Aumann, Debreu, and Stiglitz.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16370,7 +16373,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on and expands the material in ECON211. Multi-variate calculus and optimization are covered in detail, with a focus on economic applications of the envelope theorem. The implicit function theorem and its uses in comparative statics are explored. Difference and differential equations and their application to dynamic models are introduced, culminating in an introduction to optimal control.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 201"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 201"] }, { type: "AND", reqs: ["ECON 211"] }] },
       { type: "AND", reqs: ["ECON 391"] }
     ],
     antireqs: [],
@@ -16385,8 +16388,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course covers the core topics needed to estimate linear models using ordinary least squares and to interpret estimates for cross-sectional data. Students will learn to interpret the coefficients of linear models for continuous and discrete regressors, to conduct reliable inference for different specifications of the error term, and to determine which model is the most suitable among the class of linear models. Students will be introduced to a statistical software package and will be required to complete regular computer-based assignments throughout the course using economic data.",
     prereqs: [
       { type: "AND", reqs: ["ECON 221"] },
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
-      { type: "OR", reqs: ["STAT 220", "STAT 230", "ECON 101", "ECON 102", "STAT 211"] }
+      { type: "OR", reqs: ["STAT 220", "STAT 230", "STAT 240", "ECON 101", "ECON 102", "STAT 211"] }
     ],
     antireqs: [],
     tags: [],
@@ -16413,7 +16415,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "An analysis of the main issues in international finance. Topics include international borrowing and lending, intertemporal gains from trade, current account and balance of trade movements, the determination of exchange rates, and foreign exchange markets.",
     prereqs: [
       { type: "AND", reqs: ["ECON 206"] },
-      { type: "OR", reqs: ["ECON 201", "ECON 290"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 201"] }, { type: "AND", reqs: ["ECON 290"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16426,7 +16428,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of the supply of labour by individuals (and unions) and the demand for labour by firms. Topics include the labour market effects of social assistance, unemployment insurance and minimum wages, discrimination in the labour market, efficient wage contracts, the determinants of wage inflation and unemployment.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
     antireqs: [],
@@ -16440,8 +16442,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Methods for evaluating private and public projects; decision rules, efficiency conditions, and methods of conducting cost-benefit analysis. Application of the technique. This course assumes prior familiarity with probability, expected values, and variance.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 201", "ECON 290"] },
-      { type: "OR", reqs: ["STAT 202", "STAT 204", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 201"] }, { type: "AND", reqs: ["ECON 290"] }] },
+      { type: "OR", reqs: ["ARTS 280", "BIOL 460", "ECON 221", "ENVS 271", "ENVS 277", "ENVS 278", "KIN 222", "SOC 280", "PSCI 214", "PSCI 314", "PSYCH 201", "PSYCH 292", "REC 371A", "REC 371", "SDS 250A", "SDS 250B", "SDS 250R", "STAT 202", "STAT 204", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -16455,7 +16457,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "A topic-oriented course. Problems are selected from a list that includes regulatory economics, poverty, unemployment, industrial policy, safety, social policy, government deficits/debt, stabilization policy, and others. The format assists the student in gaining analytical skills through work on the selected topics.",
     prereqs: [
       { type: "AND", reqs: ["ECON 102"] },
-      { type: "OR", reqs: ["ECON 201", "ECON 290"] }
+      { type: "AND", reqs: ["ECON 201"] }
     ],
     antireqs: [],
     tags: [],
@@ -16468,7 +16470,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores historical trends and economic theories and models to investigate the development of gender norms and changes in those norms across time. It questions whether physiological differences, economic models (e.g., comparative advantage, specialization, or discrimination) or social constructs can explain gender differences in roles within the family, education, work, pay, and poverty and the changes in these differences across time. Social policies designed to diminish gender differences will be scrutinized. Some topics/questions that may be addressed include the rise in labour force participation of women post World War II; occupational and wage differences between men and women; changing educational attainment; and how men and women make decisions regarding marriage, fertility, child care, elder care, and divorce.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
     antireqs: [],
@@ -16482,7 +16484,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course explores decisions faced by managers of firms. In particular, decision-makers must determine which long-term real investment opportunities to exploit. Once undertaken, managers must decide how to finance the projects, for example, by debt or equity. The course develops both the conceptual framework and the tools required for these decisions. The course assumes prior familiarity with probability, expected values, and variance.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 101"] }, { type: "AND", reqs: ["ECON 100", "COMM 103"] }] },
       { type: "AND", reqs: ["ECON 221"] }
     ],
     antireqs: ["AFM 271", "AFM 273", "AFM 274", "AFM 371", "ACTSC 372"],
@@ -16498,7 +16500,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ECON 221"] }
     ],
-    antireqs: [],
+    antireqs: ["ACTSC 446"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -16570,8 +16572,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the monetary and financial aspects of the macro-economy. It prepares students to conduct analyses of problems and policies in monetary economics. Topics may include analyses of the banking system, financial crises, and monetary policy.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 306"] },
-      { type: "OR", reqs: ["ECON 323", "STAT 221"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 306"] }, { type: "AND", reqs: ["ECON 393"] }] },
+      { type: "OR", reqs: ["STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -16584,8 +16586,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The goal of this course is to understand the enormous differences in living standards across countries and over time. It uses economic analysis to understand the sources of investment and innovation, and the role of economic, social, and political institutions in economic growth and development.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 306"] },
-      { type: "OR", reqs: ["ECON 323", "STAT 221"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 306"] }, { type: "AND", reqs: ["ECON 393"] }] },
+      { type: "OR", reqs: ["STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -16598,8 +16600,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course prepares students to conduct analyses of problems and policies associated with macroeconomic fluctuations. It examines the empirical features of business cycles, and discusses how macroeconomic models help to understand business cycles and to assess the consequences of alternative macroeconomic policies.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 306"] },
-      { type: "OR", reqs: ["ECON 323", "STAT 221"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 306"] }, { type: "AND", reqs: ["ECON 393"] }] },
+      { type: "OR", reqs: ["STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -16612,8 +16614,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the role of labour markets in the macro-economy. It focuses on the analysis of aggregate employment, unemployment, labour force participation, and earnings inequality. The main goal of the course is to understand current labour-market outcomes both in Canada and around the world.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 306"] },
-      { type: "OR", reqs: ["ECON 323", "STAT 221"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 306"] }, { type: "AND", reqs: ["ECON 393"] }] },
+      { type: "OR", reqs: ["STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -16652,7 +16654,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course investigates advanced estimation and inference techniques for microeconomic data. Students will learn about error components models that are used for economic data that exhibits significant unobserved heterogeneity. The estimation of treatment effects using fixed effects and difference-in-differences methods will be covered, and design-based methods of causal inference such as matching and regression discontinuity may be covered as well. Extensions such as multilevel or hierarchical models, limited dependent variable models, duration models or selection models may also be included. Students also learn how to apply these methods using computer software, and will use it to analyze complex data from household and firm-level surveys in assignments.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 201", "ECON 290"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 201"] }, { type: "AND", reqs: ["ECON 290"] }] },
       { type: "OR", reqs: ["ECON 323", "STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
@@ -16731,7 +16733,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines to what extent government spending, taxation, and regulation policies in developed nations are driven by economic rationales for government involvement in economic activity. Both efficiency and distributional rationales are considered. Examined areas of government spending include education, pensions, infrastructure, health care, science, innovation, and social welfare programs. Examined areas of the tax structure include personal income taxes, corporate taxes, consumption taxes, and environmental taxes. Examined areas of regulation may include topics such as alcohol, organ transplants, and gasoline standards. A key aim of the course is to generate an appreciation of how theories of market failure guide public policy.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 323"] }
+      { type: "AND", reqs: ["ECON 323", "ECON 393"] }
     ],
     antireqs: [],
     tags: [],
@@ -16744,7 +16746,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students will learn how to apply the tools of economic analysis to the study of political phenomena. Topics include voting behaviour, partisan competition and polarisation, electoral accountability, bureaucracy, lobbying, the politics of redistribution, and non-democratic policy making. Both theoretical and empirical approaches can be considered.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 323"] }
+      { type: "AND", reqs: ["ECON 323", "ECON 393"] }
     ],
     antireqs: [],
     tags: [],
@@ -16757,7 +16759,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course analyzes the structure of markets and how firms compete in them. The emphasis is on oligopoly markets and the use of game theory. The course focuses on differentiated goods, price discrimination, barriers to entry, vertical relationships, advertising, strategic behaviour, and empirical industrial organization including the estimation of demand and costs. Applications to competition policy emphasizing the evaluation of horizontal mergers are presented as well.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 323"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 323"] }, { type: "AND", reqs: ["ECON 391"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -16770,7 +16772,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Legal rules and jurisprudence can have a significant effect on resource allocation. A key question is whether legal regimes affect the optimality of an equilibrium and succeed in bringing society closer to a welfare maximizing outcome. From another perspective, a relevant question is on the objective or motivation behind the enactment of specific legislation. Recent studies suggest that much legislation is consistent with simple welfare concepts developed by economists. The course focuses on these issues with examples drawn from property, contract, tort, and criminal law.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 201"] },
+      { type: "AND", reqs: ["ECON 201", "ECON 211"] },
       { type: "AND", reqs: ["ECON 391"] }
     ],
     antireqs: [],
@@ -16812,7 +16814,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Application of economic theory to problems of the environment, in particular, air, water, and land pollution. Emphasis is on the theory of the management of common property resources.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 102"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 102"] }, { type: "AND", reqs: ["ECON 391"] }] },
       { type: "OR", reqs: ["ECON 323", "STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: ["ECON 357"],
@@ -16827,7 +16829,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "The course combines water economic theory and practice, addressing major global water challenges such as climate change, water scarcity, flood risks, water quality, and resource recovery in a circular economy. Particular attention will be paid to water resource valuation and water pricing. Students will play water games and write an economic assessment paper about the costs and benefits of water, food, and energy security related to large-scale water infrastructure such as dam building in a transboundary river basin.",
     prereqs: [
       { type: "AND", reqs: ["ECON 101"] },
-      { type: "OR", reqs: ["ECON 221", "ARTS 280"] }
+      { type: "OR", reqs: ["ARTS 280", "ENVS 278", "KIN 232", "LS 280", "PSCI 314", "PSYCH 292", "REC 371", "SDS 250R", "SRF 230", "STAT 202", "STAT 206", "STAT 211", "STAT 220", "STAT 230", "STAT 240", "SWREN 250R"] }
     ],
     antireqs: ["ECON 484"],
     tags: [],
@@ -16864,7 +16866,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students learn about topics in scientific computing that arise when economic models are implemented numerically. The topics may include floating point arithmetic, nonlinear equations, constrained and unconstrained optimization, numerical derivatives and numerical integration, differential equations, and dynamic models.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 323"] }
+      { type: "AND", reqs: ["ECON 323", "ECON 393"] }
     ],
     antireqs: [],
     tags: [],
@@ -16932,7 +16934,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course prepares students for graduate-level theory courses. Students will be exposed to a selection of topics treated with the mathematical rigour required for graduate work.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 392"] }
+      { type: "AND", reqs: ["ECON 392", "ECON 393"] }
     ],
     antireqs: [],
     tags: [],
@@ -16945,7 +16947,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students with the methodological principles that underlie modern analyses of the macro-economy, and to prepare students for graduate-level macroeconomic theory courses.",
     prereqs: [
-      { type: "AND", reqs: ["ECON 306"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ECON 306"] }, { type: "AND", reqs: ["ECON 393"] }] },
       { type: "OR", reqs: ["ECON 323", "STAT 221", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
@@ -17090,7 +17092,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The examination and evaluation of environmental management systems such as ISO 14001. Alternate EMS systems will be compared and reviewed to identify their respective strengths and weaknesses. Case studies will be used to illustrate the ideas presented.",
     prereqs: [
-      { type: "OR", reqs: ["ENBUS 102", "SFM 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ENBUS 102"] }, { type: "AND", reqs: ["SFM 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -17173,7 +17175,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Standards and auditing approaches used for sustainability management are examined. Public standards, like those from the International Organization for Standardization, are contrasted with private standards, developed by specific industries for product transparency and accountability in supply-chains. Auditing practice, as defined by the ISO 19011 standard, is examined including principles, steps, reporting and important concepts. Examples of performance standards and management system standards are explored, covering industrial, social and environmental issues. Lectures may be supplemented by required field trip(s) and/or field work.",
     prereqs: [
-      { type: "AND", reqs: ["ENBUS 202"] }
+      { type: "AND", reqs: ["ENBUS 202", "ENBUS 204"] }
     ],
     antireqs: [],
     tags: [],
@@ -17197,7 +17199,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course, the basics of sustainable finance will be explored. The course will cover topics such as green corporate finance, sustainability accounting, sustainable banking, climate finance, and social banking.",
     prereqs: [],
-    antireqs: ["ENBUS 409", "SFM 310"],
+    antireqs: ["ENBUS 409", "ENBUS 081", "SFM 310"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -17219,7 +17221,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A sustainability lens is used to explore the intersection of fashion and consumption. With a focus on textiles and cosmetics, we will explore aspects of design, diversity and inclusion, ecolabelling, waste, material innovations, and the culture of consumption.",
     prereqs: [],
-    antireqs: ["ENBUS 375"],
+    antireqs: ["ENBUS 375", "ENBUS 002", "ENBUS 041"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -17335,7 +17337,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The application of the principles learned in earlier courses will focus on a particular project. Applications may include group projects of sufficient scope to demonstrate mastery of problem-solving, integration, and communication on a selected topic related to environment and business, or on selected environmental issues related to a specific business operation.",
     prereqs: [],
-    antireqs: ["ENBUS 402A", "ENBUS 403A", "ENVS 403A", "ENVS 404", "ENVS 405", "ENBUS 475"],
+    antireqs: ["ENBUS 402A", "ENBUS 403A", "ENVS 403A", "ENVS 404", "ENVS 405", "ENBUS 475", "ENBUS 474"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -17766,7 +17768,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to the principles of designing time-based multi-modal communication in a social context. Students will analyze, design, and produce video for use in a variety of digital platforms.",
     prereqs: [],
-    antireqs: ["GBDA 201"],
+    antireqs: ["GBDA 201", "GBDA 202"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -18879,7 +18881,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to oral and written communication in the fields of statistics and actuarial science. With emphasis on the public presentation of technical knowledge, the ability to give and receive constructive feedback, and communication in a collaborative environment, this course helps students develop proficiencies in critical workplace skills. This course is writing intensive and includes extensive collaborative assignments.",
     prereqs: [
-      { type: "OR", reqs: ["EMLS 101R", "ENGL 129R"] },
+      { type: "OR", reqs: ["EMLS 101R", "EMLS 102R", "ENGL 129R", "ENGL 109", "COMMST 100", "COMMST 223"] },
       { type: "OR", reqs: ["STAT 331", "STAT 371", "ACTSC 331"] }
     ],
     antireqs: [],
@@ -19368,7 +19370,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Linear systems of equations, matrices, and determinants. Introduction to the eigenvalue problem. Applications.",
     prereqs: [],
-    antireqs: ["MATH 106"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -19471,7 +19473,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Modelling of environmental engineering processes via the solution of differential equations. Mass transfer processes in continuum and discrete systems, with applications to natural and engineered systems. Reactor theory. Understanding initial and boundary conditions. Classical and numerical solution techniques for solving differential equations. Volume and surface integration. Reynolds transport theorem.",
     prereqs: [
-      { type: "AND", reqs: ["ENVE 115"] }
+      { type: "AND", reqs: ["ENVE 115", "ENVE 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -19484,7 +19486,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Overview of principles of equilibrium chemistry in aquatic systems, both in the natural environment and in contaminated water treatment processes. Composition of water. Electroneutrality and activity. Chemical thermodynamics. Acid-base equilibria concepts, including solution pH, titration, buffering intensity, and alkalinity. Metal complexation, dissolution, and precipitation reactions in natural and engineered systems. Redox reactions and pE-pH diagrams in aerobic and anaerobic environments.",
     prereqs: [
-      { type: "OR", reqs: ["CHE 102", "ENVE 175"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHE 102"] }, { type: "AND", reqs: ["ENVE 175"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -19576,7 +19578,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fundamentals of coagulation, flocculation, clarification, sedimentation, filtration, adsorption, air stripping, membrane technologies, chemical reduction/oxidation, and disinfection processes with applications to natural and various engineered systems. Quantitative analysis and design of processes and applications to the treatment of drinking water, wastewater, stormwater, groundwater, and soils.",
     prereqs: [
-      { type: "AND", reqs: ["CHE 102"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CHE 102"] }, { type: "AND", reqs: ["ENVE 280"] }] }
     ],
     antireqs: ["CIVE 375"],
     tags: [],
@@ -19589,8 +19591,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Common microbial substrates and metabolisms in engineered and natural systems, kinetics of microbial growth, stoichiometry of nutrient uptake, continuous flow stirred tanks with/without recycle, aeration system design, applications to wastewater treatment, solid waste management, groundwater, and soil remediation.",
     prereqs: [
-      { type: "AND", reqs: ["CIVE 375"] },
-      { type: "AND", reqs: ["ENVE 375"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 375"] }, { type: "AND", reqs: ["ENVE 375"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -19603,7 +19604,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to the water cycle, flood frequency analysis, design storms. Analysis of hydrographs and rainfall-runoff response mechanisms in urban and natural systems. Mass continuity and water budgets at the watershed scale. Impact of land use change on hydrologic response. Quantification of open channel flow; subcritical and supercritical flow regimes. Dynamic forces on submerged structures and low/scour beneath bridges.",
     prereqs: [
-      { type: "OR", reqs: ["CIVE 105", "GEOE 224", "GEOE 280"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CIVE 105"] }, { type: "AND", reqs: ["GEOE 224"] }, { type: "AND", reqs: ["GEOE 280"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -19616,7 +19617,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Mathematical models of watershed hydrology for estimation of streamflow and other water balance components. Pre- and post-processing of hydrometeorological data; quantitative description of hydrologic processes such as snowmelt, evaporation, and routing; assessment of model performance; parameterization, application, and calibration of models. Interpreting model assumptions, modelling choices, and uncertainty in natural and managed watersheds. Modern hydrologic modelling software will be used.",
     prereqs: [
-      { type: "OR", reqs: ["CIVE 382", "ENVE 382"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 382"] }, { type: "AND", reqs: ["ENVE 382"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -19697,7 +19698,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Physical and mathematical models of river processes at the landscape scale, and hydraulic responses in channels. Analysis of gradually varied flow profiles, energy losses around infrastructure (bridges and culverts), and floodplain mapping. Calculation of flood propagation along river channels, estimating scour and erosion around infrastructure, and an introduction to sediment transport. An introduction to river mixing and contaminant transport.",
     prereqs: [
-      { type: "OR", reqs: ["CIVE 382", "ENVE 382"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 382"] }, { type: "AND", reqs: ["ENVE 382"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -19866,7 +19867,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ENVS 178"] }
     ],
-    antireqs: ["ARTS 280", "ECON 221", "SDS 250R", "PSCI 314", "PSYCH 292", "REC 371", "SOC 280", "STAT 202"],
+    antireqs: ["ARTS 280", "ECON 221", "SDS 250R", "PSCI 314", "PSYCH 292", "REC 371", "SOC 280", "STAT 202", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -19877,7 +19878,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is an applied course where students will learn to identify vascular plants using botanical keys. Through lab work and field trips, students will understand vascular plant structure and associated terminology as the basis for plant identification. Students will also learn how to collect specimens to create a herbarium collection and how to conduct vegetation community assessments.",
     prereqs: [],
-    antireqs: ["ENVS 474"],
+    antireqs: ["ENVS 474", "ENVS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -19992,7 +19993,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Methods for future studies are reviewed. Students will then produce a research or design project focused on an urban futures theme.",
     prereqs: [
       { type: "AND", reqs: ["ENVS 210"] },
-      { type: "OR", reqs: ["ENVS 310", "STV 305"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ENVS 310"] }, { type: "AND", reqs: ["STV 305"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -20095,7 +20096,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An overview and introduction to environmental sustainability is provided through the lens of Indigenous entrepreneurship. Through a series of case studies students will be introduced to Indigenous sustainability entrepreneurs addressing pressing environmental challenges for Indigenous Peoples and communities. Ultimately, students will be charged with identifying an environmental challenge facing an Indigenous community and developing a business innovation that is a cultural match to protect the planet and future generations.",
     prereqs: [],
-    antireqs: ["ERS 275"],
+    antireqs: ["ERS 275", "ERS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -20106,7 +20107,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students with an introduction to processes of environmental policy, politics and governance. The roles of various actors, discourses and institutions involved in environmental policy-making and governance will be examined. These processes will be illustrated through an examination of a range of environmental issues from the local to the global level.",
     prereqs: [],
-    antireqs: ["ERS 210", "ERS 275"],
+    antireqs: ["ERS 210", "ERS 275", "ERS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -20117,7 +20118,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores the ecology and context of Canada's main natural resources including mining, forestry, energy and agriculture. In addition, this course presents alternatives to status-quo approaches including organic agriculture, sustainable forestry and a movement away from traditional energy.",
     prereqs: [],
-    antireqs: ["ERS 275"],
+    antireqs: ["ERS 275", "ERS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -20397,7 +20398,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will promote class discussion of the theoretical foundations of restoration ecology and their relationship to project implementation, current academic and professional practice, and forecast trends in the discipline. There will be an emphasis on how restoration ecology is changing in the face of small and large scale ecosystem and cultural dynamics. Class will include instruction and experience on how consultants and private or NGO sectors address restoration ecology. The course will emphasize experiential education in the form of a project scoped for time allotted and involve site design, experimental design, project implementation, statistical analysis of data, and professional level writing for academic and practitioner audiences.",
     prereqs: [
-      { type: "OR", reqs: ["ENVS 200", "BIOL 251"] }
+      { type: "OR", reqs: ["ENVS 200", "BIOL 150", "BIOL 251"] }
     ],
     antireqs: [],
     tags: [],
@@ -20462,7 +20463,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces the main concepts and principles of wildlife ecology. Topics include: population dynamics, animal behavior, habitats, genetics, predation, and habitat use. The lab component will introduce students to wildlife data collection, analysis, and interpretation.",
     prereqs: [
-      { type: "OR", reqs: ["ENVS 178", "STAT 202"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ENVS 178"] }, { type: "AND", reqs: ["STAT 202"] }] },
       { type: "OR", reqs: ["ENVS 200", "BIOL 150", "BIOL 251"] }
     ],
     antireqs: [],
@@ -20695,7 +20696,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This field research course is designed to involve students in high-level intensive research on the function and/or structure of ecosystems as they change because of successional and human processes. Students will normally undertake an experimental approach to an ecosystem-based problem and evaluation outcomes of their experiment or long-term data sets. The course will be focused on one ecosystem per offering, e.g., marine, aquatic, terrestrial forest, mountain. It is expected that the course will be off-campus at a field station or protected area within North America but there may be opportunities to deliver it outside of North America. When offered, the syllabus will provide details on exact location.",
     prereqs: [
-      { type: "OR", reqs: ["ENVS 178", "STAT 202"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ENVS 178"] }, { type: "AND", reqs: ["STAT 202"] }] },
       { type: "OR", reqs: ["ENVS 200", "BIOL 150", "BIOL 251"] }
     ],
     antireqs: [],
@@ -20710,7 +20711,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course introduces the main concepts and principles for the management of wildlife species. This course builds on ERS346 and explores the application of the principles from that course to the management of wildlife. The lab component will build on the skills of wildlife data collection, analysis, and interpretation presented in ERS346.",
     prereqs: [
       { type: "AND", reqs: ["ERS 346"] },
-      { type: "OR", reqs: ["ENVS 178", "STAT 202"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ENVS 178"] }, { type: "AND", reqs: ["STAT 202"] }] },
       { type: "OR", reqs: ["ENVS 200", "BIOL 150", "BIOL 251"] }
     ],
     antireqs: [],
@@ -21067,7 +21068,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students will explore the fundamentals of design through a series of exercises and assignments that cultivate artistic expression and technical skill. Through an exploration of both analogue and digital processes, students will learn to apply the principles of aesthetic design to a variety of contexts, including two-dimensional space, three-dimensional form, and digital frameworks.",
     prereqs: [
-      { type: "OR", reqs: ["FINE 100", "FINE 130"] }
+      { type: "AND", reqs: ["FINE 100"] }
     ],
     antireqs: ["DAC 201", "GBDA 101", "FINE 228", "GBDA 228"],
     tags: [],
@@ -21421,9 +21422,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An upper-level studio course to create computational projects that function as art works and aesthetic experiences. Students will work in an interdisciplinary environment to combine computer science principles with fine art technical and conceptual skills.",
     prereqs: [
-      { type: "AND", reqs: ["CS 105"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 105"] }, { type: "AND", reqs: ["CS 106"] }] },
       { type: "OR", reqs: ["CS 100", "CS 200", "CS 230"] },
-      { type: "OR", reqs: ["FINE 228", "FINE 247"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["FINE 228"] }, { type: "AND", reqs: ["FINE 247"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -21458,7 +21459,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The subject and content for this course will vary, depending on the instructor. These special topics studio courses can change from term to term.",
     prereqs: [
-      { type: "AND", reqs: ["VCULT 319"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["VCULT 319"] }, { type: "AND", reqs: ["FINE 327"] }] },
       { type: "AND", reqs: ["FINE 300"] }
     ],
     antireqs: [],
@@ -21485,7 +21486,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This thesis course involves an intensive exploration and development of individual studio research through practice and experimentation, resulting in the production of a significant body of work. Students will be guided by the work of relevant artists and theorists. In addition to embedded professional practice, an important part of the culminating year is critiques by other faculty members, graduate students, visiting artists, and fellow students.",
     prereqs: [
-      { type: "AND", reqs: ["VCULT 319"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["VCULT 319"] }, { type: "AND", reqs: ["FINE 327"] }] },
       { type: "AND", reqs: ["FINE 300"] }
     ],
     antireqs: [],
@@ -21499,7 +21500,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This thesis course will continue to guide students in the development of their individual studio research as they work towards completion of a significant body of work supported and complemented by appropriate documentation. In addition to embedded professional practice, an important part of the culminating year is critiques by other faculty members, graduate students, visiting artists, and fellow students.",
     prereqs: [
-      { type: "AND", reqs: ["VCULT 319"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["VCULT 319"] }, { type: "AND", reqs: ["FINE 327"] }] },
       { type: "AND", reqs: ["FINE 300"] }
     ],
     antireqs: [],
@@ -21600,7 +21601,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the French sound system with a view to understanding its general characteristics and elements of dialectal variation. Students will enhance their oral production in French, focusing on pronunciation, rhythm and intonation, and overall fluidity. They will learn to transmit spoken speech in a written form using the International Phonetic Alphabet. This course will also help students enhance their auditory and reading skills.",
     prereqs: [
-      { type: "OR", reqs: ["FR 192A", "FR 192B"] }
+      { type: "AND", reqs: ["FR 192A"] }
     ],
     antireqs: [],
     tags: [],
@@ -21623,7 +21624,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Intermediate Spoken French",
     units: 0.5,
     description: "This course is designed to enhance oral expression skills in French at the intermediate level by applying fundamental principles of grammar, pronunciation, and prosody. It also provides cultural insights from various regions of the Francophone world. Students will improve their listening comprehension, expand their vocabulary, and identify common language errors. This will be achieved by utilizing multimedia sources, engaging in a variety of spoken activities, and participating in peer evaluations.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["FR 192B"] }
+    ],
     antireqs: ["FR 250A"],
     tags: [],
     majors: ["any"],
@@ -21661,7 +21664,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The main objective of the course is to develop effective French language skills for professional communication, both oral and written. This course will offer students a theoretical and practical foundation to improve their French language skills in a professional setting. Through authentic activities and assignments, students will acquire the necessary knowledge and skills to succeed in real-world communication situations.",
     prereqs: [
-      { type: "AND", reqs: ["FR 192A"] }
+      { type: "AND", reqs: ["FR 192A", "FR 192B", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -21674,7 +21677,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an introduction to the literature, culture, and history of Quebec and Francophone minorities in Canada from the first contacts of French explorers and settlers in North America to the 21st century. Students will analyze literary works of various genres and gain knowledge of their sociocultural context. One of the major objectives is to train students in short essay writing and its methodology, enabling them to develop structured literary analyses, enriched with pertinent examples from primary and secondary sources.",
     prereqs: [
-      { type: "OR", reqs: ["FR 192A", "FR 192B"] }
+      { type: "AND", reqs: ["FR 192A"] }
     ],
     antireqs: [],
     tags: [],
@@ -21709,9 +21712,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an introduction to French literature, culture, and history spanning from the Middle Ages to the early 18th century. Using a multidisciplinary approach that includes art history, architecture, and music, it delves into French literary works, analyzing various genres and texts within their sociocultural contexts through modernized and abridged corpuses. One of the major objectives is to train students in short essay writing and its methodology, enabling them to develop their own thoughts through structured analysis, enriched with pertinent examples from the corpus being studied.",
     prereqs: [
-      { type: "OR", reqs: ["FR 192A", "FR 192B"] }
+      { type: "AND", reqs: ["FR 192A"] }
     ],
-    antireqs: ["FR 197"],
+    antireqs: ["FR 197", "FR 291"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -21722,7 +21725,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an introduction to French literature, culture, and history spanning from the 18th to the 21st century. Using a multidisciplinary approach that includes art history, architecture, and music, it delves into French literary works, analyzing various genres and texts within their sociocultural contexts. One of the major objectives is to train students in short essay writing and its methodology, enabling them to develop their own thoughts through structured analysis, enriched with pertinent examples from the corpus being studied.",
     prereqs: [
-      { type: "OR", reqs: ["FR 192A", "FR 192B"] }
+      { type: "AND", reqs: ["FR 192A"] }
     ],
     antireqs: ["FR 292"],
     tags: [],
@@ -21735,7 +21738,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an introduction to the principles of linguistic analysis (as opposed to grammar) applied to vocabulary, meaning, and word and sentence structure of French language. Students will learn transferable skills that will deepen their knowledge of French and will help understand functioning of languages in general.",
     prereqs: [
-      { type: "OR", reqs: ["FR 251", "FR 252"] }
+      { type: "AND", reqs: ["FR 251"] }
     ],
     antireqs: [],
     tags: [],
@@ -21748,8 +21751,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a comprehensive overview of 17th-century French literature, providing an in-depth examination of major literary movements such as baroque, la preciosite, and classicism. It explores a wide range of literary works, including poetry, theatre, novels, correspondence, travelogues, and fables. Students will engage in various tasks, such as oral presentations, discussions, textual commentaries, as well as written essays. These activities aim to help them sharpen their analytical skills and develop well-argued personal interpretations of the classic texts from the reign of Henri IV to the end of Louis XIV's era.",
     prereqs: [
-      { type: "AND", reqs: ["FR 296"] },
-      { type: "AND", reqs: ["FR 297"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["FR 296"] }, { type: "AND", reqs: ["FR 297"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -21762,8 +21764,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a comprehensive overview of 18th-century French literature, providing an examination of the French Enlightenment and new literary movements such as sentimentalism, encyclopedism, libertinism, and pre-romanticism, among others. It takes into consideration the social, historical, and artistic contexts that shaped the texts under study. Students will explore a variety of authors and genres (theatre, essay, novel) and engage in various tasks, such as discussions, textual commentaries, as well as written essays. These activities aim to help them sharpen their historical knowledge, analytical skills and develop well-argued personal interpretations of texts published between Regence and French Revolution.",
     prereqs: [
-      { type: "AND", reqs: ["FR 296"] },
-      { type: "AND", reqs: ["FR 297"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["FR 296"] }, { type: "AND", reqs: ["FR 297"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -21776,7 +21777,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will engage in the analysis of Francophone press and other sources of information to enhance their advanced lexical, syntactic, and stylistic skills in French. They will produce compositions on diverse real-world topics, with a focus on the various genres of texts studied in this course and previously. Additionally, students will complete lexical and grammatical activities to improve their understanding of complex syntactic structures and ability to write in different genres. The course will emphasize interactive learning, including group work and peer-review activities, to foster active participation and collaboration among students.",
     prereqs: [
-      { type: "AND", reqs: ["FR 251"] }
+      { type: "AND", reqs: ["FR 251", "FR 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -21789,7 +21790,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide students with an introduction to the practice of French-English and English-French translation. Using an approach based in comparative stylistics, students will learn to identify common problems of translation and to develop strategies in response to them. In this practical study of translation, students will engage in translation activities in both directions, and will translate short texts from a variety of fields from French into English.",
     prereqs: [
-      { type: "AND", reqs: ["FR 251"] }
+      { type: "AND", reqs: ["FR 251", "FR 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -21802,8 +21803,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a detailed and critical study of 19th-century French texts, including literary works, essays, and extracts from newspapers, among others. Students will broaden their knowledge of 19th-century French culture and language, while also further advancing their knowledge of the social and economic developments and challenges of the period. The course also includes reading theoretical and critical works selected to help students sharpen their critical skills.",
     prereqs: [
-      { type: "AND", reqs: ["FR 296"] },
-      { type: "AND", reqs: ["FR 297"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["FR 296"] }, { type: "AND", reqs: ["FR 297"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -21816,7 +21816,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The main objective of this course is to enhance linguistic and cultural skills that will help students to understand the functioning of the business world and discuss economic topics using relevant business terminology in the social and economic contexts of Canada and France. By the end of this course, students will have acquired a solid foundation in the vocabulary, concepts, and tools necessary to communicate effectively in a professional Francophone environment. Additionally, students will be able to analyze and interpret business-related news articles and express informed opinions on various socio-economic topics of current interest.",
     prereqs: [
-      { type: "AND", reqs: ["FR 251"] }
+      { type: "AND", reqs: ["FR 251", "FR 252", "FR 255", "FR 297"] }
     ],
     antireqs: [],
     tags: [],
@@ -21829,7 +21829,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a critical study of literary works produced in France in the 20th century and will take into consideration the social, historical, and artistic contexts that shaped the texts under study. Students will explore a variety of theoretical approaches and concepts to develop their skills in textual analysis. Through in-class discussions and written assignments, students will hone their research skills, their capacity to formulate their own critical perspectives, and their ability to effectively communicate in French.",
     prereqs: [
-      { type: "OR", reqs: ["FR 276", "FR 297"] }
+      { type: "AND", reqs: ["FR 276", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -21842,7 +21842,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines selected works of drama and theatre written and performed in French in Europe, the Americas, Africa, and/or Asia. Students will develop knowledge of a variety of theoretical and methodological approaches to textual and performance analysis. Through discussions, presentations, and written assignments in French, students will critique theatre as a literary genre, as an art based in performance, as a mode of cultural expression, and/or as a historical phenomenon.",
     prereqs: [
-      { type: "AND", reqs: ["FR 276"] }
+      { type: "AND", reqs: ["FR 276", "FR 296", "FR 297"] }
     ],
     antireqs: [],
     tags: [],
@@ -21855,8 +21855,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a critical study of contemporary literary works produced in France and will take into consideration the social, historical, and artistic contexts that shape them. Students will explore a variety of theoretical approaches and concepts to develop their skills in textual analysis. Through in-class discussions and written assignments, students will hone their research skills, their capacity to formulate their own critical perspectives, and their ability to effectively communicate in French.",
     prereqs: [
-      { type: "AND", reqs: ["FR 296"] },
-      { type: "AND", reqs: ["FR 297"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["FR 296"] }, { type: "AND", reqs: ["FR 297"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -21869,7 +21868,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine, from a historical and sociolinguistic perspective, the long-standing rivalry of our country's two official languages, the origins of their relationship, and the socio-political and linguistic implications of bilingualism.",
     prereqs: [
-      { type: "AND", reqs: ["FR 197"] }
+      { type: "AND", reqs: ["FR 197", "FR 296", "FR 251", "FR 252", "FR 297"] }
     ],
     antireqs: [],
     tags: [],
@@ -21920,7 +21919,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a study of the sound structure of French that aims to describe and explain certain language phenomena related to stylistic, social, and regional variation in French. Students will practice comparative analyses, acoustic analyses of sound recordings, and phonological analyses of dialectal data.",
     prereqs: [
-      { type: "OR", reqs: ["FR 203", "FR 303"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["FR 203"] }, { type: "AND", reqs: ["FR 303"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -21933,7 +21932,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to French literature of the Middle Ages through the study of representative texts.",
     prereqs: [
-      { type: "AND", reqs: ["FR 197"] }
+      { type: "AND", reqs: ["FR 197", "FR 296", "FR 297"] }
     ],
     antireqs: [],
     tags: [],
@@ -21946,8 +21945,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a critical study of French Renaissance texts and a thorough examination of a variety of methodological approaches. Students will deepen their knowledge of French 16th-century culture, literature, language and diversity while engaging with interdisciplinary approaches to Renaissance studies. They will also learn how to use theoretical approaches and analytical tools to investigate in an original and creative way themes and motifs identified in class.",
     prereqs: [
-      { type: "AND", reqs: ["FR 296"] },
-      { type: "AND", reqs: ["FR 297"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["FR 296"] }, { type: "AND", reqs: ["FR 297"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -22001,7 +21999,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a critical study of French works written or republished for a young readership since the 18th century, in France, in Quebec, but also in other French-speaking countries or communities. Students will develop their knowledge of the rich and vast domain that constitutes children¿s literature. Through the use of theoretical and critical works, students will examine the place that they occupy in the larger ecosystems of literature and of social discourse, and the specific challenges that these works face and address.",
     prereqs: [
-      { type: "OR", reqs: ["FR 276", "FR 297"] }
+      { type: "AND", reqs: ["FR 276", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -22014,7 +22012,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will focus on the various literary, historical, and cultural contexts of women's writing, emphasizing the plurality of women's voices. Through the analysis, discussion, in-class evaluation and written assignments on selected works, this course will deepen students¿ knowledge of different genres and introduce them to relevant theoretical concepts to elucidate these works. Texts will be chosen by the professor according to their area of specialization, from the Middle Ages to the 21st century, and from France and/or diverse French-speaking communities or countries.",
     prereqs: [
-      { type: "OR", reqs: ["FR 276", "FR 297"] }
+      { type: "AND", reqs: ["FR 276", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -22027,7 +22025,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will explore various works coming from France and/or culturally diverse French-speaking communities and countries around the world. Through weekly readings and analysis of works, in-class evaluation, written or oral activities and assignments, this course offers an interdisciplinary approach to examine the French language and the Francophone cultures through different types of cultural production. Examples of topics studied might include theatre, contemporary fiction, comic books, etc. Topics will be chosen by the professor according to their area of specialization.",
     prereqs: [
-      { type: "OR", reqs: ["FR 276", "FR 297"] }
+      { type: "AND", reqs: ["FR 276", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -22040,7 +22038,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines literary works written in French in the Caribbean and in Africa (Maghreb and Sub-Saharan region) in the 20th and 21st centuries. This course offers a combination of a wide range of literary genres (novel, autobiographical narrative, poetry, epistolary, fairy tales, etc.) as well as a variety of theoretical and methodological approaches to textual analysis. Through discussions and written assignments, students will learn about Francophone African and Caribbean history, culture, and identity by analyzing, comparing, and contrasting readings in different historical contexts.",
     prereqs: [
-      { type: "OR", reqs: ["FR 276", "FR 297"] }
+      { type: "AND", reqs: ["FR 276", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -22053,7 +22051,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A small group of students follows a course of study under the supervision of a faculty member. For details, inquire with the department.",
     prereqs: [
-      { type: "OR", reqs: ["FR 276", "FR 297"] }
+      { type: "AND", reqs: ["FR 276", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -22066,7 +22064,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A small group of students follows a course of study under the supervision of a faculty member. For details, inquire with the department.",
     prereqs: [
-      { type: "OR", reqs: ["FR 276", "FR 297"] }
+      { type: "AND", reqs: ["FR 276", "FR 296"] }
     ],
     antireqs: [],
     tags: [],
@@ -22193,7 +22191,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to quantitative data analysis, covering basic descriptive statistical techniques and procedures, and inferential statistics.",
     prereqs: [],
-    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "ISS 250A", "KIN 222", "LS 280", "PSCI 214", "PSCI 314", "PSYCH 292", "REC 371", "ISS 250R", "SRF 230", "SWREN 250A"],
+    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "ISS 250A", "KIN 222", "KIN 232", "LS 280", "PSCI 214", "PSCI 314", "PSYCH 292", "REC 371", "ISS 250R", "SRF 230", "STAT 202", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241", "SWREN 250A", "SWREN 250R"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -22698,7 +22696,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Linear systems of equations, matrices, and determinants. Introduction to the eigenvalue problem. Applications.",
     prereqs: [],
-    antireqs: ["MATH 106"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -22814,7 +22812,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to geologic processes. Subsurface exploration. Classification systems. Weight-volume relationships. Soil mechanics principles including state of stress, ground water flow, consolidation and shear strength. Four lab sessions.",
     prereqs: [
-      { type: "OR", reqs: ["GEOE 153", "ENVE 153", "EARTH 121"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOE 153"] }, { type: "AND", reqs: ["ENVE 153"] }, { type: "AND", reqs: ["EARTH 121", "EARTH 121L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23007,7 +23005,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to globalization of the world economy through an examination of its causes, patterns, and consequences in a variety of geographic contexts.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 101", "ENVS 195"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 101"] }, { type: "AND", reqs: ["ENVS 195"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23020,7 +23018,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Examines the interface between human development and the environment in a global context. Various perspectives are explored to link environmental issues to wealth, poverty, consumption, population, and economic globalization. Case studies, with an emphasis on developing countries, are used to illustrate linkages.",
     prereqs: [
-      { type: "OR", reqs: ["ENVS 195", "GEOG 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["ENVS 195"] }, { type: "AND", reqs: ["ENVS 205"] }] }, { type: "AND", reqs: ["GEOG 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23057,7 +23055,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the fundamental processes governing climate and hydrological systems and the links between them. It starts with a discussion of basic atmospheric and hydrological processes and traces the flow of energy and water between the earth's surface and the atmosphere. The water cycle is examined including evapotranspiration, precipitation, runoff and water storage in the natural reservoirs (including soil and groundwater, lakes and wetlands).",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 102", "EARTH 121"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 102"] }, { type: "AND", reqs: ["EARTH 121"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23114,7 +23112,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides foundational understanding of the nature and scope of tourism geographies. In particular, students will become familiar with the significance of tourism to modern society, economy and the environment. Geographical approaches to the study of tourism and contemporary frameworks relevant to human behavior and actions in touristic landscapes will serve as the foundations to understanding tourist spaces, places and identities.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 101", "REC 101", "ENVS 195"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 101"] }, { type: "AND", reqs: ["REC 101"] }, { type: "AND", reqs: ["ENVS 195"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23138,7 +23136,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Remote sensing of the Earth's systems (atmosphere, land, and oceans) is introduced. The course covers the principles, physics, sensor technology, processing, and applications of remote sensing in the electromagnetic spectrum.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 181", "GEOG 187"] }
+      { type: "AND", reqs: ["GEOG 181"] }
     ],
     antireqs: [],
     tags: [],
@@ -23162,7 +23160,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to the fundamental concepts and use of Geographic Information Systems (GIS). Students learn about the nature of geographic information and how to store, manipulate and analyze spatial data in a range of application areas. Students will learn underlying theory in lectures and gain a working knowledge of GIS software in lab sessions.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 181", "GEOG 187"] }
+      { type: "AND", reqs: ["GEOG 181"] }
     ],
     antireqs: [],
     tags: [],
@@ -23197,7 +23195,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Study of the origin and evolution of landforms with emphasis on southern Ontario. Analysis of geomorphic processes. Study of human impact on geomorphological landscapes. The lectures will be supplemented by field trips and field work required for term projects.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 209", "GEOG 305"] }
+      { type: "AND", reqs: ["GEOG 209"] }
     ],
     antireqs: [],
     tags: [],
@@ -23234,7 +23232,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course investigates stocks and fluxes of carbon in forests, wetlands, and lakes through directed readings and field investigations. This field-based course will focus on measurement methods, data collection and interpretation, and study design. Topics include forest biomass inventory, soil organic matter, soil carbon dioxide and methane exchange, and dissolved organic carbon.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 209", "GEOG 305"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 209"] }, { type: "AND", reqs: ["GEOG 305"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23284,7 +23282,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Principles of physical climatology with emphasis on regional and global change and variability. Topics include radiation and energy balances, general circulation patterns, synoptic development and micro-climatology.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 102", "EARTH 121"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 102"] }, { type: "AND", reqs: ["EARTH 121"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23297,7 +23295,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Concepts of geodesy and surveying, Earth's gravity field and the geoid, and measurement techniques applied to geomatics are examined. Field studies include the use of the level, the total station, and GPS for doing distance and angle measurements, leveling, traversing, and topographic surveying.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 181", "GEOG 187"] }
+      { type: "AND", reqs: ["GEOG 181"] }
     ],
     antireqs: [],
     tags: [],
@@ -23310,7 +23308,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This lecture and discussion course covers topics of importance for understanding economic geography today including the spatial, social, cultural, and economic dimensions of economic development, the 2007/2008 sub-prime mortgage crisis, debt and finance, deindustrialization, the role of work and unions, economic justice, and the role of the state.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 202", "GEOG 203"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 202"] }, { type: "AND", reqs: ["GEOG 203"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23401,7 +23399,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A critical examination of major themes related to the distribution, diffusion, determinants and delivery of health and health care with a particular emphasis on the roles of space, place and environment.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 101", "GEOG 225"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 101"] }, { type: "AND", reqs: ["GEOG 225"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23427,7 +23425,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will focus on the comparative analysis of urban spatial structure and urban form, as well as the administrative and regulatory implications of urbanization around the world. Students will develop knowledge of global urban issues and compare policy responses related to urban economies, transportation and land use planning, housing and community development, sustainable urban environment, urban poverty, peri-urbanization, urban heritage, and conservation planning, etc. Students will assess planning problems and solutions from both industrialized and developing countries.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 101", "PLAN 100"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 101"] }, { type: "AND", reqs: ["PLAN 100"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23451,7 +23449,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Reviews selected theories, methods, and terminology related to economic, behavioural, institutional and decision-making aspects of resources and environmental problems.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 202", "GEOG 203"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 202"] }, { type: "AND", reqs: ["GEOG 203"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23563,7 +23561,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Field research course in which a specific area will be analyzed from a geographic point of view. Individual or group analysis of specific field problems.",
     prereqs: [
       { type: "AND", reqs: ["ENVS 278"] },
-      { type: "OR", reqs: ["GEOG 293", "GEOG 294"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 293"] }, { type: "AND", reqs: ["GEOG 294"] }] }
     ],
     antireqs: ["GEOG 392"],
     tags: [],
@@ -23576,7 +23574,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Field course in which research skills will be further developed. This course is taught at an international location, and includes integrated content and applications from all four specializations in Geography and Environmental Management.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 293", "GEOG 294"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 293"] }, { type: "AND", reqs: ["GEOG 294"] }] },
       { type: "AND", reqs: ["ENVS 278"] }
     ],
     antireqs: ["GEOG 391"],
@@ -23590,7 +23588,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Eutrophication, caused by excess nutrients (phosphorus and nitrogen) entering water bodies, results in nuisance and harmful algal blooms, and is a major global threat to water quality and water security. This course explores eutrophication drivers, pressures, and impacts on the quality of freshwater systems, from watershed to global scales. Students will learn about the sources and biogeochemical cycling of nutrients along the aquatic (stream-river-lake) continuum, and ecological responses in receiving water bodies. Environmental thresholds for setting water-quality standards and nutrient criteria will be discussed. Students will learn about agricultural beneficial management practices and wastewater management to reduce nutrient inputs to freshwaters. Students will examine the benefits and challenges of sustainable nutrient stewardship in combatting eutrophication, and learn about how this knowledge is used in water-quality management, through international examples.",
     prereqs: [
-      { type: "AND", reqs: ["GEOG 205"] }
+      { type: "OR", reqs: ["GEOG 205", "GEOG 209"] }
     ],
     antireqs: [],
     tags: [],
@@ -23616,8 +23614,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Basic concepts on the distribution, classification, development, hydrology, biogeochemistry, and ecology of wetlands with an emphasis on temperate and boreal/subarctic systems. Human impacts, restoration and reclamation of wetlands are considered with the view of wetlands as functional ecosystems.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 209", "EARTH 123"] },
-      { type: "AND", reqs: ["ENVS 200"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 209"] }, { type: "AND", reqs: ["EARTH 123"] }] }, { type: "AND", reqs: ["ENVS 200"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23630,7 +23627,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on ecological and biogeochemical processes that are linked to the terrestrial hydrological cycle and how these relate to the management of natural resources. The objectives of this interdisciplinary course are to explore topics that integrate ecosystem processes with physical hydrology and examine the impacts of human activities on ecohydrological and hydrochemical processes within terrestrial systems. This course focuses on the storage and movement of water, solutes, and nutrients within selected ecosystems (forests, agricultural, wetlands), considering the biogeochemical consequences of human activity such as climate change, wetland drainage, agriculture, and forest harvesting.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 209", "EARTH 123"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 209"] }, { type: "AND", reqs: ["EARTH 123"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23694,7 +23691,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Human geography concepts and techniques are applied to the study of a current economic or social issue facing a local, regional, or national jurisdiction.",
     prereqs: [
       { type: "AND", reqs: ["GEOG 293"] },
-      { type: "OR", reqs: ["GEOG 202", "GEOG 203"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 202"] }, { type: "AND", reqs: ["GEOG 203"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23746,7 +23743,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce the basics of glaciology, with a focus on climate change and physical processes. Key areas covered by the course include glacial mass change in a warming climate, ice dynamics, various spatial and temporal scales of glaciation, and geomorphological features caused by glaciation.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 209", "GEOG 305"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 209"] }, { type: "AND", reqs: ["GEOG 305"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23759,7 +23756,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines sustainability issues relevant to tourism. In particular, conceptual and practical examples related to economic, environmental, and social/cultural sustainability of tourism are critically appraised, combined with reviews of policy and institutional effects on sustainability practices. The course also focuses on best practices in sustainable tourism within government, non-government and business operations.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 233", "GEOG 323"] }
+      { type: "AND", reqs: ["GEOG 233"] }
     ],
     antireqs: [],
     tags: [],
@@ -23772,7 +23769,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Examines international development theories and practice, emphasizing the interactions between social, economic, political, and environmental dimensions at the micro- and macro-scales. Selected case studies illustrate divergent outcomes of development and the contested process that development represents.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 202", "GEOG 203"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 202"] }, { type: "AND", reqs: ["GEOG 203"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23785,8 +23782,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course develops the capacity of students to apply methods of spatial demography. Spatial demography refers to the statistical study of human population using spatial methods for analyzing demographic data. It can provide insights into the understanding of geographic variations of population's characteristics, which in turn can help to make better plans in building the environment. Through this course, students will learn the basic concepts, data sources, data issues, methodologies, and applications of spatial demography.",
     prereqs: [
-      { type: "AND", reqs: ["ENVS 278"] },
-      { type: "AND", reqs: ["PLAN 281"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ENVS 278"] }, { type: "AND", reqs: ["PLAN 281"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23845,7 +23841,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Using a combination of lecture and seminar, this course examines feminist economic geography's framing of: (1) the gendered division of labour (2) (un)paid care work (3) how different embodied actors engage with the economy and (4) feminist critiques of capitalism and responses to economic crisis.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 202", "PLAN 233", "INTEG 221", "GSJ 222"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 202"] }, { type: "AND", reqs: ["PLAN 233"] }, { type: "AND", reqs: ["INTEG 221"] }, { type: "AND", reqs: ["GSJ 222"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23858,7 +23854,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Concepts and techniques of resources management and institutional analysis are applied to the study of a current climate change or environmental management issue.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 293", "GEOG 294"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 293"] }, { type: "AND", reqs: ["GEOG 294"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -23893,7 +23889,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Wildfire is a global phenomenon that is expected to increase in extent and severity due to fuel accumulation, shifting land management practices, and climate change. Removal of vegetation by wildfire can alter hydrologic, biogeochemical, and geomorphic processes over a range of spatial and temporal scales in a manner that can be transient or persistent. Alteration of these processes can involve complex responses in both terrestrial and aquatic ecosystems which pose significant financial, environmental, planning, and management challenges. This course will examine the role of climate warming on wildfire behaviour, the impacts of wildfire on landscape form and function, and its impact on hydrologic and geomorphic processes in wildfire impacted landscapes across the globe.",
     prereqs: [],
-    antireqs: ["GEOG 474"],
+    antireqs: ["GEOG 474", "GEOG 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -23985,8 +23981,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The development, implementation, and presentation of a response to a set of GIS related project requirements is the focus of this course. Students work in small teams to enhance and develop their abilities to work with GIS and related spatial technologies and analytical methods in an advanced project setting. The nature of the project requirements and themes varies with faculty and student strengths and interests. Projects may emphasize development of software applications, use of programming, or advanced GIS analysis methods, and draw from theme areas such as environment studies and management, human and physical geography, or planning.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 387", "PLAN 381"] },
-      { type: "AND", reqs: ["ENVS 278"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["PLAN 387"] }, { type: "AND", reqs: ["PLAN 381"] }] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -24010,7 +24005,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An in-depth study of current machine learning algorithms and their applications in geospatial science, with a focus on earth observation data processing and analysis. Topics include k-nearest neighbour, decision trees, support vector machines, ensemble learning, and some deep neural networks (e.g., CNN, U-Net). Machine learning algorithms implemented using Python will be applied for semantic segmentation, land use and land cover classification, and building and road detection using aerial and satellite images.",
     prereqs: [
-      { type: "AND", reqs: ["GEOG 316"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["GEOG 316"] }, { type: "AND", reqs: ["GEOG 371"] }] }
     ],
     antireqs: ["CS 480"],
     tags: [],
@@ -24023,7 +24018,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Built around a set of key issues in the management of Geographic Information Systems (GIS). Focuses on middle management concerns and covers topics including GIS needs assessment, benchmarking, the law and spatial data, spatial data warehousing, multi-user GIS modelling, and GIS application development. Uses of GIS in both public and private sector organizations are covered.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 381", "PLAN 387"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PLAN 381"] }, { type: "AND", reqs: ["PLAN 387"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -24036,7 +24031,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Preparatory work and first draft of thesis.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 293", "GEOG 294"] }
+      { type: "AND", reqs: ["GEOG 293"] }
     ],
     antireqs: [],
     tags: [],
@@ -24191,7 +24186,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course improves students' oral and written skills via creative performances in our everyday life. Students will be actively involved in marketing products, conducting job interviews, writing résumés, improvising theatre skits, hosting poetry slams, or even instructing yoga - all in German.",
     prereqs: [
-      { type: "OR", reqs: ["GER 101", "GER 102"] }
+      { type: "AND", reqs: ["GER 101"] }
     ],
     antireqs: [],
     tags: [],
@@ -24316,7 +24311,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students learn strategies for understanding a variety of texts such as newspaper reports, manuals, and fiction. Translation exercises are used to improve language skills.",
     prereqs: [
-      { type: "OR", reqs: ["GER 202", "GER 211"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GER 202"] }, { type: "AND", reqs: ["GER 211"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -24329,7 +24324,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This language course teaches students the skills needed to function in German business and professional environments. Praxis-oriented language and intercultural training are combined with a discussion of the German business world.",
     prereqs: [
-      { type: "OR", reqs: ["GER 202", "GER 211"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GER 202"] }, { type: "AND", reqs: ["GER 211"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -24342,7 +24337,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "German-language comic strips and graphic novels enable students to explore modern language use. Colloquial German language skills are sharpened in this course, and the place of the comic strip and graphic novel in society is discussed.",
     prereqs: [
-      { type: "OR", reqs: ["GER 202", "GER 211"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GER 202"] }, { type: "AND", reqs: ["GER 211"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -24523,7 +24518,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Senior Seminar",
     units: 0.5,
     description: "Topics in German literary and cultural studies and linguistics chosen by the instructor in consultation with the department. These courses reflect research interests of the faculty and form part of a well-rounded undergraduate education in \"Germanistik\".",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["GER 331"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -24568,7 +24565,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Variations in the meaning and significance of death and dying will be considered from a psychological perspective, with particular attention to the contexts (e.g., cultural, familial, life-span developmental) in which these variations occur.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -24581,7 +24578,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will focus on the normative psychosocial aspects of development of the individual and their influence on the individual's physical and mental health and well-being. Through the use of a developmental systems, lifespan approach, the course will emphasize the life-long process of development.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: ["HLTH 320", "GERON 320"],
     tags: [],
@@ -24618,8 +24615,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to individual and population aging. Topics discussed include: aging from a historical and comparative perspective; aging in subcultures; aging and the social structure; aging and social processes; aging and the environment; work and retirement; and aging and leisure patterns.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "HEALTH 107"] },
-      { type: "OR", reqs: ["GSJ 101", "GSJ 102"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["HEALTH 107"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GSJ 101"] }, { type: "AND", reqs: ["GSJ 102"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -24691,7 +24688,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is a continuation of GRK101/RCS101. The majority of the rules of ancient Greek grammar will be covered by the end of the course. Students will begin to read more complex ancient Greek texts relevant to the study of classical studies and religious studies.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 101", "RCS 101"] }
+      { type: "AND", reqs: ["GRK 101", "RCS 101"] }
     ],
     antireqs: [],
     tags: [],
@@ -24728,7 +24725,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to follow GRK201/RCS201 and to expand students' experience of reading ancient Greek texts for the study of classical studies and religious studies. Texts read will include a selection of poetry and prose in a variety of fields, including authors such as Homer, Herodotus, Euripides, Plato, the New Testament, and Josephus.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 201", "RCS 223"] }
+      { type: "AND", reqs: ["GRK 201", "RCS 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -24754,7 +24751,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A selection of material from one author or several authors within the field of Greek prose. Topics and selections may include oratory, history, philosophy, Demosthenes, Herodotos, Xenophon, Plato, and Aristotle.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 202", "RCS 224"] }
+      { type: "AND", reqs: ["GRK 202", "RCS 224"] }
     ],
     antireqs: [],
     tags: [],
@@ -24767,7 +24764,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A selection of material from one author or several authors within the field of Greek poetry. Topics and selections may include epic, tragedy, comedy, lyric poetry, Homer, Sophokles, Aristophanes, Simonides, and Pindar.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 202", "RCS 224"] }
+      { type: "AND", reqs: ["GRK 202", "RCS 224"] }
     ],
     antireqs: [],
     tags: [],
@@ -24780,7 +24777,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An investigation of selected themes, topics, time periods, or genres in Greek.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 202", "RCS 224"] }
+      { type: "AND", reqs: ["GRK 202", "RCS 224"] }
     ],
     antireqs: [],
     tags: [],
@@ -24793,7 +24790,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Composition, translation, and grammar with intensive analysis of selected passages.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 202", "RCS 224"] }
+      { type: "AND", reqs: ["GRK 202", "RCS 224"] }
     ],
     antireqs: [],
     tags: [],
@@ -25263,7 +25260,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "We are becoming a global community; increasingly, health concerns are international in nature and impact. The student will build upon core content concerning population and public health, health systems, and social determinants of health to address emerging global health concerns.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 101", "HLTH 260"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 101", "HLTH 102"] }, { type: "AND", reqs: ["HLTH 260"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -26508,7 +26505,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of the common law of England from its introduction in the 11th century to the 15th century. Original documents and court cases will be examined.",
     prereqs: [
-      { type: "OR", reqs: ["HIST 236", "LS 236"] }
+      { type: "AND", reqs: ["HIST 236", "LS 236"] }
     ],
     antireqs: [],
     tags: [],
@@ -26941,7 +26938,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce the student to the basic theories, principles and practice of public and population health.",
     prereqs: [
-      { type: "AND", reqs: ["HLTH 101"] }
+      { type: "AND", reqs: ["HLTH 101", "HLTH 102"] }
     ],
     antireqs: [],
     tags: [],
@@ -26976,7 +26973,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will cover several fundamental concepts in biochemistry including structure and function of each of the biochemical molecules: proteins, carbohydrates, lipids, and nucleic acids; metabolic and enzymatic pathways for energy production; regulatory processes; as well as an introduction to the processes of the central dogma. Course content will focus on direct connections to health using clinical examples and applications.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 130", "CHEM 121"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 130"] }, { type: "AND", reqs: ["CHEM 120"] }] }, { type: "AND", reqs: ["CHEM 121"] }] }
     ],
     antireqs: ["KIN 217"],
     tags: [],
@@ -26989,7 +26986,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Variations in the meaning and significance of death and dying will be considered from a psychological perspective, with particular attention to the contexts (e.g., cultural, familial, life-span developmental) in which these variations occur.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -27002,7 +26999,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will focus on the normative psychosocial aspects of development of the individual and their influence on the individual's physical and mental health and well-being. Through the use of a developmental systems, lifespan approach, the course will emphasize the life-long process of development.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: ["HLTH 320", "GERON 320"],
     tags: [],
@@ -27050,7 +27047,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Enormous inequalities in health persist both within and between countries. These inequalities can be seen across various axes including gender, ethnicity, and access to material resources. As such, those relatively deprived/underprivileged have substantially poorer health than those better off. The course will demonstrate the extent of inequalities in health, and it will explore current theories explaining how inequalities arise, focusing on behavioural/cultural, psychosocial, and structural/material explanations. The course will also investigate the role of various approaches to economic and social policy in creating or reducing inequalities.",
     prereqs: [
-      { type: "OR", reqs: ["HEALTH 107", "SOC 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HEALTH 107"] }, { type: "AND", reqs: ["SOC 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27101,7 +27098,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces health promotion history, theories, and change strategies that address individual-level behaviour plus sociocultural, economic, political, and environmental conditions and resources for health that impact communities and foster engagement, empowerment, and functional collaborations. Topics include educational, persuasive, organizational, regulatory, and empowerment approaches for improving health at individual and community levels.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 102", "GSJ 260"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["HLTH 102"] }, { type: "AND", reqs: ["HLTH 260", "GSJ 260"] }] }
     ],
     antireqs: ["HLTH 305"],
     tags: [],
@@ -27229,7 +27226,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to individual and population aging. Topics discussed include: aging from a historical and comparative perspective; aging in subcultures; aging and the social structure; aging and social processes; aging and the environment; work and retirement; and aging and leisure patterns.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "HEALTH 107", "GSJ 101", "GSJ 102"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["HEALTH 107"] }, { type: "AND", reqs: ["GSJ 101"] }, { type: "AND", reqs: ["GSJ 102"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27255,9 +27252,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the joint contribution of social processes and neurobiology to the risk for and development of mental health conditions in the modern world. Topics may include the social neurobiology of affective disorders (e.g., anxiety, depression, post-traumatic stress disorder), eating disorders, addictions, and suicide.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "KIN 232", "PSYCH 291"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PSYCH 101"] }, { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["BIOL 361"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 232"] }, { type: "AND", reqs: ["KIN 354"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["PSYCH 291"] }, { type: "AND", reqs: ["PSYCH 292"] }, { type: "AND", reqs: ["PSYCH 261"] }] }, { type: "OR", reqs: ["HLTH 204", "HLTH 205", "HLTH 333"] }, { type: "OR", reqs: ["HEALTH 150", "REC 371"] }] }] }
     ],
-    antireqs: [],
+    antireqs: ["HLTH 460"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -27301,7 +27298,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will explore concepts of mental health, mental illness, and substance use from a societal perspective. This will include an exploration of risks and protective factors at the individual and social levels. An overview of the addictions and mental health care systems will also be discussed, with particular emphasis on the role of public and private policy.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 245", "GERON 245", "HLTH 260", "GSJ 260"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 245", "GERON 245"] }, { type: "AND", reqs: ["HLTH 260", "GSJ 260"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27327,7 +27324,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "We are becoming a global community; increasingly, health concerns are international in nature and impact. The student will build upon core content concerning population and public health, health systems, and social determinants of health to address emerging global health concerns.",
     prereqs: [
-      { type: "AND", reqs: ["HLTH 102"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["HLTH 102"] }, { type: "AND", reqs: ["HLTH 245"] }, { type: "AND", reqs: ["HLTH 260"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27340,7 +27337,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Innovation is needed to address some of the world's biggest global health challenges. This course will explore the development, implementation, and evaluation of new ideas and approaches to address contemporary global health needs. Emphasis will be placed on interdisciplinary, multi-sectoral, and community-engaged efforts to achieve health equity.",
     prereqs: [
-      { type: "AND", reqs: ["HLTH 102"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["HLTH 102"] }, { type: "AND", reqs: ["HLTH 245"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27390,7 +27387,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Nutrition is integral to the etiology, prevention, and treatment of chronic diseases. This course examines nutritional aspects of key chronic diseases affecting the Canadian population. There will be an opportunity for students to explore, in depth, specific conditions and aspects of nutritional assessment or intervention that interest them. Case topics span the lifecycle and such conditions as obesity, eating disorders, diabetes, dyslipidemia, cardiovascular disease, and some cancers. As well, students present seminars on a topic of their choice.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 355", "KIN 146"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 355"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 146"] }, { type: "AND", reqs: ["BIOL 273"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27451,7 +27448,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the key issues related to the design, conduct, analyses, and interpretation of experimental studies. Examples will be drawn from animal research investigating disease mechanisms and from clinical and population studies investigating efficacy of preventive or therapeutic strategies.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 335", "STAT 316"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 335"] }, { type: "AND", reqs: ["STAT 316"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27478,7 +27475,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course builds upon the concepts learned in HLTH333. The primary objective is to provide an understanding of the fundamental concepts, principles, and applications of non-communicable disease epidemiology. The course emphasizes the application of epidemiologic methods to identify risk and protective factors for chronic diseases.",
     prereqs: [
       { type: "AND", reqs: ["HLTH 333"] },
-      { type: "OR", reqs: ["HLTH 335", "STAT 316"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 335"] }, { type: "AND", reqs: ["STAT 316"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27492,7 +27489,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course introduces the basic methods for communicable disease epidemiology and discusses important infectious diseases, including their history, ecology and current public health significance. The course focuses on epidemiological methods in infectious disease research, prevention, and control, such as outbreak investigations, disease surveillance, case-control and cohort studies, laboratory tools, molecular epidemiology, dynamics of transmission, and assessment of vaccine field effectiveness. A range of communicable diseases will be discussed including respiratory infections, diarrheal diseases, sexually transmitted diseases, bloodborne diseases, and vector-borne diseases.",
     prereqs: [
       { type: "AND", reqs: ["HLTH 333"] },
-      { type: "OR", reqs: ["HLTH 335", "STAT 316"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 335"] }, { type: "AND", reqs: ["STAT 316"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27505,7 +27502,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide an in-depth examination of pandemics with emphasis on preparedness, planning, and control. It will include topics on history of pandemics, their origins, prevention, and control, and their impacts (e.g., social, economic, political). Students will learn about infectious diseases mainly related to pandemics, best practices to prevent and control transmission, and impacts on society and populations.",
     prereqs: [
-      { type: "AND", reqs: ["HLTH 101"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["HLTH 101"] }, { type: "AND", reqs: ["HLTH 333"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27551,7 +27548,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course combines an overview of health policy issues and service delivery with methodological considerations in the analysis of health information from a variety of sources. The topics to be addressed may include the role of health information in evidence-based practice and policy development; basic concepts of demography and health information management; secondary data analysis; case-mix based funding systems; performance indicators, quality, and accountability in health care; clinical applications of health data; need analysis; cost analysis; international comparisons.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 335", "STAT 316"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 335"] }, { type: "AND", reqs: ["STAT 316"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27575,9 +27572,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the fundamental computing methods and concepts that are commonly employed in modern health informatics in order to collect, store, organize, process, analyze, and communicate digital health data/information/knowledge. Students will gain both theoretical knowledge and practical experience so that they can apply the learned methods in practice after completing this course.",
     prereqs: [
-      { type: "AND", reqs: ["HLTH 230"] },
-      { type: "OR", reqs: ["CS 105", "CS 115", "CS 135"] },
-      { type: "OR", reqs: ["CS 106", "CS 116", "CS 136"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["HLTH 230"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CS 105"] }, { type: "AND", reqs: ["CS 115"] }, { type: "AND", reqs: ["CS 135"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["CS 106"] }, { type: "AND", reqs: ["CS 116"] }, { type: "AND", reqs: ["CS 136"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27590,7 +27585,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an introduction to the field of information visualization: the use of computer graphics and interaction to help humans understand, interpret and solve problems using complex data. Topics will be covered using case studies, and include what is visualization?; use of colour, shape, and contrast in representing data; rules of thumb for creating visualizations; and case studies.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 230", "CS 115", "CS 135", "CS 116", "CS 136"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["HLTH 230"] }, { type: "AND", reqs: ["CS 105"] }] }, { type: "AND", reqs: ["CS 115"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["CS 135"] }, { type: "AND", reqs: ["CS 106"] }] }, { type: "AND", reqs: ["CS 116"] }, { type: "AND", reqs: ["CS 136"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27603,7 +27598,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces disease mapping. It covers what, why, and how concerning disease mapping with a focus on how. Through hands-on experience with Geographic Information Systems (GIS), students learn how to produce maps for displaying and analyzing geographic patterns of diseases. They also learn how to identify locations of disease clusters and obtain clues as to the disease etiology.",
     prereqs: [
-      { type: "OR", reqs: ["HLTH 335", "STAT 316"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 335"] }, { type: "AND", reqs: ["STAT 316"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27617,8 +27612,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This is an in-depth course intended for the intensive study of psychological, neuroscientific, and social processes that together set the stage for the development of chronic illnesses in the modern world. Topics include exercise neuroscience, health-related decision processes, and neural responses to health risk communications in the media.",
     prereqs: [
       { type: "AND", reqs: ["PSYCH 101"] },
-      { type: "OR", reqs: ["STAT 202", "KIN 232", "PSYCH 291", "HLTH 204"] },
-      { type: "OR", reqs: ["HLTH 205", "HLTH 333", "HEALTH 150"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["STAT 202"] }, { type: "AND", reqs: ["BIOL 361"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 232"] }, { type: "AND", reqs: ["KIN 354"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["PSYCH 291"] }, { type: "AND", reqs: ["PSYCH 292"] }, { type: "AND", reqs: ["PSYCH 261"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["HLTH 204", "HLTH 205"] }, { type: "AND", reqs: ["HLTH 333"] }] }, { type: "AND", reqs: [{ type: "AND", reqs: ["HEALTH 150"] }, { type: "AND", reqs: ["REC 371"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27642,7 +27636,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "As a senior laboratory course, the primary objective will be to provide students with a broad conceptual and practical understanding of how to design, conduct, and interpret animal-based experiments that seek to answer neuroscience-themed questions with relevance for public health. To this end, students will receive instruction upon, and gain direct experience in, a variety of areas; for example, animal ethics and husbandry, experimental design, behavioural techniques to assess learning and memory, molecular techniques to assess protein-level changes, statistical analysis, and the preparation of a scientific manuscript.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 273", "PSYCH 261"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["PSYCH 261"] }] },
       { type: "OR", reqs: ["HLTH 205", "HLTH 333", "BIOL 361", "KIN 232", "PSYCH 291"] }
     ],
     antireqs: [],
@@ -27656,7 +27650,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an in-depth examination into how genes, environment, and epigenetics interact over the lifespan to increase risks for complex diseases and disorders. Students will explore how environmental exposures such as diet, drugs, psychosocial stress, and environmental toxicants can become biologically-embedded via stable epigenetic changes that affect long-term gene expression. Underlying molecular mechanisms for epigenetic modifications, such as DNA methylation, histone modification, and the role of non-coding RNAs will also be covered.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 239"] },
+      { type: "AND", reqs: ["BIOL 239", "BIOL 273"] },
       { type: "OR", reqs: ["HLTH 205", "HLTH 333", "BIOL 361", "KIN 232"] }
     ],
     antireqs: [],
@@ -27670,7 +27664,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The primary objective of the course will be to provide a basic understanding of how drugs can alter the function of neural cells and how these changes can affect mood, cognition, and behaviour. Key topics to be discussed include biological principles of pharmacology; general structure and function of the nervous system; major neurotransmitter systems of the brain; mechanisms of drug action on neurotransmission; and pharmacotherapy for mental health illness.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 273", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27827,7 +27821,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics reflect current issues in human resources management. Consult the departmental listings for the upcoming topics. Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "AND", reqs: ["HRM 301"] }
+      { type: "AND", reqs: ["HRM 301", "HRM 303", "HRM 305", "HRM 307"] }
     ],
     antireqs: [],
     tags: [],
@@ -27864,7 +27858,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce students to the Canadian Charter of Rights and Freedoms as the central mechanism for the determination and application of human rights with respect to government action. By studying leading decisions of the Supreme Court of Canada, students will gain a greater appreciation of the Charter as a defining feature of the social, political, and legal landscape of Canada, and a better understanding of the role judiciary in interpreting and enforcing rights.",
     prereqs: [
-      { type: "OR", reqs: ["HRTS 101", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HRTS 101"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -27877,7 +27871,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce students to historical and contemporary discrimination disputes and controversies through an intersectional analysis of protected grounds of diversity such as gender, race, disability, and sexual orientation. Through this course, students will learn about the role that the Ontario Human Rights Code, the Ontario Human Rights Tribunal, and the Ontario Human Rights Commission play as mechanisms that enforce human rights.",
     prereqs: [
-      { type: "OR", reqs: ["HRTS 101", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HRTS 101"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: ["HRTS 102"],
     tags: [],
@@ -27916,7 +27910,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A comparative examination of the rights challenges faced by diverse Indigenous peoples around the globe. Special attention will be given to the United Nations Declaration on the Rights of Indigenous Peoples and work being done to protect and advance the rights it enshrines.",
     prereqs: [
-      { type: "OR", reqs: ["HRTS 101", "INDG 201"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HRTS 101"] }, { type: "AND", reqs: ["INDG 201"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -28023,7 +28017,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "What is the nature of, and relationship between, the sacred and the profane? This course will examine diverse manifestations of the sacred and the profane by emphasizing the nature of their interaction and the impact on our understanding of contemporary human civilization. A dialogical method in exploring these ideas will be encouraged. Areas to be investigated include space, time, ritual, culture, morality, life, and death. The readings will be taken from core texts spanning a wide variety of fields and authors (e.g., Eliade, Wittgenstein, Heidegger, Pieper, Charles Taylor, Mary Douglas).",
     prereqs: [
-      { type: "AND", reqs: ["HUMSC 101"] }
+      { type: "OR", reqs: ["HUMSC 101", "HUMSC 102", "HUMSC 201"] }
     ],
     antireqs: [],
     tags: [],
@@ -28134,7 +28128,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The majority of Indigenous businesses are small ventures that operate primarily (or exclusively) online. This course introduces students to the distinctive features and challenges of Indigenous online ventures. The course culminates in the development of a business plan for an online venture.",
     prereqs: [
-      { type: "OR", reqs: ["INDENT 200", "INDENT 210"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["INDENT 200"] }, { type: "AND", reqs: ["INDENT 210"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -28429,7 +28423,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course builds on the content learned in MOHAWK101R/INDG101. Students will expand their working vocabulary and learn to create more complex sentences. The emphasis will continue to be on improving oral proficiency and comprehension.",
     prereqs: [
-      { type: "OR", reqs: ["MOHAWK 101R", "INDG 101", "ARTS 190"] }
+      { type: "OR", reqs: ["ARTS 190", "LEC 002", "LEC 003", "LEC 001"] }
     ],
     antireqs: ["ARTS 290", "LEC 001"],
     tags: [],
@@ -28534,7 +28528,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will allow students to engage in an in-depth analysis of selected topics in Indigenous studies. Course topics will vary from year to year.",
     prereqs: [
-      { type: "OR", reqs: ["INDG 201", "INDG 272"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["INDG 201"] }, { type: "AND", reqs: ["INDG 272"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -28569,7 +28563,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce students to the process of researching and responding to social innovation challenges. To facilitate this learning, students will draw from a rich range of social innovation case studies and projects generated by the GreenHouse social incubator over the last decade. They will also draw from the broader secondary literature, to understand how social innovation opportunities are framed and operationalized in response to these challenges. Students will hear directly from GreenHouse alumni who will present on their initiatives. They will also have opportunities to visit and interact with a cohort of GreenHouse students creating their own social impact initiatives.",
     prereqs: [
-      { type: "OR", reqs: ["INNOV 200", "INNOV 201"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["INNOV 200"] }, { type: "AND", reqs: ["INNOV 201"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -28582,7 +28576,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce students to methods that can be used to measure the impact of social innovations across disciplinary domains. They will learn how to utilize a range of monitoring and evaluation methodologies and tools with a particular focus on impact measurements within constituent communities. Rather than taking a prescriptive approach, students will be encouraged to explore the limitations of these methods and understand the evaluation process as a dynamic process involving the evolving needs of constituencies as their circumstances change. Through this process, students will learn to integrate the evaluation process into the early development of their social innovation initiatives.",
     prereqs: [
-      { type: "OR", reqs: ["INNOV 200", "INNOV 201"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["INNOV 200"] }, { type: "AND", reqs: ["INNOV 201"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -28595,7 +28589,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will build on the theory and skills gained in the prior INNOV courses. It will focus on the first of two initial stages in social innovation development, namely researching, understanding, and defining a particular problem. This will be accomplished by facilitating a deeper engagement with immersive social research and analysis skills, through experiential field visits and team-based active learning class-based exercises. The goal of this course will be to provide a coherent and credible basis to develop a social innovation-based initiative in INNOV411.",
     prereqs: [
-      { type: "OR", reqs: ["INNOV 300", "INNOV 302"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["INNOV 300"] }, { type: "AND", reqs: ["INNOV 302"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -28720,7 +28714,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the museum, broadly interpreted as the public face of scholarship. Students work in small groups to research an inter-disciplinary topic of personal interest, in-depth, and design a museum exhibit suitable for a particular audience.",
     prereqs: [
-      { type: "AND", reqs: ["INTEG 121"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["INTEG 121"] }, { type: "AND", reqs: ["INTEG 230"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -28790,7 +28784,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A continuation of INTEG420A.",
     prereqs: [
-      { type: "OR", reqs: ["INTEG 420", "INTEG 420A"] }
+      { type: "AND", reqs: ["INTEG 420", "INTEG 420A"] }
     ],
     antireqs: [],
     tags: [],
@@ -28930,7 +28924,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course aims to present the basic principles of the Italian language, geography, and culture in a practical and efficient way. Throughout the course, the goal of practical, communicative competence will be emphasized and cultivated via in-class activities and assignments focusing on five areas of performance: listening, speaking, reading, writing, and culture.",
     prereqs: [],
-    antireqs: ["ITAL 101"],
+    antireqs: ["ITAL 101", "ITAL 102"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -28941,7 +28935,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Advanced study of grammar. Conversation sessions based on intermediate-level readings reflecting contemporary Italian life. Intensive practice in the spoken and written language.",
     prereqs: [
-      { type: "OR", reqs: ["ITAL 102", "ITAL 155"] }
+      { type: "AND", reqs: ["ITAL 102"] }
     ],
     antireqs: [],
     tags: [],
@@ -29224,7 +29218,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "Listening, speaking, reading, and writing skills acquired in JAPAN101R are further developed. Practical oral and written exercises incorporating the Katakana Writing System are used to develop a more solid grammatical base.",
     prereqs: [
-      { type: "OR", reqs: ["JAPAN 101R", "JAPAN 111R"] }
+      { type: "AND", reqs: ["JAPAN 101R"] }
     ],
     antireqs: ["JAPAN 112R"],
     tags: [],
@@ -29248,7 +29242,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course deals with advanced topics in Japanese language and literature. Students are expected to have at least an intermediate level of language proficiency.",
     prereqs: [
-      { type: "OR", reqs: ["JAPAN 101R", "JAPAN 111R"] }
+      { type: "AND", reqs: ["JAPAN 101R"] }
     ],
     antireqs: ["JAPAN 102R"],
     tags: [],
@@ -29261,7 +29255,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "A continuation of the study of grammar and vocabulary through development of listening, reading, writing, and speaking skills. Some study of Japanese culture is also included. By the end of the course, 120 Kanji (Chinese characters in their Japanese readings) will have been introduced.",
     prereqs: [
-      { type: "OR", reqs: ["JAPAN 102R", "JAPAN 112R"] }
+      { type: "AND", reqs: ["JAPAN 102R"] }
     ],
     antireqs: [],
     tags: [],
@@ -29501,7 +29495,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Regional Human Anatomy",
     units: 0.5,
     description: "Regional anatomy of the limbs and trunk, including a brief introduction to the anatomy of the central nervous and cardiovascular systems. The course focuses on the bones, muscles, and neurovasculature of the limbs and trunk.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["KIN 100L"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -29523,7 +29519,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Fundamentals of Kinesiology",
     units: 0.5,
     description: "This course will introduce students to the issues and approaches in the discipline of kinesiology. Students will gain foundational knowledge and learn about procedures associated with kinesiology. Emphasis will be placed on practical skills, critical analysis, problem-solving, and the integration of knowledge across the breadth of kinesiology.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["KIN 104L"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -29547,7 +29545,8 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course will provide students an understanding of human movement from a mechanical perspective, which enables identification of potential risks for injury, optimizes exercise prescription, and promotes understanding of clinical evaluations. Specifically, concepts related to functional anatomy, muscle and passive tissue mechanics, anthropometry, electromyography, and linked segment mechanics are introduced and applied to clinical, occupational, and athletic situations.",
     prereqs: [
       { type: "AND", reqs: ["PHYS 111"] },
-      { type: "OR", reqs: ["MATH 124", "MATH 127"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 124"] }, { type: "AND", reqs: ["MATH 127"] }] },
+      { type: "AND", reqs: ["KIN 121L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29560,8 +29559,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "This laboratory course provides students with practical tools used in the biomechanical assessment of human movement. The labs have been designed to assist with students' knowledge and understanding of the material discussed in the KIN121 lectures.",
     prereqs: [
-      { type: "AND", reqs: ["PHYS 111"] },
-      { type: "OR", reqs: ["MATH 124", "MATH 127"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PHYS 111"] }, { type: "AND", reqs: ["KIN 104L"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 124"] }, { type: "AND", reqs: ["MATH 127"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29596,7 +29595,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to provide students with a molecular, cellular, and systems level understanding of the physiological and metabolic responses to different types and intensities of exercise. Physiological and metabolic adaptations to different types of chronic exercise, such as endurance, high-intensity interval, and resistance training, will also be examined.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 273"] }
+      { type: "AND", reqs: ["BIOL 273"] },
+      { type: "AND", reqs: ["KIN 202L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29609,7 +29609,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "This laboratory course provides students with some of the practical tools used to assess the body's integrated physiological and metabolic response to exercise. The labs have been designed to assist with students' knowledge and understanding of material discussed in the KIN202 lectures.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 273"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["KIN 104L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29622,7 +29622,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to provide students with an understanding of movement competency and performance enhancement of apparently healthy individuals. The breadth of tests and assessment tools to determine capabilities with respect to mobility, movement patterns, physical activity, fitness, and lifestyle will be covered in detail and practiced and applied in KIN204L.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 202"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 202"] }, { type: "AND", reqs: ["KIN 202L"] }] },
+      { type: "AND", reqs: ["KIN 204L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29635,7 +29636,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "This laboratory course provides the student with some of the practical tools used in movement assessment and exercise prescription. The labs have been designed to develop students' practical skills and understanding of material discussed in the KIN204 lectures.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 202"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 202"] }, { type: "AND", reqs: ["KIN 202L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29648,7 +29649,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An elementary course in human biochemistry including the metabolism and function of proteins, carbohydrates, lipids, enzymatic function, energy metabolism, and introductory genetics. Emphasis is placed on clinical and medical applications.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 120", "CHEM 121"] }
+      { type: "AND", reqs: ["CHEM 120"] }
     ],
     antireqs: ["HLTH 217"],
     tags: [],
@@ -29661,7 +29662,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course is structured to introduce measurement, analytical, and computation techniques involving multi-segmental, dynamic analysis of human activity. Examples of human activity in occupational, clinical, and leisure settings from the perspectives of anthropometry, kinematics, kinetics, energetics, muscle mechanics, and electromyography are given. The utility of biomechanical variables in the solution of questions involving human movement.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 121"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 121"] }, { type: "AND", reqs: ["KIN 121L"] }] },
+      { type: "AND", reqs: ["KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29674,7 +29676,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "This laboratory course provides students with advanced practical tools used in the biomechanical assessment of human movement. The labs have been designed to assist with students' knowledge and understanding of material discussed in the KIN221 lectures.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 121"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 121"] }, { type: "AND", reqs: ["KIN 121L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29700,7 +29702,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the principles of the nervous system control of movement, cognition, and learning. The course will introduce the basic structure and function of the nervous system as it relates to understanding the control of movement and behaviour. The course will provide a foundation for understanding the neural mechanisms of learning, recovery from injury to the nervous system, and the factors that determine skilled performance.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 273"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["PSYCH 101"] }] },
+      { type: "AND", reqs: ["KIN 255L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29713,7 +29716,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "This laboratory course provides students with practical tools to assess the nervous system control of movement, cognition, and learning. The labs have been designed to assist with students' knowledge and understanding of the material discussed in the KIN255 lectures.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 273"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["PSYCH 101"] }, { type: "AND", reqs: ["KIN 104L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29726,7 +29729,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Functionally-oriented anatomy of the brain, spinal cord, cranial nerves, and the tissues they innervate using pre-dissected cadavers. Major functional systems, including somatosensory and motor pathways, special sense pathways, and integrative systems of the brain, will be examined through an understanding of anatomical connectivity.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 100", "BIOL 201", "BIOL 301"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["KIN 100"] }, { type: "AND", reqs: ["KIN 100L"] }] }, { type: "AND", reqs: ["BIOL 201", "BIOL 301"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29739,7 +29742,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A functionally oriented, regional approach, to the anatomy of the thorax, abdomen, and pelvis. Students will observe structures they have learned in lecture using pre-dissected human cadavers.",
     prereqs: [
-      { type: "AND", reqs: ["BIOL 201"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["BIOL 201"] }, { type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["KIN 100"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29752,7 +29755,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to biochemical and physiological methods used by physiologists in clinical and physiological assessment. These methods include spectrophometric and fluorometric techniques, tissue and blood sampling, cell culture techniques, DNA separation and staining, Western blotting, chromatography, cardiovascular imaging, and body composition imaging and analysis. The course combines lecture and laboratories to illustrate the theoretical and practical aspects of these analytical techniques.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 202"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 202"] }, { type: "AND", reqs: ["KIN 202L"] }, { type: "AND", reqs: ["KIN 217"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29791,7 +29794,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to selected neurological disorders and their implications for physical activity. The neurological disorders examined include those which accompany neuromuscular and perceptual-motor impairment, intellectual disability, cardiovascular and respiratory disease.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 273", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: ["KIN 242"],
     tags: [],
@@ -29804,7 +29807,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course, students will learn how impairments associated with chronic conditions influence decision making in assessment, exercise program design, and training. This course will utilize cases, guest lectures, and readings to guide class discussion and facilitate learning. An experiential learning component at the Centre for Community, Clinical and Applied Research Excellence (CCCARE) will support students¿ integration of theory and practice. The course requires participation for two hours per week for at least 12 weeks of the term.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 204"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 204"] }, { type: "AND", reqs: ["KIN 204L"] }] }
     ],
     antireqs: ["KIN 414"],
     tags: [],
@@ -29817,7 +29820,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Task analysis describes methodologies that can be applied to identify, describe, and analyze how people interact with their environment and with each other. Task analysis includes a broad range of descriptive and analytic techniques from which the practitioner must select the most appropriate one for their purposes and setting. This skills-based course will guide students in learning task analysis methodologies and associated techniques using a combination of didactic, case-study, and experiential learning-based teaching methods. The application of task analysis from the perspective of a Human Factors & Ergonomics (HFE) specialist will be emphasized.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 221"] }
+      { type: "AND", reqs: ["KIN 221", "KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29830,7 +29833,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to the core concepts of biomechanics as they are used in the context of litigated cases involving personal injury, motor vehicle collisions, and product failure. The focus will be on synthesizing published literature and effective communication, enabling students to convey technical knowledge to a non-technical audience.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 221"] }
+      { type: "AND", reqs: ["KIN 221", "KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29843,7 +29846,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides students with an understanding of the mechanical behaviour of human tissues, with specific emphasis on the musculoskeletal system. Students will learn how to describe the mechanical properties of specific tissues. Emphasis will be placed on understanding how tissues are structured to meet their functional demands, and how they respond to traumatic, dynamic impact events. In addition, the content will cover engineering interventions to reduce the risk of traumatic injury (e.g., helmets, sporting equipment, transportation safety features such as seat belts and airbags), and orthopaedic devices to treat traumatic injuries, their underlying mechanical properties, and how they interact with biological tissues/systems.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 221"] }
+      { type: "AND", reqs: ["KIN 221", "KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -29856,7 +29859,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will introduce students to a variety of common orthopedic injuries sustained during sport and activity. Topics covered include the mechanisms of injury, tissue injury biomechanics, pathophysiology, initial assessment, management, and prevention of acute and chronic trauma.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 100", "BIOL 201", "BIOL 301"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["KIN 100"] }, { type: "AND", reqs: ["KIN 100L"] }] }, { type: "AND", reqs: ["BIOL 201", "BIOL 301"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29882,7 +29885,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the metabolism of vitamins and minerals in the context of normal human development and aging with an emphasis on disease prevention and understanding the pathogenesis of deficiencies and toxicities. The function and role of vitamins and minerals will be discussed in specific groupings.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 146", "BIOL 373"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["KIN 146"] }, { type: "AND", reqs: ["BIOL 373"] }] },
       { type: "OR", reqs: ["CHEM 233", "CHEM 237", "HLTH 217", "KIN 217"] }
     ],
     antireqs: [],
@@ -29896,7 +29899,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine advanced nutrient metabolism and the interplay between diet, biochemistry, and health and disease outcomes. Challenges in assessing dietary intake and the impact of aging and other behaviours such as exercise on nutritional status will be examined. Approaches used in nutritional research will also be introduced.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 373", "KIN 146"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 373"] }, { type: "AND", reqs: ["KIN 146"] }] },
       { type: "OR", reqs: ["CHEM 233", "CHEM 237", "HLTH 217", "KIN 217"] }
     ],
     antireqs: [],
@@ -29910,7 +29913,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will develop theoretical knowledge and practical skills in the rehabilitation of orthopedic injuries. The course will build upon knowledge related to orthopedic injuries gained in core and elective courses. The focus will be on a population that was active and healthy prior to injury.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 204"] }
+      { type: "AND", reqs: ["KIN 204", "KIN 204L", "KIN 340"] }
     ],
     antireqs: [],
     tags: [],
@@ -29923,7 +29926,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to individual and population aging. Topics discussed include: aging from a historical and comparative perspective; aging in subcultures; aging and the social structure; aging and social processes; aging and the environment; work and retirement; and aging and leisure patterns.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "HEALTH 107", "GSJ 101", "GSJ 102"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["HEALTH 107"] }, { type: "AND", reqs: ["GSJ 101"] }, { type: "AND", reqs: ["GSJ 102"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29936,7 +29939,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide an overview of the field of sport and exercise psychology and examine how various factors impact our interest, passion, and commitment to sport, exercise, and physical activity. Topics include personality, motivation, team dynamics, coaching psychology, interventions, aggression, body image, and youth development through sport.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -29949,7 +29952,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine how different regions of the nervous system interact to shape our perception, decisions, memories, movements, and consciousness. The focus will be placed on the role of the sensory systems in transducing external stimuli into neural activity, how sensory information is processed within and across sensory modalities (i.e., multisensory integration), and the implications for nervous system function. Topics will be considered from developmental, injury, disease, and aging perspectives.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 255", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["KIN 255"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29962,7 +29965,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine the neural control of movement and how experience shapes brain reorganization to support skilled motor ability. Evidence from behavioural and neuroimaging studies will be considered with an emphasis on leveraging principles of motor learning to skill acquisition and skilled performance in sport/occupational environments and the rehabilitation of movement disorders/injuries.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 255", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["KIN 255"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -29975,7 +29978,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides a comprehensive introduction to neuropsychology, with emphasis on the implication for movement and discussion of how neurological disorders reflect disturbances at different stages in the sequence of information processing.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 255", "PSYCH 306"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["KIN 255"] }, { type: "AND", reqs: ["PSYCH 306"] }] }
     ],
     antireqs: ["PSYCH 307", "KIN 456"],
     tags: [],
@@ -29988,7 +29991,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide students a comprehensive exploration of concussion, a mild traumatic brain injury. From mechanisms of injury to long-term consequences of concussion, students will gain knowledge in recognition, evaluation, and rehabilitation techniques related to concussion.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 255", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["KIN 255"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -30025,7 +30028,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to provide students with an evidence-based understanding of exercise assessment and program prescription for high-level athletes. This course will combine lectures, laboratories, and practical experiences to develop students' knowledge and skills in strength and conditioning. In addition, coaching theory will be applied to strength and conditioning scenarios.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 204"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["KIN 204"] }, { type: "AND", reqs: ["KIN 204L"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -30049,7 +30052,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine the human cardiorespiratory and metabolic responses at rest and during exercise in altered gravitational, thermal, humidity, and barometric environments.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 308", "KIN 408"] }
+      { type: "AND", reqs: ["KIN 308", "KIN 408"] }
     ],
     antireqs: [],
     tags: [],
@@ -30088,7 +30091,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine the cellular and molecular adaptations that occur in skeletal muscle during aging and disease. Topics to be covered include skeletal muscle satellite cells/stem cells, apoptosis and necrosis, mitochondrial dysfunction, oxidative stress, and inflammation. The influence of physical activity on these biological processes and in the prevention and treatment of skeletal disorders will also be discussed.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 130", "BME 285"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 130"] }, { type: "AND", reqs: ["BME 285"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -30101,7 +30104,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This laboratory course explores the pathophysiology, electrophysiology, risk factors, and assessment and rehabilitation options related to cardiovascular diseases. Emphasis is placed on the utility of exercise in the assessment and rehabilitation of primary and secondary cardiovascular disease.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 308", "KIN 408"] }
+      { type: "AND", reqs: ["KIN 308", "KIN 408"] }
     ],
     antireqs: [],
     tags: [],
@@ -30114,7 +30117,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores current clinical neurophysiological concepts important for the control of human movement as well as current techniques used in clinical neurophysiology. Emphasis is placed on the origin of bioelectrical activity underlying human movement and the application to the diagnosis of movement pathology following nervous system injury.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 273", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -30127,7 +30130,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the neural processes involved in the maintenance of posture and the control of movement.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 273", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BIOL 273"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -30166,7 +30169,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide a detailed understanding of the kinematics, kinetics, and neural control of standing posture, stepping, walking, and running. Measurement techniques and the interpretation of movement data will be emphasized from biomechanical and neural control perspectives. Applications to aging and pathology will be emphasized.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 221"] }
+      { type: "AND", reqs: ["KIN 221", "KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -30179,7 +30182,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine the quantitative measurement and analysis of the human musculoskeletal system. Multi-segment dynamic movements will be studied using computer programs, with emphasis on kinematics, kinetics and energetics, as well as the use of EMG in the assessment of the control of the movement. Examples are presented from pathological, normal, and athletic movement.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 221"] }
+      { type: "AND", reqs: ["KIN 221", "KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -30192,7 +30195,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will consider the multidisciplinary issues (psychosocial, behavioural, physiological, motor control, biomechanical, and legislative) related to low back disorders. A solid scientific foundation is developed from the study of anatomy, normal function, and injury mechanics. This foundation is used to substantiate the best strategies for injury prevention and optimal rehabilitation for those with low back disorders.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 221"] }
+      { type: "AND", reqs: ["KIN 221", "KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -30205,7 +30208,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces the multiple factors that mediate the initiation, diagnosis, treatment, and rehabilitation of disorders in the upper extremities. Beginning with a systematic review of hand, wrist, elbow, and shoulder region functional anatomy, a knowledge base is developed to provide a means for the analysis of injury mechanisms. Current prevention, clinical diagnosis, and rehabilitation techniques for specific disorders will be examined, including carpal tunnel syndrome, rotator cuff tears, and lateral epicondylitis. Pathologies arising from occupational, sport, and daily living activities will be addressed.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 221"] }
+      { type: "AND", reqs: ["KIN 221", "KIN 221L"] }
     ],
     antireqs: [],
     tags: [],
@@ -30218,7 +30221,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The overall aim is to provide a comprehensive understanding of human bone and cartilage in health and disease. Specific topics covered include: skeletal physiology, bone and cartilage growth and development, prevalence and etiology of several bone and joint conditions (e.g., osteoporosis, arthritis), clinical evaluation, diagnosis and treatment of bone and joint conditions, and the roles of nutrition and exercise in the prevention and treatment of bone and joint disease. The course will incorporate current issues, problem-based learning, research skills, and student-led seminars in addition to the lecture-based framework.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 100", "BIOL 201", "BIOL 301"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["KIN 100"] }, { type: "AND", reqs: ["KIN 100L"] }] }, { type: "AND", reqs: ["BIOL 201", "BIOL 301"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -30293,7 +30296,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the neurobiological basis underlying brain and behaviour development from conception to adolescence. The emergence of neural functions and corresponding behaviours will be discussed in the context of a complex interaction between genes and environment. Topics include molecular/genetic perspectives, epigenetics, critical periods of cortical development, plasticity, sensorimotor and cognitive development. The course focuses on typical development, but conditions that induce abnormal brain development will be considered.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 255", "PSYCH 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["KIN 255"] }, { type: "AND", reqs: ["PSYCH 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -30306,7 +30309,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to provide the student with an introduction to the principles underlying the assessment of cognitive, emotional, and motor functions. Measurement issues associated with test development and use, factors involved in the administration and interpretation of test results, and methods of report writing will be examined. Students will learn to administer a number of test instruments used in the assessment of cognitive, emotional, and motor functions.",
     prereqs: [
-      { type: "OR", reqs: ["KIN 456", "KIN 359"] }
+      { type: "AND", reqs: ["KIN 456", "KIN 359"] }
     ],
     antireqs: ["KIN 457"],
     tags: [],
@@ -30378,7 +30381,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Practical experience in movement assessment of persons from various special populations such as the normal elderly and those with neurological, degenerative, or developmental disorders. Motor functions involving gait, posture, and balance or upper-limb movements will typically be examined in these assessments.",
     prereqs: [
-      { type: "AND", reqs: ["KIN 242"] }
+      { type: "AND", reqs: ["KIN 242", "KIN 312", "KIN 456", "KIN 359", "KIN 416", "KIN 422"] }
     ],
     antireqs: [],
     tags: [],
@@ -30728,7 +30731,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the central role of surveillance in shaping power relations and knowledge across a range of social and cultural contexts. Foundational historical, theoretical, and empirical texts that define the field of surveillance studies will be explored.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: ["LS 203", "LEC 001", "LEC 041", "SOC 230"],
     tags: [],
@@ -30754,7 +30757,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A systematic analysis and criticism is presented of biological, psychological, psychoanalytical, and sociological theories of juvenile delinquency. Attention is given to statistics and contemporary research with special emphasis on the distribution and types of delinquent subcultures.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30767,7 +30770,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The deviance-making process is examined in a variety of social contexts. This course examines the emergence of rules and control agencies, the processes by which people become involved in deviant activities, and the contingencies affecting their careers as deviants.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30780,7 +30783,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine the substance of victimization: the scientific study of victims, the process, etiology, and consequences of victimization. Topics will include victims and politics, the victims' movement, victim-precipitation, the victimization of women, and family violence.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30793,7 +30796,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of sociological research and theory in the field of mental disorders particularly as they apply to issues of law and social control. Topics include mental health legislation, the medical model of mental \"illness,\" the epidemiology of mental disorder, family processes and psychiatric hospitalization, public attitudes and social stigma, and specific forms of mental disorder.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30806,7 +30809,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the major theories of crime causation and their implications for the development of social policy. Both historical and contemporary theories will be discussed.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30819,7 +30822,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Decisions to process offenders and the role of social factors in the Canadian criminal justice system are critically examined. Focal issues include police discretion, the legal profession, and prison systems.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30832,7 +30835,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Sociological analysis of research and theory on selected criminal activities. Motivation, modus operandi, and the social characteristics of offenders will be examined in relation to such specific crimes as drug and sexual offenses, theft, robbery, murder, organized crime, and/or other criminal activities.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30878,7 +30881,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an introduction to the study of terrorism, with a primary focus on sociological approaches. The course examines the history, causes, and diversity of forms of terrorist groups and the process of radicalization, suicide terrorism, and some aspects of the counter-terrorism response of states.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "SOC 120R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30902,7 +30905,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of select criminal organizations in North America. Particular attention will be given to the social history of \"the mafia\" and the development of legal tools for policing criminal organizations. Additional themes for discussion include enterprise and economic crimes, corruption, and the role of women in organized crime.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30926,7 +30929,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Psychological principles drawn from a variety of subdisciplines (e.g., social, clinical, cognitive) will be surveyed in terms of their relevance and application to the legal system. Topics may include jury selection and decision-making, eyewitness testimony, insanity defense, competency assessment, risk assessment, and attitudes toward law and the legal process.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -30952,7 +30955,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["LS 101", "SOC 101", "SOC 101R"] }
     ],
-    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "KIN 222", "PSCI 314", "PSYCH 292", "REC 371", "SDS 250R"],
+    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "KIN 222", "PSCI 314", "PSYCH 292", "REC 371", "SDS 250R", "SRF 230", "STAT 202", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241", "SWREN 250A", "SWREN 250R"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31010,7 +31013,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Through the study of current events in North America, students will examine key theoretical frameworks and questions in the sociology of law. Topics may include the contradictory role law plays in both resolving and exacerbating social inequalities, the persistence of racism, sexism, and other forms of marginalization despite the successes of progressive civil and human rights movements, and controversies surrounding the administration of criminal justice. In examining these questions, students will engage with ideas, arguments, and strategies within socio-legal scholarship and will learn to recognize the strengths and limitations of the law to address social problems.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -31034,7 +31037,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to privacy as a socio-legal concept and to major debates surrounding privacy in contemporary contexts. National and international frameworks for the regulation of privacy will be examined and may include analysis of major cases in privacy law.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -31062,7 +31065,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["LS 101"] }
     ],
-    antireqs: ["LS 330"],
+    antireqs: ["LS 330", "LS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31084,7 +31087,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides a critical evaluation of research techniques in sociology, criminology, and legal studies with an emphasis on learning and applying qualitative fieldwork approaches.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 221", "LS 221"] }
+      { type: "AND", reqs: ["SOC 221", "LS 221"] }
     ],
     antireqs: ["SDS 351R"],
     tags: [],
@@ -31098,7 +31101,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Despite the commonly held belief that sexuality is nothing more than \"doing what comes naturally,\" cultural definitions, including prohibitions against specific forms of conduct, impinge upon the most private or intimate of acts. This course examines the social construction and control of sexuality through law.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -31111,7 +31114,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A critical criminological and sociological examination of theories and practices of punishment. This course will examine transformations in penal theory, penal management, and penal institutions and their social and policy implications.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -31137,7 +31140,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the causes and impact of the illegal traffic in goods and services in Canada and internationally. Topics may include human trafficking, trade in illicit drugs and weapons, money laundering and financing of terror, and the relationship between trafficking and state political violence.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -31150,7 +31153,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course examines the relationship between the framing of (in)security and policing as a dominant approach to govern risk in our modern era. Topics may include the policing of political protest, the Anthropocene, and the Internet. Students will analyze what's at stake with the diffusion of security in social life.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: ["LS 330", "LEC 001", "SOC 330"],
     tags: [],
@@ -31255,7 +31258,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the nature and basic principles of constitutional law. Explores constitutional conventions, the distribution of powers in the Canadian federalism, Aboriginal and treaty rights, and the Charter of Rights and Freedoms.",
     prereqs: [
-      { type: "OR", reqs: ["LS 101", "LS 206", "PSCI 260"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["LS 101"] }, { type: "AND", reqs: ["LS 206", "PSCI 260"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -31290,7 +31293,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Foundational assumptions for, and basic approaches to, criminal profiling will be considered, along with a survey of relevant techniques in the context of numerous case studies. Limitations and alternatives to profiling will also be addressed.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 230", "LS 272"] }
+      { type: "AND", reqs: ["PSYCH 230", "LS 272"] }
     ],
     antireqs: [],
     tags: [],
@@ -31338,7 +31341,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The societal context of policing, courts, and corrections is examined to understand how social control and the law are used in the criminal justice system. Special emphasis is placed on the socio-economic, legal, political, and situational environment that shapes responses to different categories of offenders and offences.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -31384,7 +31387,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This seminar questions where, and why, the lines are drawn between environment, ecology, politics, economics, and law. Students debate and assess selected topics in Canadian and international environmental law to critically consider the significance of \"law of the environment\" as our world navigates crises of climate and change.",
     prereqs: [],
-    antireqs: ["LS 496"],
+    antireqs: ["LS 496", "LS 044", "LS 004"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31483,7 +31486,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a critical exploration of the growing nexus of crime control and the control of human mobility under conditions of mass migration and globalization, focusing on the developing area of study called the criminology of mobility (or border criminology). Students will develop an awareness of the social, cultural, and political diversity of law and mechanisms of social control that structure human mobility while paying attention to issues of race, gender, class, and other social relations of power in this field. Students will also develop their oral, written, and digital skills to communicate their ideas about course content through critical assessment of current research.",
     prereqs: [],
-    antireqs: ["LS 496", "SOC 430"],
+    antireqs: ["LS 496", "LS 001", "SOC 430", "SOC 001", "LS 042", "SOC 042", "LS 041", "SOC 041"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31571,7 +31574,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the role that rights and rights discourse plays in public policy development and policy change. Examines Canadian public policy in relation to the Charter of Rights and Freedoms and human rights legislation, as well as cases in comparative context.",
     prereqs: [
-      { type: "OR", reqs: ["LS 101", "LS 206", "PSCI 260"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["LS 101"] }, { type: "AND", reqs: ["LS 206", "PSCI 260"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -31643,9 +31646,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Cash flow analysis. Cost of capital, investment decision rules, capital budgeting, depreciation. CAPM. Description and valuation of financial instruments including stocks, swaps, options, and bonds.",
     prereqs: [
-      { type: "OR", reqs: ["ACTSC 221", "ACTSC 231"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ACTSC 221"] }, { type: "AND", reqs: ["ACTSC 231"] }] },
+      { type: "AND", reqs: ["STAT 231"] }
     ],
-    antireqs: ["AFM 272", "ACTSC 291", "AFM 273", "AFM 275", "AFM 372", "ACTSC 391", "BUS 283W", "ECON 371", "ACTSC 371", "ACTSC 372"],
+    antireqs: ["AFM 272", "ACTSC 291", "AFM 273", "AFM 274", "AFM 275", "AFM 372", "ACTSC 391", "BUS 283W", "ECON 371", "ACTSC 371", "ACTSC 372"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31657,7 +31661,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Overview of the derivatives markets. Pricing of derivatives, including futures, forwards, swaps, and options. Hedging vs. speculating. Option Greeks. Trading strategies. Case studies.",
     prereqs: [
       { type: "OR", reqs: ["ACTSC 372", "ACTSC 391", "ACTSCI 371", "AFM 275", "AFM 372", "BUS 393W"] },
-      { type: "AND", reqs: ["STAT 333"] }
+      { type: "OR", reqs: ["STAT 333", "STAT 334"] }
     ],
     antireqs: ["STAT 446", "AFM 322", "AFM 474", "BUS 423W", "ECON 372"],
     tags: [],
@@ -31670,7 +31674,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Analysis of fixed income securities. Duration, convexity. Structured products. Market characteristics. Valuation of bonds with embedded options. Accounting and taxation issues.",
     prereqs: [
-      { type: "OR", reqs: ["ACTSC 231", "BUS 393W", "AFM 275", "AFM 372", "ACTSC 391"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ACTSC 231"] }, { type: "OR", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ACTSC 372"] }, { type: "AND", reqs: ["BUS 393W"] }] }, { type: "AND", reqs: ["AFM 275", "AFM 372", "ACTSC 391"] }] }] }
     ],
     antireqs: ["AFM 425", "AFM 475", "BUS 449W"],
     tags: [],
@@ -31696,7 +31700,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to applications of algebra to business, the behavioural sciences, and the social sciences. Topics will be chosen from linear equations, systems of linear equations, linear inequalities, functions, set theory, permutations and combinations, binomial theorem, probability theory.",
     prereqs: [],
-    antireqs: ["MATH 106", "NE 112"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "NE 112"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31707,7 +31711,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to applications of calculus in business, the behavioural sciences, and the social sciences. The models studied will involve polynomial, rational, exponential, and logarithmic functions. The major concepts introduced to solve problems are rate of change, optimization, growth and decay, and integration.",
     prereqs: [],
-    antireqs: ["MATH 127"],
+    antireqs: ["MATH 127", "MATH 137", "MATH 147"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31720,7 +31724,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 103"] }
     ],
-    antireqs: ["MATH 114", "NE 112"],
+    antireqs: ["MATH 114", "MATH 115", "MATH 136", "MATH 146", "NE 112"],
     tags: [],
     majors: ["any"],
     exclMajors: ["cs"],
@@ -31732,7 +31736,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Vectors in 2- and 3-space and their geometry. Linear equations, matrices, and determinants. Introduction to vector spaces. Eigenvalues and diagonalization. Applications. Complex numbers.",
     prereqs: [],
-    antireqs: ["MATH 106", "NE 112"],
+    antireqs: ["MATH 106", "MATH 115", "MATH 136", "MATH 146", "NE 112"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31743,7 +31747,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Linear equations, matrices, and determinants. Introduction to vector spaces. Eigenvalues and diagonalization. Applications. Complex numbers.",
     prereqs: [],
-    antireqs: ["MATH 106", "NE 112"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 136", "MATH 146", "NE 112"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31754,7 +31758,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Functions: review of polynomials, exponential, logarithmic, trigonometric. Operations on functions, curve sketching. Trigonometric identities, inverse functions. Derivatives, rules of differentiation. Mean Value Theorem, Newton's Method. Indeterminate forms and L'Hopital's rule, applications. Integrals, approximations, Riemann definite integral, Fundamental Theorems. Applications of the integral.",
     prereqs: [],
-    antireqs: ["MATH 117"],
+    antireqs: ["MATH 117", "MATH 124", "MATH 127", "MATH 137", "MATH 147"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31765,7 +31769,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Functions of engineering importance; review of polynomial, exponential, and logarithmic functions; trigonometric functions and identities. Inverse functions (logarithmic and trigonometric). Limits and continuity. Derivatives, rules of differentiation; derivatives of elementary functions. Applications of the derivative, max-min problems, Mean Value Theorem. Antiderivatives, the Riemann definite integral, Fundamental Theorems. Methods of integration, approximation, applications, improper integrals.",
     prereqs: [],
-    antireqs: ["MATH 116"],
+    antireqs: ["MATH 116", "MATH 124", "MATH 127", "MATH 137", "MATH 147"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31778,7 +31782,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 127", "MATH 137", "MATH 147"] }
     ],
-    antireqs: ["MATH 119"],
+    antireqs: ["MATH 119", "MATH 128", "MATH 138", "MATH 148"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31791,7 +31795,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 127", "MATH 137", "MATH 147"] }
     ],
-    antireqs: ["MATH 118"],
+    antireqs: ["MATH 118", "MATH 128", "MATH 138", "MATH 148"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31802,7 +31806,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of trigonometry and basic algebra. Introduction to vectors in 2- and 3-space: sums, addition, dot products, cross products and angles between vectors. Solving linear systems in two and three variables. Functions of a real variable: powers, rational functions, trigonometric, exponential and logarithmic functions, their properties. Intuitive discussion of limits and continuity. Derivatives of elementary functions, derivative rules; applications to curve sketching, optimization. Relationships between distance, velocity, and acceleration. The definite integral, antiderivatives, the Fundamental Theorem of Calculus; change of variable and integration by parts; applications to area, centre of mass.",
     prereqs: [],
-    antireqs: ["MATH 109"],
+    antireqs: ["MATH 109", "MATH 116", "MATH 117", "MATH 127", "MATH 137", "MATH 147"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31815,7 +31819,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 104"] }
     ],
-    antireqs: ["MATH 109"],
+    antireqs: ["MATH 109", "MATH 116", "MATH 117", "MATH 124", "MATH 137", "MATH 147"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31828,7 +31832,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 127", "MATH 137", "MATH 147"] }
     ],
-    antireqs: ["MATH 118"],
+    antireqs: ["MATH 118", "MATH 119", "MATH 138", "MATH 148"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31850,9 +31854,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Systems of linear equations, matrix algebra, elementary matrices, computational issues. Real n-space, vector spaces and subspaces, basis and dimension, rank of a matrix, linear transformations, and matrix representations. Determinants, eigenvalues and diagonalization, applications.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 135", "MATH 145"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 135"] }, { type: "AND", reqs: ["MATH 145"] }] }
     ],
-    antireqs: ["MATH 106", "NE 112"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 146", "NE 112"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31863,7 +31867,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Absolute values and inequalities. Sequences and their limits. Limits of functions and continuity. The Intermediate Value theorem and approximate solutions to equations. Derivatives, linear approximation, and Newton's method. Applications of derivatives. The Mean Value theorem and error bounds. Applications of the Mean Value theorem. Suitable topics are illustrated using computer software.",
     prereqs: [],
-    antireqs: ["MATH 116"],
+    antireqs: ["MATH 116", "MATH 117", "MATH 127", "MATH 147"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31874,9 +31878,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to the Riemann integral and approximations. Antiderivatives and the fundamental theorem of calculus. Change of variables, methods of integration. Applications of the integral. Improper integrals. Linear and separable differential equations and applications. Tests for convergence for series. Taylor polynomials and Taylor's Theorem, Big-O notation. Binomial series, functions defined as power series and Taylor series. Suitable topics are illustrated using computer software.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 137", "MATH 147"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 116"] }, { type: "AND", reqs: ["MATH 137"] }, { type: "AND", reqs: ["MATH 147"] }] }
     ],
-    antireqs: ["MATH 118"],
+    antireqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 148"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31900,7 +31904,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 145"] }
     ],
-    antireqs: ["MATH 106", "NE 112"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "NE 112"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -31911,7 +31915,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "MATH147 is an advanced-level version of MATH137.",
     prereqs: [],
-    antireqs: ["MATH 116"],
+    antireqs: ["MATH 116", "MATH 117", "MATH 124", "MATH 127", "MATH 137"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -31924,7 +31928,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 147"] }
     ],
-    antireqs: ["MATH 118"],
+    antireqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -31946,9 +31950,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Multivariable functions and partial derivatives. Gradients. Optimization including Lagrange multipliers. Polar coordinates. Multiple integrals. Surface integrals on spheres and cylinders. Introduction to Fourier Series.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
+      { type: "AND", reqs: ["MATH 128"] }
     ],
-    antireqs: ["AMATH 231", "MATH 212", "NE 217", "MATH 217"],
+    antireqs: ["AMATH 231", "MATH 212", "MATH 212N", "NE 217", "MATH 217", "MATH 227", "MATH 237", "MATH 247"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -31961,7 +31965,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 119"] }
     ],
-    antireqs: ["AMATH 350", "MATH 218"],
+    antireqs: ["AMATH 350", "MATH 218", "MATH 228"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -31973,9 +31977,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Triple integrals, cylindrical and spherical polar coordinates. Divergence and curl, applications. Surface integrals, Green's, Gauss' and Stokes' theorems, applications. Complex functions, analytic functions, contour integrals, Cauchy's integral formula, Laurent series, residues.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 211", "ECE 205"] }
+      { type: "AND", reqs: ["MATH 211", "ECE 205"] }
     ],
-    antireqs: ["AMATH 231", "MATH 207"],
+    antireqs: ["AMATH 231", "MATH 207", "MATH 217", "MATH 227", "MATH 237", "MATH 247"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -31989,7 +31993,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138"] }
     ],
-    antireqs: ["AMATH 250", "MATH 211", "ECE 205"],
+    antireqs: ["AMATH 250", "AMATH 251", "MATH 211", "ECE 205", "ECE 218", "ECE 228"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32000,7 +32004,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Systems of linear equations; their representation with matrices and vectors; their generalization to linear transformations on abstract vector spaces; and the description of these linear transformations through quantitative characteristics such as the determinant, the characteristic polynomial, eigenvalues and eigenvectors, the rank, and singular values.",
     prereqs: [],
-    antireqs: ["MATH 106", "NE 112"],
+    antireqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "NE 112"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32013,7 +32017,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 118"] }
     ],
-    antireqs: ["AMATH 231", "CIVE 221", "ENVE 221", "MATH 207", "ECE 206", "MATH 212N", "NE 217", "ME 201"],
+    antireqs: ["AMATH 231", "CIVE 221", "ENVE 221", "MATH 207", "MATH 212", "ECE 206", "ECE 227", "ECE 237", "ECE 247", "MATH 212N", "NE 217", "ME 201"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -32027,7 +32031,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148", "SYDE 112"] }
     ],
-    antireqs: ["AMATH 250", "CIVE 222", "ENVE 223", "MATH 211", "ECE 205", "MATH 212N", "NE 217", "ME 203", "SYDE 211"],
+    antireqs: ["AMATH 250", "AMATH 251", "AMATH 350", "AMATH 351", "CIVE 222", "ENVE 223", "MATH 211", "ECE 205", "ECE 228", "MATH 212N", "NE 217", "ME 203", "SYDE 211"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32038,9 +32042,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Vector spaces. Linear transformations and matrices. Inner products. Eigenvalues and eigenvectors. Diagonalization. Applications.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 136", "MATH 146"] }
+      { type: "AND", reqs: ["MATH 106"] }
     ],
-    antireqs: ["MATH 235"],
+    antireqs: ["MATH 235", "MATH 245"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32051,9 +32055,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Directional derivative and the chain rule for multivariable functions. Optimization, Lagrange multipliers. Double and triple integrals on simple domains; transformations and Jacobians; change of variable in multiple integrals. Vector fields, divergence and curl. Vector integral calculus: Line and surface integrals, Green's Theorem, Stokes' Theorem, Gauss' Theorem, conservative vector fields.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 128", "MATH 138"] }
+      { type: "AND", reqs: ["MATH 128"] }
     ],
-    antireqs: ["AMATH 231", "MATH 207", "ECE 206", "MATH 212N", "NE 217"],
+    antireqs: ["AMATH 231", "MATH 207", "MATH 212", "ECE 206", "ECE 217", "ECE 237", "ECE 247", "MATH 212N", "NE 217"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32064,9 +32068,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "First-order equations, second-order linear equations with constant coefficients, series solutions and special functions, the Laplace transform method. Applications in physics and chemistry are emphasized.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 128", "MATH 138"] }
+      { type: "AND", reqs: ["MATH 128"] }
     ],
-    antireqs: ["AMATH 250"],
+    antireqs: ["AMATH 250", "AMATH 251", "AMATH 350"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -32078,7 +32082,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to graph theory: colourings, connectivity, Eulerian tours, planarity. Introduction to combinatorial analysis: elementary counting, generating series, binary strings.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146"] }
     ],
     antireqs: ["CO 220", "MATH 239", "MATH 249"],
     tags: [],
@@ -32091,9 +32095,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Orthogonal and unitary matrices and transformations. Orthogonal projections, Gram-Schmidt procedure, best approximations, least-squares. Inner products, angles and orthogonality, orthogonal diagonalization, singular value decomposition, applications.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 136", "MATH 146"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 106"] }, { type: "AND", reqs: ["MATH 136"] }, { type: "AND", reqs: ["MATH 146"] }] },
+      { type: "AND", reqs: ["MATH 128"] }
     ],
-    antireqs: ["MATH 225"],
+    antireqs: ["MATH 225", "MATH 245"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32104,9 +32109,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Calculus of functions of several variables. Limits, continuity, differentiability, the chain rule. The gradient vector and the directional derivative. Taylor's formula. Optimization problems. Mappings and the Jacobian. Multiple integrals in various co-ordinate systems.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 128"] }
+      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "MATH 128", "MATH 138", "MATH 148"] }
     ],
-    antireqs: ["MATH 207", "ECE 206", "MATH 212N"],
+    antireqs: ["MATH 207", "MATH 212", "ECE 206", "MATH 212N", "MATH 217", "MATH 227", "MATH 247"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32117,9 +32122,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to graph theory: colourings, matchings, connectivity, planarity. Introduction to combinatorial analysis: generating series, recurrence relations, binary strings, plane trees.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 136", "MATH 135", "MATH 145"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["MATH 106"] }, { type: "AND", reqs: ["MATH 136"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 135"] }, { type: "AND", reqs: ["MATH 145"] }] }] }
     ],
-    antireqs: ["CO 220", "MATH 229"],
+    antireqs: ["CO 220", "MATH 229", "MATH 249"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -32132,7 +32137,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 146"] }
     ],
-    antireqs: ["MATH 225"],
+    antireqs: ["MATH 225", "MATH 235"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -32143,7 +32148,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topology of real n-dimensional space: completeness, closed and open sets, connectivity, compact sets, continuity, uniform continuity. Differential calculus on multivariable functions: partial differentiability, differentiability, chain rule, Taylor polynomials, extreme value problems. Riemann integration: Jordan content, integrability criteria, Fubini's theorem, change of variables. Local properties of continuously differentiable functions: open mapping theorem, inverse function theorem, implicit function theorem.",
     prereqs: [
-      { type: "AND", reqs: ["MATH 146"] }
+      { type: "AND", reqs: ["MATH 146", "MATH 148"] }
     ],
     antireqs: ["MATH 237"],
     tags: [],
@@ -32156,9 +32161,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "MATH249 is an advanced-level version of MATH239.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 135", "MATH 145", "MATH 146"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["MATH 135"] }, { type: "AND", reqs: ["MATH 145"] }] }, { type: "AND", reqs: ["MATH 136"] }] }
     ],
-    antireqs: ["CO 220", "MATH 229"],
+    antireqs: ["CO 220", "MATH 229", "MATH 239"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -32289,7 +32294,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the kinematics of particle and rigid body motion. Impulse-momentum equations. Work-energy methods and Euler's equations. Simple gyroscopes. Vibrations.",
     prereqs: [
-      { type: "AND", reqs: ["PHYS 115"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PHYS 115"] }, { type: "AND", reqs: ["MATH 118"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -32343,7 +32348,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["CHE 102"] }
     ],
-    antireqs: ["ME 115", "MTE 111"],
+    antireqs: ["ME 115", "ME 230", "MTE 111"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32415,7 +32420,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A continuation of ME201 and ME203 in which both classical calculus techniques and the computer implementation of numerical methods are discussed. Partial differential equations of mathematical physics: wave, diffusion, Laplace, Poisson equations. Boundary and initial conditions. Separation of variables. Numerical methods for ordinary and partial differential equations. Applications will emphasize the role of ordinary and partial differential equations in understanding the behaviour of physical systems.",
     prereqs: [
-      { type: "AND", reqs: ["ME 201"] }
+      { type: "AND", reqs: ["ME 201", "ME 203"] }
     ],
     antireqs: [],
     tags: [],
@@ -32428,7 +32433,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Principles of the geometry of motion, uniform and non-uniform motion, linkages, gears, and analysis of mechanisms. Consideration of the static and dynamic forces in machines. Vibration analysis, response to shock, motion and force transmissibility, vibration isolation, and multi-DOF mechanical vibrations.",
     prereqs: [
-      { type: "OR", reqs: ["ME 201", "MTE 202", "SYDE 182"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ME 201"] }, { type: "AND", reqs: ["MTE 202"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ME 212"] }, { type: "AND", reqs: ["SYDE 182"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -32441,7 +32446,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Adequacy assessment and synthesis of machine elements with a focus on the design process. Static failure of ductile and brittle materials, fatigue analysis of structures. Topics include the design of welds, bolted connections, springs, and shafts.",
     prereqs: [
-      { type: "AND", reqs: ["ME 220"] }
+      { type: "AND", reqs: ["ME 220", "ME 321"] }
     ],
     antireqs: [],
     tags: [],
@@ -32454,7 +32459,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The principles of manufacturing unit processes including casting, forming, machining and joining. Interactions between design, materials (metals, polymers, ceramics) and processes. Advantages and limitations, relative cost, and production rates of competitive processes.",
     prereqs: [
-      { type: "AND", reqs: ["ME 219"] }
+      { type: "AND", reqs: ["ME 219", "ME 230"] }
     ],
     antireqs: [],
     tags: [],
@@ -32478,7 +32483,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to heat transfer mechanisms. The formulation and solution of steady and transient heat conduction. Radiant heat transfer including exchange laws and view factors. Introductory convective heat transfer.",
     prereqs: [
-      { type: "AND", reqs: ["ME 250"] }
+      { type: "AND", reqs: ["ME 250", "ME 351"] }
     ],
     antireqs: [],
     tags: [],
@@ -32504,7 +32509,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Open loop and feedback control. Laws governing mechanical, electrical, fluid and thermal control components. Analogies. Analysis of some engineering control systems using block diagram algebra, transient and steady-state operation. Different modes of control. Review of Laplace Transform methods. Concepts of stability. Principles of analog computer simulation. Brief treatment of linear flow graphs and bondgraphs.",
     prereqs: [
-      { type: "AND", reqs: ["ME 203"] }
+      { type: "AND", reqs: ["ME 203", "ME 321"] }
     ],
     antireqs: [],
     tags: [],
@@ -32589,7 +32594,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to modern welding and joining processes for metals, polymers and ceramics. Fundamentals of the joining process and the influence of the process parameters on weld dimensions, strength and quality. Fusion welding processes such as shielded metal arc, gas tungsten arc, gas metal arc, submerged arc welding and others including electron beam and laser beam welding. Resistance welding processes, solid-state welding processes, soldering and brazing. Laboratory exercises will provide hands-on experience with a number of industrially significant welding processes.",
     prereqs: [
-      { type: "OR", reqs: ["ME 230", "MTE 111"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ME 230"] }, { type: "AND", reqs: ["MTE 111"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -32613,7 +32618,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Selected topics in heat transfer fundamentals and applications. Topics to be covered include the fundamentals of convection with analytical solutions to simple laminar flow problems and approximate solutions to turbulent flow problems based on analogies between momentum and heat transfer. Also covered is radiant exchange in grey enclosures and in black enclosures containing emitting-absorbing gases. The remaining topics will be chosen from design of heat exchangers; condensation heat transfer; boiling heat transfer; and the treatment of problems in heat conduction.",
     prereqs: [
-      { type: "AND", reqs: ["ME 353"] }
+      { type: "AND", reqs: ["ME 353", "ME 362"] }
     ],
     antireqs: [],
     tags: [],
@@ -32626,8 +32631,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of reserves and consumption trends of Canada's and the world's energy resources. Design of fossil-fuel central power plants, including boiler efficiency calculations and advanced steam and binary cycles. Review of atomic physics including fission and fusion energy. Design of nuclear fission power plants including design of reactor core for critical conditions, fuel cycles and radiation hazards. Design considerations for solar energy conversion devices including: availability of solar energy, solar-thermal converters, thermal storage and photovoltaics. Principles of fuel cells and some aspects of their design. Other topics as appropriate.",
     prereqs: [
-      { type: "AND", reqs: ["ME 353"] },
-      { type: "AND", reqs: ["MTE 309"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ME 353", "ME 354"] }, { type: "AND", reqs: ["MTE 309"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -32653,7 +32657,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A continuation of ME481. The final design of the major mechanical engineering project proposed in ME481 will be undertaken. The purpose of this phase of the project is to carry out a detailed technical design and proof of feasibility of the solution proposed in ME481.",
     prereqs: [
-      { type: "AND", reqs: ["ME 380"] }
+      { type: "AND", reqs: ["ME 380", "ME 481"] }
     ],
     antireqs: ["MTE 482"],
     tags: [],
@@ -32930,7 +32934,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Building on the fundamentals introduced in Principles of Marketing, students are given an opportunity to apply these concepts to real world situations in an interactive learning environment. Using cases and simulated markets, students make strategic decisions, defend their decisions, and see the repercussions in real time.",
     prereqs: [
-      { type: "OR", reqs: ["ECON 344", "MGMT 244", "ARBUS 302", "ENBUS 211", "ENBUS 311"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECON 344", "MGMT 244", "ARBUS 302"] }, { type: "AND", reqs: ["ENBUS 211", "ENBUS 311"] }] }
     ],
     antireqs: ["ECON 345", "ARBUS 303"],
     tags: [],
@@ -32964,7 +32968,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Materials and Nanosciences Laboratory",
     units: 0.25,
     description: "The laboratory course is aimed at students enrolled in the MNS program and is composed of experiments involving the syntheses of materials and nano-particles; in addition to their characterization and application using modern instrumentation techniques.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["MNS 211"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -32976,7 +32982,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Crystal structures and bonding in solids; introduction to diffraction, solid state synthesis, and thermal analysis techniques employed in the study of materials; defects, non-stoichiometry, and solid solutions; phase diagrams for solid systems.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 123", "PHYS 122"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 123"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["PHYS 122"] }, { type: "AND", reqs: ["MNS 102"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -33015,7 +33021,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Basic definitions and polymer nomenclature, molecular weight distributions and averages, molecular weight measurements, step-growth and radical chain polymerization reactions, chain conformations, glass transition, crystallization, mechanical properties of polymers, phase behaviour and morphologies, and self-assembly.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 254", "PHYS 358", "ECE 403"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 254"] }, { type: "AND", reqs: ["PHYS 358", "ECE 403"] }] }
     ],
     antireqs: ["CHEM 370", "NE 333"],
     tags: [],
@@ -33072,7 +33078,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course builds on the content learned in MOHAWK101R/INDG101. Students will expand their working vocabulary and learn to create more complex sentences. The emphasis will continue to be on improving oral proficiency and comprehension.",
     prereqs: [
-      { type: "OR", reqs: ["MOHAWK 101R", "INDG 101", "ARTS 190"] }
+      { type: "OR", reqs: ["ARTS 190", "LEC 002", "LEC 003", "LEC 001"] }
     ],
     antireqs: ["ARTS 290", "LEC 001"],
     tags: [],
@@ -33188,7 +33194,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MSE 240"] }
     ],
-    antireqs: ["CS 338"],
+    antireqs: ["CS 338", "CS 348"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33199,7 +33205,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A first of a two-course sequence that introduces fundamental concepts in probability and statistics. It covers probability concepts, random variables, graphical display of distributions and data, discrete and continuous probability distributions, sampling, estimation, confidence intervals, experimental design, hypothesis testing, and simple linear regression and correlation. Students learn how to graphically explore data, conduct, and analyze a two-treatment experiment, and model data with linear regression, and interpret its fit. Students learn to use statistical computing software (e.g., R) to perform data analyses. Emphasis is placed on gaining experience with data collected from student-conducted experiments.",
     prereqs: [],
-    antireqs: ["AE 224", "BME 213", "CHE 220", "CIVE 224", "ECE 203", "ECON 221", "ENVE 224", "ME 202", "MTE 201", "NE 215", "STAT 231", "SYDE 212"],
+    antireqs: ["AE 224", "BME 213", "CHE 220", "CIVE 224", "ECE 203", "ECE 306", "ECON 221", "ENVE 224", "ME 202", "MTE 201", "NE 215", "STAT 231", "SYDE 212"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33234,7 +33240,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to key concepts in microeconomics, with an emphasis on applications to managerial decision-making. Topics include basic analysis of supply and demand, demand functions and the theory of consumer behaviour, production and costs, market equilibrium, competition between industry participants, and pricing strategies of firms under different market structures.",
     prereqs: [],
-    antireqs: ["ECON 101"],
+    antireqs: ["ECON 101", "ECON 201"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33377,7 +33383,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A work-term report is a written report that provides an opportunity for students to effectively communicate, document, and reflect on engineering experience gained during a preceding work term. In the report, students draw connections between the theoretical aspects of engineering taught in the classroom and the practical applications of that theory in the workplace. Reports are due on the tenth day of lectures for the academic term in which the report is required.",
     prereqs: [],
-    antireqs: ["WKRPT 200"],
+    antireqs: ["WKRPT 200", "WKRPT 201"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33388,7 +33394,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A work-term report is a written report that provides an opportunity for students to effectively communicate, document, and reflect on engineering experience gained during a preceding work term. In the report, students draw connections between the theoretical aspects of engineering taught in the classroom and the practical applications of that theory in the workplace. Reports are due on the tenth day of lectures for the academic term in which the report is required.",
     prereqs: [],
-    antireqs: ["WKRPT 300"],
+    antireqs: ["WKRPT 300", "WKRPT 301"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33469,7 +33475,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to operations research models and methods for problems with random, stochastic, and probabilistic components. Topics include birth and death processes, branching processes, waiting line models, and Markov decision processes. Applications include the design, modelling, and analysis of service and manufacturing systems, with emphasis on important functions such as queueing, inventory, reliability, equipment replacement, and maintenance.",
     prereqs: [],
-    antireqs: [],
+    antireqs: ["STAT 333"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -33494,7 +33500,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course exposes students to a variety of application areas in management engineering and introduces to them the challenges inherent in implementing new management engineering systems. Topics will be chosen from areas such as manufacturing, services, logistics, finance, healthcare, and engineering.",
     prereqs: [
-      { type: "OR", reqs: ["MSCI 332", "MSCI 333", "MSCI 431", "MSCI 334", "MSCI 432"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["MSCI 332"] }, { type: "AND", reqs: ["MSCI 333"] }, { type: "AND", reqs: ["MSCI 431"] }, { type: "AND", reqs: ["MSCI 334"] }] }, { type: "AND", reqs: ["MSCI 432"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -33507,7 +33513,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the efficient use of material, information, physical and human capital resources in supply-demand networks consisting of suppliers, manufacturers, distributors, retailers and customers. It emphasizes analytic tools used to design, implement and sustain competitive supply chain systems. The material will highlight application of supply chain practices in industry and supply chain implementation challenges. Issues associated with international or global supply chains will be discussed.",
     prereqs: [
-      { type: "OR", reqs: ["MSE 334", "MSE 432"] }
+      { type: "AND", reqs: ["MSE 334"] }
     ],
     antireqs: [],
     tags: [],
@@ -33561,7 +33567,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course provides an introduction to machine learning, including supervised and unsupervised learning. Emphasis is placed on proper procedures for the training and testing of models. Topics covered may include data cleaning and transformation, overfitting and generalization, n-fold cross validation, regression, decision trees, neural networks, rule finding, and clustering. Students learn to apply machine learning methods to management engineering problems using common tools such as R and Python.",
     prereqs: [
       { type: "OR", reqs: ["BME 122", "CS 240", "CS 240E", "ECE 250", "MSE 240", "MTE 140", "SYDE 223", "MSCI 240"] },
-      { type: "OR", reqs: ["AE 224", "BME 213", "CHE 220", "CIVE 224", "ECE 307", "ENVE 224", "ME 202", "MSE 253", "MTE 201", "NE 215", "STAT 206", "STAT 231", "STAT 241", "SYDE 212", "MSCI 252", "MSCI 253", "ECE 457B", "SYDE 522"] }
+      { type: "OR", reqs: ["AE 224", "BME 213", "CHE 220", "CIVE 224", "ECE 307", "ENVE 224", "ME 202", "MSE 253", "MTE 201", "NE 215", "STAT 206", "STAT 231", "STAT 241", "SYDE 212", "MSCI 252", "MSCI 253", "CS 480", "ECE 457B", "SYDE 522"] }
     ],
     antireqs: [],
     tags: [],
@@ -33598,7 +33604,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A work-term report is a written report that provides an opportunity for students to effectively communicate, document, and reflect on engineering experience gained during a preceding work term. In the report, students draw connections between the theoretical aspects of engineering taught in the classroom and the practical applications of that theory in the workplace. Reports are due on the tenth day of lectures for the academic term in which the report is required.",
     prereqs: [],
-    antireqs: ["WKRPT 400"],
+    antireqs: ["WKRPT 400", "WKRPT 401"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33677,7 +33683,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course emphasizes the following topics: structured software design data structures, abstract data types, recursive algorithms, algorithm analysis and design, sorting and searching, hashing, and problem-solving strategies.",
     prereqs: [
-      { type: "OR", reqs: ["ECE 150", "MTE 121", "GENE 121"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 150"] }, { type: "AND", reqs: ["MTE 121", "GENE 121"] }] }
     ],
     antireqs: ["CS 240", "CS 240E", "ECE 250", "SYDE 223"],
     tags: [],
@@ -33725,7 +33731,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 118"] }
     ],
-    antireqs: ["CIVE 224", "ECON 221", "KIN 222", "MSCI 252", "ME 202", "PSCI 314", "PSYCH 291", "PSYCH 292", "REC 371", "LS 280", "STAT 202", "SYDE 212"],
+    antireqs: ["CIVE 224", "ECON 221", "KIN 222", "MSCI 252", "ME 202", "PSCI 314", "PSYCH 291", "PSYCH 292", "REC 371", "LS 280", "STAT 202", "STAT 206", "STAT 211", "STAT 220", "STAT 221", "STAT 231", "STAT 241", "SYDE 212"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33775,7 +33781,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to mechanical response of materials and stress-strain relationships. Behaviour of prismatic members in tension, compression, shear, bending and torsion. Stress and strain transformations. Virtual work and energy methods.",
     prereqs: [
-      { type: "AND", reqs: ["MTE 111"] }
+      { type: "AND", reqs: ["MTE 111", "MTE 119"] }
     ],
     antireqs: ["CIVE 204", "ME 219", "SYDE 286"],
     tags: [],
@@ -33788,7 +33794,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of circuit theory; input-output relationships, transfer functions and frequency response of linear systems; operational amplifiers, operational amplifier circuits using negative or positive feedback; diodes, operational amplifier circuits using diodes; analog signal detection, conditioning and conversion systems; transducers and sensors, difference and instrumentation amplifiers, active filters.",
     prereqs: [
-      { type: "AND", reqs: ["MTE 120"] }
+      { type: "AND", reqs: ["MTE 120", "MTE 201"] },
+      { type: "AND", reqs: ["SYDE 252"] }
     ],
     antireqs: ["SYDE 292"],
     tags: [],
@@ -33801,7 +33808,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to computer organization, basic real-time concepts, process management, interprocess communication and synchronization, memory management, resource management, interrupt handling, concurrent programming, file systems.",
     prereqs: [
-      { type: "OR", reqs: ["MTE 121", "GENE 121"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MTE 121", "GENE 121"] }, { type: "AND", reqs: ["MTE 140"] }] }
     ],
     antireqs: ["ECE 254"],
     tags: [],
@@ -33825,7 +33832,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Number systems, logic gates, Boolean algebra. Karnaugh maps, and combinational logic design. Implementation of combinational and sequential logic circuits on Field Programmable Gate Arrays (FPGA) boards. Sequential logic and state machines. Programmable Logic Controllers (PLCs) and PLC programming using ladder. Laboratory work includes FPGA and PLC programming. [Offered: F,W]",
     prereqs: [
-      { type: "OR", reqs: ["GENE 123", "MTE 120"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GENE 123"] }, { type: "AND", reqs: ["MTE 120"] }] }
     ],
     antireqs: ["ECE 222", "ME 262"],
     tags: [],
@@ -33860,7 +33867,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Macroscopic approach to energy analysis. Energy transfer as work and heat, and the First Law of thermodynamics. Properties and states of simple substances. Control-mass and control-volume analysis. The essence of entropy, and the Second Law of thermodynamics. The Carnot cycle and its implications for practical cyclic devices. Introduction to heat transfer by conduction, convection, and radiation. Basic formulation and solution of steady and transient problems. Issues relevant to the cooling of electrical devices.",
     prereqs: [
-      { type: "AND", reqs: ["MTE 202"] }
+      { type: "AND", reqs: ["MTE 202", "MTE 203"] }
     ],
     antireqs: ["SYDE 381"],
     tags: [],
@@ -33886,7 +33893,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Principles of the geometry and motion in linkages and mechanisms. Computer-aided kinematic and kinetic analysis of mechanisms. Synthesis of mechanisms. Static failure and yield criteria in ductile and brittle materials. Fatigue failure criteria due to fluctuating stresses. Shaft design under static and fluctuating loads. Shaft components, including shoulders, keys, and keyways. Deflections in shafts.",
     prereqs: [
-      { type: "AND", reqs: ["MTE 203"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MTE 203"] }, { type: "AND", reqs: ["SYDE 182"] }] }
     ],
     antireqs: ["ME 321"],
     tags: [],
@@ -33899,7 +33906,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Integrated design of mechanical motion transmission systems: gearing, couplings, bearings, power screws, fasteners, and their integration; sensing and measurement of mechanical motion; specification and selection of motors and electromechanical actuators; analysis and design of controllers for motion transmission systems; case studies.",
     prereqs: [
-      { type: "AND", reqs: ["MTE 220"] }
+      { type: "AND", reqs: ["MTE 220", "MTE 262", "MTE 320", "MTE 321"] }
     ],
     antireqs: [],
     tags: [],
@@ -33912,7 +33919,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Synchronization and data flow; interfacing to sensors and actuators; parallel, serial, and analog interfacing; buses; direct memory access (DMA); interfacing considerations; privacy and security considerations. [Offered: W,S]",
     prereqs: [
-      { type: "OR", reqs: ["ME 262", "MTE 262"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ME 262"] }, { type: "AND", reqs: ["MTE 262"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -33935,7 +33942,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Fluid Mechanics 1",
     units: 0.5,
     description: "Physical properties of fluids and fundamental concepts in fluid mechanics. Hydrostatics. Conservation laws for mass, momentum, and energy. Flow similarity and dimensional analysis as applied to engineering problems in fluid mechanics. Laminar and turbulent flow. Engineering applications such as flow measurement, flow in pipes, and fluid forces on moving bodies.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["MTE 309"] }
+    ],
     antireqs: ["ME 351"],
     tags: [],
     majors: ["any"],
@@ -33947,7 +33956,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Feedback control design and analysis for linear dynamic systems with emphasis on mechanical engineering applications; transient and frequency response; stability; system performance; control modes; state space techniques; introduction to digital control systems.",
     prereqs: [
-      { type: "AND", reqs: ["MTE 320"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MTE 320"] }, { type: "AND", reqs: ["SYDE 252"] }] }
     ],
     antireqs: ["ECE 380", "ME 360", "SYDE 352"],
     tags: [],
@@ -34019,7 +34028,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Mechatronic system interfaces and architecture design. Sensing and actuation in industrial mechatronics systems. Motion control. Industrial computer vision. Networks and communication. PLC based and distributed control. Discrete and hybrid control systems. Fault finding.",
     prereqs: [
-      { type: "OR", reqs: ["ME 360", "MTE 360", "ECE 380", "MTE 262", "ECE 362", "MTE 320"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["ME 360"] }, { type: "AND", reqs: ["MTE 360"] }, { type: "AND", reqs: ["ECE 380"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["ME 262"] }, { type: "AND", reqs: ["MTE 262"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["MTE 325"] }, { type: "AND", reqs: ["ECE 362"] }, { type: "AND", reqs: ["MTE 320"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -34045,7 +34054,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an extension of MTE481. Students work on prototyping the designs they proposed and finalized in MTE481. The students either individually or in small groups demonstrate the working prototypes; make a poster presentation for the design competition; and pitch their product on a website. The projects are monitored by the course instructor and evaluated by the instructor with feedback from an expert judging panel.",
     prereqs: [
-      { type: "AND", reqs: ["MTE 380"] }
+      { type: "AND", reqs: ["MTE 380", "MTE 481"] }
     ],
     antireqs: ["ME 482"],
     tags: [],
@@ -34058,9 +34067,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Dynamic system modelling: linear, nonlinear, state-space, sample data systems, computer simulation, system identification. Discrete system stability and dynamic performance. Nonlinear system analysis, limit cycles. Digital control system design: emulation methods, z-domain, frequency domain, pole placement. Implementation of digital controllers. Laboratory projects in computer control of mechatronic and other systems.",
     prereqs: [
-      { type: "AND", reqs: ["ECE 380"] },
-      { type: "AND", reqs: ["MTE 360"] },
-      { type: "AND", reqs: ["SYDE 352"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ECE 380"] }, { type: "AND", reqs: ["MTE 360"] }, "ME 360", { type: "AND", reqs: ["SYDE 352"] }] }
     ],
     antireqs: ["ECE 481", "ECE 484"],
     tags: [],
@@ -34245,7 +34252,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Music Studio",
     units: 0.5,
     description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments.",
-    prereqs: [],
+    prereqs: [
+      { type: "OR", reqs: ["MUSIC 116", "MUSIC 117", "MUSIC 216", "MUSIC 217", "MUSIC 316", "MUSIC 317", "MUSIC 416", "MUSIC 417"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -34257,7 +34266,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments. [Note: Studio Fee]",
     prereqs: [
-      { type: "AND", reqs: ["MUSIC 226"] }
+      { type: "AND", reqs: ["MUSIC 226"] },
+      { type: "OR", reqs: ["MUSIC 116", "MUSIC 117", "MUSIC 216", "MUSIC 217", "MUSIC 316", "MUSIC 317", "MUSIC 416", "MUSIC 417"] }
     ],
     antireqs: [],
     tags: [],
@@ -34270,7 +34280,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The study of music from a behavioural science perspective. Topics include auditory perception, creativity and aesthetic experience, emotive human responses, and the social psychology of music activities. Recent research in the field of music cognition will be explored in detail.",
     prereqs: [
-      { type: "OR", reqs: ["MUSIC 100", "MUSIC 110"] }
+      { type: "AND", reqs: ["MUSIC 100"] }
     ],
     antireqs: [],
     tags: [],
@@ -34397,7 +34407,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A hands-on introduction to music and technology, including recording, audio editing, digital signal processing, and Musical Instrumental Digital Interface (MIDI). Course work will foster a practical understanding of digital music production software and techniques, and involve electroacoustic or acoustic composition.",
     prereqs: [
-      { type: "OR", reqs: ["MUSIC 100", "MUSIC 110"] }
+      { type: "AND", reqs: ["MUSIC 100"] }
     ],
     antireqs: [],
     tags: [],
@@ -34460,7 +34470,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments.",
     prereqs: [
-      { type: "OR", reqs: ["MUSIC 100", "MUSIC 110"] }
+      { type: "AND", reqs: ["MUSIC 100"] },
+      { type: "OR", reqs: ["MUSIC 116", "MUSIC 117", "MUSIC 216", "MUSIC 217", "MUSIC 316", "MUSIC 317", "MUSIC 416", "MUSIC 417"] }
     ],
     antireqs: [],
     tags: [],
@@ -34473,7 +34484,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments.",
     prereqs: [
-      { type: "AND", reqs: ["MUSIC 326"] }
+      { type: "AND", reqs: ["MUSIC 326"] },
+      { type: "OR", reqs: ["MUSIC 116", "MUSIC 117", "MUSIC 216", "MUSIC 217", "MUSIC 316", "MUSIC 317", "MUSIC 416", "MUSIC 417"] }
     ],
     antireqs: [],
     tags: [],
@@ -34541,7 +34553,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of the music written for solo voice from the 17th century to the present.",
     prereqs: [
-      { type: "OR", reqs: ["MUSIC 100", "MUSIC 110"] }
+      { type: "AND", reqs: ["MUSIC 100"] }
     ],
     antireqs: [],
     tags: [],
@@ -34554,7 +34566,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A study of music for solo piano from its 17th and 18th century antecedents to the present. Using historical and analytical approaches, individual works will be considered within a tradition of particular forms, genres, and styles.",
     prereqs: [
-      { type: "OR", reqs: ["MUSIC 100", "MUSIC 110"] }
+      { type: "AND", reqs: ["MUSIC 100"] }
     ],
     antireqs: [],
     tags: [],
@@ -34698,7 +34710,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments.",
     prereqs: [
-      { type: "AND", reqs: ["MUSIC 327"] }
+      { type: "AND", reqs: ["MUSIC 327"] },
+      { type: "OR", reqs: ["MUSIC 116", "MUSIC 117", "MUSIC 216", "MUSIC 217", "MUSIC 316", "MUSIC 317", "MUSIC 416", "MUSIC 417"] }
     ],
     antireqs: [],
     tags: [],
@@ -34711,7 +34724,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments.",
     prereqs: [
-      { type: "AND", reqs: ["MUSIC 426"] }
+      { type: "AND", reqs: ["MUSIC 426"] },
+      { type: "OR", reqs: ["MUSIC 116", "MUSIC 117", "MUSIC 216", "MUSIC 217", "MUSIC 316", "MUSIC 317", "MUSIC 416", "MUSIC 417"] }
     ],
     antireqs: ["MUSIC 428"],
     tags: [],
@@ -34724,7 +34738,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments. Students perform a senior recital.",
     prereqs: [
-      { type: "AND", reqs: ["MUSIC 426"] }
+      { type: "AND", reqs: ["MUSIC 426"] },
+      { type: "OR", reqs: ["MUSIC 116", "MUSIC 117", "MUSIC 216", "MUSIC 217", "MUSIC 316", "MUSIC 317", "MUSIC 416", "MUSIC 417"] }
     ],
     antireqs: ["MUSIC 427"],
     tags: [],
@@ -34816,7 +34831,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Matrices, operations on matrices. Determinants. Adjoints and inverses. Solution of linear equations: elimination and iterative methods. Eigenvalues and eigenvectors with engineering applications. Complex numbers.",
     prereqs: [],
-    antireqs: ["MATH 114", "SYDE 114"],
+    antireqs: ["MATH 114", "MATH 115", "MATH 106", "MATH 136", "MATH 146", "SYDE 114"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -34827,7 +34842,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Spreadsheets for problem solving, plotting, fitting data. Problem solution plotting, and creating complex programs in an engineering prototypical programming environment. Elementary numerical methods: Taylor-series summations, roots of equations, roots of polynomials, direct and indirect solution methods for systems of linear, and nonlinear algebraic equations, integration. Applications in nanotechnology engineering.",
     prereqs: [],
-    antireqs: ["CIVE 121", "CS 115", "ECE 150", "MTE 121", "SYDE 121"],
+    antireqs: ["CIVE 121", "CS 115", "CS 135", "CS 145", "ECE 150", "MTE 121", "SYDE 121"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -34838,7 +34853,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Chemical reactions. Mass and charge balance. Introduction to the first, second, and third laws of thermodynamics. Chemical equilibrium. Applications of chemical equilibrium principles to proton-transfer reactions. Electronic structure of atoms and molecules. Periodicity and chemical bonding.",
     prereqs: [],
-    antireqs: ["CHE 102", "CHEM 120"],
+    antireqs: ["CHE 102", "CHEM 120", "CHEM 123"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -34864,7 +34879,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 117"] }
     ],
-    antireqs: ["BME 182", "CIVE 104", "ECE 105", "PHYS 111", "SYDE 182"],
+    antireqs: ["BME 182", "CIVE 104", "ECE 105", "PHYS 111", "PHYS 115", "PHYS 121", "SYDE 182"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -34908,9 +34923,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Elementary probability theory. Random variables and distributions. Binomial, Poisson, and normal distributions. Elementary sampling. Statistical estimation. Tests of hypotheses and significance. Regression. Goodness-of-fit tests.",
     prereqs: [
-      { type: "AND", reqs: ["MATH 119"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 119"] }, { type: "AND", reqs: ["NE 112"] }] }
     ],
-    antireqs: ["CHE 220", "CIVE 224", "ME 202", "STAT 202", "SYDE 213"],
+    antireqs: ["CHE 220", "CIVE 224", "ME 202", "STAT 202", "STAT 206", "STAT 220", "STAT 230", "SYDE 213"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -34921,7 +34936,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Ordinary differential equations with constant coefficients. Boundary value problems and applications to quantum mechanics. Laplace and Fourier transforms, Fourier series and applications. Numerical solution of ordinary differential equations.",
     prereqs: [],
-    antireqs: ["AMATH 350", "MATH 218"],
+    antireqs: ["AMATH 350", "MATH 218", "MATH 228"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -34956,7 +34971,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Nomenclature, stereochemistry, and reactions of important classes of organic compounds. Reaction mechanisms and energetics. Aromaticity and simple molecular orbital theory of conjugated systems. Applications to nanomaterials and/or devices.",
     prereqs: [],
-    antireqs: ["CHEM 262", "CHEM 266"],
+    antireqs: ["CHEM 262", "CHEM 262L", "CHEM 264", "CHEM 266", "CHEM 266L"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -35055,7 +35070,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Tensor operations. Kinematics of a continuum: material and spatial frames, strain and displacement, conservation of mass. Stress, conservation of momentum, energy, and mass. Linear elastic solids: Hooke's Law, infinitesimal elasticity theory. Introduction to Newtonian viscous fluids: hydrostatics, Navier-Stokes equations, flow regimes, and the Reynolds number. Engineering applications in anisotropy, heat transfer, and fluid mechanics will be discussed.",
     prereqs: [
-      { type: "AND", reqs: ["NE 216"] }
+      { type: "AND", reqs: ["NE 216", "NE 217"] }
     ],
     antireqs: [],
     tags: [],
@@ -35092,7 +35107,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Historical background; the differential equation approach to quantum mechanics; treatments of solvable problems such as the particle-in-a-box, harmonic oscillator, rigid rotor, and the hydrogen atom; introduction to approximation methods for more complex systems; application to solid state problems, including band theory.",
     prereqs: [],
-    antireqs: ["CHEM 356", "ECE 405", "PHYS 233"],
+    antireqs: ["CHEM 356", "ECE 405", "PHYS 233", "PHYS 234"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -35151,7 +35166,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Key processes for electronic device fabrication. Single crystal growth. Substrate preparation. Homoepitaxy, heteroepitaxy, and molecular-beam epitaxy. Ion implantation. Oxidation and diffusion. Physical and chemical vapor deposition. Sputtering and evaporation. Etching. Micromachining. Spin coating and printing. Photolithography. Effects of device scaling on chip performance. Process integration. Yield and reliability.",
     prereqs: [
-      { type: "AND", reqs: ["NE 121"] }
+      { type: "AND", reqs: ["NE 121", "NE 125", "NE 242"] }
     ],
     antireqs: ["ECE 433"],
     tags: [],
@@ -35164,7 +35179,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Metal-oxide-semiconductor field-effect transistor (MOSFET), circuit biasing and load-line analysis. Small-signal equivalent circuits and single stage amplifier configurations. Differential and multistage MOSFET amplifiers. The cascode configuration, current mirror and active loads. Feedback circuit configurations and stability. Oscillators, waveform shaping circuits and delay analysis. Introduction to digital circuits, the transistor switch, inverter circuits and complementary metal-oxide-semiconductor (CMOS) logic circuits.",
     prereqs: [],
-    antireqs: ["ECE 240", "SYDE 292"],
+    antireqs: ["ECE 240", "ECE 242", "ECE 340", "SYDE 292"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -35210,7 +35225,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "This laboratory course introduces students to biotechnology topics including bacterial transformations, isolation of plasmids, biomacromolecule analysis, polymerase chain reaction (PCR), and design of nanobiosensors and encapsulation techniques for drug delivery.",
     prereqs: [
-      { type: "OR", reqs: ["BIOL 130", "BME 285", "CHE 161", "NE 281", "BME 285L", "CHEM 233L", "CHEM 237L"] }
+      { type: "OR", reqs: ["BIOL 130", "BME 285", "CHE 161", "NE 281", "BIOL 240L", "BME 285L", "CHEM 233L", "CHEM 237L"] }
     ],
     antireqs: [],
     tags: [],
@@ -35223,7 +35238,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Molecular biology and biochemistry required for the engineering of nanobiotechnological applications. Structure and characterization of nucleic acids, proteins, and lipids. Introduction to lab-on-chip systems and microfluidic devices. Application to medical diagnostics, protein and nucleic acid tools including polymerase chain reaction and blotting techniques. Elements of design required for the development of modern instrumentation and biosensors.",
     prereqs: [],
-    antireqs: ["CHEM 233"],
+    antireqs: ["CHEM 233", "CHEM 237"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -35402,7 +35417,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fabrication technology for development of micro and nanosensors, actuators, and modules (e.g., micro or, nano-electromechanical systems, micro or nanofluidics channels). Integration using examples drawn from chemical analysis micro and nano-instrumentation. An overview of current micro and nano-instrumentation.",
     prereqs: [
-      { type: "AND", reqs: ["NE 352"] }
+      { type: "AND", reqs: ["NE 352", "NE 353"] }
     ],
     antireqs: [],
     tags: [],
@@ -35500,7 +35515,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Application of inorganic nanostructured materials and nanocomposites. Synthesis and processing techniques for inorganic nanomaterials and the devices that use them. Students will be required to provide critical analyses and seminar presentations of patents utilizing nanomaterials.",
     prereqs: [
-      { type: "AND", reqs: ["NE 335"] }
+      { type: "AND", reqs: ["NE 335", "NE 352"] }
     ],
     antireqs: [],
     tags: [],
@@ -35557,7 +35572,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Nature of light, wave motion and superposition, rectilinear propagation, reflection and refraction, image formation and quality, optical properties of plane and curved surfaces, prisms and thin lenses. Apertures and pupils. Thick lens theory, lens systems, ray construction, Fraunhofer diffraction and resolution limit. Fresnel diffraction. Simple optical eye models. Refractive error and its correction. Interference and coherence of light:applications. Lasers.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 111", "PHYS 121"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 111", "PHYS 111L", "PHYS 112"] }, { type: "AND", reqs: ["PHYS 121", "PHYS 121L", "PHYS 122"] }] }, { type: "AND", reqs: ["MATH 127"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -35685,7 +35700,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Clinical Techniques 1 Laboratory",
     units: 0.25,
     description: "Selected clinical techniques for students taking OPTOM152.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["OPTOM 152"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -35719,7 +35736,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Etiology, signs, symptoms, diagnosis and management of diseases affecting the organs and tissues of the human body including: circulatory, hemopoietic/lymphoid, lungs/upper respiratory tract, kidney, gastrointestinal tract, liver/biliary tract, pancreas, urogenital system, endocrine system, musculoskeletal system, skin, nervous system diseases.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 103"] }
+      { type: "AND", reqs: ["OPTOM 103", "OPTOM 105"] }
     ],
     antireqs: [],
     tags: [],
@@ -35769,7 +35786,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The neural processing of colour, brightness, movement and form by the retina, lateral geniculate, cortex, superior colliculus and other brain centres. Neural mechanisms underlying binocular depth perception, the accommodative response and eye movement.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 104"] }
+      { type: "AND", reqs: ["OPTOM 104", "OPTOM 114"] }
     ],
     antireqs: [],
     tags: [],
@@ -35782,7 +35799,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Anterior segment disease including etiology, pathogenesis, signs, symptoms, differential diagnosis and management of diseases of the ocular adnexa and anterior segment of the eye: the lids, orbit and adnexa, conjunctiva, cornea, uvea, sclera, lens and cataract, the glaucomas and ocular emergencies.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 103"] }
+      { type: "AND", reqs: ["OPTOM 103", "OPTOM 105"] }
     ],
     antireqs: [],
     tags: [],
@@ -35794,7 +35811,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Diseases of the Eye 1 Laboratory",
     units: 0.25,
     description: "Selected clinical techniques for students taking OPTOM245.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["OPTOM 245"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -35806,7 +35825,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Multifocal spectacle lenses. Aberrations of thin lenses and spectacle lens design. Prescribing and fitting of spectacles. Environmental and occupational prescribing. Prescription analysis. Ophthalmic and visual standards. Computer vision syndrome. Ophthalmic laboratory procedures: measurement of complex spectacle lenses, and spectacle frame adjustment and repairs.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 106"] }
+      { type: "AND", reqs: ["OPTOM 106", "OPTOM 216"] }
     ],
     antireqs: [],
     tags: [],
@@ -35842,7 +35861,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Clinical Techniques 2 Laboratory",
     units: 0.25,
     description: "Selected clinical techniques for students taking OPTOM252.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["OPTOM 252"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -35866,7 +35887,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Diseases of the Eye 2 Laboratory",
     units: 0.25,
     description: "Selected clinical techniques for students taking OPTOM255.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["OPTOM 255"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -35889,7 +35912,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Pharmacokinetic and pharmacodynamic principles of ophthalmic drug design and delivery. Selection and use of ophthalmic diagnostic pharmaceutical agents, palliative agents and therapeutic pharmaceutical agents. Mechanism of action, contraindications and adverse drug reactions. Recommended guidelines for use and follow-up procedures.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 245"] }
+      { type: "AND", reqs: ["OPTOM 245", "OPTOM 231", "OPTOM 255"] }
     ],
     antireqs: [],
     tags: [],
@@ -35915,7 +35938,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Detection and evaluation of sensory and motor characteristics of vision in aniseikonic, strabismic and nonstrabismic patients. Classifications, diagnoses, prognoses, and modes of therapy for aniseikonic, nonstrabismic, and strabismic patients.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 152"] }
+      { type: "AND", reqs: ["OPTOM 152", "OPTOM 219", "OPTOM 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -35928,7 +35951,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The clinical application of the visual sciences. Emphasis is placed on the differential diagnostic method of analyzing clinical data with consideration given to appropriate clinical techniques, effective record keeping, recommended optometric therapies, and prognoses.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 245"] }
+      { type: "AND", reqs: ["OPTOM 245", "OPTOM 255", "OPTOM 272"] }
     ],
     antireqs: [],
     tags: [],
@@ -35954,7 +35977,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Spectacle frame materials. Fitting and adjusting techniques. Selection of lens design. Lenses for high myopia. Dispensing of eye protectors. Optics of low vision aids. Patient counselling and management of dispensing problems. Laboratories provide experience in practical aspects of ophthalmic dispensing.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 216"] }
+      { type: "AND", reqs: ["OPTOM 216", "OPTOM 246"] }
     ],
     antireqs: [],
     tags: [],
@@ -35967,7 +35990,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Selected clinical techniques for students taking OPTOM347.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 246"] }
+      { type: "AND", reqs: ["OPTOM 246", "OPTOM 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -35979,7 +36002,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Contact Lenses 1 Laboratory",
     units: 0.25,
     description: "Selected clinical techniques for students taking OPTOM 347.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["OPTOM 347"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -36035,7 +36060,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Detection and management of chronic and acute complications induced by contact lenses. Contact lens management options for special conditions such as dry eye, aphakia, and keratoconus (and other corneal irregularities). Disposable lenses and replacement regimens. Extended wear options. Alternative management of refractive errors such as orthokeratology and refractive surgery. Contact lenses and presbyopia.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 155"] }
+      { type: "AND", reqs: ["OPTOM 155", "OPTOM 245", "OPTOM 347"] }
     ],
     antireqs: [],
     tags: [],
@@ -36048,7 +36073,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Advanced considerations of the etiology, signs, symptoms, diagnosis, treatment, and management of ocular disease. Emphasis will be placed on the clinical case management with therapeutic pharmaceutical agents.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 245"] }
+      { type: "AND", reqs: ["OPTOM 245", "OPTOM 255"] }
     ],
     antireqs: [],
     tags: [],
@@ -36060,7 +36085,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Diseases of the Eye 3 Laboratory",
     units: 0.25,
     description: "Selected clinical techniques for students taking OPTOM375.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["OPTOM 375"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -36072,7 +36099,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Optometric examination and management of infants, children, and patients with learning disabilities or multiple challenges. General child development and the development of the optical and sensory-motor functions of the visual system. Learning disabilities and related vision problems. The role of the optometrist in conjunction with parents, teachers, and psychologists.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 152"] }
+      { type: "AND", reqs: ["OPTOM 152", "OPTOM 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -36096,7 +36123,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Overview of current medical diagnoses and management of systemic diseases with ocular involvement. History and physical examination (including neurological examination), clinical laboratory testing, and diagnostic imaging. Diseases of high prevalence including cardiovascular, cancer, endocrine, and neurological disorders.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 215"] }
+      { type: "AND", reqs: ["OPTOM 215", "OPTOM 231"] }
     ],
     antireqs: [],
     tags: [],
@@ -36109,7 +36136,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Aging and its effects on the visual system in both health and disease, care, and management of the aging patient. Assessment and management of visual impairment and disability, including both optical and non-optical therapies. Epidemiology and psychology of vision impairment, and associated rehabilitative services.",
     prereqs: [
-      { type: "AND", reqs: ["OPTOM 152"] }
+      { type: "AND", reqs: ["OPTOM 152", "OPTOM 252", "OPTOM 346"] }
     ],
     antireqs: [],
     tags: [],
@@ -36531,7 +36558,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will give students both a thorough understanding of the mediation process and practical, hands-on mediation experience. Students will develop in-depth, first-hand knowledge and experience resolving conflicts through the role of the mediator as third party. The course will include a series of role-plays, readings, and case studies.",
     prereqs: [
-      { type: "OR", reqs: ["PACS 202", "LS 271"] }
+      { type: "AND", reqs: ["PACS 202", "LS 271"] }
     ],
     antireqs: [],
     tags: [],
@@ -36772,7 +36799,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will cover themes to illustrate the role of pharmacy and pharmaceutical sciences as it relates to patient care. Students will gain an understanding of pharmaceutical drug research, drug discovery and development, and the profession of pharmacy.",
     prereqs: [
-      { type: "OR", reqs: ["CHEM 120", "CHEM 121"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 120"] }, { type: "AND", reqs: ["CHEM 121"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -36807,7 +36834,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the first of nine sequential courses that are designed to enable students to understand, integrate, and apply concepts from pharmacology, medicinal chemistry, toxicology, clinical pharmacokinetics, clinical biochemistry and pathophysiology, and applied microbiology to patient scenarios. Students will not only learn core principles from each of these disciplines, but they will also develop skills in critical appraisal, patient assessment, and clinical problem-solving. Ultimately, students will be able to make confident decisions regarding a patient's care plan. The first course will cover core foundational knowledge.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 110"] }
+      { type: "AND", reqs: ["PHARM 110", "PHARM 111", "PHARM 141"] }
     ],
     antireqs: [],
     tags: [],
@@ -36820,7 +36847,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the second of nine sequential courses. Topics discussed through patient scenarios and assignments will focus on two to three body systems.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 110"] }
+      { type: "AND", reqs: ["PHARM 110", "PHARM 111", "PHARM 141"] }
     ],
     antireqs: [],
     tags: [],
@@ -36833,7 +36860,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the third of nine sequential courses. Topics discussed through patient scenarios and assignments will focus on two to three body systems.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 220"] }
+      { type: "AND", reqs: ["PHARM 220", "PHARM 221", "PHARM 224"] }
     ],
     antireqs: [],
     tags: [],
@@ -36846,7 +36873,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the fourth of nine sequential courses. Topics discussed through patient scenarios and assignments will focus on two to three body systems.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 220"] }
+      { type: "AND", reqs: ["PHARM 220", "PHARM 221", "PHARM 224"] }
     ],
     antireqs: [],
     tags: [],
@@ -36859,7 +36886,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Pharmacokinetic principles and quantitative analysis will be used to describe the events that transpire following drug administration. The influence of physiological and biochemical processes on drug pharmacokinetics will be discussed",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 110"] }
+      { type: "AND", reqs: ["PHARM 110", "PHARM 111", "PHARM 124", "PHARM 125"] }
     ],
     antireqs: [],
     tags: [],
@@ -36885,7 +36912,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course combines lab and lecture components. It applies knowledge acquired in the introductory professional practice courses to simulated pharmacy situations and patient case scenarios. Additionally, it introduces students to important concepts in prioritizing and managing patient safety.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 130"] }
+      { type: "AND", reqs: ["PHARM 130"] },
+      { type: "AND", reqs: ["PHARM 220", "PHARM 221"] }
     ],
     antireqs: [],
     tags: [],
@@ -36898,7 +36926,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course combines lecture and lab components, focusing on providing students with the knowledge and skills to fulfil requirements of the expanding role pharmacists play in providing patient care. Physical assessment and an understanding of how analyses and devices inform decision-making are examples of topics that may be covered.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 228"] }
+      { type: "AND", reqs: ["PHARM 228"] },
+      { type: "AND", reqs: ["PHARM 222", "PHARM 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -36946,7 +36975,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the fifth of nine sequential courses. Topics discussed through patient scenarios and assignments will focus on two to three body systems.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 222"] }
+      { type: "AND", reqs: ["PHARM 222", "PHARM 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -36959,7 +36988,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the sixth of nine sequential courses. Topics discussed through patient scenarios and assignments will focus on two to three body systems.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 222"] }
+      { type: "AND", reqs: ["PHARM 222", "PHARM 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -36972,7 +37001,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the seventh of nine sequential courses. Topics discussed through patient scenarios and assignments will focus on two to three body systems.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 320"] }
+      { type: "AND", reqs: ["PHARM 320", "PHARM 321"] }
     ],
     antireqs: [],
     tags: [],
@@ -36985,7 +37014,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the eighth of nine sequential courses. Topics discussed though patient scenarios and assignments will focus on two to three body systems.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 320"] }
+      { type: "AND", reqs: ["PHARM 320", "PHARM 321"] }
     ],
     antireqs: [],
     tags: [],
@@ -36997,7 +37026,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Institutional Pharmacy Practice",
     units: 0.5,
     description: "This course offers insight into how healthcare institutions deliver care and provides an overview of basic clinical topics common to many of these settings. It examines the structure, governance, and delivery of services within institutional health systems such as acute and long-term care facilities. Common clinical topics, such as safe and appropriate administration of intravenous fluids, nutrition, and medication will be discussed.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PHARM 329"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -37009,7 +37040,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Professional Practice 5 is a lab-based course that refines basic skills and addresses additional areas of expanding scope of practice for pharmacists.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 229"] }
+      { type: "AND", reqs: ["PHARM 229"] },
+      { type: "AND", reqs: ["PHARM 320", "PHARM 321"] }
     ],
     antireqs: [],
     tags: [],
@@ -37022,7 +37054,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course combines lecture and lab components and focuses on preparing students for their first years of professional life.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 329"] }
+      { type: "AND", reqs: ["PHARM 329"] },
+      { type: "AND", reqs: ["PHARM 323", "PHARM 324"] }
     ],
     antireqs: [],
     tags: [],
@@ -37183,7 +37216,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Interprofessional Approaches to Substance Use and Misuse and Mental Health",
     units: 0.5,
     description: "This course serves as an overview of addiction, chemical abuse, and chemical dependency and how pharmacists can impact those affected. Topics include prevention, identification, treatment options, clinical aspects of treatment, and an understanding of support systems available for those in recovery.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PHARM 323", "PHARM 324"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -37294,7 +37329,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This is the ninth of nine sequential courses. Complex integrated cases will be covered, along with special topics.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 323"] }
+      { type: "AND", reqs: ["PHARM 323", "PHARM 324"] }
     ],
     antireqs: [],
     tags: [],
@@ -37307,7 +37342,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Symposium offers senior students the opportunity to deliver a seminar in a content area of their choice. Students will demonstrate an ability to critically appraise literature from a variety of sources and synthesize information in both written and presentation formats.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 323"] }
+      { type: "AND", reqs: ["PHARM 323", "PHARM 324", "PHARM 330"] }
     ],
     antireqs: [],
     tags: [],
@@ -37388,7 +37423,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines advanced oncology therapeutic concepts required as foundation for patient management in the inpatient, ambulatory, and community settings. Topics include a comprehensive review of cancer epidemiology and pathophysiology, therapeutic agents used in the oncology setting, management of cancer therapy toxicities, and treatment and palliation of cancer symptoms.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 320"] }
+      { type: "AND", reqs: ["PHARM 320", "PHARM 321"] }
     ],
     antireqs: [],
     tags: [],
@@ -37401,7 +37436,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course focuses on the types of care provided by interdisciplinary health team members involved in caring for critical care and emergency room patients. Invited respiratory therapists, nurses, dieticians, pharmacists, social workers, and intensivists will discuss critical care topics such as sepsis, respiratory insufficiency, toxicology, ethical deliberations, and end of life care.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 320"] }
+      { type: "AND", reqs: ["PHARM 320", "PHARM 321", "PHARM 326"] }
     ],
     antireqs: [],
     tags: [],
@@ -37413,7 +37448,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Advanced Geriatric Care",
     units: 0.5,
     description: "This course focuses on key concepts of ageing that are related to geriatric pharmacotherapy. Topics include the biology and demography of ageing, optimal medication use in older people, disease presentation, geriatric assessment, roles for pharmacists, and challenges and complexity of geriatric care.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PHARM 323", "PHARM 324"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -37457,7 +37494,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Advanced Infectious Disease",
     units: 0.5,
     description: "This course is designed to expand upon students' understanding of infectious disease pharmacotherapy, with a focus on syndromes requiring a higher degree of medical intervention than commonly seen in primary care. The aim of the course is to develop practicing pharmacists with the knowledge, skills, and critical dispositions necessary for optimizing the use of anti-infectives in challenging infectious syndromes.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PHARM 323"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -37469,7 +37508,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide students the opportunity to develop and strengthen clinical problem-solving and communication skills required for practice in an institutional setting. The focus will be on disease states commonly encountered in patients requiring acute inpatient care.",
     prereqs: [
-      { type: "AND", reqs: ["PHARM 320"] }
+      { type: "AND", reqs: ["PHARM 320", "PHARM 321", "PHARM 326"] }
     ],
     antireqs: [],
     tags: [],
@@ -37526,7 +37565,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will examine and challenge some influential ideas in philosophy and consider their importance to our lives. Questions might include: Does science describe the world as it really is? Is the mind just the brain? What can we know? Should we be moral? Do we have free will?",
     prereqs: [],
-    antireqs: ["PHIL 110A"],
+    antireqs: ["PHIL 110A", "PHIL 110B"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38594,7 +38633,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to physics for students intending to concentrate their further studies in biology, dentistry, medicine and paramedicine; includes particle kinematics and dynamics, energy and momentum conservation, and rotational mechanics.",
     prereqs: [],
-    antireqs: ["PHYS 115"],
+    antireqs: ["PHYS 115", "PHYS 121"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38604,8 +38643,10 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Physics 1 Laboratory",
     units: 0.25,
     description: "Biweekly lab for students who have taken or are taking PHYS111.",
-    prereqs: [],
-    antireqs: ["PHYS 121L"],
+    prereqs: [
+      { type: "AND", reqs: ["PHYS 111"] }
+    ],
+    antireqs: ["PHYS 121L", "PHYS 131L"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38616,9 +38657,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A continuation of PHYS111; includes simple harmonic motion, electrostatic force and potential, electric current and power, DC circuits, magnetic field and induction, wave motion, sound, and optics.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 111", "PHYS 121"] }
+      { type: "AND", reqs: ["PHYS 111"] }
     ],
-    antireqs: ["PHYS 122"],
+    antireqs: ["PHYS 122", "PHYS 125"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38628,8 +38669,10 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Physics 2 Laboratory",
     units: 0.25,
     description: "Biweekly lab for students who have taken or are taking PHYS112.",
-    prereqs: [],
-    antireqs: ["PHYS 122L"],
+    prereqs: [
+      { type: "AND", reqs: ["PHYS 112"] }
+    ],
+    antireqs: ["PHYS 122L", "PHYS 132L"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38640,7 +38683,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Brief review of kinematics. Particle dynamics, work, energy, conservation of energy. Conservation of linear momentum, collisions, rotational kinematics and dynamics, conservation of angular momentum. Equilibrium of rigid bodies.",
     prereqs: [],
-    antireqs: ["PHYS 111"],
+    antireqs: ["PHYS 111", "PHYS 121"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38650,8 +38693,10 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Mechanics",
     units: 0.5,
     description: "An introductory course in physics for students intending to concentrate their future studies in the physical sciences, optometry, or mathematics; includes vectors (dot and cross products), particle kinematics and dynamics, forces in nature, work and energy, conservation of energy and linear momentum, rotational kinematics and dynamics, and conservation of angular momentum.",
-    prereqs: [],
-    antireqs: ["PHYS 111", "ECE 105"],
+    prereqs: [
+      { type: "OR", reqs: ["MATH 104", "MATH 127", "MATH 137", "MATH 147"] }
+    ],
+    antireqs: ["PHYS 111", "PHYS 115", "ECE 105"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38661,8 +38706,10 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Mechanics Laboratory",
     units: 0.25,
     description: "For students who have taken or are taking PHYS121.",
-    prereqs: [],
-    antireqs: ["PHYS 111L"],
+    prereqs: [
+      { type: "AND", reqs: ["PHYS 121"] }
+    ],
+    antireqs: ["PHYS 111L", "PHYS 131L"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38673,9 +38720,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Simple harmonic motion, resonance, damped harmonic motion, complex numbers, wave motion and sound, electrostatic force and potential, electric current and power, capacitors, DC circuits, LRC circuits, introduction to magnetic fields Lorentz Force.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 111", "PHYS 115", "PHYS 121", "ECE 105"] }
+      { type: "OR", reqs: ["PHYS 111", "PHYS 115", "PHYS 121", "ECE 105"] },
+      { type: "OR", reqs: ["MATH 127", "MATH 137", "MATH 147"] }
     ],
-    antireqs: ["PHYS 112"],
+    antireqs: ["PHYS 112", "PHYS 125"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38685,8 +38733,10 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Waves, Electricity and Magnetism Laboratory",
     units: 0.25,
     description: "For students who have taken or are taking PHYS122.",
-    prereqs: [],
-    antireqs: ["PHYS 112L"],
+    prereqs: [
+      { type: "AND", reqs: ["PHYS 122"] }
+    ],
+    antireqs: ["PHYS 112L", "PHYS 132L"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38697,7 +38747,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introductory course in modern physics; includes relativity, quantum physics, atomic physics, nuclear physics, particle physics, and gravitation.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 111", "PHYS 115", "PHYS 121", "ECE 105"] }
+      { type: "OR", reqs: ["PHYS 111", "PHYS 115", "PHYS 121", "ECE 105"] },
+      { type: "OR", reqs: ["PHYS 112", "PHYS 122", "PHYS 125", "ECE 106"] }
     ],
     antireqs: [],
     tags: [],
@@ -38709,7 +38760,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introductory Measurement Laboratory",
     units: 0.25,
     description: "Biweekly lab for students following the Honours Physics plan.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PHYS 122L"] }
+    ],
     antireqs: ["PHYS 132L"],
     tags: [],
     majors: ["any"],
@@ -38734,7 +38787,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introduction to the Universe Laboratory",
     units: 0.25,
     description: "For students who are taking PHYS175.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PHYS 175"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -38748,7 +38803,8 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["PHYS 112", "PHYS 122"] },
       { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 127", "MATH 137", "MATH 147"] },
-      { type: "OR", reqs: ["CS 114", "CS 116", "CS 136", "CS 146"] }
+      { type: "OR", reqs: ["CS 114", "CS 116", "CS 136", "CS 146"] },
+      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
     ],
     antireqs: [],
     tags: [],
@@ -38762,7 +38818,8 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Introduction to quantization, wave-particle duality and the uncertainty principle The Schroedinger equation and solvable examples. Topics will include stationary states of particle-in-a-box, harmonic oscillator, and the hydrogen atom. Quantization of angular momentum and spin. Introduction to approximation methods including time-independent perturbation theory. Modern applications of quantum mechanics.",
     prereqs: [
       { type: "OR", reqs: ["PHYS 112", "PHYS 122", "PHYS 125", "ECE 106"] },
-      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] },
+      { type: "OR", reqs: ["MATH 211", "MATH 213", "MATH 228", "AMATH 250", "AMATH 251", "ECE 205"] }
     ],
     antireqs: ["CHEM 356", "NE 232", "PHYS 234", "ECE 405"],
     tags: [],
@@ -38777,7 +38834,8 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["PHYS 122"] },
       { type: "OR", reqs: ["PHYS 249", "MATH 114", "MATH 136"] },
-      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] },
+      { type: "OR", reqs: ["MATH 228", "AMATH 250", "AMATH 251"] }
     ],
     antireqs: ["CHEM 356", "NE 232", "PHYS 233", "ECE 405"],
     tags: [],
@@ -38792,7 +38850,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["PHYS 122"] },
       { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] },
-      { type: "OR", reqs: ["MATH 227", "AMATH 231"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 227"] }, { type: "AND", reqs: ["AMATH 231"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -38805,7 +38863,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Vectors in 2- and 3-space and their geometry. Linear equations, matrices, and determinants. Introduction to vector spaces. Eigenvalues and diagonalization. Complex numbers. Applications to physics and astronomy, including use of Python libraries and implementation.",
     prereqs: [
-      { type: "OR", reqs: ["CS 114", "CS 116", "CS 136", "PHYS 112"] }
+      { type: "OR", reqs: ["CS 114", "CS 116", "CS 136", "CS 146", "PHYS 112", "PHYS 122"] }
     ],
     antireqs: ["MATH 136"],
     tags: [],
@@ -38818,7 +38876,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Geometrical optics: image formation, ray tracing through multiple optical components, dispersion by prisms, optical fibers, optical instruments - eyes, telescopes, microscopes, and cameras, introduction to aberrations; physical optics: interference and interferometers, diffraction, imaging resolution, diffraction gratings and their use in spectroscopy; wave-particle duality; introduction to the electromagnetic nature of light and polarization.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 112", "PHYS 122"] },
+      { type: "AND", reqs: ["PHYS 112"] },
       { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
     ],
     antireqs: ["ECE 404"],
@@ -38862,7 +38920,7 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["MATH 108", "MATH 128", "MATH 138", "MATH 148"] },
       { type: "OR", reqs: ["MATH 228", "AMATH 250", "AMATH 251"] }
     ],
-    antireqs: ["AMATH 261"],
+    antireqs: ["AMATH 261", "AMATH 271"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38877,7 +38935,7 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["MATH 227", "MATH 237", "MATH 247"] },
       { type: "OR", reqs: ["PHYS 236", "CS 114", "CS 116", "CS 136", "CS 146"] }
     ],
-    antireqs: ["STAT 230"],
+    antireqs: ["STAT 230", "STAT 231"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38888,7 +38946,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments in astronomy.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 256", "ECE 404"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 256"] }, { type: "AND", reqs: ["ECE 404"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -38923,9 +38981,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Formalism of quantum mechanics. Operator approach to the harmonic oscillator. Quantum mechanics in three dimensions: Hydrogen atom, angular momentum and spin. Time-independent perturbation theory. Fine structure of hydrogen. Zeeman effect. Identical particles. The variational principle. Ground state of the helium atom. Applications in atomic and molecular physics.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 234", "CHEM 356"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 234"] }, { type: "AND", reqs: ["CHEM 356"] }] },
       { type: "OR", reqs: ["MATH 228", "AMATH 250", "AMATH 251"] },
-      { type: "OR", reqs: ["MATH 227", "MATH 237", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 227"] }
     ],
     antireqs: ["AMATH 373"],
     tags: [],
@@ -38939,8 +38997,8 @@ export const RAW_COURSES: RawCourse[] = [
     description: "An introduction to condensed matter physics, including their lattice, electronic and thermodynamic properties. Crystalline lattices in solids. Reciprocal lattices. Diffraction from crystals. Lattice vibrations and phonons. Properties of a free electron gas. Electrons in a periodic potential and band-structure. Metals, insulators and semiconductors. Electrical transport in materials. Introduction to semiconductor physics.",
     prereqs: [
       { type: "AND", reqs: ["PHYS 358"] },
-      { type: "OR", reqs: ["AMATH 231", "PHYS 364"] },
-      { type: "OR", reqs: ["CHEM 356", "PHYS 234"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 231"] }, { type: "AND", reqs: ["PHYS 364"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CHEM 356"] }, { type: "AND", reqs: ["PHYS 234"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -38967,9 +39025,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Algorithms for solving differential equations; Monte Carlo techniques; Fourier transforms; programming and computational techniques using Python, applied to physical problems such as astrophysics, electricity and magnetism, classical and quantum mechanics; introduction to machine learning and artificial intelligence.",
     prereqs: [
-      { type: "AND", reqs: ["PHYS 234"] },
-      { type: "OR", reqs: ["AMATH 271", "PHYS 263"] },
-      { type: "OR", reqs: ["PHYS 267", "PHYS 236"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PHYS 234"] }, { type: "AND", reqs: ["PHYS 242"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 271"] }, { type: "AND", reqs: ["PHYS 263"] }] },
+      { type: "OR", reqs: ["PHYS 267", "PHYS 236", "PHYS 249"] }
     ],
     antireqs: ["PHYS 239"],
     tags: [],
@@ -38982,7 +39040,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Temperature and thermodynamic equilibrium. Work, internal energy, and heat; first law, with examples. Kinetic theory of gases. Basic probability theory. Microscopic states and entropy. Absolute temperature, reversibility, and the second law. Thermodynamic Functions and Maxwell's relations. Phase transitions. Third Law. Other applications of thermodynamics.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 112", "PHYS 122"] },
+      { type: "AND", reqs: ["PHYS 112"] },
       { type: "OR", reqs: ["MATH 227", "MATH 237", "MATH 247"] },
       { type: "OR", reqs: ["MATH 228", "AMATH 250", "AMATH 251"] }
     ],
@@ -38997,8 +39055,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fundamental postulate of statistical thermodynamics. Entropy. Microcanonical, canonical, and grand canonical ensembles. Fermi-Dirac, Bose-Einstein, and Boltzmann Statistics. Maxwell-Boltzmann velocity distribution. Applications to specific heat of solids, classical and quantum gases, electrons in metals, Planck's law of radiation, and Bose-Einstein condensation.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 236", "CS 114", "CS 116", "CS 136", "PHYS 358", "ECE 403", "CHEM 254", "ME 250"] },
-      { type: "OR", reqs: ["PHYS 233", "PHYS 234", "CHEM 356"] }
+      { type: "OR", reqs: ["PHYS 236", "CS 114", "CS 116", "CS 136", "CS 146", "PHYS 358", "ECE 403", "CHEM 254", "ME 250"] },
+      { type: "OR", reqs: ["PHYS 233", "PHYS 234", "CHEM 356"] },
+      { type: "AND", reqs: ["AMATH 373"] }
     ],
     antireqs: [],
     tags: [],
@@ -39038,7 +39097,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Non-inertial frames of reference. Calculus of variations. Lagrangian mechanics. Coupled oscillations and normal modes. Hamiltonian dynamics.",
     prereqs: [
       { type: "OR", reqs: ["PHYS 236", "CS 114", "CS 116", "CS 136", "CS 146"] },
-      { type: "AND", reqs: ["PHYS 263"] },
+      { type: "OR", reqs: ["PHYS 263", "AMATH 271"] },
       { type: "OR", reqs: ["MATH 227", "MATH 237", "MATH 247"] },
       { type: "OR", reqs: ["MATH 228", "AMATH 250", "AMATH 251"] }
     ],
@@ -39082,7 +39141,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.25,
     description: "Selected experiments in astronomy.",
     prereqs: [
-      { type: "AND", reqs: ["PHYS 267"] }
+      { type: "AND", reqs: ["PHYS 267", "PHYS 270L"] }
     ],
     antireqs: [],
     tags: [],
@@ -39095,9 +39154,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Stellar distances, masses, ages. Stellar interiors and atmospheres, star formation and evolution. Supernovae, white dwarfs, neutron stars, black holes.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 112", "PHYS 122"] },
+      { type: "AND", reqs: ["PHYS 112"] },
       { type: "OR", reqs: ["PHYS 236", "CS 114", "CS 116", "CS 136", "CS 146"] },
-      { type: "AND", reqs: ["PHYS 234"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PHYS 234"] }, { type: "AND", reqs: ["AMATH 271"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39110,8 +39169,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Cell structure and molecular composition; intermolecular interactions and hydration; protein structure and function; cytoskeletal filaments; DNA structure, packing and chromosomes; rate equations and biological dynamics (e.g., cytoskeletal polymerization); self-assembly; cell membranes; action potentials and biological electricity; molecular motors; cell motility.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 112", "PHYS 122"] },
-      { type: "OR", reqs: ["CHEM 123", "CHEM 125"] }
+      { type: "AND", reqs: ["PHYS 112"] },
+      { type: "AND", reqs: ["CHEM 123"] }
     ],
     antireqs: [],
     tags: [],
@@ -39124,9 +39183,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Applications of physics in medicine. The course will address basic concepts of medical imaging, nuclear medicine and radiation isotopes, radiation therapy and biomedical laser applications. Nuclear structure and binding energy. Nuclear decays, radioactivity and nuclear reactions. Interaction of radiation with matter.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 112", "PHYS 122"] },
+      { type: "AND", reqs: ["PHYS 112"] },
       { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] },
-      { type: "OR", reqs: ["PHYS 280", "BIOL 280"] }
+      { type: "AND", reqs: ["PHYS 280", "BIOL 280"] }
     ],
     antireqs: [],
     tags: [],
@@ -39139,7 +39198,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Norton and Thévenin equivalent circuits, bipolar junction and field-effect transistors, operational amplifiers, negative feedback, noise, common circuits used for measurement and control of laboratory experiments, introduction to digital circuits.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 122", "PHYS 224", "PHYS 242"] }
+      { type: "OR", reqs: ["PHYS 122", "PHYS 224", "PHYS 242"] },
+      { type: "AND", reqs: ["PHYS 391L"] }
     ],
     antireqs: [],
     tags: [],
@@ -39151,7 +39211,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Electronics Laboratory",
     units: 0.25,
     description: "For students who have taken or are taking PHYS391.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PHYS 391"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -39163,7 +39225,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Fourier Optics: diffraction, dispersion, coherence, imaging. Polarization: birefringence, Jones vectors, Mueller Matrices. Fresnel Equations: optics at an interface, thin films.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 256", "ECE 404"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 256"] }, { type: "AND", reqs: ["ECE 404"] }] },
       { type: "OR", reqs: ["PHYS 225", "PHYS 364", "AMATH 353"] }
     ],
     antireqs: [],
@@ -39177,8 +39239,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Lasers: semi-classical interaction, properties, cavity, Gaussian beams. Radiation and Detectors. Introduction to nonlinear optics.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 256", "ECE 404"] },
-      { type: "OR", reqs: ["PHYS 364", "AMATH 353"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 256"] }, { type: "AND", reqs: ["ECE 404"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 364"] }, { type: "AND", reqs: ["AMATH 353"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39220,8 +39282,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Symmetries and conservation laws. Review of time-independent perturbation theory (degenerate and non-degenerate, Rayleigh-Schrodinger, Brillouin-Wigner and canonical perturbation theory; effective Hamiltonian derivation). Time-dependent perturbation theory (first and second order, adiabatic perturbation, Aharonov-Bohm effect). Fermi's golden rule. Two-level systems. Emission and absorption of radiation (applications). Second quantization of electromagnetic field in free space; photons. Spontaneous emission and natural lifetime; Lamb shift. Elements of scattering theory. Introduction to the Dirac equation.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 334", "AMATH 373"] },
-      { type: "OR", reqs: ["PHYS 364", "AMATH 351"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 334"] }, { type: "AND", reqs: ["AMATH 373"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 364"] }, { type: "AND", reqs: ["AMATH 351"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39234,8 +39296,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Physics pertaining to collective and emergent phenomena in condensed matter systems. Examples of topics to be covered include magnetism, superconductivity, heavy Fermion systems, quantum hall effect, protein folding, membranes, DNA physics, polymer physics, modern experimental and theoretical techniques.",
     prereqs: [
-      { type: "AND", reqs: ["PHYS 335"] },
-      { type: "OR", reqs: ["PHYS 334", "AMATH 373"] }
+      { type: "AND", reqs: ["PHYS 335", "PHYS 359"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 334"] }, { type: "AND", reqs: ["AMATH 373"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39273,7 +39335,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Review of the origin of Maxwell's equations, conservation laws, potential formulation of Maxwell's equations and gauge choices, vacuum solutions of Maxwell's equations (free space, waveguides, dispersion), solution to Maxwell's equations for arbitrary sources (static and time-dependent problems), relativistic formulation of electrodynamics, macroscopic Maxwell's equations and plane waves in macroscopic media.",
     prereqs: [
       { type: "AND", reqs: ["PHYS 342"] },
-      { type: "OR", reqs: ["PHYS 364", "AMATH 351"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 364"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["AMATH 351"] }, { type: "AND", reqs: ["AMATH 353"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39286,9 +39348,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to the standard model of particle physics. Topics covered include symmetries, particle classification, experimental methods and tools, scattering, Feynman diagrams, gauge theories, quantum electrodynamics, quarks, quantum chromodynamics, weak interactions, and the Higgs mechanism.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 334", "AMATH 373"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 334"] }, { type: "AND", reqs: ["AMATH 373"] }] },
       { type: "AND", reqs: ["PHYS 363"] },
-      { type: "OR", reqs: ["PHYS 364", "AMATH 332"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 364"] }, { type: "AND", reqs: ["AMATH 332", "AMATH 351", "AMATH 353"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39301,7 +39363,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Machine learning applications in the physical sciences.",
     prereqs: [
-      { type: "OR", reqs: ["PHYS 236", "PHYS 349"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PHYS 236"] }, { type: "AND", reqs: ["PHYS 349"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39314,7 +39376,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The Hilbert space of states, observables, and time evolution. Feynman path integral and Greens functions. Approximation methods. Co-ordinate transformations, angular momentum, and spin. The relation between symmetries and conservation laws. Density matrix, Ehrenfest theorem, and decoherence. Multiparticle quantum mechanics. Bell inequality and basics of quantum computing.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 231", "AMATH 373", "PHYS 334"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["AMATH 231"] }, { type: "AND", reqs: ["PMATH 343"] }] }, { type: "AND", reqs: ["AMATH 373"] }, { type: "AND", reqs: ["PHYS 334"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39366,7 +39428,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Photonic quantum computing, superconducting qubits, NMR, Ion Trap quantum computing, atomic quantum computing.",
     prereqs: [
-      { type: "OR", reqs: ["CO 481", "CS 467", "PHYS 467", "PHYS 334"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CO 481", "CS 467", "PHYS 467"] }, { type: "AND", reqs: ["PHYS 334"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39407,7 +39469,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Tensor analysis. Curved space-time and the Einstein field equations. The Schwarzschild solution and applications. The Friedmann-Robertson-Walker cosmological models.",
     prereqs: [
       { type: "OR", reqs: ["AMATH 261", "AMATH 271", "PHYS 263"] },
-      { type: "OR", reqs: ["AMATH 231", "MATH 227"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AMATH 231"] }, { type: "AND", reqs: ["MATH 227"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39431,7 +39493,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Theory of correlations and entanglement; theory of quantum channels, detectors; the measurement problem, in quantum mechanics; phase space formulation of quantum mechanics; entanglement in infinite dimensional quantum systems; introduction to open quantum systems; and exploration of current research directions in quantum information.",
     prereqs: [
-      { type: "OR", reqs: ["AMATH 473", "PHYS 454"] }
+      { type: "AND", reqs: ["AMATH 473", "PHYS 454"] }
     ],
     antireqs: [],
     tags: [],
@@ -39642,7 +39704,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to the fundamental concepts and use of Geographic Information Systems (GIS). Students learn about the nature of geographic information and how to store, manipulate and analyze spatial data in a range of application areas. Students will learn underlying theory in lectures and gain a working knowledge of GIS software in lab sessions.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 181", "GEOG 187"] }
+      { type: "AND", reqs: ["GEOG 181"] }
     ],
     antireqs: [],
     tags: [],
@@ -39755,7 +39817,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will focus on the comparative analysis of urban spatial structure and urban form, as well as the administrative and regulatory implications of urbanization around the world. Students will develop knowledge of global urban issues and compare policy responses related to urban economies, transportation and land use planning, housing and community development, sustainable urban environment, urban poverty, peri-urbanization, urban heritage, and conservation planning, etc. Students will assess planning problems and solutions from both industrialized and developing countries.",
     prereqs: [
-      { type: "OR", reqs: ["GEOG 101", "PLAN 100"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 101"] }, { type: "AND", reqs: ["PLAN 100"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39769,7 +39831,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course develops the capacity of students to apply research methods to planning-related issues. Examination of a variety of alternative approaches to designing and conducting research. Students learn how to become informed consumers and producers of planning-related research.",
     prereqs: [
       { type: "AND", reqs: ["ENVS 278"] },
-      { type: "OR", reqs: ["GEOG 281", "PLAN 281"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["GEOG 281"] }, { type: "AND", reqs: ["PLAN 281"] }] }
     ],
     antireqs: ["ENBUS 306", "ERS 302", "INTEG 340"],
     tags: [],
@@ -39937,7 +39999,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will focus on contemporary urban planning and development in China, especially in the context of the country's economic reform and globalization. Students will learn about the political, social, economic, environmental, and spatial opportunities and challenges facing urban China in transition, including but not limited to rural-urban migration, urban land and housing development, economic transformation, spatial restructuring, urban governance, citizenship and rights, and environmental sustainability. Students will develop/enhance their understanding of international planning and development, and their critical thinking skills, about diverse urban issues in Chinese cities.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 202", "PLAN 261"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PLAN 202"] }, { type: "AND", reqs: ["PLAN 261"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -39975,8 +40037,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course develops the capacity of students to apply methods of spatial demography. Spatial demography refers to the statistical study of human population using spatial methods for analyzing demographic data. It can provide insights into the understanding of geographic variations of population's characteristics, which in turn can help to make better plans in building the environment. Through this course, students will learn the basic concepts, data sources, data issues, methodologies, and applications of spatial demography.",
     prereqs: [
-      { type: "AND", reqs: ["ENVS 278"] },
-      { type: "AND", reqs: ["PLAN 281"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["ENVS 278"] }, { type: "AND", reqs: ["PLAN 281"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40048,7 +40109,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This advanced course enhances students' knowledge on the role of planners and planning in creating supportive and accessible environments for all individuals. Through engagement with critical disability scholarship and theories of person-environment interaction, students will explore planned spaces as disabling/enabling environments for people living with physical, cognitive, and sensory/neuro diversity.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 133", "PLAN 233"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PLAN 133"] }, { type: "AND", reqs: ["PLAN 233"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40061,7 +40122,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This advanced course uses conceptual readings and contemporary case studies from Canada and other settler-colonial contexts to critically examine how planning initiatives in both urban and rural contexts relate to the rights and aspirations of Indigenous peoples. Students will also explore the possibilities for planning that is grounded in the knowledge, perspectives, and lived experiences of Indigenous peoples.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 133", "PLAN 233"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PLAN 133"] }, { type: "AND", reqs: ["PLAN 233"] }] }
     ],
     antireqs: ["PLAN 474"],
     tags: [],
@@ -40074,7 +40135,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This advanced course delves into the rich body of planning scholarship on spaces of ethno-cultural diversity and difference. Students will interrogate theories of multiculturalism, interculturalism, social inclusion and integration, and equity in the context of planning scholarship and practice. Students will apply these theories to contemporary planning challenges such as multi-generational housing, places of worship, culture-specific design, and inclusive public engagement. Students will study local planning conflicts to understand the role of built form in creating inclusive communities of difference.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 133", "PLAN 233"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PLAN 133"] }, { type: "AND", reqs: ["PLAN 233"] }] }
     ],
     antireqs: ["PLAN 474"],
     tags: [],
@@ -40087,7 +40148,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This advanced course addresses the intersection between planning, gender, and sexual orientation. Students will learn about strategies for challenging the patriarchal, cis-gendered, and heteronormative assumptions in planning scholarship and practice. Students will explore how urban form shapes experiences of safety and mobility for women and queer communities as well as their sense of belonging. The course will also address how women and queer communities are engaged in planning processes and the profession itself.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 133", "PLAN 233"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PLAN 133"] }, { type: "AND", reqs: ["PLAN 233"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40204,7 +40265,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will focus on the evolution of transit in cities, including the technological innovations that have made transit possible. Students will learn about various transit modes, system operational characteristics, and transit network planning objectives. Students will also develop knowledge of transit vehicle motion, optimizing scheduling, assessing travel times, and transit ownership structures and financing. Students will develop their methodological skills for selecting appropriate transit modes and analyzing transit network geometries.",
     prereqs: [
-      { type: "OR", reqs: ["CIVE 342", "ENVS 278"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["CIVE 342"] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40228,8 +40289,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The development, implementation, and presentation of a response to a set of GIS related project requirements is the focus of this course. Students work in small teams to enhance and develop their abilities to work with GIS and related spatial technologies and analytical methods in an advanced project setting. The nature of the project requirements and themes varies with faculty and student strengths and interests. Projects may emphasize development of software applications, use of programming, or advanced GIS analysis methods, and draw from theme areas such as environment studies and management, human and physical geography, or planning.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 387", "PLAN 381"] },
-      { type: "AND", reqs: ["ENVS 278"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["PLAN 387"] }, { type: "AND", reqs: ["PLAN 381"] }] }, { type: "AND", reqs: ["ENVS 278"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40275,7 +40335,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Built around a set of key issues in the management of Geographic Information Systems (GIS). Focuses on middle management concerns and covers topics including GIS needs assessment, benchmarking, the law and spatial data, spatial data warehousing, multi-user GIS modelling, and GIS application development. Uses of GIS in both public and private sector organizations are covered.",
     prereqs: [
-      { type: "OR", reqs: ["PLAN 381", "PLAN 387"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PLAN 381"] }, { type: "AND", reqs: ["PLAN 387"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40299,8 +40359,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Euclid's axioms, triangle centres, conic sections, compass-and-straightedge constructions, isometries of the Euclidean plane and of Euclidean space, regular and star-shaped polygons, tessellations of the Euclidean plane, regular and quasi-regular polyhedra, symmetries of polygons and polyhedra, four-dimensional polytopes, sphere packings, and the kissing problem. Applications.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "MATH 215", "NE 112"] },
-      { type: "OR", reqs: ["MATH 104", "MATH 109", "MATH 116", "MATH 117", "MATH 124", "MATH 127", "MATH 137", "MATH 147"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["MATH 106"] }, { type: "AND", reqs: ["NE 112"] }] }, { type: "AND", reqs: ["MATH 104"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40313,8 +40372,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to three types of non-Euclidean geometry: spherical, projective, and hyperbolic geometry. Lines, distances, circles, triangles, and areas in these non-Euclidean spaces. Conic sections in the projective plane. Inversions and orthogonal circles. Models of the hyperbolic plane (such as the Poincaré disc model or the upper-half plane model). Tilings of the hyperbolic plane.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 106", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "MATH 215", "NE 112"] },
-      { type: "OR", reqs: ["MATH 104", "MATH 109", "MATH 116", "MATH 117", "MATH 124", "MATH 127", "MATH 137", "MATH 147"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["MATH 106"] }, { type: "AND", reqs: ["NE 112"] }] }, { type: "AND", reqs: ["MATH 104"] }] }
     ],
     antireqs: ["PMATH 360"],
     tags: [],
@@ -40327,7 +40385,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A broad introduction to mathematical logic. The notions of logical consequence and derivation are introduced in the settings of propositional and first order logic, with discussions of the completeness theorem and satisfiability",
     prereqs: [
-      { type: "OR", reqs: ["MATH 135", "MATH 225", "MATH 235", "MATH 245"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 135"] }, { type: "AND", reqs: ["MATH 225"] }] }
     ],
     antireqs: ["CS 245", "CS 245E", "SE 212"],
     tags: [],
@@ -40341,7 +40399,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topology of Euclidean spaces, continuity, norms, completeness. Contraction mapping principle. Fourier series. Various applications, for example, to ordinary differential equations, optimization and numerical approximation.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 237"] }
     ],
     antireqs: [],
     tags: [],
@@ -40354,7 +40412,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Complex numbers, Cauchy-Riemann equations, analytic functions, conformal maps and applications to the solution of Laplace's equation, contour integrals, Cauchy integral formula, Taylor and Laurent expansions, residue calculus and applications.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "AND", reqs: ["MATH 237"] }
     ],
     antireqs: ["PHYS 365"],
     tags: [],
@@ -40367,7 +40425,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The purpose of the course is to present the familiar concepts of calculus at a rigorous level and to provide students who took the MATH137/MATH138/MATH237 sequence with the background needed to be successful in PMATH351 and PMATH352. Topics discussed include the completeness properties of the reals; the density of the rationals; the topology of real n-dimensional space: open and closed sets, connectedness, compactness (by open covers), the Heine-Borel theorem, completeness; sequences in real n-dimensional space: convergence, Cauchy sequences, subsequences, the Bolzano-Weierstrass theorem; multivariable functions: limits, point-wise and uniform continuity, the extreme value theorem, uniform convergence of sequences of functions, Taylor's theorem, term-by-term differentiation of power series; integration in real n-dimensional space: Riemann integrability, Fubini's theorem for continuous functions on rectangles, term-by-term integration of power series.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] },
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 235"] }, { type: "AND", reqs: ["MATH 237"] }] }
     ],
     antireqs: ["MATH 247", "PMATH 351"],
     tags: [],
@@ -40380,7 +40439,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Rings, ideals, factor rings, homomorphisms, finite and infinite fields, polynomials and roots, field extensions, algebraic numbers, and applications, for example, to Latin squares, finite geometries, geometrical constructions, error-correcting codes.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "MATH 245"] }
+      { type: "AND", reqs: ["MATH 235"] }
     ],
     antireqs: ["PMATH 348"],
     tags: [],
@@ -40393,7 +40452,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Groups, permutation groups, subgroups, homomorphisms, symmetry groups in two and three dimensions, direct products, Polya-Burnside enumeration.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "MATH 245"] }
+      { type: "AND", reqs: ["MATH 235"] }
     ],
     antireqs: ["PMATH 347"],
     tags: [],
@@ -40406,7 +40465,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Models of computation. An overview of complexity: P, NP, and NP-complete problems. Introduction to the analysis of algorithms through development of number-theoretic algorithms. Computation over rings and finite fields. Graph-theoretic algorithms and applications, including search, planarity testing, and shortest-path problems. [Note: Lab is not scheduled and students are expected to find time in open hours to complete their work. Offered: W,S]",
     prereqs: [
-      { type: "OR", reqs: ["CS 234", "MATH 239", "MATH 249"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 234"] }, { type: "AND", reqs: ["MATH 239"] }] }
     ],
     antireqs: ["CS 341", "CM 339"],
     tags: [],
@@ -40420,7 +40479,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An elementary approach to the theory of numbers; the Euclidean algorithm, congruence equations, multiplicative functions, solutions to Diophantine equations, continued fractions, and rational approximations to real numbers.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 225", "MATH 135", "MATH 145"] }
+      { type: "AND", reqs: ["MATH 225"] }
     ],
     antireqs: [],
     tags: [],
@@ -40433,8 +40492,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Finite dimensional Hilbert spaces. Unitary operators and evolution of closed systems. Hermitian and positive operators, observables, measurements, and the uncertainty principle. Tensor products, entanglement, and Bell inequalities. Superdense coding, teleportation, and the no-cloning theorem. Ensembles of states, density matrices, and the partial trace. Quantum channels, the Choi-Jamiolkowski isomorphism, and the Choi-Krauss representation. Purification and distance between states.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "MATH 245"] },
-      { type: "OR", reqs: ["STAT 230", "STAT 240"] }
+      { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["MATH 235"] }, { type: "AND", reqs: ["MATH 245"] }] }, { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 230"] }, { type: "AND", reqs: ["STAT 240"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40447,7 +40505,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Groups, subgroups, homomorphisms and quotient groups, isomorphism theorems, group actions, Cayley and Lagrange theorems, permutation groups, Sylow theorems, and the fundamental theorem of finite abelian groups. Elementary properties of rings, subrings, ideals, homomorphisms and quotients, isomorphism theorems, and polynomial rings.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "MATH 245"] }
+      { type: "AND", reqs: ["MATH 235"] }
     ],
     antireqs: [],
     tags: [],
@@ -40473,7 +40531,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Cardinality, countable and uncountable sets, normed spaces and metric spaces, open sets, continuous mappings, finite-dimensional normed spaces, sequence and function spaces, completeness, contraction mappings and the Banach fixed-point theorem, the Baire category theorem, compactness of metric spaces, the Arzela-Ascoli theorem, and the Stone-Weierstrass theorem.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 247", "PMATH 333"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 247"] }, { type: "AND", reqs: ["PMATH 333"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40486,7 +40544,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Analytic functions, Cauchy-Riemann equations, Goursat's theorem, Cauchy's theorems, Morera's theorem, Liouville's theorem, maximum modulus principle, harmonic functions, Schwarz's lemma, isolated singularities, Laurent series, residue theorem.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 247", "PMATH 333"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 247"] }, { type: "AND", reqs: ["PMATH 333"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40499,8 +40557,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Curves and hypersurfaces in Euclidean space; integration and Stokes' Theorem; Gaussian and mean curvatures; Frenet-Serret frames and geodesics; Gauss-Bonnet Theorem.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "MATH 245"] },
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 235"] }, { type: "AND", reqs: ["MATH 237"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40513,7 +40570,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topological spaces, bases, and Hausdorff spaces. Subspace, product, and quotient topologies. Continuous maps, compactness, connectedness, and path-connectedness. Topological manifolds. The fundamental group, the Seifert-Van Kampen Theorem, and covering spaces.",
     prereqs: [
-      { type: "OR", reqs: ["PMATH 336", "PMATH 347"] }
+      { type: "AND", reqs: ["PMATH 336"] },
+      { type: "AND", reqs: ["PMATH 351"] }
     ],
     antireqs: [],
     tags: [],
@@ -40526,8 +40584,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The mathematics of iterated functions, properties of discrete dynamical systems, Mandelbrot and Julia sets.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] },
-      { type: "OR", reqs: ["MATH 114", "MATH 115", "MATH 136", "MATH 146", "MATH 225"] }
+      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148", "MATH 114", "MATH 115", "MATH 136", "MATH 146", "MATH 225"] }
     ],
     antireqs: [],
     tags: [],
@@ -40694,7 +40751,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Compact topological dynamical systems, the greatest ambit, spaces of ultrafilters, Van der Waerden and Hales Jewett theorems, minimal flows, boundary actions, invariant measures, probability measure preserving actions, Rokhlin¿s lemma, ergodic theorems, orbit equivalence, entropy, Ornstein¿s theorem.",
     prereqs: [
-      { type: "AND", reqs: ["PMATH 367"] }
+      { type: "AND", reqs: ["PMATH 367", "PMATH 450"] }
     ],
     antireqs: [],
     tags: [],
@@ -40720,7 +40777,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Smooth manifolds, smooth maps, and tangent vectors; the tangent and cotangent bundles; vector fields, tensor fields, and differential forms; Stokes' theorem; integral curves, Lie derivatives, the Frobenius theorem; de Rham cohomology.",
     prereqs: [
-      { type: "OR", reqs: ["PMATH 365", "PMATH 367"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PMATH 365"] }, { type: "AND", reqs: ["PMATH 367"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -40994,7 +41051,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "What trends prevail in foreign policy across states? Using a comparative approach by focusing on particular country-specific issues and approaches, students will explore important influences on the development of foreign policies and on the differentiation of big, middle, and small powers.",
     prereqs: [
-      { type: "OR", reqs: ["PSCI 150", "INTST 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PSCI 150"] }, { type: "AND", reqs: ["INTST 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -41117,7 +41174,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "How do quantitative methods contribute to political science? Students will study a range of quantitative methods, with an emphasis on practical applications. The course requires only a rudimentary understanding of mathematics.",
     prereqs: [],
-    antireqs: ["ARTS 280", "BIOL 361", "ECON 221", "ENVS 278", "SDS 250A", "KIN 222", "PSYCH 292", "REC 371", "SRF 230", "LS 280", "STAT 202", "SWREN 205R"],
+    antireqs: ["ARTS 280", "BIOL 361", "ECON 221", "ENVS 278", "SDS 250A", "SDS 250R", "KIN 222", "KIN 232", "PSYCH 292", "REC 371", "SRF 230", "LS 280", "STAT 202", "STAT 204", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241", "SWREN 205R"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -41272,7 +41329,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Focusing on the most pressing current political issues in Canadian politics, students will examine how the major institutional components of the Canadian political system (fusion of powers, federal-provincial division of powers, Charter of Rights) shape political responses to those issues. Through a variety of scholarly, peer-reviewed and policy-based readings and assignments, students will critically reflect on how existing patterns of privilege and marginalization play out in regard to those issues.",
     prereqs: [
-      { type: "OR", reqs: ["LS 206", "PSCI 260"] }
+      { type: "AND", reqs: ["LS 206", "PSCI 260"] }
     ],
     antireqs: [],
     tags: [],
@@ -41296,7 +41353,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the nature and basic principles of constitutional law. Explores constitutional conventions, the distribution of powers in the Canadian federalism, Aboriginal and treaty rights, and the Charter of Rights and Freedoms.",
     prereqs: [
-      { type: "OR", reqs: ["LS 101", "LS 206", "PSCI 260"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["LS 101"] }, { type: "AND", reqs: ["LS 206", "PSCI 260"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -41500,7 +41557,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "How does international business influence development in the context of economic globalization? Students will study contending perspectives on how international business practices have affected economic, social, and political development in host countries, home countries, and the world in general.",
     prereqs: [
-      { type: "OR", reqs: ["PSCI 252", "LS 366"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PSCI 252"] }, { type: "AND", reqs: ["PSCI 389", "LS 366"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -41649,7 +41706,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will help students to develop the specialized skills required to analyze political data, and to use data in order to answer political questions. For example, where should one go to collect political data? How does one use data to understand political trends, to predict electoral victories, or identify polarizing tendencies in society? The course also trains students on the use of software to process data.",
     prereqs: [
-      { type: "AND", reqs: ["PSCI 100"] }
+      { type: "OR", reqs: ["PSCI 100", "PSCI 150", "ARTS 280"] }
     ],
     antireqs: [],
     tags: [],
@@ -41761,7 +41818,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the role that rights and rights discourse plays in public policy development and policy change. Examines Canadian public policy in relation to the Charter of Rights and Freedoms and human rights legislation, as well as cases in comparative context.",
     prereqs: [
-      { type: "OR", reqs: ["LS 101", "LS 206", "PSCI 260"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["LS 101"] }, { type: "AND", reqs: ["LS 206", "PSCI 260"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -41796,7 +41853,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "What are the political and economic implications of growing interdependence in the region? Students will study patterns of economic development in Asia at the national level.",
     prereqs: [
-      { type: "OR", reqs: ["PSCI 259", "PSCI 283"] }
+      { type: "AND", reqs: ["PSCI 259"] }
     ],
     antireqs: [],
     tags: [],
@@ -41820,7 +41877,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "What political forces shape war and conflict? Course topics will vary, depending on the instructor and current events.",
     prereqs: [
-      { type: "OR", reqs: ["PSCI 281", "PSCI 282"] }
+      { type: "AND", reqs: ["PSCI 281"] }
     ],
     antireqs: [],
     tags: [],
@@ -41833,7 +41890,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course reviews critical analytical models for the study of security and covers a range of issues which might be considered non-traditional including environmental security, public safety, cyber security, and counter-terrorism. Students will learn theories and concepts for advanced analysis of contemporary issues in security studies. Through reading and understanding a variety of primary and secondary sources, and through original research, students will demonstrate their understanding of the politics of security, the analysis of threats, and the implications of security responses as they relate to state, human, and global security.",
     prereqs: [
-      { type: "AND", reqs: ["PSCI 281"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PSCI 281"] }, { type: "AND", reqs: ["PSCI 284"] }, { type: "AND", reqs: ["PSCI 387"] }, { type: "AND", reqs: ["PSCI 389"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -41870,7 +41927,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will examine the major schools of international relations theory with attention paid to positivist and critical approaches.",
     prereqs: [
-      { type: "OR", reqs: ["PSCI 281", "PSCI 282"] }
+      { type: "AND", reqs: ["PSCI 281"] }
     ],
     antireqs: [],
     tags: [],
@@ -41984,7 +42041,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A course designed to introduce the student to current research and theory concerning children's social, cognitive, and physical development from infancy through childhood to early adolescence.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -41997,7 +42054,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A consideration of the main variables affecting learning in the classroom with special focus upon the conditions essential to efficient learning.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42010,7 +42067,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "A consideration of the main variables affecting learning in the classroom with special focus upon the conditions essential to efficient learning.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42023,7 +42080,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "Educational issues associated with cognitive, emotional, sensory, and physical differences and challenges.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42036,7 +42093,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Variations in the meaning and significance of death and dying will be considered from a psychological perspective, with particular attention to the contexts (e.g., cultural, familial, life-span developmental) in which these variations occur.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42049,7 +42106,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course surveys theories and studies related to human strength and positive human functioning, with a focus on the psychological aspects of a fulfilling life. Topics include optimism, creativity, humour, resilience, wisdom, empathy, love, friendship, achievement, and happiness.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42062,7 +42119,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Psychological principles drawn from a variety of subdisciplines (e.g., social, clinical, cognitive) will be surveyed in terms of their relevance and application to the legal system. Topics may include jury selection and decision-making, eyewitness testimony, insanity defense, competency assessment, risk assessment, and attitudes toward law and the legal process.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42075,7 +42132,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Approaches of traditional psychological theories toward phenomena of religious experience, mysticism, and prayer are examined. The psychological process of creating and naming \"gods\" is considered as well as comparisons among altered states of consciousness including some forms of prayer.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42088,7 +42145,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Psychological perspectives concerning definitions, causes, and consequences of institutional and personal evil, as well as symbols and interpretations of evil in both religious and secular contexts, will be considered.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42101,7 +42158,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course focuses on the existence of and bases for sex and gender differences with emphasis on biological, psychological, and cultural issues.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42114,7 +42171,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine psychological and social psychological theories and empirical investigations of human sexuality.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: ["SRF 204"],
     tags: [],
@@ -42138,7 +42195,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the scientific study of social behaviour and social influences on behaviour. Theories and research on such topics as attitude change and persuasion, stereotypes and prejudice, conformity and obedience to authority, altruism, conflict, attraction, and love may be introduced.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42151,7 +42208,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "An introduction to the scientific study of social behaviour and social influences on behaviour. Theories and research on such topics as attitude change and persuasion, stereotypes and prejudice, conformity and obedience to authority, altruism, conflict, attraction, and love may be introduced.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42175,7 +42232,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an introduction to understanding, assessing, and treating mental illness from a psychological perspective. Course material will focus on various categories of abnormal behaviour, including personality, anxiety, and mood disorders; schizophrenia; and substance abuse. Clinical methods of assessment, diagnosis, and intervention will also be considered.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42188,7 +42245,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course offers an introduction to understanding, assessing, and treating mental illness from a psychological perspective. Course material will focus on various categories of abnormal behaviour, including personality, anxiety, and mood disorders; schizophrenia; and substance abuse. Clinical methods of assessment, diagnosis, and intervention will also be considered.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42225,9 +42282,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces the methods used to observe, quantify, summarize, and describe behaviour in empirical psychological science. It focuses on research design and the interpretation of results.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] },
+      { type: "AND", reqs: ["MATH 103"] }
     ],
-    antireqs: ["HLTH 333", "SDS 251R", "KIN 232", "REC 270", "SWREN 251R"],
+    antireqs: ["HLTH 333", "SDS 251R", "KIN 232", "KIN 330", "REC 270", "SWREN 251R"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42241,7 +42299,7 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["PSYCH 291"] },
       { type: "AND", reqs: ["MATH 103"] }
     ],
-    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "HLTH 204", "KIN 222", "PSCI 214", "PSCI 314", "REC 371", "SDS 250R", "SRF 230", "LS 280", "STAT 202", "SWREN 250R"],
+    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "HLTH 204", "KIN 222", "KIN 232", "PSCI 214", "PSCI 314", "REC 371", "SDS 250R", "SRF 230", "LS 280", "STAT 202", "STAT 204", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241", "SWREN 250R"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42252,7 +42310,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "What we perceive through our senses makes up much of our conscious experience. This course examines how visual and auditory perception arises and includes topics such as how we become aware of colour, form, space, brightness, loudness, and pitch, and how this information guides behaviour. Other senses may be covered.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 207", "PSYCH 261"] }
+      { type: "AND", reqs: ["PSYCH 207"] }
     ],
     antireqs: [],
     tags: [],
@@ -42291,7 +42349,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Computing is a valuable tool for a variety of academic activities. Course objectives include learning the rudiments of programming sufficient to allow further progress through self study, understanding how scientific computing libraries can be used to program experiments, and learning how to write papers that blend code and analyses to generate reproducible research reports. The skills taught and practiced in the course have a range of academic and practical applications.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 291"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["PSYCH 291"] }, { type: "AND", reqs: ["PSYCH 292"] }] }
     ],
     antireqs: ["PSYCH 363"],
     tags: [],
@@ -42382,7 +42440,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A detailed examination of concepts related to the formation of gender identity and psychosexual orientation. The nature-nurture debate will be explored as well as gay and lesbian identity and consciousness throughout the life cycle.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 211", "PSYCH 236"] }
+      { type: "AND", reqs: ["PSYCH 211"] }
     ],
     antireqs: [],
     tags: [],
@@ -42395,7 +42453,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will address theories related to problem behaviours in the classroom, the incidence and etiology of conduct problems and behavioural disorders, and the learning outcomes of children with such disorders. Special emphasis is given to research and theory related to the promotion of academic success.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 211", "PSYCH 212R"] }
+      { type: "AND", reqs: ["PSYCH 211", "PSYCH 212", "PSYCH 212R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42408,7 +42466,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Examines early language development including how children learn about sounds, words, higher-level sentence structure, and how to communicate effectively. Explores factors within the child and aspects of the environment that make language acquisition possible, as well as special populations of learners who provide additional insight into the acquisition process.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 211", "PSYCH 207"] }
+      { type: "AND", reqs: ["PSYCH 211"] }
     ],
     antireqs: [],
     tags: [],
@@ -42421,7 +42479,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Foundational assumptions for, and basic approaches to, criminal profiling will be considered, along with a survey of relevant techniques in the context of numerous case studies. Limitations and alternatives to profiling will also be addressed.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 230", "LS 272"] }
+      { type: "AND", reqs: ["PSYCH 230", "LS 272"] }
     ],
     antireqs: [],
     tags: [],
@@ -42434,7 +42492,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "An introduction to the methods, theories, and problems in individual counselling psychology.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42447,8 +42505,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Developmental neuropsychology is a field in which brain-behaviour relationships are examined in the context of typical and atypical development. This course focuses on the structural development of the brain, the emergence of functional brain systems, and the neuropsychological underpinnings of childhood brain disorders such as phenylketonuria, autism, epilepsy, and stroke. Emphasis is placed on the integration of theoretical perspectives and empirical research in neuropsychology with clinical practice.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 207", "PSYCH 211"] },
-      { type: "OR", reqs: ["PSYCH 261", "KIN 301"] }
+      { type: "AND", reqs: ["PSYCH 207"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PSYCH 261"] }, { type: "AND", reqs: ["KIN 301"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -42461,7 +42519,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to survey major aspects of clinical psychology such as historical background, assessment and intervention models, current trends, and future directions in clinical practice.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 257", "PSYCH 257R"] }
+      { type: "AND", reqs: ["PSYCH 257", "PSYCH 257R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42474,9 +42532,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The purpose of this course is to provide an overview of family systems and family therapy from the perspective of contemporary family psychology and developmental science. Students will get exposure to theoretical and applied content in family psychology and family therapy practice while becoming increasingly versed in understanding how environmental stress and trauma impact the relationships of families from diverse backgrounds.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 211", "PSYCH 257"] }
+      { type: "AND", reqs: ["PSYCH 211"] }
     ],
-    antireqs: ["PSYCH 363"],
+    antireqs: ["PSYCH 363", "PSYCH 002"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42487,8 +42545,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The application of psychology to human resource issues in Canadian organizations. Topics will include defining and measuring job performance, job analysis, performance appraisal, recruitment, personnel selection, and training. Procedures which meet technical, professional, and legal standards will be examined.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 238"] },
-      { type: "AND", reqs: ["PSYCH 291"] }
+      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R", "PSYCH 238", "PSYCH 291"] }
     ],
     antireqs: ["BUS 354W", "BUS 454W", "BUS 408W"],
     tags: [],
@@ -42512,7 +42569,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The psychology of groups and teams will address psychological processes particular to any social group situation, for example creative design teams, decision making groups, sports teams, group counselling, university clubs, and community groups. Topics include social identification and cohesion, group dynamics (e.g., social loafing, social influence, temporal dynamics, conflict management, etc.), communication in groups, creativity and brainstorming in groups, team leadership, team learning, and measuring team performance. In addition to lectures there will be discussion groups for team experiential exercises.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42525,7 +42582,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "What can psychological science contribute to our understanding of political behaviour? To answer this question we will review psychological theory and research on such topics as voter decision-making, political ideologies, issue framing and public opinion, activism in social movements, barriers to conflict resolution, leadership, multiculturalism, political extremism, and collective violence.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42538,7 +42595,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students gain an awareness and understanding of the role of culture for a range of psychological phenomena, including psychological dimensions along which cultures vary (e.g., behaviours, cognition, emotion, motivation, personality), as well as the implications for interacting with people within and across societies. Students will examine theoretical, methodological, and ethical issues in cultural psychology in light of the current literature.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] }
     ],
     antireqs: ["PSYCH 349R", "SWREN 349R"],
     tags: [],
@@ -42551,7 +42608,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "In this course students gain an awareness and understanding of the role of culture for a range of psychological phenomena, including psychological dimensions along which cultures vary (e.g., behaviours, cognition, emotion, motivation, personality), as well as the implications for interacting with people within and across societies. Students will examine theoretical, methodological, and ethical issues in cultural psychology in light of the current literature.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] }
     ],
     antireqs: ["PSYCH 349R", "SWREN 349R"],
     tags: [],
@@ -42564,7 +42621,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines how people make sense of their social world: how they perceive, represent, interpret, and remember information about themselves and about other individuals and groups. Topics include representation, recall, and use of social knowledge, controllability of thought processes, effects of feelings and desires, stereotype activation and use, and cultural influences.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42577,7 +42634,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A psychological analysis of social interaction and the dynamics of close relationships.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] }
     ],
     antireqs: ["SRF 306"],
     tags: [],
@@ -42590,7 +42647,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "A psychological analysis of social interaction and the dynamics of close relationships.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] }
     ],
     antireqs: ["SRF 306"],
     tags: [],
@@ -42603,7 +42660,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course reviews social psychological theory and research on intergroup relations: how groups of people and people from different groups interact. It examines stereotyping, prejudice, and discrimination (e.g., racism, sexism, ageism, weight, or sexual prejudice) from both majority and minority perspectives. It also discusses implications for promoting intergroup trust, reducing inequality, and resolving real-world conflict.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42616,7 +42673,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course addresses the science of measuring and explaining patterned individual differences in behaviour, including temperaments and traits; values, goals, and personal strivings; and meaning systems and self-narratives. Topics include behavioural, physiological, genetics, and cultural studies of personality; continuity and change in personality over the lifespan; and personality disorders.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42629,7 +42686,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course addresses the science of measuring and explaining patterned individual differences in behaviour, including temperaments and traits; values, goals, and personal strivings; and meaning systems and self-narratives. Topics include behavioural, physiological, genetics, and cultural studies of personality; continuity and change in personality over the lifespan; and personality disorders.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42642,7 +42699,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "What does it mean to \"be good\"? How does one \"do good\"? What makes \"doing good\" easier or harder? This course examines (1) the biological and psychosocial foundations of prosocial behaviour and (2) associated facilitators and obstacles at both interpersonal and organizational levels. Topics may include empathy, social responsibility, volunteerism, community intervention, activism, and heroism.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42679,7 +42736,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is intended to increase the awareness and understanding of the impact of the environment on human behaviour and experience. Topics to be discussed include territoriality and crowding, environment cognition, the psychology of public spaces, the influence of digital and social media on environment perception, and the impact of urban design on mental health. The course will include both lectures and interactive activities.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42703,7 +42760,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course surveys major developments and personalities in the field of psychology, starting with Wundt's founding of the world's first laboratory for experimental psychology in 1879. By comparing the important movements of structuralism, functionalism, behaviourism and gestaltism, the course evaluates the ideas that continue to provide the basis for modern research and practice in psychology. It will be of interest to those wanting a broader perspective on the field of scientific psychology or the history of science, or those planning a career in psychology.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -42716,10 +42773,11 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics explore social science research methods in psychology. Consult departmental listings for upcoming topics, which may include naturalistic observation, factorial experiment design, behavioural coding, survey/questionnaire construction, interviewing, and/or linguistic analysis. Activities may include research proposals, group and/or individual projects (e.g., lab experience, data collection), research reports, critiques of published/proposed research, and student presentations.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 211", "PSYCH 257R"] },
-      { type: "OR", reqs: ["PSYCH 238", "PSYCH 338", "PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 211", "PSYCH 257", "PSYCH 257R"] },
+      { type: "AND", reqs: ["PSYCH 238", "PSYCH 338"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 393"],
+    antireqs: ["PSYCH 393", "PSYCH 395", "PSYCH 397", "PSYCH 399"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42730,9 +42788,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics explore natural science research methods in psychology. Consult departmental listings for upcoming topics, which may include methods for studying psychophysiology, neuroanatomy, and/or cognitive processes (e.g., perception, attention, memory, information-processing, decision-making). Activities may include research proposals, group and/or individual projects (e.g., lab experience, data collection), research reports, critiques of published/proposed research, and student presentations.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 207"] }
+      { type: "AND", reqs: ["PSYCH 207", "PSYCH 211", "PSYCH 261"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 392"],
+    antireqs: ["PSYCH 392", "PSYCH 394", "PSYCH 396", "PSYCH 398"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42743,9 +42802,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Aimed at developing an understanding of the use and interpretation of statistics in complex research designs, this course emphasizes analysis of variance and multiple comparison techniques to interpret the results of multi-factor experiments. The importance of power in factorial designs is discussed. The course includes a computer component that ties the use of a statistical package to the topics discussed in lectures.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 291"] }
+      { type: "AND", reqs: ["PSYCH 291", "PSYCH 292"] }
     ],
-    antireqs: ["STAT 322"],
+    antireqs: ["STAT 322", "STAT 332", "STAT 430"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42756,9 +42815,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students learn how to measure psychophysiological responses to the stimuli in our world (e.g., familiar faces, emotional scenes, video games, etc.). Students get hands-on training in acquiring and analyzing different types of psychophysiological data such as skin conductance responses and heart rate changes over short and long periods.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 261"] }
+      { type: "AND", reqs: ["PSYCH 261"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 390"],
+    antireqs: ["PSYCH 390", "PSYCH 394", "PSYCH 396", "PSYCH 398"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42769,9 +42829,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Current research methods and procedures employed in developmental research are covered. Activities may include research proposals, group and/or individual projects (e.g., \"hands on\" lab experience and data collection), research reports, critiques of published and proposed research, individual and/or group presentations.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 211"] }
+      { type: "AND", reqs: ["PSYCH 211"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 389"],
+    antireqs: ["PSYCH 389", "PSYCH 395", "PSYCH 397", "PSYCH 399"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42782,9 +42843,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Current topics in the study of cognitive and perceptual processes including research methods and procedures are covered. Activities may include research proposals, group and/or individual projects (e.g., \"hands on\" lab experience and data collection), research reports, critiques of published and proposed research, individual and/or group presentations.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 207"] }
+      { type: "AND", reqs: ["PSYCH 207"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 390"],
+    antireqs: ["PSYCH 390", "PSYCH 392", "PSYCH 396", "PSYCH 398"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42795,9 +42857,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Current research methods and procedures employed in social psychology research are covered. Activities may include research proposals, group and/or individual projects (e.g., 'hands on' lab experience and data collection), research reports, critiques of published and proposed research, individual and/or group presentations.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 389"],
+    antireqs: ["PSYCH 389", "PSYCH 393", "PSYCH 397", "PSYCH 399"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42808,9 +42871,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students learn about research in behavioural neuroscience in a hands-on, laboratory atmosphere with an emphasis on comparative and evolutionary approaches to understanding brain-behaviour relations. Projects include neuroanatomical methods and observation of behaviour using a variety of analytic methods.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 261"] }
+      { type: "AND", reqs: ["PSYCH 261"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 390"],
+    antireqs: ["PSYCH 390", "PSYCH 392", "PSYCH 394", "PSYCH 398"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42821,9 +42885,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Current research methods and procedures employed in personality and/or clinical psychology research are covered. Activities may include research proposals, group and/or individual projects (e.g., \"hands on\" lab experience and data collection), research reports, critiques of published and proposed research, individual and/or group presentations.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 257", "PSYCH 257R", "PSYCH 323R"] }
+      { type: "AND", reqs: ["PSYCH 257", "PSYCH 257R"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 389"],
+    antireqs: ["PSYCH 389", "PSYCH 393", "PSYCH 395", "PSYCH 399"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42834,9 +42899,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Current topics in the study of memory including research methods and procedures are covered. Activities may include research proposals, group and/or individual projects (e.g., \"hands on\" lab experience and data collection), research reports, critiques of published and proposed research, individual and/or group presentations.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 207", "PSYCH 261"] }
+      { type: "AND", reqs: ["PSYCH 207"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 390"],
+    antireqs: ["PSYCH 390", "PSYCH 392", "PSYCH 394", "PSYCH 396"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42858,9 +42924,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Current research methods and procedures employed in industrial/organizational psychology are covered. Activities may include research proposals, group and/or individual projects (e.g., \"hands on\" lab experience and data collection), research reports, critiques of published and proposed research, individual and/or group presentations.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 238", "PSYCH 338", "PSYCH 253", "PSYCH 253R", "PSYCH 339", "AFM 280", "MSE 211"] }
+      { type: "OR", reqs: ["PSYCH 238", "PSYCH 338", "PSYCH 253", "PSYCH 253R", "PSYCH 339", "AFM 280", "MSE 211"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 389"],
+    antireqs: ["PSYCH 389", "PSYCH 393", "PSYCH 395", "PSYCH 397"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42919,9 +42986,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "Students in this course will learn how brief psychological exercises can improve outcomes and foster equity in areas such as school achievement, well-being, intergroup relations, and health. Students will investigate theories behind these psychological interventions, and when and why they are successful. Students will incorporate research methodology to test interventions' effectiveness into their own psychological intervention designs.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] },
-      { type: "OR", reqs: ["ISS 250R", "PSYCH 292"] },
-      { type: "OR", reqs: ["ISS 251R", "PSYCH 291"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ISS 250R"] }, { type: "AND", reqs: ["PSYCH 292"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ISS 251R"] }, { type: "AND", reqs: ["PSYCH 291"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -42947,9 +43014,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course focuses on the life cycle of close adult relationships, ranging from the stages of initial attraction and development of an attachment, to growth and maintenance of the relationship, to conflict and dissolution. Students explore contemporary theory and research to understand the basic processes involved in intimate relationships and apply this knowledge to strengthening relationships in diverse contexts.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] },
-      { type: "OR", reqs: ["ISS 250R", "PSYCH 292"] },
-      { type: "OR", reqs: ["ISS 251R", "PSYCH 291"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ISS 250R"] }, { type: "AND", reqs: ["PSYCH 292"] }] },
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ISS 251R"] }, { type: "AND", reqs: ["PSYCH 291"] }] }
     ],
     antireqs: ["PSYCH 459"],
     tags: [],
@@ -42973,9 +43040,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This seminar addresses issues in child/adolescent psychopathology such as mood/anxiety disorders, conduct disorder, psychosis, eating disorders, Tourette's Syndrome, and severe behavioural problems. Emphasis is on theories and research concerning social-emotional functioning, diagnosis, therapy, and socio-cultural contexts. The course also considers challenges and barriers encountered when raising and teaching children/adolescents with a mental illness.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 317"] }
+      { type: "AND", reqs: ["PSYCH 317"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: ["PSYCH 463"],
+    antireqs: ["PSYCH 463", "PSYCH 002"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -42986,7 +43054,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics reflect current issues in developmental psychology. Consult the departmental listings for the upcoming topics. Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 211"] }
+      { type: "AND", reqs: ["PSYCH 211"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: [],
     tags: [],
@@ -42999,7 +43068,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics reflect current issues in educational psychology. Consult the departmental listings for the upcoming topics. Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 212", "PSYCH 212R"] }
+      { type: "AND", reqs: ["PSYCH 212", "PSYCH 212R"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: [],
     tags: [],
@@ -43012,7 +43082,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics reflect current issues in social psychology. Consult the departmental listings for the upcoming topics. Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: [],
     tags: [],
@@ -43025,7 +43096,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics reflect current issues in personality and clinical psychology. Consult the departmental listings for the upcoming topics. Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 257", "PSYCH 257R", "PSYCH 323R"] }
+      { type: "AND", reqs: ["PSYCH 257", "PSYCH 257R"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: [],
     tags: [],
@@ -43038,7 +43110,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics reflect current issues in cognitive psychology. Consult the departmental listings for the upcoming topics. Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 207"] }
+      { type: "AND", reqs: ["PSYCH 207"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: [],
     tags: [],
@@ -43051,7 +43124,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course covers social psychological theories of close relationships with emphasis on reading and discussion of original empirical articles. Topics may include attraction, partner selection, trust and power, attachment, communications, conflict, intimacy, and relationship maintenance and dissolution. Student roles include presenting articles, leading discussions, and submitting a written research proposal.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 354", "PSYCH 354R", "PSYCH 253", "SRF 306"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["PSYCH 354", "PSYCH 354R"] }, { type: "AND", reqs: [{ type: "AND", reqs: ["PSYCH 253", "PSYCH 253R"] }, { type: "AND", reqs: ["SRF 306"] }] }] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: ["PSYCH 448R", "PSYCH 455"],
     tags: [],
@@ -43064,7 +43138,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics reflect the research interests of faculty members, for example, cognitive neuropsychology, visual neuroscience, and hemispheric specialization. Consult the departmental listings for the upcoming topics. Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 261"] }
+      { type: "AND", reqs: ["PSYCH 261"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: [],
     tags: [],
@@ -43077,7 +43152,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Consult the departmental listings for the upcoming topics. Content may involve personnel (e.g., employee selection and appraisal) and/or organizational topics (groups/teams, justice, leadership, motivation, organizational culture, or organizational change). Activities may include oral presentations, class discussions, individual and/or group projects, and written assignments.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 238", "PSYCH 338", "AFM 280", "MSE 211"] }
+      { type: "OR", reqs: ["PSYCH 238", "PSYCH 338", "AFM 280", "MSE 211"] },
+      { type: "AND", reqs: ["PSYCH 391"] }
     ],
     antireqs: [],
     tags: [],
@@ -43089,7 +43165,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Honours Seminar in Special Topics",
     units: 0.5,
     description: "Honours seminars may include weekly readings, individual and/or group projects, class discussions, research proposals, one or two essays/literature reviews, weekly assignments, one or two midterms, and final exams. Consult departmental listings for topics and topic-specific prerequisites for the current year.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PSYCH 391"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -43102,7 +43180,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course involves an unpaid apprenticeship of 96 hours in a faculty member's research lab in the Department of Psychology. Apprenticeship hours will be completed before the end of the lecture period for the term of enrolment. Students will be assigned duties that will enable them to advance their understanding of the research process. Course application forms are available on the Psychology undergraduate website. Paid or volunteer positions that are obtained outside the context of this course are not eligible for credit in this course.",
     prereqs: [
       { type: "AND", reqs: ["PSYCH 391"] },
-      { type: "OR", reqs: ["PSYCH 389", "PSYCH 390", "PSYCH 392", "PSYCH 393", "PSYCH 394", "PSYCH 395", "PSYCH 396", "PSYCH 397", "PSYCH 398", "PSYCH 399"] }
+      { type: "OR", reqs: ["PSYCH 389", "PSYCH 390", "PSYCH 392", "PSYCH 393", "PSYCH 394", "PSYCH 395", "PSYCH 396", "PSYCH 397", "PSYCH 398", "PSYCH 399", "PSYCH 483", "PSYCH 484"] }
     ],
     antireqs: [],
     tags: [],
@@ -43128,7 +43206,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Emergent literacy refers to the knowledge and skills children acquire from birth on through the preschool years that are important to the development of literacy (reading and writing). Students will learn about emergent literacy via a once-weekly seminar component and a once-weekly unpaid practicum placement at a local elementary public school where students will have the opportunity to read one-on-one with children who are at the beginning stages of reading. The practicum component will involve a commitment of up to 30 hours during the formal lecture period. Students wishing to enter the course must obtain a police check prior to the second week of classes. Transportation to the apprenticeship/volunteer setting is the student's responsibility. Please review the course application form for information on safety for students on unpaid work placement and insurance responsibilities. Course application forms and further details are available on the Psychology undergraduate website. Paid or volunteer positions that are obtained outside the context of this course are not eligible for credit in this course.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 211"] }
+      { type: "AND", reqs: ["PSYCH 211", "PSYCH 212", "PSYCH 212R", "PSYCH 291", "PSYCH 292"] }
     ],
     antireqs: [],
     tags: [],
@@ -43156,9 +43234,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Topics cover practical applications of theory and research in one or more of the six areas of psychology. Consult departmental listings for upcoming topics. Topics may include applications of psychology to health, well-being, law, education, policy analysis, management, marketing, regulation, systems design, community organizing, conflict resolution, and/or communications.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 211"] },
-      { type: "OR", reqs: ["PSYCH 207", "PSYCH 261"] },
-      { type: "OR", reqs: ["PSYCH 238", "PSYCH 338", "PSYCH 253", "PSYCH 253R"] }
+      { type: "AND", reqs: ["PSYCH 211", "PSYCH 257", "PSYCH 257R", "PSYCH 291", "PSYCH 292"] },
+      { type: "AND", reqs: ["PSYCH 207"] },
+      { type: "AND", reqs: ["PSYCH 238", "PSYCH 338"] }
     ],
     antireqs: ["PSYCH 391"],
     tags: [],
@@ -43203,7 +43281,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Directed Studies - Natural Science Research",
     units: 0.5,
     description: "The student conducts an empirical research project in a natural science area of psychology under the supervision of a faculty member. Course requirements include writing a report of the research carried out. The course application form must include a detailed course plan including the method of evaluation.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PSYCH 391"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -43214,7 +43294,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Directed Studies - Social Science Research",
     units: 0.5,
     description: "The student conducts a research project in a social science area of psychology under the supervision of a faculty member. Course requirements include writing a report of the research carried out. The course application form must include a detailed course plan including the method of evaluation.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PSYCH 391"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -43225,7 +43307,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Directed Studies - Seminar",
     units: 0.5,
     description: "The student conducts an extensive literature review under the supervision of a faculty member. Course requirements include writing a major essay/critique of the literature, and doing an oral presentation. The course application form must include a detailed course plan including the method of evaluation.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PSYCH 391"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -43311,7 +43395,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Honours Thesis - Part 2",
     units: 0.5,
     description: "Continuation of PSYCH499A.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["PSYCH 499A"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -43323,7 +43409,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Continuation of PSYCH499A/B.",
     prereqs: [
-      { type: "AND", reqs: ["PSYCH 499A"] }
+      { type: "AND", reqs: ["PSYCH 499A"] },
+      { type: "AND", reqs: ["PSYCH 499B"] }
     ],
     antireqs: [],
     tags: [],
@@ -43358,7 +43445,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is a continuation of GRK101/RCS101. The majority of the rules of ancient Greek grammar will be covered by the end of the course. Students will begin to read more complex ancient Greek texts relevant to the study of classical studies and religious studies.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 101", "RCS 101"] }
+      { type: "AND", reqs: ["GRK 101", "RCS 101"] }
     ],
     antireqs: [],
     tags: [],
@@ -43604,7 +43691,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to follow GRK201/RCS201 and to expand students' experience of reading ancient Greek texts for the study of classical studies and religious studies. Texts read will include a selection of poetry and prose in a variety of fields, including authors such as Homer, Herodotus, Euripides, Plato, the New Testament, and Josephus.",
     prereqs: [
-      { type: "OR", reqs: ["GRK 201", "RCS 223"] }
+      { type: "AND", reqs: ["GRK 201", "RCS 223"] }
     ],
     antireqs: [],
     tags: [],
@@ -43881,7 +43968,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the nature of religion, spirituality, and non-religion in society and their impact on many aspects of social and political life in North America and Europe. We will also consider how religion, spirituality, and non-religion can be sources of social stability and peace as well as of social change and conflict.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -44538,7 +44625,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A critical analysis of definitions, concepts and assumptions of classical, recent and modern theories of play with implications for programming, planning and evaluating children's play.",
     prereqs: [
-      { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -44573,7 +44660,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines sport in modern societies and the distinctive features of Canadian sport. Attention is directed to the relationship between sport and other institutions, including the economy and political system. Contemporary issues, including racial and gender inequality and controversies over violence and drugs are also considered.",
     prereqs: [
-      { type: "OR", reqs: ["HEALTH 107", "SOC 101", "SOC 101R"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["HEALTH 107"] }, { type: "AND", reqs: ["SOC 101", "SOC 101R"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -44680,7 +44767,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course involves an unpaid practical experience for students in Honours Therapeutic Recreation. The placement supervisor must be approved by the academic supervisor prior to registering for the course. The practicum will require 105 hours interspersed over one academic term (15 weeks).",
     prereqs: [
-      { type: "AND", reqs: ["REC 151"] }
+      { type: "AND", reqs: ["REC 151", "REC 251", "REC 252"] }
     ],
     antireqs: [],
     tags: [],
@@ -44693,7 +44780,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces students to what makes a community and the theories, models, and concepts central to community organizing, building, and engagement. Students will learn about changing community demographics and how various systems, sectors, and services influence community well-being and health. Students will develop their understanding of the ethical, social, and cultural dimensions of community recreation leadership, preparing them for roles in building vibrant and inclusive communities.",
     prereqs: [
-      { type: "AND", reqs: ["REC 100"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["REC 100"] }, { type: "AND", reqs: ["REC 101"] }] }
     ],
     antireqs: ["REC 356"],
     tags: [],
@@ -44741,7 +44828,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "REC312 involves an unpaid placement in an organization related to recreation, sport, business, or tourism. Placement opportunities will be facilitated by the course instructor, in partnership with the supervising organization.The placement will require 105 hours interspersed over one academic term (15 weeks). The completion of these hours will be determined by the placement supervisor, in consultation with the student.",
     prereqs: [
-      { type: "OR", reqs: ["REC 120", "REC 220"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["REC 120"] }, { type: "AND", reqs: ["REC 220"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -44789,7 +44876,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to examine the scope of modalities and facilitation techniques used by therapeutic recreation professions in the facilitation of therapeutic recreation interventions for individuals and groups in a variety of therapeutic recreation settings.",
     prereqs: [
-      { type: "AND", reqs: ["REC 251"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["REC 251"] }, { type: "AND", reqs: ["REC 252"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -44815,7 +44902,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to examine theories, concepts, and evidence informing the design and facilitation of therapeutic recreation practice.",
     prereqs: [
-      { type: "AND", reqs: ["REC 151"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["REC 151"] }, { type: "AND", reqs: ["REC 251"] }, { type: "AND", reqs: ["REC 252"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -44839,7 +44926,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to individual and population aging. Topics discussed include: aging from a historical and comparative perspective; aging in subcultures; aging and the social structure; aging and social processes; aging and the environment; work and retirement; and aging and leisure patterns.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "HEALTH 107", "GSJ 101", "GSJ 102"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["HEALTH 107"] }, { type: "AND", reqs: ["GSJ 101"] }, { type: "AND", reqs: ["GSJ 102"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -44909,7 +44996,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This capstone course allows students to reflect upon and integrate insights and skills they have gathered during their studies. Specifically, students will draw upon knowledge gained in previous courses and relevant work experience to identify and address complex managerial challenges. These challenges may be social and/or organizational in scope, and approaches used may be multi-sectorial in nature. Students will develop plans and measures that confront those challenges in innovative ways that best achieve stated goals and objectives.",
     prereqs: [
-      { type: "AND", reqs: ["REC 213"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["REC 213"] }, { type: "AND", reqs: ["REC 313"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -44922,7 +45009,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores the effective implementation and leverage of events to achieve event impacts. Students will also examine various quantitative and/or qualitative event evaluation methods.",
     prereqs: [
-      { type: "AND", reqs: ["REC 219"] }
+      { type: "AND", reqs: ["REC 219", "REC 319"] }
     ],
     antireqs: [],
     tags: [],
@@ -44935,7 +45022,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will acquire knowledge and skills to plan and conduct evaluations of leisure services and programs. The course will cover pre-evaluation, needs assessment, goals and outcomes, evaluation designs, process and outcome evaluation, report preparation, evaluation politics, and ethics.",
     prereqs: [
-      { type: "AND", reqs: ["REC 371"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["REC 371"] }, { type: "AND", reqs: ["REC 373"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -44983,7 +45070,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This internship course provides an opportunity for students to use the therapeutic recreation process and demonstrate core competencies of professional and ethical conduct in an approved therapeutic recreation setting. The student must engage in minimum 560-hour (typically completed over a minimum of 14 consecutive weeks) internship at or with an approved organization under the shared supervision of a qualified Therapeutic Recreation professional and an academic supervisor. The student has one opportunity to attempt the internship and must achieve a minimum grade of 70% to obtain the course credit.",
     prereqs: [
-      { type: "AND", reqs: ["REC 253"] }
+      { type: "AND", reqs: ["REC 253", "REC 351", "REC 357"] }
     ],
     antireqs: [],
     tags: [],
@@ -44996,7 +45083,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is designed to facilitate an in-depth exploration and analysis of philosophical issues and interdisciplinary theories to discuss how they relate to therapeutic recreation practice and research.",
     prereqs: [
-      { type: "AND", reqs: ["REC 253"] }
+      { type: "AND", reqs: ["REC 253", "REC 351", "REC 357"] }
     ],
     antireqs: [],
     tags: [],
@@ -45009,7 +45096,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course critically examines the complex challenges and trends in community recreation and leisure and explores opportunities to respond to these challenges with innovation and creativity. The course draws on an interdisciplinary approach to system-level change for healthy communities. Through a collaborative capstone project, students will demonstrate critical analysis and advanced leadership required to drive positive change and contribute to the well-being of diverse communities.",
     prereqs: [
-      { type: "AND", reqs: ["REC 256"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["REC 256"] }, { type: "AND", reqs: ["REC 356"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -45022,7 +45109,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The honours recreation and leisure studies undergraduate thesis is an independent research project on an approved topic supervised by a faculty member. To complete the honours thesis, students are expected to complete both REC471A and REC471B. REC471A includes an approved design and completion of the research proposal.",
     prereqs: [
-      { type: "AND", reqs: ["REC 371"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["REC 371"] }, { type: "AND", reqs: ["REC 373"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -45228,7 +45315,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course uses case studies, project management, team/group dynamics, and strategies to explore the essential parameters that comprise the management of business organizations: planning, organization, leadership, control, and ethics. The course considers the importance of diversity/globalization, human resource management, a comparison of traditional and entrepreneurial leadership, and management as well as business ethics.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 131", "ARBUS 101"] }
+      { type: "AND", reqs: ["AFM 131", "ARBUS 101"] }
     ],
     antireqs: [],
     tags: [],
@@ -45302,7 +45389,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This capstone-project workshop addresses the formulation of firm-wide strategic plans (e.g., business cases, marketing plans, strategic plans) for science and technology based start-ups and traditional firms. It provides a framework for developing and implementing business strategies and the related documentation that fits a firm's environment, human resources, markets, managerial styles and organization. This course involves significant group work under the supervision of a Science and Business instructor. A written report and seminar presentation are required. A special capstone project is also required.",
     prereqs: [
-      { type: "AND", reqs: ["SCBUS 122"] }
+      { type: "AND", reqs: ["SCBUS 122", "SCBUS 123", "SCBUS 223", "SCBUS 323"] }
     ],
     antireqs: [],
     tags: [],
@@ -45612,7 +45699,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "In this introductory level statistics course students will learn when and how to apply basic principles in the collection, manipulation, presentation, and analysis of numerical social science data. Students will build capacity to be informed consumers of quantitative and hypothesis testing information in social science research.",
     prereqs: [],
-    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "GBDA 205", "KIN 232", "SOC 280", "PSYCH 292", "REC 371", "SRF 230", "STAT 202"],
+    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "GBDA 205", "KIN 232", "SOC 280", "PSYCH 292", "REC 371", "SRF 230", "STAT 202", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -45702,7 +45789,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course examines interdisciplinary approaches (sociological, developmental, psychological, critical, sociocultural perspectives) to identity formation, development, and maintenance. Relevant theories, literature, and research will showcase diverse approaches to understanding social and cultural factors that impact identity formation.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "PSYCH 101", "PSYCH 101R"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["PSYCH 101", "PSYCH 101R"] }] }
     ],
     antireqs: ["SOC 209", "SOC 235"],
     tags: [],
@@ -45932,7 +46019,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "Interactions between Indigenous and Settler peoples are influenced by historical and contemporary stories told about each other. Students will experience diverse ways of knowing by examining the ideologies, knowledge, beliefs, values, and assumptions behind these stories, within the context of Canada's current Truth & Reconciliation process.",
     prereqs: [],
-    antireqs: ["SDS 450R"],
+    antireqs: ["SDS 450R", "SDS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -46044,7 +46131,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "This course invites students to work with a professor on the latter's research project. During this unpaid apprenticeship (six to eight hours per week throughout the term), students will do agreed-upon tasks to help them acquire skills and gain understanding of the research process and of the discipline itself. The faculty member and the student will determine the exact duties together. A document outlining these duties must be approved by the Social Development Studies chair and kept on file. Paid or volunteer positions outside this course are not eligible for credit.",
     prereqs: [
-      { type: "AND", reqs: ["SDS 250R"] }
+      { type: "AND", reqs: ["SDS 250R", "SDS 251R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46136,8 +46223,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Formal logic. Proof systems and styles. Rudimentary model theory. Formal models of computation. Logic-based specification. Correctness proofs. Applications in software engineering.",
     prereqs: [
-      { type: "AND", reqs: ["CS 138"] },
-      { type: "AND", reqs: ["MATH 135"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 138"] }, { type: "AND", reqs: ["MATH 135"] }] }
     ],
     antireqs: ["CS 245", "CS 245E", "ECE 208", "PMATH 330"],
     tags: [],
@@ -46172,9 +46258,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the fundamentals of operating system function, and implementation. Topics include concurrency, synchronization, processes, threads, scheduling, memory management, file systems, device management, and security.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 246", "CS 246E", "ECE 222"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "AND", reqs: ["CS 246", "CS 246E"] }, { type: "AND", reqs: ["ECE 222"] }] }
     ],
-    antireqs: ["CS 350", "ECE 254", "MTE 241"],
+    antireqs: ["CS 350", "ECE 254", "ECE 354", "MTE 241"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -46198,7 +46284,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students undertake a substantial customer-driven group project as part of the SE390/490/491 design-project sequence covering all major phases of the software-engineering lifecycle. Lectures describe expectations and project-planning fundamentals. Students form groups, decide on a project concept, complete a project-approval process, develop high-level requirements for the project, perform a risk assessment, develop a test plan, and complete a first-iteration prototype. Social, legal, and economic factors are considered.",
     prereqs: [
-      { type: "OR", reqs: ["CS 240", "CS 246", "CS 246E", "CS 247"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "AND", reqs: ["CS 246", "CS 246E"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -46246,7 +46332,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduces students to the design, implementation, and evolution phases of software development. Software design processes, methods, and notation. Implementation of designs. Evolution of designs and implementations. Management of design activities.",
     prereqs: [
-      { type: "OR", reqs: ["CS 246", "CS 246E", "CS 247"] }
+      { type: "AND", reqs: ["CS 246", "CS 246E"] }
     ],
     antireqs: ["CS 446", "ECE 452"],
     tags: [],
@@ -46259,7 +46345,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduces students to systematic testing of software systems. Software verification, reviews, metrics, quality assurance, and prediction of software reliability and availability. Related management issues.",
     prereqs: [
-      { type: "OR", reqs: ["CS 246", "CS 246E", "CS 247"] }
+      { type: "AND", reqs: ["CS 246", "CS 246E"] }
     ],
     antireqs: ["CS 447", "ECE 453"],
     tags: [],
@@ -46320,7 +46406,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to foundational concepts in sustainability through an exploration of the interaction between business, society, and the natural environment from multiple perspectives. The course will emphasize ways to mobilize inclusive blended knowledge for sustainability and innovation.",
     prereqs: [],
-    antireqs: ["ENBUS 102", "ENVS 274"],
+    antireqs: ["ENBUS 102", "ENVS 274", "ENVS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -46331,7 +46417,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an introduction to the basic concepts and tools of microeconomics and macroeconomics from the perspective of economic approaches to the environment.",
     prereqs: [],
-    antireqs: ["ECON 100", "COMM 103", "ECON 101", "ECON 102", "ENVS 220", "ENVS 274"],
+    antireqs: ["ECON 100", "COMM 103", "ECON 101", "ECON 102", "ENVS 220", "ENVS 274", "ENVS 001"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -46342,7 +46428,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an examination of a variety of social issues in sustainability. Foundational topics include human rights, labour, gender equality, children's rights, education, and diversity and engagement of Black, Indigenous, and People of Colour (BIPOC) communities.",
     prereqs: [
-      { type: "OR", reqs: ["ENBUS 102", "SFM 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["ENBUS 102"] }, { type: "AND", reqs: ["SFM 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -46401,7 +46487,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines financial market tools, processes, and institutions which influence the environmental and the channels by which they can be utilized to promote sustainable and socially responsible long-term growth.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: ["ENBUS 310"],
     tags: [],
@@ -46415,7 +46501,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course examines the influence of social system factors in asset pricing. The course will explore how an organization¿s actions related to social issues such as human rights, labour, gender, equality, diversity, and inclusion impact operational outcomes and accordingly influence asset values.",
     prereqs: [
       { type: "AND", reqs: ["SFM 201"] },
-      { type: "OR", reqs: ["SFM 310", "ENBUS 310"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SFM 310"] }, { type: "AND", reqs: ["ENBUS 310"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -46476,7 +46562,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This capstone course will review channels by which social, human, natural, and financial capital feed into strategic planning and environmental risk management. Students examine effective and ineffective attempts to embed an understanding of the interdependency among social, human, sustainability, and financial factors and complete a project critically analyzing the planning, reporting, and/or risk management practices of a firm.",
     prereqs: [
-      { type: "AND", reqs: ["SFM 401"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["SFM 401"] }, { type: "AND", reqs: ["SFM 402"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -46502,7 +46588,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the influence of non-financial factors in asset prices. The psychological and emotional factors that influence investor behaviour and decision making will be examined in the context of resultant market anomalies. The course will also examine the extent to which investors view sustainability factors in natural and social systems as material in asset values.",
     prereqs: [
-      { type: "OR", reqs: ["AFM 272", "AFM 273"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["AFM 272"] }, { type: "AND", reqs: ["AFM 273"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -46761,7 +46847,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["SI 121R"] },
       { type: "OR", reqs: ["SI 221R", "RS 221"] },
-      { type: "OR", reqs: ["SI 250R", "MEDVL 250R", "MEDVL 251R"] }
+      { type: "OR", reqs: ["SI 250R", "MEDVL 250R", "SI 251R", "MEDVL 251R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46807,7 +46893,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the sociological perspectives on marriage and the family in urban-industrial societies. Special attention is given to marriage and the family in Canada. Comparisons with U.S. and Britain will be undertaken.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46820,7 +46906,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will examine the substance of victimization: the scientific study of victims, the process, etiology, and consequences of victimization. Topics will include victims and politics, the victims' movement, victim-precipitation, the victimization of women, and family violence.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46833,7 +46919,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the nature and function of sociological theory and the types of theory that founded the discipline in the 19th and early 20th centuries.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46846,7 +46932,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "The social definitions of adolescence in cross-cultural and historical perspective. Social roles of adolescents in the institutional structures of urban-industrial societies with special emphasis on the family, education, and the economy. The relationship of adolescents' social roles to processes of social change and stability.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46859,7 +46945,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The specific social problems discussed will vary but will include problems of well-being, problems of inequality and power, and problems related to modernization.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: ["SOC 102"],
     tags: [],
@@ -46872,7 +46958,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The focus of this course is on the sociological study of education in Canadian society. This course applies classical and contemporary theoretical approaches to study education systems and the relationship between school and society.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46885,7 +46971,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "The focus of this course is on the sociological study of education in Canadian society. This course applies classical and contemporary theoretical approaches to study education systems and the relationship between school and society.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46898,7 +46984,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines sport in modern societies and the distinctive features of Canadian sport. Attention is directed to the relationship between sport and other institutions, including the economy and political system. Contemporary issues, including racial and gender inequality and controversies over violence and drugs are also considered.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46911,7 +46997,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to the central role of surveillance in shaping power relations and knowledge across a range of social and cultural contexts. Foundational historical, theoretical, and empirical texts that define the field of surveillance studies will be explored.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: ["LS 203", "LEC 001", "LEC 041", "SOC 230"],
     tags: [],
@@ -46924,7 +47010,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introductory survey of the research techniques commonly employed by sociologists, criminologists, and legal studies researchers. The formulation of research designs appropriate to various kinds of intellectual problems in social science is stressed.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: ["SDS 251R", "KIN 330", "PSYCH 291", "REC 270", "SOC 321", "LS 321", "SRF 220", "SWREN 251R"],
     tags: [],
@@ -46937,7 +47023,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A systematic analysis and criticism is presented of biological, psychological, psychoanalytical, and sociological theories of juvenile delinquency. Attention is given to statistics and contemporary research with special emphasis on the distribution and types of delinquent subcultures.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46950,7 +47036,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The deviance-making process is examined in a variety of social contexts. This course examines the emergence of rules and control agencies, the processes by which people become involved in deviant activities, and the contingencies affecting their careers as deviants.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46963,7 +47049,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "The deviance-making process is examined in a variety of social contexts. This course examines the emergence of rules and control agencies, the processes by which people become involved in deviant activities, and the contingencies affecting their careers as deviants.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46976,7 +47062,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "In this course students will delve into the foundations of poverty in Canadian society. From historical roots to contemporary manifestations, students will gain a comprehensive knowledge of how poverty is socially understood and the wide-ranging disparities it generates. Students will critically analyze the various stakeholders involved in designing and influencing poverty-related programs and policies, as well as the main approaches to addressing poverty.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -46989,7 +47075,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the major theories of crime causation and their implications for the development of social policy. Both historical and contemporary theories will be discussed.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47002,7 +47088,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Decisions to process offenders and the role of social factors in the Canadian criminal justice system are critically examined. Focal issues include police discretion, the legal profession, and prison systems.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47015,7 +47101,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Sociological analysis of research and theory on selected criminal activities. Motivation, modus operandi, and the social characteristics of offenders will be examined in relation to such specific crimes as drug and sexual offenses, theft, robbery, murder, organized crime, and/or other criminal activities.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47028,7 +47114,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An in-depth analysis of research in selected topics in sociology.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47041,7 +47127,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines how forms of society influence technological developments and, reciprocally, how society is influenced by technology. It covers such topics as the de-skilling of work, technocracy, communications technology, and cyberspace, from an historical perspective, looking for the unifying features of technologies ranging from Stone Age tools to the microprocessor.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47054,7 +47140,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers an introduction to the study of terrorism, with a primary focus on sociological approaches. The course examines the history, causes, and diversity of forms of terrorist groups and the process of radicalization, suicide terrorism, and some aspects of the counter-terrorism response of states.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "SOC 120R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47067,7 +47153,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course is an introduction to the study of work and occupations including labour market trends, professions and the professionalization process, how work is experienced, balancing work and family, and the impact of work on lifestyles, leisure, and retirement.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47080,7 +47166,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course discusses health, illness, and the distribution of disease in society. It introduces concepts such as social determinants of health, population health, and culturally competent care. The strength and the limitations of the Canadian health care system will be examined through a sociological lens.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47093,7 +47179,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of sociological research and theory in the field of mental disorders particularly as they apply to issues of law and social control. Topics include mental health legislation, the medical model of mental \"illness,\" the epidemiology of mental disorder, family processes and psychiatric hospitalization, public attitudes and social stigma, and specific forms of mental disorder.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47106,7 +47192,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Through the analysis of multiple aspects of city life, this course examines the larger question of a city's uniqueness, identity, and culture. Approaches may include case studies, comparative analyses, and theoretical accounts of city life.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47132,7 +47218,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Relations between different racial and cultural groups, analysis of majority-minority group status with special reference to Canada.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47145,7 +47231,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the nature of religion, spirituality, and non-religion in society and their impact on many aspects of social and political life in North America and Europe. We will also consider how religion, spirituality, and non-religion can be sources of social stability and peace as well as of social change and conflict.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47169,7 +47255,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of select criminal organizations in North America. Particular attention will be given to the social history of \"the mafia\" and the development of legal tools for policing criminal organizations. Additional themes for discussion include enterprise and economic crimes, corruption, and the role of women in organized crime.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47182,7 +47268,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines different international migration flows, including irregular immigration, refugees and asylum seekers, and low- and high-skilled labourers. Drawing on migration theories, it critically examines why people move, how states respond to different flows, and how migration controls intersect with gender, race, class, and nationality.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "SOC 120R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47208,7 +47294,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["LS 101", "SOC 101", "SOC 101R"] }
     ],
-    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "KIN 222", "PSCI 314", "PSYCH 292", "REC 371", "SDS 250R"],
+    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "KIN 222", "PSCI 314", "PSYCH 292", "REC 371", "SDS 250R", "SRF 230", "STAT 202", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241", "SWREN 250A", "SWREN 250R"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -47232,7 +47318,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students will explore the complexities of media messages about crime and criminalization. Topics students will address in course materials, assignments, and group exchanges may include news reporting of crime, representations of race and crime, moral panics, signal crimes, the \"true crime\" genre, activist media strategies, social media, as well as surveillance and social control through media.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47245,7 +47331,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to privacy as a socio-legal concept and to major debates surrounding privacy in contemporary contexts. National and international frameworks for the regulation of privacy will be examined and may include analysis of major cases in privacy law.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -47271,7 +47357,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will examine and address problems arising from the interplay between educational institutions and the forces of rapid social change in contemporary society including globalization, rapid technological change, demographic change, stratification and inequality, and more. Students will consider how educational experiences and outcomes vary by race, gender, class and other social identities and determinants. Students will analyze the changing experiences of learners and instructors in private, public, and higher education as well as the social dimensions of newer learning theories and programs.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47284,7 +47370,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A survey of applications of the concept of the network in studying social structures. Examples will be drawn from diverse areas, such as interpersonal relations, community studies, social support, interorganizational relations, elites, deviant groups, etc.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47297,7 +47383,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the social character of the development of science and the production of scientific knowledge. Specific topics will include defining science, cultural influences on the rise of science, the social nature of scientific institutions, selective bias in scientific procedures, and the social construction of scientific facts.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47310,7 +47396,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides a critical evaluation of research techniques in sociology, criminology, and legal studies with an emphasis on learning and applying qualitative fieldwork approaches.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 221", "LS 221"] }
+      { type: "AND", reqs: ["SOC 221", "LS 221"] }
     ],
     antireqs: ["SDS 351R"],
     tags: [],
@@ -47324,7 +47410,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students will develop a sociological lens to examine the intersection of technology and digital cultures. Students will unpack and problematize key terms, ideas, and discourse associated with digital cultures. Learning outcomes include examining how popular technology discourse both structures social action and obscures underlying relations of power and inequality. Sample topics students will work on include critical investigations of \"smart\" technologies and cities, online communities, maker cultures, sharing and platform societies, as well as automation and gig work.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47337,7 +47423,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Despite the commonly held belief that sexuality is nothing more than \"doing what comes naturally,\" cultural definitions, including prohibitions against specific forms of conduct, impinge upon the most private or intimate of acts. This course examines the social construction and control of sexuality through law.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47350,7 +47436,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A critical criminological and sociological examination of theories and practices of punishment. This course will examine transformations in penal theory, penal management, and penal institutions and their social and policy implications.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47376,7 +47462,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of the causes and impact of the illegal traffic in goods and services in Canada and internationally. Topics may include human trafficking, trade in illicit drugs and weapons, money laundering and financing of terror, and the relationship between trafficking and state political violence.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47389,7 +47475,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course examines the relationship between the framing of (in)security and policing as a dominant approach to govern risk in our modern era. Topics may include the policing of political protest, the Anthropocene, and the Internet. Students will analyze what's at stake with the diffusion of security in social life.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: ["SOC 330", "LEC 001", "LS 330"],
     tags: [],
@@ -47402,7 +47488,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will learn in-depth about a selected topic in sociology. Topics covered each term will be announced with the topic title in the Schedule of Classes during the course selection period.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47426,7 +47512,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The course employs a multidisciplinary lens to examine the international legal systems concerned with regulating forced human migration. The course is organized around several key thematic issues such as border securitization, citizenship, intimate migrations, the criminalization of migration, detention, deportation, and resistance efforts. In addition to gaining familiarity with debates in these scholarly literatures, students will enhance their research and critical thinking skills by participating in activities such as group discussion questions or analyses of contemporaneous world events. Upon completion of this course, students should be able to understand, critically assess, and convey key debates relating to patterns of global mobility and strategies of migration control as well as apply course learnings to contemporary examples of migration governance and the struggle for mobility rights.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101"] }
+      { type: "AND", reqs: ["SOC 101"] }
     ],
     antireqs: ["PSCI 375"],
     tags: [],
@@ -47439,7 +47525,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The analysis of varieties of social movements and their relationships to social organization and social change.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47452,7 +47538,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course explores theoretical perspectives and empirical studies on development and the related field of migration studies. Specific themes may include history and colonialism, seasonal and labour migration, forced migration, immigration policies and their social and economic implications, and transnationalism and diasporas.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47465,7 +47551,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An introduction to individual and population aging. Topics discussed include: aging from a historical and comparative perspective; aging in subcultures; aging and the social structure; aging and social processes; aging and the environment; work and retirement; and aging and leisure patterns.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47489,7 +47575,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An examination of contemporary parent-child relations in terms of a reconceptualization of power. Special attention will be given to contemporary interpretive (e.g., hermeneutic) approaches to a reformulation of the relation between power and action.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47502,7 +47588,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines how our contemporary concern with community is connected with the rise of modern society and the development of the urban-rural debate. Our anxieties about community will be shown to be connected to our anxieties about family. Special attention will be given to the interpretive approach to these issues.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47515,7 +47601,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Through the study of current events in North America, students will examine key theoretical frameworks and questions in the sociology of law. Topics may include the contradictory role law plays in both resolving and exacerbating social inequalities, the persistence of racism, sexism, and other forms of marginalization despite the successes of progressive civil and human rights movements, and controversies surrounding the administration of criminal justice. In examining these questions, students will engage with ideas, arguments, and strategies within socio-legal scholarship and will learn to recognize the strengths and limitations of the law to address social problems.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R", "LS 101"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101", "SOC 101R"] }, { type: "AND", reqs: ["LS 101"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -47539,7 +47625,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Ethnomethodology is a study of the methods and practices people use to produce and recognize social actions. Topics may include greetings, the sex/gender distinction, science and common sense, breaching experiments, and jury deliberation.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47552,7 +47638,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an in-depth exploration into why youth join gangs, their behaviours, and the policy implications that rise out of state and community intervention. Upon successful completion of this course, students will be able to a) critically explain the socio-historical development of gangs in the US and Canada; b) explain through criminological and sociological concepts and theories the root causes of gangs and gang violence in contemporary society; and c) understand and articulate the subsequent policy implications. Students will explore these issues through a diverse set of learning strategies including art-based research, group discussions, as well as guest speakers.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: ["SOC 330", "LS 330"],
     tags: [],
@@ -47565,7 +47651,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "The societal context of policing, courts, and corrections is examined to understand how social control and the law are used in the criminal justice system. Special emphasis is placed on the socio-economic, legal, political, and situational environment that shapes responses to different categories of offenders and offences.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47578,7 +47664,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this course students will draw on case studies from the past and present to understand why people flee their homes and homelands to seek refuge elsewhere. Students will examine the policies and practices of government and non-governmental agencies in facilitating or blocking such movements. Students will also analyze the attitudes, values, and language that shape local and global responses to refugee movements, on the part of civil society and the state. Students in this course will become acquainted with organizations that work with refugees in the Waterloo Region and will gain a critical understanding of Canada's role in refugee reception.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SOC 101"] }, { type: "AND", reqs: ["SOC 101R"] }] }
     ],
     antireqs: ["PACS 301"],
     tags: [],
@@ -47799,7 +47885,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course offers a critical exploration of the growing nexus of crime control and the control of human mobility under conditions of mass migration and globalization, focusing on the developing area of study called the criminology of mobility (or border criminology). Students will develop an awareness of the social, cultural, and political diversity of law and mechanisms of social control that structure human mobility while paying attention to issues of race, gender, class, and other social relations of power in this field. Students will also develop their oral, written, and digital skills to communicate their ideas about course content through critical assessment of current research.",
     prereqs: [],
-    antireqs: ["LS 496", "SOC 430"],
+    antireqs: ["LS 496", "LS 001", "SOC 430", "SOC 001", "LS 042", "SOC 042", "LS 041", "SOC 041"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -47821,7 +47907,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "In this seminar course, students will have the opportunity to learn about a particular topic in the area of sociology or an interdisciplinary field. Students will gain in-depth analysis skills in this selected area of research.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: [],
     tags: [],
@@ -47889,7 +47975,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This seminar examines the relation between well-being, culture, alcohol consumption, and regulation from an interpretive focus. Topics addressed may include health, Alcoholics Anonymous, addiction vs. dependence, prohibition, and social discourses around alcohol consumption.",
     prereqs: [
-      { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
+      { type: "AND", reqs: ["SOC 101", "SOC 101R"] }
     ],
     antireqs: ["SOC 430"],
     tags: [],
@@ -48558,7 +48644,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students will engage in the theoretical and empirical examinations of contentious and controversial topics associated with human sexuality. Students may critically examine topics such as sex work, pornography, sexual violence and abuse, incest, compulsive sexual behaviour, and paraphilias.",
     prereqs: [
-      { type: "OR", reqs: ["SRF 204", "PSYCH 236"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SRF 204"] }, { type: "AND", reqs: ["PSYCH 236"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -48690,7 +48776,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["SRF 101", "SRF 204", "PSYCH 236"] }
     ],
-    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "KIN 222", "PSCI 314", "PSYCH 292", "REC 371", "SWREN 250R", "LS 280", "STAT 202"],
+    antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "KIN 222", "PSCI 314", "PSYCH 292", "REC 371", "SWREN 250R", "LS 280", "STAT 202", "STAT 206", "STAT 211", "STAT 221", "STAT 231", "STAT 241"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -48736,7 +48822,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course examines the development and experience of sexuality in a relational context from infancy to old age. Emphasis will be placed on sexual interaction and communication in adult relationships, but the effects of relationships on sexual experiences during infancy, childhood, adolescence, and old age may also be examined.",
     prereqs: [
-      { type: "OR", reqs: ["SRF 204", "PSYCH 236"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SRF 204"] }, { type: "AND", reqs: ["PSYCH 236"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -48749,7 +48835,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide students with an examination of selected issues and controversies in human sexualities, providing an interdisciplinary, learner-centered perspective drawing on family studies, psychology, sociology, feminism, critical scholarship, and more. Through this course students will increase their understanding of the historical, biological, social, political, religious, and cultural forces that shape human sexualities across the lifespan. Students will practice critical thinking and self-reflective skills in the analysis of issues and controversies in the field of human sexuality.",
     prereqs: [
-      { type: "OR", reqs: ["SRF 204", "PSYCH 236"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SRF 204"] }, { type: "AND", reqs: ["PSYCH 236"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -48817,7 +48903,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course provides an interdisciplinary overview of ethics and its applications to sexualities and relationships. Students will learn about basic ethical theories, concepts, issues, and reasoning skills. Students will learn how to apply ethical principles to critically analyze difficult life situations and controversial social issues. Students will learn to engage in and cultivate constructive arguments and discussions on ethical matters.",
     prereqs: [
       { type: "AND", reqs: ["SRF 101"] },
-      { type: "OR", reqs: ["SRF 204", "PSYCH 236"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SRF 204"] }, { type: "AND", reqs: ["PSYCH 236"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -48863,7 +48949,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A specialized course in topics related to human sexualities. Topics cover the application of theory and research in any area related to human sexualities.",
     prereqs: [
-      { type: "OR", reqs: ["SRF 204", "PSYCH 236"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["SRF 204"] }, { type: "AND", reqs: ["PSYCH 236"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -49004,7 +49090,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Elementary probability, populations, samples, and distributions with biological examples. Methods for data summary and presentation. Estimation, hypothesis testing, two-sample techniques and paired comparisons, regression, correlation.",
     prereqs: [],
-    antireqs: ["STAT 220"],
+    antireqs: ["STAT 220", "STAT 230"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49015,7 +49101,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Empirical problem solving with applications to software engineering. An introduction to probability theory. An introduction to distribution theory and to methods of statistical inference, including confidence intervals and hypothesis testing. An introduction to regression.",
     prereqs: [
-      { type: "AND", reqs: ["MATH 115"] }
+      { type: "AND", reqs: ["MATH 115", "MATH 119"] }
     ],
     antireqs: [],
     tags: [],
@@ -49043,7 +49129,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"] }
     ],
-    antireqs: ["STAT 202"],
+    antireqs: ["STAT 202", "STAT 230", "STAT 240"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49054,7 +49140,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Empirical problem solving, measurement systems, causal relationships, statistical models, estimation, confidence intervals, tests of significance.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 128", "MATH 138", "STAT 220", "STAT 230", "STAT 240"] }
+      { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148", "STAT 220", "STAT 230", "STAT 240"] }
     ],
     antireqs: ["STAT 231", "STAT 241"],
     tags: [],
@@ -49067,9 +49153,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an introduction to probability models including sample spaces, mutually exclusive and independent events, conditional probability and Bayes' Theorem. The named distributions (Discrete Uniform, Hypergeometric, Binomial, Negative Binomial, Geometric, Poisson, Continuous Uniform, Exponential, Normal (Gaussian), and Multinomial) are used to model real phenomena. Discrete and continuous univariate random variables and their distributions are discussed. Joint probability functions, marginal probability functions, and conditional probability functions of two or more discrete random variables and functions of random variables are also discussed. Students learn how to calculate and interpret means, variances and covariances particularly for the named distributions. The Central Limit Theorem is used to approximate probabilities.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 137", "MATH 128", "MATH 119", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 137", "MATH 147", "MATH 128", "MATH 118", "MATH 119", "MATH 138", "MATH 148"] }
     ],
-    antireqs: ["STAT 220"],
+    antireqs: ["STAT 220", "STAT 240"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49080,9 +49166,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides a systematic approach to empirical problem solving which will enable students to critically assess the sampling protocol and conclusions of an empirical study including the possible sources of error in the study and whether evidence of a causal relationship can be reasonably concluded. The connection between the attributes of a population and the parameters in the named distributions covered in STAT230 will be emphasized. Numerical and graphical techniques for summarizing data and checking the fit of a statistical model will be discussed. The method of maximum likelihood will be used to obtain point and interval estimates for the parameters of interest as well as testing hypotheses. The interpretation of confidence intervals and p-values will be emphasized. The Chi-squared and t distributions will be introduced and used to construct confidence intervals and tests of hypotheses including likelihood ratio tests. Contingency tables and Gaussian response models including the two sample Gaussian and simple linear regression will be used as examples.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "STAT 220"] }
+      { type: "OR", reqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148", "STAT 220", "STAT 230", "STAT 240"] }
     ],
-    antireqs: ["STAT 221"],
+    antireqs: ["STAT 221", "STAT 241"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49093,9 +49179,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "STAT240 is an advanced-level enriched version of STAT230.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 137", "MATH 138", "MATH 148"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 137"] }, { type: "AND", reqs: ["MATH 138"] }] }
     ],
-    antireqs: ["STAT 220"],
+    antireqs: ["STAT 220", "STAT 230"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -49106,9 +49192,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "STAT241 is an advanced-level enriched version of STAT231.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 138", "STAT 230", "STAT 240"] }
+      { type: "AND", reqs: ["MATH 138", "MATH 148", "STAT 230", "STAT 240"] }
     ],
-    antireqs: ["STAT 221"],
+    antireqs: ["STAT 221", "STAT 231"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49121,7 +49207,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["ECON 221", "ENVS 278", "HLTH 204", "SDS 250R", "KIN 232", "PSCI 214", "PSCI 314", "PSYCH 292", "REC 371", "LS 280"] }
     ],
-    antireqs: ["STAT 331"],
+    antireqs: ["STAT 331", "STAT 371"],
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
@@ -49133,10 +49219,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Modelling the relationship between a response variable and several explanatory variables via regression models. Model diagnostics and improvement. Using regression models for forecasting, Exponential smoothing. Simple time series modelling.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 225", "MATH 235", "MATH 245"] },
-      { type: "OR", reqs: ["STAT 221", "STAT 231", "STAT 241"] }
+      { type: "OR", reqs: ["MATH 225", "MATH 235", "MATH 245", "STAT 221", "STAT 231", "STAT 241"] }
     ],
-    antireqs: ["STAT 331", "AFM 323", "STAT 374"],
+    antireqs: ["STAT 331", "STAT 371", "STAT 373", "STAT 443", "AFM 323", "STAT 374"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49147,9 +49232,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Planning sample surveys; simple random sampling; stratified sampling. Observational and experimental studies. Blocking, randomization, factorial designs. Analysis of variance. Applications of design principles.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 221", "STAT 231", "STAT 241"] }
+      { type: "AND", reqs: ["STAT 221"] }
     ],
-    antireqs: ["STAT 332"],
+    antireqs: ["STAT 332", "STAT 372"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49160,7 +49245,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides a mathematically rigorous treatment for topics covered in STAT230 and 231, and to make essential extensions to the multivariate case. Maximum likelihood estimation. Random variables and distribution theory. Generating functions. Functions of random variables. Limiting distributions. Large sample theory of likelihood methods. Likelihood ratio tests. Joint probability (density) functions, marginal probability (density) functions, and conditional probability (density) functions of two or more random variables are discussed. Topics covered include independence of random variables, conditional expectation and the determination of the distribution of functions of random variables using the cumulative distribution method, change of variable and moment generating functions. Properties of the Multinomial and Bivariate Normal distributions are proved. Limiting distributions, including convergence in probability and convergence in distribution, are discussed. Important results, including the Weak Law of Large Numbers, Central Limit Theorem, Slutsky's theorem, and the Delta Method, are introduced with applications. The maximum likelihood method is discussed for the multi-parameter case. Asymptotic properties of the maximum likelihood estimator are examined and used to construct confidence intervals or regions. Tests for simple and composite hypotheses are constructed using the Likelihood Ratio Test.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "STAT 230", "STAT 240", "STAT 241"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 237"] }, { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["STAT 230"] }, { type: "AND", reqs: ["STAT 240"] }] }, { type: "AND", reqs: ["STAT 231"] }] }] }
     ],
     antireqs: ["STAT 334"],
     tags: [],
@@ -49173,9 +49258,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Modelling the relationship between a response variable and several explanatory variables (an output-input system) via regression models. Least squares algorithm for estimation of parameters. Hypothesis testing and prediction. Model diagnostics and improvement. Algorithms for variable selection. Nonlinear regression and other methods.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "STAT 231", "STAT 241", "SYDE 212"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 235"] }, { type: "AND", reqs: ["STAT 231"] }, { type: "AND", reqs: ["STAT 241"] }, { type: "AND", reqs: ["SYDE 212"] }] }
     ],
-    antireqs: ["ECON 421", "STAT 321", "AFM 323", "STAT 374", "SYDE 334"],
+    antireqs: ["ECON 421", "STAT 321", "STAT 371", "STAT 373", "AFM 323", "STAT 374", "SYDE 334"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49186,9 +49271,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Designing sample surveys. Probability sampling designs. Estimation with elementary designs. Observational and experimental studies. Blocking, randomization, factorial designs. Analysis of variance. Designing for comparison of groups.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 231", "STAT 241", "SYDE 212"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 231"] }, { type: "AND", reqs: ["STAT 241"] }, { type: "AND", reqs: ["SYDE 212"] }] }
     ],
-    antireqs: ["BIOL 361", "STAT 322"],
+    antireqs: ["BIOL 361", "STAT 322", "STAT 372"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49199,8 +49284,8 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course provides an introduction to stochastic processes, with an emphasis on regenerative phenomena. Topics cover generating functions, conditional probability distributions and conditional expectation, discrete-time Markov chains with a countable state space, limit distributions for ergodic and absorbing chains, applications including the random walk, the gambler's ruin problem, and the Galton-Watson branching process, an introduction to counting processes, connections between the exponential distribution and Poisson process, and non-homogeneous and compound Poisson processes.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 230", "STAT 240"] },
-      { type: "OR", reqs: ["MATH 237", "MATH 247"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 230"] }, { type: "AND", reqs: ["STAT 240"] }] },
+      { type: "AND", reqs: ["MATH 237"] }
     ],
     antireqs: ["STAT 334"],
     tags: [],
@@ -49213,10 +49298,10 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Random variables and distribution theory, conditional expectations, moment and probability generating functions, change of variables, random walks, Markov chains, Markov processes.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "STAT 230", "STAT 240"] },
-      { type: "OR", reqs: ["STAT 231", "STAT 241"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 237"] }, { type: "AND", reqs: ["STAT 230", "STAT 240"] }] },
+      { type: "AND", reqs: ["STAT 231"] }
     ],
-    antireqs: ["STAT 330"],
+    antireqs: ["STAT 330", "STAT 333"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -49227,7 +49312,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course will provide an introduction to statistical methods in health research. Topics to be covered include types of medical data, measures of disease prevalence and incidence, age and sex adjustment of disease rates, sensitivity and specificity of diagnostic tests, ROC curves, measures of association between risk factors and disease, major sources of medical data in the Canadian context including surveys, registries, and clinical studies such as cohort studies, clinical trials and case-control studies. Papers from the medical literature will be used throughout to illustrate the concepts. Introduction to SAS for data analysis and an introduction to database management tools.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 221", "STAT 231", "STAT 241"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 221"] }, { type: "AND", reqs: ["STAT 231"] }] }
     ],
     antireqs: ["HLTH 333", "STAT 232"],
     tags: [],
@@ -49240,9 +49325,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Random variate generation in the univariate and multivariate case, Monte Carlo integration, advanced computer implementation, variance reduction, statistical analysis of simulated data, extensions to challenging simulation problems. Mathematical treatment of the underlying stochastic concepts and proofs.",
     prereqs: [
-      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 145", "SYDE 221", "SYDE 322"] },
-      { type: "OR", reqs: ["STAT 230", "STAT 240"] },
-      { type: "OR", reqs: ["STAT 231", "STAT 241"] }
+      { type: "OR", reqs: ["CS 116", "CS 136", "CS 138", "CS 145", "SYDE 221", "SYDE 322", "STAT 230", "STAT 240", "STAT 231", "STAT 241"] }
     ],
     antireqs: [],
     tags: [],
@@ -49255,7 +49338,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A computationally focused approach to statistical reasoning in the context of real data. Functional programming in R and algorithms will be used to define interesting attributes of finite populations and their sampling characteristics. Computational approaches to inductive inference and the assessment of predictive accuracy.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 237", "STAT 230", "STAT 240", "STAT 241"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["MATH 237"] }, { type: "AND", reqs: [{ type: "OR", reqs: [{ type: "AND", reqs: ["STAT 230"] }, { type: "AND", reqs: ["STAT 240"] }] }, { type: "AND", reqs: ["STAT 231"] }] }] }
     ],
     antireqs: [],
     tags: [],
@@ -49268,9 +49351,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Practical and theoretical aspects of simple and multiple linear regression models. Model building, fitting, and assessment. Process thinking and improvement. Strategies for variation reduction such as control charting. Process monitoring, control, and adjustment. Applications to problems in business.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 235", "STAT 231", "STAT 241"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["MATH 235"] }, { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 231"] }, { type: "AND", reqs: ["STAT 241"] }] }] }
     ],
-    antireqs: ["STAT 321"],
+    antireqs: ["STAT 321", "STAT 331", "STAT 374", "STAT 373"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49281,9 +49364,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Design and analysis of surveys. Management of sample and non-sample error. Simple random sampling and stratified random sampling. Additional topics in survey sampling. Observational and experimental studies. Principles for the design of experiments. Analysis of variance, factorial experiments, and interaction. Application to problems in business.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 231", "STAT 241"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 231"] }, { type: "AND", reqs: ["STAT 241"] }] }
     ],
-    antireqs: ["STAT 322"],
+    antireqs: ["STAT 322", "STAT 332"],
     tags: [],
     majors: ["math"],
     offered: ["F", "W", "S"]
@@ -49294,9 +49377,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Application of regression and time series models in finance; multiple regression; algebraic and geometric representation of least squares; inference methods - confidence intervals and hypothesis tests, ANOVA, prediction; model building and assessment; time series modelling; autoregressive AR(1) models - fitting, assessment and prediction; moving average smoothing, seasonal adjustment; non-stationarity and differencing.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 136", "STAT 241"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["MATH 136"] }, { type: "AND", reqs: ["STAT 231"] }] }, { type: "AND", reqs: ["STAT 241"] }] }
     ],
-    antireqs: ["STAT 321", "AFM 323", "STAT 374"],
+    antireqs: ["STAT 321", "STAT 331", "STAT 371", "STAT 443", "AFM 323", "STAT 374"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49307,9 +49390,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "This course introduces analytical and statistical methods commonly used in finance, with applications to investment management and corporate finance.",
     prereqs: [
-      { type: "OR", reqs: ["MATH 136", "STAT 241"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: [{ type: "AND", reqs: ["MATH 136"] }, { type: "AND", reqs: ["STAT 231"] }] }, { type: "AND", reqs: ["STAT 241"] }] }
     ],
-    antireqs: ["STAT 321", "AFM 323", "STAT 374"],
+    antireqs: ["STAT 321", "STAT 331", "STAT 371", "STAT 443", "AFM 323", "STAT 374"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49320,8 +49403,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of experimental designs in a regression setting; analysis of variance; replication, balance, blocking, randomization, and interaction; one-way layout, two-way layout, and Latin square as special cases; factorial structure of treatments; covariates; treatment contrasts; two-level fractional factorial designs; fixed versus random effects; split-plot and repeated-measures designs; other topics.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 331", "STAT 371"] },
-      { type: "OR", reqs: ["STAT 332", "STAT 372"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["STAT 331"] }, { type: "AND", reqs: ["STAT 332"] }] }
     ],
     antireqs: ["BIOL 461", "PSYCH 391"],
     tags: [],
@@ -49334,7 +49416,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of the normal linear model and maximum likelihood estimation; regression models for binomial, Poisson and multinomial data; generalized linear models; and other topics in regression modelling.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 330", "STAT 371"] }
+      { type: "AND", reqs: ["STAT 330", "STAT 331", "STAT 371"] }
     ],
     antireqs: [],
     tags: [],
@@ -49360,7 +49442,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Statistical methods for improving processes based on observational data. Assessment of measurement systems. Strategies for variation reduction. Process monitoring, control, and adjustment. Clue generation techniques for determining the sources of variability. Variation transmission.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 332", "STAT 372"] }
+      { type: "AND", reqs: ["STAT 332"] }
     ],
     antireqs: [],
     tags: [],
@@ -49412,7 +49494,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Introduction to and application of computational methods in statistical inference. Monte Carlo evaluation of statistical procedures, exploration of the likelihood function through graphical and optimization techniques. Topics include expectation-maximization, Bootstrapping, Markov Chain Monte Carlo, and other computationally intensive methods.",
     prereqs: [
-      { type: "AND", reqs: ["STAT 330"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["STAT 330"] }, { type: "AND", reqs: ["STAT 341"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -49426,7 +49508,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Classification is the problem of predicting a discrete outcome from a set of explanatory variables. Main topics include logistic regression, neural networks, tree-based methods, support vector machines, and nearest neighbour methods. Other topics include model assessment, training, and tuning.",
     prereqs: [
       { type: "AND", reqs: ["STAT 341"] },
-      { type: "OR", reqs: ["STAT 331", "STAT 371"] }
+      { type: "AND", reqs: ["STAT 331"] }
     ],
     antireqs: [],
     tags: [],
@@ -49452,9 +49534,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Modelling techniques for forecasting time series data: smoothing methods, regression including penalty/regularization methods, the Box-Jenkins framework, stationary and non-stationary processes, both with and without seasonal effects. Other topics may include: ARCH/GARCH models, Bayesian methods, dynamic linear models, Markov Chain Monte Carlo simulation, spectral density analysis, and periodograms.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 331", "STAT 371", "SYDE 334"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["STAT 331"] }, { type: "AND", reqs: ["SYDE 334"] }] }
     ],
-    antireqs: ["STAT 321"],
+    antireqs: ["STAT 321", "STAT 373"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49466,7 +49548,7 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course introduces modern applied regression methods for continuous response modelling, emphasizing both explainability and predictive power. Topics cover a wide selection of advanced methods useful to address the challenges arising from real-world and high-dimensional data; methods include robust regression, nonparametric regression such as smoothing splines, kernels, additive models, tree-based methods, boosting and bagging, and penalized linear regression methods such as the ridge regression, lasso, and their variants. Students will gain an appreciation of the mathematical and statistical concepts underlying the methods and also computational experience in applying the methods to real data.",
     prereqs: [
       { type: "AND", reqs: ["STAT 341"] },
-      { type: "OR", reqs: ["STAT 331", "STAT 371"] }
+      { type: "AND", reqs: ["STAT 331"] }
     ],
     antireqs: [],
     tags: [],
@@ -49492,7 +49574,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Sources of survey error. Probability sampling designs, estimation, and efficiency comparisons. Distribution theory and confidence intervals. Generalized regression estimation. Software for survey analysis.",
     prereqs: [
-      { type: "OR", reqs: ["STAT 332", "STAT 372"] }
+      { type: "AND", reqs: ["STAT 332"] }
     ],
     antireqs: [],
     tags: [],
@@ -49518,7 +49600,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Special topics course as announced by the Department.",
     prereqs: [
-      { type: "AND", reqs: ["STAT 330"] }
+      { type: "AND", reqs: ["STAT 330", "STAT 331"] }
     ],
     antireqs: [],
     tags: [],
@@ -49772,7 +49854,9 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Practicum 1",
     units: 1,
     description: "This first practicum phase helps students understand the general structure and functioning of the helping network and the place of agency-based community settings in it. Simultaneously, the students begin to integrate interviewing and assessment skills to formulate an intervention plan with sensitivity to the diversity of the setting. A bi-weekly seminar runs concurrently with the practicum.",
-    prereqs: [],
+    prereqs: [
+      { type: "AND", reqs: ["SWREN 414R"] }
+    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -49784,7 +49868,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "The second practicum phase develops students' intervention skills. Opportunity is given to enhance social work practice skills specific to particular client populations within the context of diversity, and to develop awareness of one's professional self in relation to social work practice within the agency context. A bi-weekly seminar runs concurrently with the practicum.",
     prereqs: [
-      { type: "AND", reqs: ["SWREN 414R"] }
+      { type: "AND", reqs: ["SWREN 414R", "SWREN 441R"] }
     ],
     antireqs: [],
     tags: [],
@@ -49797,7 +49881,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 1,
     description: "The third practicum phase helps students demonstrate understanding of, and ability to use, a range of interventions within the context of diversity. Professional identification and the integration of theory with practice are emphasized. A bi-weekly seminar runs concurrently with the practicum.",
     prereqs: [
-      { type: "AND", reqs: ["SWREN 414R"] }
+      { type: "AND", reqs: ["SWREN 414R", "SWREN 442R"] }
     ],
     antireqs: [],
     tags: [],
@@ -49887,7 +49971,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Differential calculus: limits, continuity, derivatives, differentials, applications. Sequences and series: convergence, power series, Taylor expansions. Simple numerical methods. Introduction to integration, indefinite and definite integral, techniques of integration.",
     prereqs: [],
-    antireqs: ["MATH 116"],
+    antireqs: ["MATH 116", "MATH 117", "MATH 127", "MATH 137", "MATH 147"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49898,7 +49982,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Integration: improper integrals and applications. Multi-variable calculus: partial, total, and directional derivative, gradient divergence, double and triple integrals, Jacobian, solution techniques, applications.",
     prereqs: [],
-    antireqs: ["MATH 118"],
+    antireqs: ["MATH 118", "MATH 119", "MATH 128", "MATH 138", "MATH 148"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -50162,7 +50246,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A work-term poster is composed and presented at the Work-term symposium. The poster and presentation provide an opportunity for students to effectively communicate and reflect on their engineering experience gained during their co-op work terms. In the poster and presentation, students draw connections between the theoretical aspects of engineering taught in the classroom and the practical applications of that theory in the workplace.",
     prereqs: [],
-    antireqs: ["WKRPT 400"],
+    antireqs: ["WKRPT 400", "WKRPT 401"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -50217,7 +50301,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Software requirements specification; software architecture; design patterns; software testing and quality assurance; software maintenance; design of efficient algorithms and methods for their analysis, mathematical algorithms, string processing algorithms, geometrical algorithms, exhaustive search and traversal techniques, introduction to lower bound theory and NP-completeness. Case studies and engineering examples.",
     prereqs: [
-      { type: "OR", reqs: ["BME 122", "CS 240", "CS 240E", "ECE 250", "MTE 140", "SYDE 223"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BME 122"] }, { type: "AND", reqs: ["CS 240", "CS 240E"] }, { type: "AND", reqs: ["ECE 250"] }, { type: "AND", reqs: ["MTE 140"] }, { type: "AND", reqs: ["SYDE 223"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -50230,9 +50314,9 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Review of basic Normal theory, t, chi-squared, and F distributions. Simple linear regression. Lack of fit. Analysis of variance. Multiple linear regression, variable selection techniques, indicator variables, diagnostics. Brief introduction to non-linear regression, factorial experimentation.",
     prereqs: [
-      { type: "OR", reqs: ["BME 213", "SYDE 212"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["BME 213"] }, { type: "AND", reqs: ["SYDE 212"] }] }
     ],
-    antireqs: ["STAT 331"],
+    antireqs: ["STAT 331", "STAT 371"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -50452,7 +50536,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students explore techniques to analyze, interpret, and perform texts.",
     prereqs: [
-      { type: "OR", reqs: ["THPERF 100", "THPERF 102", "COMMST 102"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["THPERF 100"] }, { type: "AND", reqs: ["THPERF 102", "COMMST 102"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -50465,7 +50549,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students explore techniques to access and develop the body as a resource for performance.",
     prereqs: [
-      { type: "OR", reqs: ["THPERF 100", "THPERF 102", "COMMST 102"] }
+      { type: "OR", reqs: [{ type: "AND", reqs: ["THPERF 100"] }, { type: "AND", reqs: ["THPERF 102", "COMMST 102"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -50588,7 +50672,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students study, apply, and critique a range of processes for making performance in a range of media, paying close attention to the relationship between the approach to creation and the significance of works in the communities where they are performed.",
     prereqs: [
-      { type: "OR", reqs: ["THPERF 102", "COMMST 102"] }
+      { type: "AND", reqs: ["THPERF 102", "COMMST 102"] }
     ],
     antireqs: [],
     tags: [],
@@ -50671,7 +50755,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students explore techniques to access and develop the voice as a resource for performance.",
     prereqs: [
-      { type: "OR", reqs: ["THPERF 102", "COMMST 102"] }
+      { type: "AND", reqs: ["THPERF 102", "COMMST 102"] }
     ],
     antireqs: [],
     tags: [],
@@ -50697,7 +50781,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Exploration of the director's task in its practical, theoretical, and historical aspects.",
     prereqs: [
-      { type: "AND", reqs: ["THPERF 200"] }
+      { type: "AND", reqs: ["THPERF 200", "THPERF 243"] }
     ],
     antireqs: [],
     tags: [],
@@ -50743,7 +50827,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Students explore techniques for collaborative creation in theatre and performance.",
     prereqs: [
-      { type: "AND", reqs: ["THPERF 200"] }
+      { type: "AND", reqs: ["THPERF 200", "THPERF 243"] }
     ],
     antireqs: [],
     tags: [],
@@ -50975,7 +51059,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "Designed for students in Architectural, Civil, Environmental, and Geological Engineering whose dominant language is not English, this course will enhance students' oral and written communication competencies in contexts relevant to the engineering profession.",
     prereqs: [
-      { type: "AND", reqs: ["ENGL 191"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["COMMST 191", "ENGL 191"] }, { type: "AND", reqs: ["GENE 199"] }] }
     ],
     antireqs: [],
     tags: [],
@@ -51278,7 +51362,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "A survey of contemporary international art movements with emphasis on work since 1970. Readings in contemporary criticism and gallery visits are an integral part of the course.",
     prereqs: [
-      { type: "AND", reqs: ["VCULT 101"] }
+      { type: "AND", reqs: [{ type: "AND", reqs: ["VCULT 101"] }, { type: "AND", reqs: ["FINE 209"] }] }
     ],
     antireqs: ["FINE 319"],
     tags: [],
@@ -51313,7 +51397,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An advanced survey of the art and architecture from a selected time period of Greek history. Material studied may include the art and architecture of the Aegean Bronze Age, and the Archaic, Classical, and Hellenistic periods. Archaeological, historical, and cultural issues specific to each time period will be discussed through the important media of the day.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 241", "FINE 241"] }
+      { type: "AND", reqs: ["CLAS 241", "FINE 241"] }
     ],
     antireqs: ["FINE 341"],
     tags: [],
@@ -51326,7 +51410,7 @@ export const RAW_COURSES: RawCourse[] = [
     units: 0.5,
     description: "An advanced survey of the art and architecture from a selected time period of Roman History. Material studied may include the art and architecture of the Etruscans, the Roman Republic, and the Roman Empire. Archaeological, historical, and cultural issues specific to each time period will be discussed through the important media of the day.",
     prereqs: [
-      { type: "OR", reqs: ["CLAS 242", "FINE 242"] }
+      { type: "AND", reqs: ["CLAS 242", "FINE 242"] }
     ],
     antireqs: ["FINE 342"],
     tags: [],
@@ -51363,7 +51447,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["VCULT 300"] }
     ],
-    antireqs: ["FINE 490"],
+    antireqs: ["FINE 490", "FINE 496"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -51376,7 +51460,7 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["VCULT 400"] }
     ],
-    antireqs: ["FINE 491"],
+    antireqs: ["FINE 491", "FINE 497"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]

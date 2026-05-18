@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { COURSE_DATA } from "../data/courses";
 import { useStore, courseSubject, subjectsFromCodes } from "../lib/store";
 import { areRequisitesSatisfied } from "../lib/requisites";
+import ShareLinkButton from "./ShareLinkButton";
 import type { TermKey } from "../types";
 
 const TERMS: TermKey[] = ["1A","1B","2A","2B","3A","3B","4A","4B"];
@@ -116,7 +117,8 @@ export default function TermPlanner() {
         </div>
 
         {/* Load default / Clear buttons */}
-        <div style={{ display: "flex", gap: 6 }}>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "flex-end" }}>
+          <ShareLinkButton />
           <button
             onClick={resetTermPlan}
             title="Load the recommended default schedule for the current major"

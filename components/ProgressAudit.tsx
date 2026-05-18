@@ -4,9 +4,10 @@ import { useMemo, useState } from "react";
 import { useStore } from "../lib/store";
 import { MAJORS, MAJOR_META, MAJOR_TO_FACULTY, SUB_MAJOR_REGISTRY } from "../data/majors";
 import { FACULTIES } from "../data/faculties";
-import { runAudit, groupTarget } from "../lib/audit";
+import { runAudit } from "../lib/audit";
 import { getConnectedNodes, getHighlightedEdges } from "../lib/graph";
 import RequirementHelpIcon from "./RequirementTooltip";
+import ShareLinkButton from "./ShareLinkButton";
 import type { AuditGroupResult, Major } from "../types";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -44,11 +45,25 @@ function resolveActiveCurriculum(
 
 function getDegreeProgress(major: Major, completed: Set<string>, planned: Set<string>) {
   const results  = runAudit(major.requirementGroups, completed, planned);
-  const done     = results.reduce((s, r) => s + r.completedDoneCount, 0);
-  const plannedN = results.reduce((s, r) => s + r.plannedDoneCount,   0);
-  const total    = major.requirementGroups.reduce((s, g) => s + groupTarget(g), 0);
-  const pct      = total > 0 ? Math.round(((done + plannedN) / total) * 100) : 0;
+  const { done, planned: plannedN, total } = summarizeAuditResults(results);
+  const pct      = total > 0 ? Math.min(100, Math.round(((done + plannedN) / total) * 100)) : 0;
   return { done, planned: plannedN, total, pct };
+}
+
+function summarizeAuditResults(results: AuditGroupResult[]) {
+  return results.reduce(
+    (acc, result) => {
+      const target = result.target;
+      const done = Math.min(result.completedDoneCount, target);
+      const planned = Math.min(result.plannedDoneCount, Math.max(0, target - done));
+      return {
+        done: acc.done + done,
+        planned: acc.planned + planned,
+        total: acc.total + target,
+      };
+    },
+    { done: 0, planned: 0, total: 0 },
+  );
 }
 
 
@@ -84,8 +99,10 @@ export default function ProgressAudit() {
   // Overall degree progress
   const overallProgress = useMemo(() => {
     if (!curriculum) return { done: 0, planned: 0, total: 0, pct: 0 };
-    return getDegreeProgress(curriculum as Major, completedCourses, allPlanned);
-  }, [curriculum, completedCourses, allPlanned]);
+    const { done, planned, total } = summarizeAuditResults(auditResults);
+    const pct = total > 0 ? Math.min(100, Math.round(((done + planned) / total) * 100)) : 0;
+    return { done, planned, total, pct };
+  }, [curriculum, auditResults]);
 
   if (!curriculum) {
     return <div style={{ padding: 24, color: "#64748B" }}>Select a major to begin audit.</div>;
@@ -100,6 +117,10 @@ export default function ProgressAudit() {
 
   return (
     <div style={{ padding: 24, overflow: "auto", height: "100%", boxSizing: "border-box" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 12 }}>
+        <ShareLinkButton />
+      </div>
+
       {/* ── Degree Progress Overview ─────────────────────────────────────── */}
       <DegreeProgressOverview
         name={curriculum.name}
@@ -135,7 +156,7 @@ function DegreeProgressOverview({
   const remaining = Math.max(0, total - done - planned);
   const r = 38;
   const circumference = 2 * Math.PI * r;
-  const completedPct = total > 0 ? done / total : 0;
+  const completedPct = total > 0 ? Math.min(1, done / total) : 0;
   const plannedPct   = total > 0 ? Math.min(1 - completedPct, planned / total) : 0;
   const completedDash = circumference * completedPct;
   const plannedDash   = circumference * plannedPct;
@@ -157,6 +178,7 @@ function DegreeProgressOverview({
       display:       "flex",
       alignItems:    "center",
       gap:           24,
+      flexWrap:      "wrap",
     }}>
       {/* Ring chart */}
       <div style={{ position: "relative", flexShrink: 0 }}>
@@ -203,7 +225,7 @@ function DegreeProgressOverview({
         <h2 style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 800, color, margin: "0 0 4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
           {name}
         </h2>
-        <div style={{ display: "flex", gap: 16, marginTop: 10 }}>
+        <div style={{ display: "flex", gap: 12, marginTop: 10, flexWrap: "wrap" }}>
           <StatChip value={done} label="Completed" color={color} />
           <StatChip value={planned} label="Planned" color="#60A5FA" />
           <StatChip value={remaining} label="Remaining" color="#334155" />
@@ -254,9 +276,9 @@ function DegreeMiniBar({ label, done, plannedDone, total, color }: {
   const completedPct = total > 0 ? Math.min(100, (done / total) * 100) : 0;
   const plannedPct   = total > 0 ? Math.min(100 - completedPct, (plannedDone / total) * 100) : 0;
   return (
-    <div style={{ marginBottom: 8 }}>
+    <div style={{ marginBottom: 8, flex: 1, minWidth: 0 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-        <span style={{ fontSize: 10, color: "#94A3B8", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", maxWidth: 220 }}>
+        <span style={{ fontSize: 10, color: "#94A3B8", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", minWidth: 0, paddingRight: 8 }}>
           {label}
         </span>
         <span style={{ fontSize: 10, flexShrink: 0, marginLeft: 8 }}>
@@ -466,12 +488,15 @@ function RequirementGroupCard({
   completedCourses: Set<string>;
   onCourseClick:    (code: string) => void;
 }) {
-  const { group, doneCount, completedDoneCount, plannedDoneCount, target, displayCourses, claimedCourses, plannedClaimedCourses } = result;
+  const { group, completedDoneCount, plannedDoneCount, target, displayCourses, claimedCourses, plannedClaimedCourses } = result;
   const { title, type, color } = group;
 
-  const completedProgress = target > 0 ? Math.min(1, completedDoneCount / target) : 0;
-  const plannedProgress   = target > 0 ? Math.min(1 - completedProgress, plannedDoneCount / target) : 0;
-  const isFulfilled = doneCount >= target && target > 0;
+  const completedShown = Math.min(completedDoneCount, target);
+  const plannedShown = Math.min(plannedDoneCount, Math.max(0, target - completedShown));
+  const doneShown = completedShown + plannedShown;
+  const completedProgress = target > 0 ? Math.min(1, completedShown / target) : 0;
+  const plannedProgress   = target > 0 ? Math.min(1 - completedProgress, plannedShown / target) : 0;
+  const isFulfilled = doneShown >= target && target > 0;
 
   const typeLabel =
     type === "required"    ? "All required" :
@@ -489,23 +514,26 @@ function RequirementGroupCard({
       transition:   "border-color 0.3s, background 0.2s",
     }}>
       {/* ── Card header ─────────────────────────────────────────────────── */}
-      <div style={{ display: "flex", justifyContent: "space-between",
-                    alignItems: "flex-start", marginBottom: 10 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1fr) auto",
+                    alignItems: "start", gap: 12, marginBottom: 10 }}>
 
         {/* Left: title + type label — clickable to highlight on graph */}
         <div
           // onClick={() => onGroupClick(result)}
           title="Click to highlight these courses on the graph"
-          style={{ cursor: "pointer", flex: 1, minWidth: 0, marginRight: 8 }}
+          style={{ cursor: "pointer", minWidth: 0 }}
         >
           {/* Flex container for Heading + Icon */}
-          <div style={{ display: "flex", alignItems: "baseline", gap: "10px" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: "10px", minWidth: 0 }}>
             <h3 style={{
               fontFamily: "'Syne', sans-serif",
               fontSize:   13,
               fontWeight: 700,
               color,
-              margin:     "0", // Removed bottom margin to align better with icon
+              margin:     "0",
+              minWidth:   0,
+              overflowWrap: "anywhere",
+              lineHeight: 1.25,
             }}>
               {title}
             </h3>
@@ -526,17 +554,18 @@ function RequirementGroupCard({
         </div>
 
         {/* Right: completion counter */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 8, minWidth: 78 }}>
           <span style={{
             fontSize:   11,
             color:      isFulfilled ? color : "#64748B",
             display:    "flex",
             alignItems: "center",
             gap:        4,
+            whiteSpace: "nowrap",
           }}>
-            {plannedDoneCount > 0
-              ? <><span style={{ color: isFulfilled ? color : "#64748B" }}>{completedDoneCount}</span><span style={{ color: "#60A5FA" }}>+{plannedDoneCount}</span>/{target}</>
-              : <>{doneCount}/{target}</>
+            {plannedShown > 0
+              ? <><span style={{ color: isFulfilled ? color : "#64748B" }}>{completedShown}</span><span style={{ color: "#60A5FA" }}>+{plannedShown}</span>/{target}</>
+              : <>{doneShown}/{target}</>
             }
             {isFulfilled && <span style={{ color }}>✓</span>}
           </span>
@@ -574,7 +603,7 @@ function RequirementGroupCard({
           />
         ))}
 
-        {doneCount < target && (
+        {doneShown < target && (
           <div style={{
             fontSize:     10,
             color:        "#334155",
@@ -585,7 +614,7 @@ function RequirementGroupCard({
             display:      "flex",
             alignItems:   "center",
           }}>
-            {target - doneCount} remaining
+            {target - doneShown} remaining
           </div>
         )}
       </div>

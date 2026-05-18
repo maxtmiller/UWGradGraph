@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useCallback, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 import type { MajorId, SubMajorId } from "../types";
 import { useStore } from "../lib/store";
@@ -22,14 +22,30 @@ const NODE_DATA = [
   { code: "PMATH 351", title: "Real Analysis",           badge: "ELECTIVE", color: "#FCD34D" },
 ];
 
+function subscribeWelcomeSeen() {
+  return () => undefined;
+}
+
+function getWelcomeSeenSnapshot() {
+  return localStorage.getItem("gradgraph_seen") ? "hidden" : "visible";
+}
+
+function getWelcomeSeenServerSnapshot() {
+  return "checking";
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function WelcomeOverlay() {
   const { setActiveMajor, setActiveSubMajor } = useStore();
 
-  const [status,      setStatus]      = useState<"visible" | "hidden">(() => (
-    typeof window !== "undefined" && localStorage.getItem("gradgraph_seen") ? "hidden" : "visible"
-  ));
+  const storedStatus = useSyncExternalStore(
+    subscribeWelcomeSeen,
+    getWelcomeSeenSnapshot,
+    getWelcomeSeenServerSnapshot,
+  );
+  const [dismissed,   setDismissed]   = useState(false);
+  const status = dismissed ? "hidden" : storedStatus;
   const [exiting,     setExiting]     = useState(false);
   const [facIdx,      setFacIdx]      = useState(0);           // index into FACULTY_LIST
   const [slideDir,    setSlideDir]    = useState<"left"|"right"|null>(null); // animation direction
@@ -98,11 +114,11 @@ export default function WelcomeOverlay() {
     setExiting(true);
     setTimeout(() => {
       localStorage.setItem("gradgraph_seen", "1");
-      setStatus("hidden");
+      setDismissed(true);
     }, 500);
   }
 
-  if (status === "hidden") return null;
+  if (status === "checking" || status === "hidden") return null;
 
   const facData      = FACULTY_LIST[facIdx];
   const faculty      = FACULTIES[facData.id];
