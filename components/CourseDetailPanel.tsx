@@ -94,6 +94,7 @@ export default function CourseDetailPanel() {
   const courseInTerm = (Object.entries(termPlan) as [string, string[]][])
     .find(([, codes]) => codes.includes(course.code))?.[0] ?? null;
   const isTermPlanned = courseInTerm !== null;
+  const allPlannedCourses = new Set([...plannedCourses, ...Object.values(termPlan).flat()]);
 
   return (
     <div
@@ -197,7 +198,8 @@ export default function CourseDetailPanel() {
               <RequisiteDisplay 
                 key={i} 
                 item={req} 
-                completedCourses={completedCourses} 
+                completedCourses={completedCourses}
+                plannedCourses={allPlannedCourses}
                 navigateTo={navigateTo} 
               />
             ))}
@@ -382,25 +384,29 @@ function TermPicker({ onSelect, onClose }: { onSelect: (t: TermKey) => void; onC
 const RequisiteDisplay = ({ 
   item, 
   depth = 0,
-  completedCourses, 
+  completedCourses,
+  plannedCourses,
   navigateTo 
 }: { 
   item: string | Requisite, 
   depth?: number,
-  completedCourses: Set<string>, 
+  completedCourses: Set<string>,
+  plannedCourses: Set<string>,
   navigateTo: (c: string) => void 
 }) => {
   // Base Case: A course code string
   if (typeof item === "string") {
     const isDone = completedCourses.has(item);
+    const isPlanned = plannedCourses.has(item);
+    const statusColor = isDone ? "#4ADE80" : isPlanned ? "#60A5FA" : "#94A3B8";
     return (
       <span
         onClick={() => navigateTo(item)}
         style={{
-          color: isDone ? "#4ADE80" : "#94A3B8",
+          color: statusColor,
           marginRight: 6,
           cursor: "pointer",
-          textDecoration: isDone ? "none" : "underline",
+          textDecoration: isDone || isPlanned ? "none" : "underline",
           textDecorationColor: "#334155",
           fontSize: 10,
           fontFamily: "'DM Mono', monospace",
@@ -436,7 +442,8 @@ const RequisiteDisplay = ({
             key={i} 
             item={sub} 
             depth={depth + 1}
-            completedCourses={completedCourses} 
+            completedCourses={completedCourses}
+            plannedCourses={plannedCourses}
             navigateTo={navigateTo} 
           />
         ))}
