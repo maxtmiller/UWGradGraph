@@ -29,6 +29,7 @@ export default function ShareLinkLoader() {
       if (!shouldImport) return;
 
       useStore.getState().applyShareSnapshot(snapshot);
+      localStorage.setItem("gradgraph_seen", "1");
       window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
     };
 

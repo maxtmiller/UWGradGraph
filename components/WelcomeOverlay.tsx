@@ -6,6 +6,7 @@ import type { MajorId, SubMajorId } from "../types";
 import { useStore } from "../lib/store";
 import { FACULTY_LIST, FACULTIES } from "../data/faculties";
 import { MAJOR_META, SUB_MAJOR_REGISTRY } from "../data/majors";
+import { SHARE_HASH_PREFIX } from "../lib/share";
 
 // ── Floating node data ────────────────────────────────────────────────────────
 
@@ -23,10 +24,16 @@ const NODE_DATA = [
 ];
 
 function subscribeWelcomeSeen() {
-  return () => undefined;
+  const notify = () => undefined;
+  window.addEventListener("hashchange", notify);
+  return () => window.removeEventListener("hashchange", notify);
 }
 
 function getWelcomeSeenSnapshot() {
+  const hash = window.location.hash.startsWith("#")
+    ? window.location.hash.slice(1)
+    : window.location.hash;
+  if (hash.startsWith(SHARE_HASH_PREFIX)) return "hidden";
   return localStorage.getItem("gradgraph_seen") ? "hidden" : "visible";
 }
 
