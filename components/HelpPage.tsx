@@ -1,838 +1,1022 @@
 "use client";
 
-import { useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
-// ── Tour steps ────────────────────────────────────────────────────────────────
+type Accent = "gold" | "blue" | "green" | "purple" | "orange" | "red" | "cyan";
 
-const TOUR_STEPS = [
+const ACCENTS: Record<Accent, string> = {
+  gold:   "#FFD54F",
+  blue:   "#60A5FA",
+  green:  "#4ADE80",
+  purple: "#A78BFA",
+  orange: "#FB923C",
+  red:    "#F87171",
+  cyan:   "#80DEEA",
+};
+
+const WORKFLOW = [
   {
-    title: "Selecting Your Program",
-    tab: "Header",
-    color: "#FFD54F",
-    visual: (
-      <div style={{ display:"flex", gap:6, alignItems:"center", flexWrap:"wrap" }}>
-        {["CS","SE","DS","Math"].map((m,i) => (
-          <div key={m} style={{
-            padding: "6px 16px", borderRadius:6, fontSize:11,
-            fontFamily:"'Syne',sans-serif", fontWeight:800,
-            background: i===0 ? "rgba(236,72,153,0.15)" : "transparent",
-            border: `1px solid ${i===0?"#EC4899":"#1E293B"}`,
-            color: i===0?"#EC4899":"#475569",
-          }}>{m}</div>
-        ))}
-        <div style={{
-          marginLeft:8, padding:"4px 12px", borderRadius:20,
-          background:"rgba(96,165,250,0.12)", border:"1px solid rgba(96,165,250,0.3)",
-          fontSize:10, color:"#60A5FA", fontFamily:"'DM Mono',monospace"
-        }}>Statistics ▾</div>
-      </div>
-    ),
-    desc: "Use the major pills in the header to switch between CS, SE, DS, and Math. For Math and DS, a second row of sub-major chips appears — pick your specialization (e.g. Statistics, Pure Math, CO). Switching resets graph state but preserves your completed/planned courses.",
+    n: "01",
+    title: "Choose a program",
+    body: "Use the header major selector for CS, SE, DS, or Math. Programs with specializations expose a sub-major row, such as Statistics, CO, Pure Math, or other Math/DS paths.",
+    accent: "gold" as Accent,
   },
   {
-    title: "Graph View — Course Nodes",
-    tab: "Graph",
-    color: "#60A5FA",
-    visual: (
-      <div style={{ display:"flex", gap:10, flexWrap:"wrap" }}>
-        {[
-          { label:"CS 245", sub:"Logic", color:"#4ADE80",  badge:"COMPLETED" },
-          { label:"CS 341", sub:"Algorithms", color:"#60A5FA", badge:"PLANNED" },
-          { label:"CS 486", sub:"AI", color:"#E2E8F0", badge:"AVAILABLE" },
-          { label:"CS 499", sub:"Topics", color:"#475569", badge:"LOCKED" },
-          { label:"CS 490", sub:"Conflict", color:"#F97316", badge:"CONFLICT" },
-        ].map(n => (
-          <div key={n.label} style={{
-            borderRadius:8, border:`1.5px solid ${n.color}55`,
-            background:"rgba(15,23,42,0.9)", padding:"10px 14px", minWidth:100,
-          }}>
-            <div style={{ fontSize:12, fontWeight:600, color:n.color, fontFamily:"'DM Mono',monospace" }}>{n.label}</div>
-            <div style={{ fontSize:9, color:"#475569", marginTop:2 }}>{n.sub}</div>
-            <div style={{ marginTop:6, fontSize:8, padding:"2px 6px", borderRadius:3,
-              background:`${n.color}20`, color:n.color, width:"fit-content",
-              border:`1px solid ${n.color}40` }}>{n.badge}</div>
-          </div>
-        ))}
-      </div>
-    ),
-    desc: "Every course is a node. Color indicates status — green = completed, blue = planned, white = available (prerequisites met), dark = locked (prerequisites missing), orange = antirequisite conflict. Click any node to highlight its full prerequisite chain and everything it unlocks.",
+    n: "02",
+    title: "Read the graph",
+    body: "The Graph tab shows the active curriculum. Pan, zoom, click a course, and use the detail panel to inspect prerequisites, antirequisites, restrictions, and unlocks.",
+    accent: "blue" as Accent,
   },
   {
-    title: "Graph View — Pan, Zoom & Next Up",
-    tab: "Graph",
-    color: "#60A5FA",
-    visual: (
-      <div style={{ display:"flex", gap:16, alignItems:"center" }}>
-        <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-          <div style={{ fontSize:10, color:"#475569", fontFamily:"'DM Mono',monospace" }}>Scroll to zoom</div>
-          <div style={{ fontSize:10, color:"#475569", fontFamily:"'DM Mono',monospace" }}>Click + drag to pan</div>
-          <div style={{ fontSize:10, color:"#475569", fontFamily:"'DM Mono',monospace" }}>Click node to highlight chain</div>
-          <div style={{ fontSize:10, color:"#475569", fontFamily:"'DM Mono',monospace" }}>Esc to deselect</div>
-        </div>
-        <div style={{ width:1, height:60, background:"rgba(255,255,255,0.07)" }} />
-        <div style={{ display:"flex", flexDirection:"column", gap:6 }}>
-          <div style={{ fontSize:10, color:"#94A3B8", fontFamily:"'DM Mono',monospace", marginBottom:4 }}>Next Up (pulsing glow)</div>
-          <div style={{
-            borderRadius:8, border:"1.5px solid #E2E8F055",
-            background:"rgba(15,23,42,0.9)", padding:"8px 12px",
-            boxShadow:"0 0 12px rgba(255,255,255,0.15), 0 0 24px rgba(255,255,255,0.05)",
-          }}>
-            <div style={{ fontSize:11, fontWeight:600, color:"#E2E8F0", fontFamily:"'DM Mono',monospace" }}>CS 245</div>
-            <div style={{ fontSize:9, color:"#475569", marginTop:2 }}>Logic & Computation</div>
-          </div>
-        </div>
-      </div>
-    ),
-    desc: "Scroll to zoom in/out, click-drag to pan. Courses that glow with a white pulse are \"Next Up\" — they're unlocked, still needed for your degree, and have few enough options that they're worth calling out. The algorithm checks each requirement group type: required courses always glow, electives only glow when ≤3 options remain and the group isn't already satisfied.",
+    n: "03",
+    title: "Mark progress",
+    body: "Mark courses complete, mark them planned, or assign them to a term. Completed and planned courses update graph statuses and progress audit counts immediately.",
+    accent: "green" as Accent,
   },
   {
-    title: "Marking Courses Complete or Planned",
-    tab: "Graph → Detail Panel",
-    color: "#4ADE80",
-    visual: (
-      <div style={{ display:"flex", gap:8 }}>
-        <button style={{
-          padding:"8px 18px", borderRadius:6, border:"1px solid #4ADE80",
-          background:"rgba(74,222,128,0.15)", color:"#4ADE80",
-          fontSize:11, fontFamily:"'DM Mono',monospace", cursor:"default"
-        }}>✓ Mark Complete</button>
-        <button style={{
-          padding:"8px 18px", borderRadius:6, border:"1px solid #60A5FA",
-          background:"rgba(96,165,250,0.15)", color:"#60A5FA",
-          fontSize:11, fontFamily:"'DM Mono',monospace", cursor:"default"
-        }}>+ Mark Planned</button>
-        <button style={{
-          padding:"8px 18px", borderRadius:6, border:"1px solid #A78BFA",
-          background:"rgba(167,139,250,0.15)", color:"#A78BFA",
-          fontSize:11, fontFamily:"'DM Mono',monospace", cursor:"default"
-        }}>📋 Add to Term</button>
-      </div>
-    ),
-    desc: "Click any course node to open the Course Detail Panel on the right. From there, mark it as Completed (green), Planned (blue), or add it to a specific term in your planner. Marking a course changes its graph color immediately and recalculates which downstream courses are now available. The panel also shows prerequisites (AND/OR trees), antirequisites, and everything the course unlocks.",
+    n: "04",
+    title: "Plan and audit",
+    body: "Use Planner for the 1A-4B term layout, then Progress for degree completion, requirement groups, best-fit programs, and course-to-requirement allocation.",
+    accent: "orange" as Accent,
   },
   {
-    title: "Filters — Subject, Level & Stream",
-    tab: "Graph",
-    color: "#A78BFA",
-    visual: (
-      <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
-        <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
-          {[["CS","#EC4899"],["MATH","#FCD34D"],["STAT","#80DEEA"],["CO","#4ADE80"]].map(([s,c])=>(
-            <div key={s} style={{
-              padding:"3px 9px", borderRadius:5, fontSize:10,
-              border:`1px solid ${c}`, background:`${c}20`, color:c,
-              fontFamily:"'DM Mono',monospace",
-            }}>{s}</div>
-          ))}
-        </div>
-        <div style={{ display:"flex", gap:4 }}>
-          {["1xx","2xx","3xx","4xx"].map((l,i)=>(
-            <div key={l} style={{
-              padding:"3px 9px", borderRadius:5, fontSize:10,
-              border:`1px solid ${i<2?"#60A5FA":"#2D3748"}`,
-              background:i<2?"rgba(96,165,250,0.12)":"rgba(15,23,42,0.75)",
-              color:i<2?"#60A5FA":"#475569",
-              fontFamily:"'DM Mono',monospace",
-            }}>{l}</div>
-          ))}
-          <div style={{ width:1, height:18, background:"rgba(255,255,255,0.1)", margin:"0 4px" }} />
-          <div style={{
-            padding:"3px 9px", borderRadius:5, fontSize:10,
-            border:"1px solid #A78BFA", background:"rgba(167,139,250,0.12)", color:"#A78BFA",
-            fontFamily:"'DM Mono',monospace",
-          }}>My Roadmap</div>
-        </div>
-        <div style={{ display:"flex", gap:3 }}>
-          {["All","Required","Simpler","Standard","Advanced"].map((t,i)=>(
-            <div key={t} style={{
-              padding:"3px 10px", borderRadius:5, fontSize:10,
-              border:`1px solid ${i===0?"#EC4899":"#2D3748"}`,
-              background:i===0?"rgba(236,72,153,0.13)":"rgba(15,23,42,0.8)",
-              color:i===0?"#EC4899":"#475569",
-              fontFamily:"'DM Mono',monospace",
-            }}>{t}</div>
-          ))}
-        </div>
-      </div>
-    ),
-    desc: "Top-left of the graph. Subject chips (CS, MATH, STAT…) toggle departments on/off — all active by default. Level chips (1xx–4xx) filter by course number band. My Roadmap collapses the graph to only your completed/planned courses and their prerequisites. For CS, the stream selector (Simpler/Standard/Advanced) filters to a specific requirement tier. All filters are ephemeral and reset when you switch majors.",
-  },
-  {
-    title: "⌘K Search",
-    tab: "Anywhere",
-    color: "#FFD54F",
-    visual: (
-      <div style={{
-        background:"rgba(15,23,42,0.95)", border:"1px solid #334155",
-        borderRadius:10, padding:"12px 16px", maxWidth:300,
-      }}>
-        <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10 }}>
-          <span style={{ color:"#475569", fontSize:12 }}>🔍</span>
-          <span style={{ color:"#94A3B8", fontSize:12, fontFamily:"'DM Mono',monospace" }}>Search courses...</span>
-          <div style={{
-            marginLeft:"auto", padding:"2px 6px", borderRadius:4,
-            background:"#1E293B", color:"#475569", fontSize:9, fontFamily:"'DM Mono',monospace"
-          }}>⌘K</div>
-        </div>
-        {[{code:"LS 221",name:"Career Development"},{code:"CS 246",name:"OOP"},{code:"CS 341",name:"Algorithms"}].map(r=>(
-          <div key={r.code} style={{
-            display:"flex", gap:10, padding:"6px 8px", borderRadius:5,
-            background: r.code==="LS 221"?"rgba(255,213,79,0.08)":"transparent",
-            alignItems:"center"
-          }}>
-            <span style={{ fontFamily:"'DM Mono',monospace", fontSize:11, color:"#FFD54F", minWidth:60 }}>{r.code}</span>
-            <span style={{ fontSize:10, color:"#475569" }}>{r.name}</span>
-          </div>
-        ))}
-        <div style={{ marginTop:8, fontSize:9, color:"#334155", borderTop:"1px solid #1E293B", paddingTop:6 }}>
-          3 more — scroll to load
-        </div>
-      </div>
-    ),
-    desc: "Press ⌘K (or Ctrl+K on Windows) from anywhere in the app to open the search palette. Course-code matches (by subject prefix) always appear before title matches — so typing \"ls\" shows LS courses first, not courses that happen to contain those letters mid-word. Title matching requires the query to start a word. If there are more than 8 results, scroll to the bottom to load the next batch. Selecting a result navigates to the Graph tab, clears active filters, and pans to that node. In Explore mode, selecting a result pins the course to the explore canvas instead.",
-  },
-  {
-    title: "✦ Explore Mode",
-    tab: "Explore",
-    color: "#A78BFA",
-    visual: (
-      <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-        <div style={{ display:"flex", gap:8, alignItems:"center" }}>
-          <div style={{
-            padding:"4px 14px", borderRadius:6, fontSize:10,
-            fontFamily:"'Syne',sans-serif", fontWeight:800,
-            background:"rgba(167,139,250,0.15)", border:"1px solid rgba(167,139,250,0.4)",
-            color:"#A78BFA",
-          }}>✦ Explore</div>
-          <span style={{ fontSize:9, color:"#475569" }}>any course in the catalog</span>
-        </div>
-        <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
-          {[
-            { label:"MUSIC 140", color:"#A78BFA" },
-            { label:"ECON 101",  color:"#A78BFA" },
-            { label:"PSYCH 207", color:"#A78BFA" },
-          ].map(n => (
-            <div key={n.label} style={{
-              borderRadius:8, border:`1.5px solid ${n.color}55`,
-              background:"rgba(15,23,42,0.9)", padding:"8px 12px",
-            }}>
-              <div style={{ fontSize:11, fontWeight:600, color:n.color, fontFamily:"'DM Mono',monospace" }}>{n.label}</div>
-              <div style={{ fontSize:8, color:"#475569", marginTop:2 }}>click × to remove</div>
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize:9, color:"#475569", fontFamily:"'DM Mono',monospace" }}>
-          Max 5 courses · full prereq chain shown
-        </div>
-      </div>
-    ),
-    desc: "The ✦ Explore tab lets you browse any course in the full UW catalog — not just courses in your active major. Press ⌘K to pin up to 5 courses to the explore canvas; each one renders with its complete prerequisite chain so you can see what it requires and what it unlocks. Click the × on a node to remove it. Trying to add a 6th course shows a popup reminder. Switching back to the Graph tab returns you to your degree curriculum without affecting your completed/planned data.",
-  },
-  {
-    title: "Term Planner",
-    tab: "Planner",
-    color: "#34D399",
-    visual: (
-      <div style={{ display:"flex", gap:6 }}>
-        {["1A","1B","2A"].map((term,ti) => (
-          <div key={term} style={{
-            borderRadius:8, border:"1px solid var(--gg-border)", background:"rgba(15,23,42,0.8)",
-            padding:"8px 10px", minWidth:80,
-          }}>
-            <div style={{ fontSize:9, color:"#475569", fontFamily:"'DM Mono',monospace", marginBottom:6, letterSpacing:"0.1em" }}>{term}</div>
-            {([["CS 135","#EC4899"],["MATH 135","#FCD34D"],ti===0?["CS 136","#EC4899"]:["STAT 230","#80DEEA"]] as [string,string][]).map(([c,col])=>(
-              <div key={c} style={{
-                marginBottom:4, padding:"4px 6px", borderRadius:4,
-                border:`1px solid ${col}30`, background:`${col}10`,
-                fontSize:9, color:col, fontFamily:"'DM Mono',monospace"
-              }}>{c}</div>
-            ))}
-          </div>
-        ))}
-        <div style={{ display:"flex", flexDirection:"column", justifyContent:"center", gap:6 }}>
-          <div style={{
-            padding:"5px 10px", borderRadius:5, border:"1px solid #334155",
-            background:"rgba(255,213,79,0.08)", color:"#FFD54F",
-            fontSize:9, fontFamily:"'DM Mono',monospace", cursor:"default"
-          }}>✦ Load Sample Plan</div>
-          <div style={{
-            padding:"5px 10px", borderRadius:5, border:"1px solid #334155",
-            background:"transparent", color:"#475569",
-            fontSize:9, fontFamily:"'DM Mono',monospace", cursor:"default"
-          }}>↺ Clear</div>
-        </div>
-      </div>
-    ),
-    desc: "Drag and drop courses across 8 terms (1A through 4B). Courses you've marked as planned or completed anywhere in the app also appear here. \"Load Sample Plan\" fills the planner with the recommended course sequence for your major. \"Clear\" empties all terms. Courses added via the Term picker in the AI chat or the Detail Panel also land here.",
-  },
-  {
-    title: "Progress Audit",
-    tab: "Progress",
-    color: "#FB923C",
-    visual: (
-      <div style={{ display:"flex", flexDirection:"column", gap:6, maxWidth:340 }}>
-        {[
-          { label:"Core CS Courses", done:8, total:8, color:"#4ADE80", status:"✓ FULFILLED" },
-          { label:"CS Electives (5 of 5)", done:3, total:5, color:"#60A5FA", status:"⟳ IN PROGRESS" },
-          { label:"Communications",  done:0, total:2, color:"#F87171", status:"✗ INCOMPLETE" },
-        ].map(g => (
-          <div key={g.label} style={{
-            borderRadius:7, border:`1px solid ${g.color}25`,
-            background:"rgba(15,23,42,0.8)", padding:"8px 12px",
-          }}>
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
-              <span style={{ fontSize:10, color:"#94A3B8", fontFamily:"'DM Mono',monospace" }}>{g.label}</span>
-              <span style={{ fontSize:9, color:g.color, fontFamily:"'DM Mono',monospace" }}>{g.status}</span>
-            </div>
-            <div style={{ height:4, borderRadius:2, background:"#1E293B", overflow:"hidden" }}>
-              <div style={{ height:"100%", width:`${(g.done/g.total)*100}%`, background:g.color, borderRadius:2 }} />
-            </div>
-          </div>
-        ))}
-      </div>
-    ),
-    desc: "Shows your completion status for every requirement group in the active degree. A ring chart at the top gives an at-a-glance view of overall progress — the inner arc is completed courses, the outer arc adds planned courses on top, and the center shows your percentage and a status label. Below it, groups are marked ✓ Fulfilled (green), ⟳ In Progress with planned courses (blue), or ✗ Incomplete (red). Uses Hopcroft-Karp maximum bipartite matching under the hood to optimally assign courses to requirement slots — ensuring one course counting for a group doesn't unfairly block another.",
-  },
-  {
-    title: "Degree Explorer",
-    tab: "Progress (top)",
-    color: "#FB923C",
-    visual: (
-      <div style={{ display:"flex", flexDirection:"column", gap:8, maxWidth:360 }}>
-        <div style={{ fontSize:9, color:"#475569", fontFamily:"'DM Mono',monospace", letterSpacing:"0.1em" }}>BEST MATCH</div>
-        <div style={{ display:"flex", gap:6 }}>
-          {[{n:"CS — Statistics",p:72,c:"#EC4899"},{n:"CS — Regular",p:68,c:"#EC4899"},{n:"SE",p:51,c:"#A855F7"}].map(d=>(
-            <div key={d.n} style={{
-              flex:1, borderRadius:7, border:`1px solid ${d.c}30`,
-              background:`${d.c}0a`, padding:"8px 10px",
-            }}>
-              <div style={{ fontSize:9, color:d.c, fontFamily:"'DM Mono',monospace", marginBottom:4 }}>{d.n}</div>
-              <div style={{ height:3, borderRadius:2, background:"#1E293B", overflow:"hidden", marginBottom:3 }}>
-                <div style={{ height:"100%", width:`${d.p}%`, background:d.c }} />
-              </div>
-              <div style={{ fontSize:10, color:d.c, fontFamily:"'Syne',sans-serif", fontWeight:700 }}>{d.p}%</div>
-            </div>
-          ))}
-        </div>
-        <div style={{ display:"flex", gap:6, marginTop:2 }}>
-          {[{l:"CS",c:"#EC4899",p:72},{l:"SE",c:"#A855F7",p:51},{l:"DS",c:"#80DEEA",p:44},{l:"Math",c:"#FCD34D",p:31}].map(m=>(
-            <div key={m.l} style={{
-              flex:1, borderRadius:6, border:`1px solid ${m.c}30`,
-              background:"rgba(15,23,42,0.8)", padding:"6px 8px",
-            }}>
-              <div style={{ fontSize:10, color:m.c, fontFamily:"'Syne',sans-serif", fontWeight:700, marginBottom:4 }}>{m.l}</div>
-              <div style={{ height:3, background:"#1E293B", borderRadius:2, overflow:"hidden" }}>
-                <div style={{ height:"100%", width:`${m.p}%`, background:m.c }} />
-              </div>
-              <div style={{ fontSize:9, color:"#475569", fontFamily:"'DM Mono',monospace", marginTop:3 }}>{m.p}%</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
-    desc: "At the top of the Progress tab. Shows a \"Best Match\" section with the top 3 degrees you're closest to completing, followed by expandable chips for each major family. Click CS, SE, DS, or Math to expand a sorted list of all sub-majors by completion percentage. Great for discovering if your current courses align well with a degree you hadn't considered.",
-  },
-  {
-    title: "AI Chat — Ask About Your Degree",
-    tab: "Ask AI",
-    color: "#A78BFA",
-    visual: (
-      <div style={{ display:"flex", flexDirection:"column", gap:8, maxWidth:360 }}>
-        <div style={{
-          background:"rgba(167,139,250,0.08)", border:"1px solid rgba(167,139,250,0.2)",
-          borderRadius:8, padding:"10px 12px",
-        }}>
-          <div style={{ fontSize:10, color:"#A78BFA", fontFamily:"'DM Mono',monospace", marginBottom:4 }}>✦ AI</div>
-          <div style={{ fontSize:11, color:"#CBD5E1", lineHeight:1.6 }}>
-            You need <strong style={{color:"#A78BFA"}}>2 more CS electives</strong> at the 400-level. STAT 430 qualifies — it matches the rule <em style={{color:"#60A5FA"}}>any STAT 400+</em> in your electives group.
-          </div>
-        </div>
-        <div style={{ display:"flex", gap:5, flexWrap:"wrap" }}>
-          {["What's left for CS?","Can I swap STAT 430 for 440?","Mark CS 341 complete"].map(s=>(
-            <div key={s} style={{
-              padding:"4px 10px", borderRadius:20, fontSize:9,
-              border:"1px solid rgba(167,139,250,0.25)", color:"#A78BFA",
-              fontFamily:"'DM Mono',monospace", background:"rgba(167,139,250,0.06)",
-            }}>{s}</div>
-          ))}
-        </div>
-      </div>
-    ),
-    desc: "Switch to the Ask AI tab to chat with an AI assistant that has full context of your degree requirements and your current completion state. It knows which groups are fulfilled, which courses you've planned, and can describe dynamic rules (like \"any STAT 4xx\"). It can also suggest marking courses as complete or planned — you'll see a confirmation dialog before any change is made. Suggestion pills above the input offer quick starting questions.",
+    n: "05",
+    title: "Explore or ask",
+    body: "Use Explore for courses outside the active major, or Ask AI for degree-specific questions and suggested progress updates that require confirmation.",
+    accent: "purple" as Accent,
   },
 ];
 
-// ── Section data ──────────────────────────────────────────────────────────────
+const FEATURE_SECTIONS = [
+  {
+    id: "graph",
+    eyebrow: "Graph",
+    title: "Curriculum Map",
+    accent: "blue" as Accent,
+    bullets: [
+      "Nodes are colored by status: completed, planned, available, locked, or conflict.",
+      "Clicking a node highlights its prerequisite chain and downstream unlock path.",
+      "The right detail panel shows course title, restrictions, prereq logic, unlocks, antireqs, and planning actions.",
+      "Next Up courses glow when they are available, still useful for the active degree, and narrow enough to call out.",
+    ],
+    preview: <GraphPreview />,
+  },
+  {
+    id: "filters",
+    eyebrow: "Graph + Explore",
+    title: "Filters",
+    accent: "purple" as Accent,
+    bullets: [
+      "Graph mode has subject chips, level chips, stream filters, and My Roadmap.",
+      "Explore mode shows level chips for the currently pinned course network.",
+      "Level filters keep pinned courses visible and prune disconnected downstream nodes when a connector course is hidden.",
+      "My Roadmap narrows the graph to completed/planned courses and their prerequisites.",
+    ],
+    preview: <FilterPreview />,
+  },
+  {
+    id: "explore",
+    eyebrow: "Explore",
+    title: "Catalog Exploration",
+    accent: "purple" as Accent,
+    bullets: [
+      "Explore pins up to 5 courses from the full UW catalog, independent of your active major.",
+      "Pinned courses render with complete prerequisite chains and connected downstream paths.",
+      "Use Cmd/Ctrl+K while in Explore to add courses; remove pinned courses from the chip row.",
+      "Explore never changes your completed courses, planned courses, term plan, or active curriculum.",
+    ],
+    preview: <ExplorePreview />,
+  },
+  {
+    id: "planner",
+    eyebrow: "Planner",
+    title: "Term Planning",
+    accent: "green" as Accent,
+    bullets: [
+      "Drag courses across 1A through 4B and remove them by dragging back to the unplanned area.",
+      "Courses planned from the detail panel appear in the planner and count toward progress.",
+      "Load Sample Plan fills the recommended sequence for the active program.",
+      "Clear empties the current term plan while preserving completed course history.",
+    ],
+    preview: <PlannerPreview />,
+  },
+  {
+    id: "progress",
+    eyebrow: "Progress",
+    title: "Degree Audit",
+    accent: "orange" as Accent,
+    bullets: [
+      "The progress ring separates completed and planned requirement credit.",
+      "Requirement cards show fulfilled, in-progress, and incomplete groups.",
+      "Degree Explorer ranks sub-majors and programs by fit against your current completed/planned set.",
+      "The audit engine assigns courses to requirement slots so one course does not accidentally block a better match.",
+    ],
+    preview: <ProgressPreview />,
+  },
+  {
+    id: "ai",
+    eyebrow: "Ask AI",
+    title: "Guided Planning",
+    accent: "cyan" as Accent,
+    bullets: [
+      "Ask questions about remaining requirements, swaps, prerequisites, and planning choices.",
+      "The chat receives your active degree, completed courses, planned courses, and audit context.",
+      "When the assistant suggests marking courses complete or planned, the app asks for confirmation first.",
+      "Use quick suggestion pills for common starting points.",
+    ],
+    preview: <AiPreview />,
+  },
+];
+
+const STATUS = [
+  { label: "Completed", color: "#4ADE80", body: "You marked the course done." },
+  { label: "Planned", color: "#60A5FA", body: "Marked planned or assigned to a term." },
+  { label: "Available", color: "#E2E8F0", body: "Prerequisites are currently satisfied." },
+  { label: "Locked", color: "#475569", body: "Prerequisites are not satisfied yet." },
+  { label: "Conflict", color: "#F97316", body: "Antirequisite clash or incomplete data." },
+  { label: "Next Up", color: "#FFFFFF", body: "Available and likely relevant next." },
+];
 
 const SHORTCUTS = [
-  { key: "⌘K",      desc: "Open course search palette" },
-  { key: "Esc",     desc: "Close search / deselect node" },
-  { key: "Click",   desc: "Select node & highlight chain" },
-  { key: "Scroll",  desc: "Zoom in / out on graph" },
-  { key: "Drag",    desc: "Pan the graph canvas" },
+  { key: "Cmd/Ctrl K", body: "Open course search from anywhere." },
+  { key: "Esc", body: "Close search and clear graph selection." },
+  { key: "Click node", body: "Select a course and open the detail panel." },
+  { key: "Scroll", body: "Zoom the graph canvas." },
+  { key: "Drag canvas", body: "Pan around the graph." },
 ];
 
-const LEGEND = [
-  { color: "#4ADE80", label: "Completed",          desc: "You've taken this course" },
-  { color: "#60A5FA", label: "Planned",             desc: "Marked planned or in a term" },
-  { color: "#E2E8F0", label: "Available",           desc: "Prerequisites met, ready to take" },
-  { color: "#475569", label: "Locked",              desc: "Prerequisites not yet satisfied" },
-  { color: "#F97316", label: "Conflict / Stub",     desc: "Antireq clash or incomplete data" },
-  { color: "#FFFFFF", label: "Next Up (glow)",      desc: "Unlocked & needed for your degree" },
+const FAQ = [
+  {
+    q: "What is the normal flow?",
+    a: "Pick a program, inspect the Graph, mark completed courses, plan future terms, then use Progress to validate requirement coverage. Explore and Ask AI are side tools for discovery and decision support.",
+  },
+  {
+    q: "Does Explore affect my degree plan?",
+    a: "No. Explore is separate from the active curriculum and does not mutate completed courses, planned courses, or the term plan.",
+  },
+  {
+    q: "Why did a downstream Explore course disappear after filtering levels?",
+    a: "Explore keeps only connected visible paths. If a level filter hides the intermediate connector, the downstream node is pruned so the graph does not show orphan courses.",
+  },
+  {
+    q: "Can one course count for multiple requirements?",
+    a: "Some requirement groups allow double counting. The Progress audit handles course assignment centrally so the same course is not consumed incorrectly by the first matching group.",
+  },
+  {
+    q: "Where is my data stored?",
+    a: "Completed courses, planned courses, term plan, active program, filters, and theme state are persisted locally in your browser.",
+  },
+  {
+    q: "Is this a replacement for academic advising?",
+    a: "No. GradGraph is a planning aid. Always confirm official requirements, substitutions, and edge cases with the UW calendar and your academic advisor.",
+  },
 ];
-
-// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function HelpPage() {
-  const [tourStep, setTourStep]     = useState<number | null>(null);
-  const [openSection, setOpen]      = useState<string | null>("tour");
-
-  const inTour   = tourStep !== null;
-  const step     = tourStep !== null ? TOUR_STEPS[tourStep] : null;
-  const isFirst  = tourStep === 0;
-  const isLast   = tourStep === TOUR_STEPS.length - 1;
-
-  function startTour() { setTourStep(0); setOpen("tour"); }
-  function exitTour()  { setTourStep(null); }
-  function nextStep()  { if (!isLast)  setTourStep((s) => (s ?? 0) + 1); else exitTour(); }
-  function prevStep()  { if (!isFirst) setTourStep((s) => (s ?? 0) - 1); }
-
   return (
-    <div style={{
-      height:     "100%",
-      overflowY:  "auto",
-      background: "var(--gg-base)",
-      fontFamily: "'DM Mono', monospace",
-      color:      "var(--gg-text-2)",
-      transition: "background 0.2s, color 0.2s",
-    }}>
+    <div style={styles.page}>
       <style>{`
-        .help-section-header:hover { background: rgba(255,255,255,0.03) !important; }
-        .help-card:hover { border-color: rgba(255,255,255,0.1) !important; }
-        a.social-link:hover { border-color: rgba(255,255,255,0.2) !important; background: rgba(255,255,255,0.05) !important; }
+        .help-link:hover { color: #F8FAFC !important; border-color: rgba(255,255,255,0.18) !important; background: rgba(255,255,255,0.04) !important; }
+        .help-card:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.16) !important; }
+        .help-button:hover { border-color: rgba(96,165,250,0.7) !important; background: rgba(96,165,250,0.14) !important; }
       `}</style>
 
-      {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <div style={{
-        background:    "linear-gradient(135deg, rgba(236,72,153,0.06) 0%, rgba(96,165,250,0.06) 100%)",
-        borderBottom:  "1px solid var(--gg-border)",
-        padding:       "36px 48px 32px",
-        display:       "flex",
-        alignItems:    "flex-start",
-        justifyContent:"space-between",
-        gap:           24,
-      }}>
-        <div>
-          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
-            <span style={{ fontFamily:"'Syne',sans-serif", fontSize:26, fontWeight:900, color:"#FFD54F", letterSpacing:"-0.5px" }}>
-              UW<span style={{ color:"#60A5FA" }}>GRAD</span>GRAPH
-            </span>
-            <span style={{
-              padding:"3px 10px", borderRadius:20, fontSize:9,
-              background:"rgba(255,213,79,0.1)", border:"1px solid rgba(255,213,79,0.25)",
-              color:"#FFD54F", letterSpacing:"0.1em",
-            }}>HELP & GUIDE</span>
+      <section style={styles.hero}>
+        <div style={{ minWidth: 0 }}>
+          <div style={styles.kicker}>GradGraph Help</div>
+          <h1 style={styles.h1}>Plan from graph to audit without losing context.</h1>
+          <p style={styles.heroBody}>
+            GradGraph is organized around one loop: choose a program, understand the prerequisite graph,
+            mark progress, place courses into terms, and verify the degree audit. Explore and Ask AI help
+            when you need to look beyond the current curriculum.
+          </p>
+          <div style={styles.heroActions}>
+            <AnchorButton href="#workflow">Start Flow</AnchorButton>
+            <AnchorButton href="#features">Feature Map</AnchorButton>
+            <AnchorButton href="#faq">FAQ</AnchorButton>
           </div>
-          <div style={{ fontSize:12, color:"#475569", lineHeight:1.7, maxWidth:520 }}>
-            Everything you need to plan your University of Waterloo degree.<br />
-            Use the interactive tour below, or jump to any section.
-          </div>
-          <button
-            onClick={startTour}
-            style={{
-              marginTop:    16,
-              padding:      "10px 24px",
-              borderRadius: 7,
-              border:       "1px solid rgba(96,165,250,0.4)",
-              background:   "rgba(96,165,250,0.1)",
-              color:        "#60A5FA",
-              fontSize:     11,
-              fontFamily:   "inherit",
-              cursor:       "pointer",
-              letterSpacing:"0.05em",
-              transition:   "all 0.15s",
-            }}
-            onMouseEnter={e => (e.currentTarget.style.background = "rgba(96,165,250,0.18)")}
-            onMouseLeave={e => (e.currentTarget.style.background = "rgba(96,165,250,0.1)")}
-          >
-            ▶ Start Interactive Tour ({TOUR_STEPS.length} steps)
-          </button>
         </div>
 
-        {/* Socials */}
-        <div style={{ display:"flex", flexDirection:"column", gap:8, flexShrink:0 }}>
-          <div style={{ fontSize:9, color:"#334155", letterSpacing:"0.12em", marginBottom:2 }}>BUILT BY</div>
-          <a
-            className="social-link"
-            href="https://www.linkedin.com/in/maximiliantmiller/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display:"flex", alignItems:"center", gap:10,
-              padding:"10px 16px", borderRadius:8,
-              border:"1px solid var(--gg-border)", background:"transparent",
-              color:"#CBD5E1", textDecoration:"none",
-              fontSize:11, transition:"all 0.15s",
-            }}
-          >
-            <LinkedInIcon />
-            <div>
-              <div style={{ fontWeight:500, color:"#94A3B8" }}>LinkedIn</div>
-              <div style={{ fontSize:9, color:"#334155", marginTop:1 }}>Maximilian Miller</div>
-            </div>
-          </a>
-          <a
-            className="social-link"
-            href="https://github.com/maxtmiller"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display:"flex", alignItems:"center", gap:10,
-              padding:"10px 16px", borderRadius:8,
-              border:"1px solid var(--gg-border)", background:"transparent",
-              color:"#CBD5E1", textDecoration:"none",
-              fontSize:11, transition:"all 0.15s",
-            }}
-          >
-            <GitHubIcon />
-            <div>
-              <div style={{ fontWeight:500, color:"#94A3B8" }}>GitHub</div>
-              <div style={{ fontSize:9, color:"#334155", marginTop:1 }}>maxtmiller</div>
-            </div>
-          </a>
+        <div style={styles.heroPanel}>
+          <div style={styles.panelLabel}>Current App Flow</div>
+          <FlowRail />
         </div>
-      </div>
+      </section>
 
-      <div style={{ padding:"0 48px 60px", maxWidth:1100 }}>
-
-        {/* ── Interactive Tour ──────────────────────────────────────────── */}
-        <Section id="tour" label="Interactive Tour" open={openSection==="tour"} onToggle={setOpen}>
-          {inTour && step ? (
-            <div style={{
-              borderRadius:   12,
-              border:         `1px solid ${step.color}30`,
-              background:     `${step.color}08`,
-              padding:        "28px 32px",
-              position:       "relative",
-            }}>
-              {/* Progress bar */}
-              <div style={{ display:"flex", gap:4, marginBottom:20 }}>
-                {TOUR_STEPS.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setTourStep(i)}
-                    style={{
-                      flex:1, height:3, borderRadius:2, border:"none", cursor:"pointer",
-                      background: i <= (tourStep ?? 0) ? step.color : "#1E293B",
-                      transition:"all 0.2s", padding:0,
-                    }}
-                  />
-                ))}
-              </div>
-
-              <div style={{ display:"flex", gap:28, alignItems:"flex-start", flexWrap:"wrap" }}>
-                <div style={{ flex:"1 1 320px" }}>
-                  {/* Step label */}
-                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:12 }}>
-                    <div style={{
-                      padding:"2px 10px", borderRadius:20, fontSize:9,
-                      background:`${step.color}18`, border:`1px solid ${step.color}40`,
-                      color:step.color, letterSpacing:"0.1em",
-                    }}>{step.tab.toUpperCase()}</div>
-                    <span style={{ fontSize:9, color:"#334155" }}>
-                      Step {(tourStep ?? 0)+1} of {TOUR_STEPS.length}
-                    </span>
-                  </div>
-
-                  <div style={{
-                    fontFamily:"'Syne',sans-serif", fontSize:18, fontWeight:700,
-                    color:"#F1F5F9", marginBottom:12, lineHeight:1.3,
-                  }}>
-                    {step.title}
-                  </div>
-
-                  <div style={{ fontSize:12, color:"#94A3B8", lineHeight:1.8 }}>
-                    {step.desc}
-                  </div>
-
-                  {/* Nav buttons */}
-                  <div style={{ display:"flex", gap:8, marginTop:20 }}>
-                    <button
-                      onClick={prevStep}
-                      disabled={isFirst}
-                      style={{
-                        padding:"8px 18px", borderRadius:6, fontSize:10,
-                        border:"1px solid var(--gg-border)", background:"transparent",
-                        color:isFirst?"#1E293B":"#64748B", cursor:isFirst?"default":"pointer",
-                        fontFamily:"inherit",
-                      }}
-                    >← Previous</button>
-                    <button
-                      onClick={nextStep}
-                      style={{
-                        padding:"8px 18px", borderRadius:6, fontSize:10,
-                        border:`1px solid ${step.color}60`,
-                        background:`${step.color}15`, color:step.color,
-                        cursor:"pointer", fontFamily:"inherit", fontWeight:500,
-                      }}
-                    >{isLast ? "Finish Tour ✓" : "Next →"}</button>
-                    <button
-                      onClick={exitTour}
-                      style={{
-                        padding:"8px 14px", borderRadius:6, fontSize:10,
-                        border:"1px solid var(--gg-border)", background:"transparent",
-                        color:"#334155", cursor:"pointer", fontFamily:"inherit",
-                        marginLeft:"auto",
-                      }}
-                    >✕ Exit</button>
-                  </div>
-                </div>
-
-                {/* Visual mockup */}
-                <div style={{
-                  flex:"0 0 auto",
-                  background:"rgba(10,15,30,0.8)",
-                  border:"1px solid var(--gg-border)",
-                  borderRadius:10,
-                  padding:"20px 22px",
-                  minWidth:300,
-                }}>
-                  <div style={{ fontSize:9, color:"#334155", letterSpacing:"0.1em", marginBottom:12 }}>PREVIEW</div>
-                  {step.visual}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div style={{
-              borderRadius:10, border:"1px solid var(--gg-border)",
-              background:"var(--gg-surface)", padding:"20px 24px",
-              display:"flex", alignItems:"center", gap:16,
-            }}>
-              <div style={{ fontSize:24 }}>🗺️</div>
-              <div>
-                <div style={{ fontSize:12, color:"#94A3B8", marginBottom:4 }}>
-                  {TOUR_STEPS.length}-step visual walkthrough of every feature
-                </div>
-                <button
-                  onClick={startTour}
-                  style={{
-                    padding:"6px 16px", borderRadius:6, fontSize:10,
-                    border:"1px solid rgba(96,165,250,0.35)",
-                    background:"rgba(96,165,250,0.08)", color:"#60A5FA",
-                    cursor:"pointer", fontFamily:"inherit",
-                  }}
-                >Start Tour →</button>
-              </div>
-            </div>
-          )}
-        </Section>
-
-        {/* ── Quick start ───────────────────────────────────────────────── */}
-        <Section id="quickstart" label="Quick Start — 5 Steps" open={openSection==="quickstart"} onToggle={setOpen}>
-          <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
-            {[
-              { n:1, color:"#FFD54F", title:"Pick your major",     desc:"Use the pills in the header to choose CS, SE, DS, or Math. For Math/DS, also pick a specialization in the sub-chip row." },
-              { n:2, color:"#4ADE80", title:"Mark what you've done", desc:"Click any course node on the Graph tab to open its detail panel, then hit \"Mark Complete\". Watch how downstream courses unlock." },
-              { n:3, color:"#60A5FA", title:"Plan your remaining courses", desc:"Mark courses you intend to take as Planned, or drag them into a term in the Planner tab. Planned courses count toward requirement fulfillment." },
-              { n:4, color:"#FB923C", title:"Check your audit",    desc:"Go to the Progress tab to see how many requirement groups are fulfilled. The Degree Explorer at the top shows all programs ranked by fit." },
-              { n:5, color:"#A78BFA", title:"Ask the AI",          desc:"Switch to Ask AI and ask anything — \"What's left for CS?\", \"Can I swap STAT 430 for 440?\", or \"Mark CS 341 as planned\"." },
-            ].map((s, i, arr) => (
-              <div key={s.n} style={{ display:"flex", gap:16, alignItems:"flex-start", padding:"16px 0",
-                borderBottom: i<arr.length-1?"1px solid #0F172A":"none" }}>
-                <div style={{
-                  flexShrink:0, width:28, height:28, borderRadius:"50%",
-                  background:`${s.color}18`, border:`1px solid ${s.color}50`,
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  fontSize:11, fontWeight:700, color:s.color, fontFamily:"'Syne',sans-serif",
-                }}>{s.n}</div>
-                <div>
-                  <div style={{ fontSize:12, fontWeight:600, color:"#E2E8F0", marginBottom:4 }}>{s.title}</div>
-                  <div style={{ fontSize:11, color:"#475569", lineHeight:1.7 }}>{s.desc}</div>
-                </div>
-              </div>
+      <main style={styles.content}>
+        <section id="workflow" style={styles.section}>
+          <SectionHeader
+            eyebrow="Workflow"
+            title="The recommended path"
+            body="Use the tabs left to right for normal planning. Jump to Explore or Ask AI whenever a question comes up."
+          />
+          <div style={styles.workflowGrid}>
+            {WORKFLOW.map((item) => (
+              <article key={item.n} className="help-card" style={cardStyle(item.accent)}>
+                <div style={{ ...styles.stepNumber, color: ACCENTS[item.accent] }}>{item.n}</div>
+                <h3 style={styles.cardTitle}>{item.title}</h3>
+                <p style={styles.cardBody}>{item.body}</p>
+              </article>
             ))}
           </div>
-        </Section>
+        </section>
 
-        {/* ── Node color legend ─────────────────────────────────────────── */}
-        <Section id="legend" label="Node Color Legend" open={openSection==="legend"} onToggle={setOpen}>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(220px,1fr))", gap:8 }}>
-            {LEGEND.map(l => (
-              <div key={l.label} className="help-card" style={{
-                display:"flex", alignItems:"center", gap:12,
-                padding:"12px 14px", borderRadius:8,
-                border:"1px solid #0F172A", background:"var(--gg-surface-a)",
-                transition:"border-color 0.15s",
-              }}>
-                <div style={{
-                  width:12, height:12, borderRadius:"50%", flexShrink:0,
-                  background:l.color,
-                  boxShadow: l.label.includes("glow") ? `0 0 8px ${l.color}` : "none",
-                }} />
-                <div>
-                  <div style={{ fontSize:11, color:"#CBD5E1", fontWeight:500 }}>{l.label}</div>
-                  <div style={{ fontSize:10, color:"#334155", marginTop:2 }}>{l.desc}</div>
+        <section id="features" style={styles.section}>
+          <SectionHeader
+            eyebrow="Features"
+            title="What each tab does now"
+            body="These sections reflect the current app flow, including Explore level filters and connected downstream paths."
+          />
+          <div style={styles.featureGrid}>
+            {FEATURE_SECTIONS.map((feature) => (
+              <article key={feature.id} id={feature.id} className="help-card" style={featureStyle(feature.accent)}>
+                <div style={styles.featureText}>
+                  <div style={{ ...styles.featureEyebrow, color: ACCENTS[feature.accent] }}>{feature.eyebrow}</div>
+                  <h3 style={styles.featureTitle}>{feature.title}</h3>
+                  <ul style={styles.bullets}>
+                    {feature.bullets.map((bullet) => (
+                      <li key={bullet} style={styles.bullet}>{bullet}</li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
+                <div style={styles.previewShell}>{feature.preview}</div>
+              </article>
             ))}
           </div>
-        </Section>
+        </section>
 
-        {/* ── Keyboard shortcuts ────────────────────────────────────────── */}
-        <Section id="shortcuts" label="Keyboard Shortcuts" open={openSection==="shortcuts"} onToggle={setOpen}>
-          <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
-            {SHORTCUTS.map((s, i, arr) => (
-              <div key={s.key} style={{
-                display:"flex", alignItems:"center", gap:16, padding:"10px 0",
-                borderBottom: i<arr.length-1?"1px solid #0F172A":"none",
-              }}>
-                <kbd style={{
-                  padding:"4px 10px", borderRadius:5,
-                  background:"#0F172A", border:"1px solid var(--gg-border)",
-                  color:"#FFD54F", fontSize:10, minWidth:70, textAlign:"center",
-                  fontFamily:"'DM Mono',monospace", flexShrink:0,
-                }}>{s.key}</kbd>
-                <span style={{ fontSize:11, color:"#475569" }}>{s.desc}</span>
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        {/* ── FAQ ───────────────────────────────────────────────────────── */}
-        <Section id="faq" label="FAQ" open={openSection==="faq"} onToggle={setOpen}>
-          <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
-            {[
-              { q:"Does this use official UW data?",
-                a:"Course data and degree requirements are manually sourced from the UW undergraduate calendar. They may not reflect the very latest calendar updates — always cross-check with your academic advisor." },
-              { q:"Will my progress be saved if I close the tab?",
-                a:"Yes. Completed courses, planned courses, term plan, and active major are all saved to localStorage and persist across sessions." },
-              { q:"Can a course count toward multiple degree requirements?",
-                a:"Some courses are flagged canDoubleCount in the data, which means they can satisfy more than one requirement group simultaneously. The audit engine handles this with a two-pass algorithm." },
-              { q:"Why does a course show as locked even though I have the prereqs?",
-                a:"Prerequisites use AND/OR trees. A locked course might require you to have completed one branch of an OR requirement that you haven't satisfied yet. Click the node to see the full prereq breakdown in the detail panel." },
-              { q:"Can I use this for a minor or exchange courses?",
-                a:"The app currently focuses on major requirements only. Minor and elective counting is partially supported via the elective groups in each degree definition." },
-              { q:"What is Explore mode and when should I use it?",
-                a:"The ✦ Explore tab lets you pin any UW course — including ones outside your major — and see its full prerequisite chain. Use it to check if an elective you're curious about has prerequisites you haven't taken, or to visualize how two unrelated courses connect. It's separate from your degree graph and doesn't affect your completed/planned data." },
-            ].map((item, i, arr) => (
-              <div key={i} style={{ padding:"14px 0", borderBottom:i<arr.length-1?"1px solid #0F172A":"none" }}>
-                <div style={{ fontSize:11, color:"#E2E8F0", fontWeight:500, marginBottom:6 }}>Q: {item.q}</div>
-                <div style={{ fontSize:11, color:"#475569", lineHeight:1.7 }}>{item.a}</div>
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        {/* ── About / Credits ───────────────────────────────────────────── */}
-        <Section id="about" label="About & Credits" open={openSection==="about"} onToggle={setOpen}>
-          <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
-            <div style={{ fontSize:11, color:"#475569", lineHeight:1.8 }}>
-              UWGradGraph is an open-source degree planning tool for University of Waterloo students.
-              Built with <span style={{color:"#60A5FA"}}>Next.js 15</span>, <span style={{color:"#60A5FA"}}>React 19</span>,
-              and <span style={{color:"#60A5FA"}}>Zustand</span>. Graph layout uses a{" "}
-              <span style={{color:"#A78BFA"}}>BFS topological layering</span> algorithm.
-              Degree audit uses <span style={{color:"#A78BFA"}}>Hopcroft-Karp maximum bipartite matching</span> (O(E√V))
-              to optimally assign courses to requirement slots. AI chat powered by <span style={{color:"#60A5FA"}}>OpenAI</span>.
-            </div>
-
-            <div style={{ display:"flex", gap:10, flexWrap:"wrap" }}>
-              <a
-                href="https://www.linkedin.com/in/maximiliantmiller/"
-                target="_blank" rel="noopener noreferrer"
-                className="social-link"
-                style={{
-                  display:"flex", alignItems:"center", gap:10,
-                  padding:"12px 20px", borderRadius:8,
-                  border:"1px solid var(--gg-border)", background:"transparent",
-                  color:"#CBD5E1", textDecoration:"none",
-                  fontSize:11, transition:"all 0.15s",
-                }}
-              >
-                <LinkedInIcon />
-                <div>
-                  <div style={{ color:"#0A66C2", fontWeight:500 }}>LinkedIn</div>
-                  <div style={{ fontSize:9, color:"#334155" }}>linkedin.com/in/maximiliantmiller</div>
+        <section style={styles.twoColumn}>
+          <div style={styles.section}>
+            <SectionHeader eyebrow="Legend" title="Node statuses" body="Colors describe what you can do with a course right now." compact />
+            <div style={styles.statusGrid}>
+              {STATUS.map((item) => (
+                <div key={item.label} style={styles.statusRow}>
+                  <span style={{ ...styles.statusDot, background: item.color, boxShadow: item.label === "Next Up" ? "0 0 10px #FFFFFF" : "none" }} />
+                  <div>
+                    <div style={styles.statusLabel}>{item.label}</div>
+                    <div style={styles.statusBody}>{item.body}</div>
+                  </div>
                 </div>
-              </a>
-              <a
-                href="https://github.com/maxtmiller"
-                target="_blank" rel="noopener noreferrer"
-                className="social-link"
-                style={{
-                  display:"flex", alignItems:"center", gap:10,
-                  padding:"12px 20px", borderRadius:8,
-                  border:"1px solid var(--gg-border)", background:"transparent",
-                  color:"#CBD5E1", textDecoration:"none",
-                  fontSize:11, transition:"all 0.15s",
-                }}
-              >
-                <GitHubIcon />
-                <div>
-                  <div style={{ color:"#E2E8F0", fontWeight:500 }}>GitHub</div>
-                  <div style={{ fontSize:9, color:"#334155" }}>github.com/maxtmiller</div>
-                </div>
-              </a>
+              ))}
             </div>
           </div>
-        </Section>
 
-      </div>
+          <div style={styles.section}>
+            <SectionHeader eyebrow="Shortcuts" title="Fast controls" body="These work across the main planner experience." compact />
+            <div style={styles.shortcutList}>
+              {SHORTCUTS.map((item) => (
+                <div key={item.key} style={styles.shortcutRow}>
+                  <kbd style={styles.kbd}>{item.key}</kbd>
+                  <span style={styles.shortcutBody}>{item.body}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" style={styles.section}>
+          <SectionHeader
+            eyebrow="FAQ"
+            title="Important details"
+            body="A few boundaries and behaviors that matter when using GradGraph for real planning."
+          />
+          <div style={styles.faqGrid}>
+            {FAQ.map((item) => (
+              <article key={item.q} style={styles.faqItem}>
+                <h3 style={styles.faqQuestion}>{item.q}</h3>
+                <p style={styles.faqAnswer}>{item.a}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section style={styles.about}>
+          <div>
+            <div style={styles.panelLabel}>About</div>
+            <p style={styles.aboutText}>
+              Built with Next.js 16, React 19, Zustand, a layered graph layout, and a matching-based
+              audit engine. Course and requirement data are planning data, not an official advising record.
+            </p>
+          </div>
+          <div style={styles.socials}>
+            <a className="help-link" href="https://www.linkedin.com/in/maximiliantmiller/" target="_blank" rel="noopener noreferrer" style={styles.socialLink}>
+              <LinkedInIcon /> LinkedIn
+            </a>
+            <a className="help-link" href="https://github.com/maxtmiller" target="_blank" rel="noopener noreferrer" style={styles.socialLink}>
+              <GitHubIcon /> GitHub
+            </a>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
 
-// ── Section accordion ─────────────────────────────────────────────────────────
-
-function Section({ id, label, open, onToggle, children }: {
-  id: string;
-  label: string;
-  open: boolean;
-  onToggle: (id: string | null) => void;
-  children: React.ReactNode;
+function SectionHeader({ eyebrow, title, body, compact = false }: {
+  eyebrow: string;
+  title: string;
+  body: string;
+  compact?: boolean;
 }) {
   return (
-    <div style={{ borderBottom:"1px solid var(--gg-border)", marginTop: 8 }}>
-      <button
-        className="help-section-header"
-        onClick={() => onToggle(open ? null : id)}
-        style={{
-          width:"100%", padding:"16px 4px",
-          display:"flex", alignItems:"center", justifyContent:"space-between",
-          background:"transparent", border:"none", cursor:"pointer",
-          color:"#94A3B8", textAlign:"left", transition:"background 0.1s",
-          borderRadius:4,
-        }}
-      >
-        <span style={{ fontFamily:"'Syne',sans-serif", fontWeight:700, fontSize:13, color: open?"#F1F5F9":"#94A3B8" }}>
-          {label}
-        </span>
-        <span style={{ fontSize:10, color:"#334155", transition:"transform 0.2s",
-          transform: open?"rotate(180deg)":"rotate(0deg)", display:"inline-block" }}>▼</span>
-      </button>
-      {open && (
-        <div style={{ paddingBottom:20 }}>
-          {children}
+    <header style={{ marginBottom: compact ? 14 : 18 }}>
+      <div style={styles.sectionEyebrow}>{eyebrow}</div>
+      <h2 style={compact ? styles.h2Compact : styles.h2}>{title}</h2>
+      <p style={styles.sectionBody}>{body}</p>
+    </header>
+  );
+}
+
+function AnchorButton({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a className="help-button" href={href} style={styles.anchorButton}>
+      {children}
+    </a>
+  );
+}
+
+function FlowRail() {
+  const tabs = [
+    ["Graph", "Read paths", "blue"],
+    ["Explore", "Pin catalog courses", "purple"],
+    ["Planner", "Place terms", "green"],
+    ["Progress", "Audit fit", "orange"],
+    ["Ask AI", "Get guidance", "gold"],
+  ] as const;
+
+  return (
+    <div style={styles.flowRail}>
+      {tabs.map(([tab, body, accent], i) => (
+        <div key={tab} style={styles.flowItem}>
+          <div style={{ ...styles.flowIndex, borderColor: ACCENTS[accent], color: ACCENTS[accent] }}>{i + 1}</div>
+          <div>
+            <div style={styles.flowTitle}>{tab}</div>
+            <div style={styles.flowBody}>{body}</div>
+          </div>
         </div>
-      )}
+      ))}
     </div>
   );
 }
 
-// ── Social icons ──────────────────────────────────────────────────────────────
+function GraphPreview() {
+  return (
+    <div style={styles.graphPreview}>
+      <CourseMini code="CS 136" label="Complete" color="#4ADE80" />
+      <Connector />
+      <CourseMini code="CS 246" label="Selected" color="#FFD54F" />
+      <Connector />
+      <CourseMini code="CS 370" label="Unlocks" color="#60A5FA" />
+    </div>
+  );
+}
+
+function FilterPreview() {
+  return (
+    <div style={styles.stackPreview}>
+      <div style={styles.chipRow}>
+        {["CS", "MATH", "STAT", "CO"].map((chip, i) => (
+          <Chip key={chip} label={chip} active={i < 3} color={["#EC4899", "#FCD34D", "#80DEEA", "#4ADE80"][i]} />
+        ))}
+      </div>
+      <div style={styles.chipRow}>
+        {["1xx", "2xx", "3xx", "4xx"].map((chip, i) => (
+          <Chip key={chip} label={chip} active={i !== 2} color="#A78BFA" />
+        ))}
+        <Chip label="My Roadmap" active color="#A78BFA" />
+      </div>
+      <div style={styles.chipRow}>
+        {["All", "Required", "Standard", "Advanced"].map((chip, i) => (
+          <Chip key={chip} label={chip} active={i === 0} color="#FFD54F" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ExplorePreview() {
+  return (
+    <div style={styles.stackPreview}>
+      <div style={styles.pinnedRow}>
+        {["CS 246", "MUSIC 140"].map((code) => (
+          <span key={code} style={styles.pinnedChip}>{code}<span style={{ color: "#6D5AD0" }}> x</span></span>
+        ))}
+        <span style={styles.searchChip}>+ Search Cmd K</span>
+      </div>
+      <div style={styles.explorePath}>
+        <CourseMini code="CS 246" label="Pinned" color="#A78BFA" />
+        <Connector />
+        <CourseMini code="CS 370" label="Connected" color="#60A5FA" />
+        <Connector />
+        <CourseMini code="CS 475" label="Downstream" color="#60A5FA" />
+      </div>
+    </div>
+  );
+}
+
+function PlannerPreview() {
+  return (
+    <div style={styles.termGrid}>
+      {["1A", "1B", "2A", "2B"].map((term, i) => (
+        <div key={term} style={styles.termCard}>
+          <div style={styles.termTitle}>{term}</div>
+          <div style={styles.termCourse}>{["CS 135", "CS 136", "CS 246", "CS 341"][i]}</div>
+          <div style={styles.termCourseMuted}>{["MATH 135", "MATH 136", "STAT 230", "CO 250"][i]}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ProgressPreview() {
+  return (
+    <div style={styles.progressPreview}>
+      <div style={styles.progressRing}>68%</div>
+      <div style={{ flex: 1 }}>
+        <ProgressBar label="Core courses" pct={100} color="#4ADE80" />
+        <ProgressBar label="Electives" pct={62} color="#60A5FA" />
+        <ProgressBar label="Communication" pct={25} color="#FB923C" />
+      </div>
+    </div>
+  );
+}
+
+function AiPreview() {
+  return (
+    <div style={styles.aiBox}>
+      <div style={{ color: "#A78BFA", fontSize: 10, marginBottom: 6 }}>AI</div>
+      <div style={{ color: "#CBD5E1", fontSize: 11, lineHeight: 1.6 }}>
+        You have 2 CS electives left. CS 475 is reachable from your current path through CS 370.
+      </div>
+      <div style={styles.aiPills}>
+        <span>What is left?</span>
+        <span>Compare options</span>
+      </div>
+    </div>
+  );
+}
+
+function CourseMini({ code, label, color }: { code: string; label: string; color: string }) {
+  return (
+    <div style={{ ...styles.courseMini, borderColor: `${color}66` }}>
+      <div style={{ color, fontWeight: 700 }}>{code}</div>
+      <div style={{ color: "#64748B", fontSize: 9, marginTop: 2 }}>{label}</div>
+    </div>
+  );
+}
+
+function Connector() {
+  return <div style={styles.connector} />;
+}
+
+function Chip({ label, active, color }: { label: string; active: boolean; color: string }) {
+  return (
+    <span style={{
+      ...styles.chip,
+      borderColor: active ? color : "#2D3748",
+      background: active ? `${color}20` : "rgba(15,23,42,0.75)",
+      color: active ? color : "#475569",
+    }}>
+      {label}
+    </span>
+  );
+}
+
+function ProgressBar({ label, pct, color }: { label: string; pct: number; color: string }) {
+  return (
+    <div style={{ marginBottom: 8 }}>
+      <div style={styles.progressLabel}><span>{label}</span><span>{pct}%</span></div>
+      <div style={styles.progressTrack}>
+        <div style={{ ...styles.progressFill, width: `${pct}%`, background: color }} />
+      </div>
+    </div>
+  );
+}
 
 function LinkedInIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <rect width="24" height="24" rx="4" fill="#0A66C2" opacity="0.9"/>
-      <path d="M6.5 9.5h2v8h-2v-8zm1-1.5a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zM10.5 9.5h1.9v1.1c.4-.7 1.3-1.3 2.6-1.3 2.1 0 3 1.3 3 3.4v5.3h-2v-4.8c0-1.1-.4-1.9-1.5-1.9-1.2 0-1.9.9-1.9 2.1v4.6h-2v-8.5z" fill="white"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect width="24" height="24" rx="4" fill="#0A66C2" opacity="0.9" />
+      <path d="M6.5 9.5h2v8h-2v-8zm1-1.5a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zM10.5 9.5h1.9v1.1c.4-.7 1.3-1.3 2.6-1.3 2.1 0 3 1.3 3 3.4v5.3h-2v-4.8c0-1.1-.4-1.9-1.5-1.9-1.2 0-1.9.9-1.9 2.1v4.6h-2v-8.5z" fill="white" />
     </svg>
   );
 }
 
 function GitHubIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="#E2E8F0">
-      <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#E2E8F0" aria-hidden="true">
+      <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z" />
     </svg>
   );
 }
+
+function cardStyle(accent: Accent): CSSProperties {
+  return {
+    ...styles.card,
+    borderColor: `${ACCENTS[accent]}33`,
+    background: `linear-gradient(180deg, ${ACCENTS[accent]}10, rgba(15,23,42,0.82))`,
+  };
+}
+
+function featureStyle(accent: Accent): CSSProperties {
+  return {
+    ...styles.featureCard,
+    borderColor: `${ACCENTS[accent]}2e`,
+  };
+}
+
+const styles: Record<string, CSSProperties> = {
+  page: {
+    height: "100%",
+    overflowY: "auto",
+    background: "var(--gg-base)",
+    color: "var(--gg-text-2)",
+    fontFamily: "'DM Mono', monospace",
+  },
+  hero: {
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1fr) 360px",
+    gap: 28,
+    padding: "36px 44px 30px",
+    borderBottom: "1px solid var(--gg-border)",
+    background: "linear-gradient(135deg, rgba(255,213,79,0.08), rgba(96,165,250,0.06) 48%, rgba(167,139,250,0.08))",
+  },
+  kicker: {
+    color: "#FFD54F",
+    fontSize: 10,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    marginBottom: 10,
+  },
+  h1: {
+    margin: 0,
+    maxWidth: 720,
+    color: "#F8FAFC",
+    fontFamily: "'Syne', sans-serif",
+    fontSize: 32,
+    lineHeight: 1.12,
+    fontWeight: 850,
+    letterSpacing: 0,
+  },
+  heroBody: {
+    maxWidth: 760,
+    margin: "14px 0 0",
+    color: "#94A3B8",
+    fontSize: 12,
+    lineHeight: 1.75,
+  },
+  heroActions: {
+    display: "flex",
+    gap: 8,
+    flexWrap: "wrap",
+    marginTop: 18,
+  },
+  anchorButton: {
+    padding: "8px 13px",
+    borderRadius: 7,
+    border: "1px solid rgba(96,165,250,0.32)",
+    background: "rgba(15,23,42,0.55)",
+    color: "#93C5FD",
+    textDecoration: "none",
+    fontSize: 10,
+    transition: "all 0.15s",
+  },
+  heroPanel: {
+    minWidth: 0,
+    border: "1px solid rgba(255,255,255,0.1)",
+    borderRadius: 10,
+    background: "rgba(10,15,30,0.72)",
+    padding: 16,
+  },
+  panelLabel: {
+    color: "#64748B",
+    fontSize: 9,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    marginBottom: 12,
+  },
+  flowRail: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+  },
+  flowItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    padding: "9px 10px",
+    border: "1px solid rgba(255,255,255,0.06)",
+    borderRadius: 8,
+    background: "rgba(15,23,42,0.68)",
+  },
+  flowIndex: {
+    width: 24,
+    height: 24,
+    borderRadius: 6,
+    border: "1px solid",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 10,
+    flexShrink: 0,
+  },
+  flowTitle: {
+    color: "#E2E8F0",
+    fontSize: 11,
+    fontWeight: 700,
+  },
+  flowBody: {
+    color: "#64748B",
+    fontSize: 10,
+    marginTop: 2,
+  },
+  content: {
+    maxWidth: 1180,
+    padding: "28px 44px 56px",
+  },
+  section: {
+    marginBottom: 32,
+  },
+  sectionEyebrow: {
+    color: "#64748B",
+    fontSize: 9,
+    letterSpacing: "0.18em",
+    textTransform: "uppercase",
+    marginBottom: 7,
+  },
+  h2: {
+    margin: 0,
+    color: "#F1F5F9",
+    fontFamily: "'Syne', sans-serif",
+    fontSize: 22,
+    fontWeight: 800,
+    letterSpacing: 0,
+  },
+  h2Compact: {
+    margin: 0,
+    color: "#F1F5F9",
+    fontFamily: "'Syne', sans-serif",
+    fontSize: 18,
+    fontWeight: 800,
+    letterSpacing: 0,
+  },
+  sectionBody: {
+    margin: "8px 0 0",
+    color: "#64748B",
+    fontSize: 11,
+    lineHeight: 1.65,
+    maxWidth: 760,
+  },
+  workflowGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+    gap: 10,
+  },
+  card: {
+    border: "1px solid",
+    borderRadius: 9,
+    padding: 16,
+    minHeight: 170,
+    transition: "transform 0.15s, border-color 0.15s",
+  },
+  stepNumber: {
+    fontSize: 10,
+    marginBottom: 18,
+  },
+  cardTitle: {
+    margin: "0 0 8px",
+    color: "#E2E8F0",
+    fontFamily: "'Syne', sans-serif",
+    fontSize: 14,
+    fontWeight: 750,
+    letterSpacing: 0,
+  },
+  cardBody: {
+    margin: 0,
+    color: "#94A3B8",
+    fontSize: 11,
+    lineHeight: 1.65,
+  },
+  featureGrid: {
+    display: "grid",
+    gap: 12,
+  },
+  featureCard: {
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1fr) minmax(320px, 0.85fr)",
+    gap: 18,
+    alignItems: "stretch",
+    border: "1px solid",
+    borderRadius: 10,
+    background: "rgba(15,23,42,0.74)",
+    padding: 18,
+    transition: "transform 0.15s, border-color 0.15s",
+  },
+  featureText: {
+    minWidth: 0,
+  },
+  featureEyebrow: {
+    fontSize: 9,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    marginBottom: 8,
+  },
+  featureTitle: {
+    margin: 0,
+    color: "#F1F5F9",
+    fontFamily: "'Syne', sans-serif",
+    fontSize: 17,
+    fontWeight: 800,
+    letterSpacing: 0,
+  },
+  bullets: {
+    margin: "12px 0 0",
+    paddingLeft: 18,
+    color: "#94A3B8",
+    fontSize: 11,
+    lineHeight: 1.75,
+  },
+  bullet: {
+    marginBottom: 6,
+  },
+  previewShell: {
+    border: "1px solid rgba(255,255,255,0.06)",
+    borderRadius: 9,
+    background: "rgba(2,6,23,0.48)",
+    padding: 14,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 132,
+    overflow: "hidden",
+  },
+  twoColumn: {
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
+    gap: 18,
+  },
+  statusGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: 8,
+  },
+  statusRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    padding: "10px 12px",
+    border: "1px solid rgba(255,255,255,0.07)",
+    borderRadius: 8,
+    background: "rgba(15,23,42,0.66)",
+  },
+  statusDot: {
+    width: 11,
+    height: 11,
+    borderRadius: 999,
+    flexShrink: 0,
+  },
+  statusLabel: {
+    color: "#E2E8F0",
+    fontSize: 11,
+    fontWeight: 700,
+  },
+  statusBody: {
+    color: "#64748B",
+    fontSize: 10,
+    marginTop: 2,
+    lineHeight: 1.45,
+  },
+  shortcutList: {
+    border: "1px solid rgba(255,255,255,0.07)",
+    borderRadius: 9,
+    overflow: "hidden",
+    background: "rgba(15,23,42,0.66)",
+  },
+  shortcutRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    padding: "10px 12px",
+    borderBottom: "1px solid rgba(255,255,255,0.05)",
+  },
+  kbd: {
+    minWidth: 92,
+    padding: "4px 8px",
+    borderRadius: 5,
+    border: "1px solid #334155",
+    background: "#0F172A",
+    color: "#FFD54F",
+    fontFamily: "'DM Mono', monospace",
+    fontSize: 10,
+    textAlign: "center",
+  },
+  shortcutBody: {
+    color: "#94A3B8",
+    fontSize: 11,
+  },
+  faqGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: 10,
+  },
+  faqItem: {
+    border: "1px solid rgba(255,255,255,0.07)",
+    borderRadius: 9,
+    background: "rgba(15,23,42,0.66)",
+    padding: 15,
+  },
+  faqQuestion: {
+    margin: "0 0 8px",
+    color: "#E2E8F0",
+    fontSize: 12,
+    fontWeight: 750,
+  },
+  faqAnswer: {
+    margin: 0,
+    color: "#94A3B8",
+    fontSize: 11,
+    lineHeight: 1.7,
+  },
+  about: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: 16,
+    alignItems: "center",
+    borderTop: "1px solid var(--gg-border)",
+    paddingTop: 22,
+  },
+  aboutText: {
+    margin: 0,
+    color: "#64748B",
+    fontSize: 11,
+    lineHeight: 1.7,
+    maxWidth: 720,
+  },
+  socials: {
+    display: "flex",
+    gap: 8,
+    flexWrap: "wrap",
+    flexShrink: 0,
+  },
+  socialLink: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "9px 12px",
+    borderRadius: 7,
+    border: "1px solid rgba(255,255,255,0.08)",
+    background: "rgba(15,23,42,0.62)",
+    color: "#94A3B8",
+    textDecoration: "none",
+    fontSize: 11,
+    transition: "all 0.15s",
+  },
+  graphPreview: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    flexWrap: "wrap",
+  },
+  courseMini: {
+    minWidth: 88,
+    border: "1px solid",
+    borderRadius: 8,
+    background: "rgba(15,23,42,0.88)",
+    padding: "9px 10px",
+    fontSize: 11,
+    textAlign: "center",
+  },
+  connector: {
+    width: 30,
+    height: 1,
+    background: "#1E3A5F",
+  },
+  stackPreview: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 9,
+    width: "100%",
+  },
+  chipRow: {
+    display: "flex",
+    gap: 5,
+    flexWrap: "wrap",
+  },
+  chip: {
+    border: "1px solid",
+    borderRadius: 5,
+    padding: "3px 8px",
+    fontSize: 10,
+    whiteSpace: "nowrap",
+  },
+  pinnedRow: {
+    display: "flex",
+    gap: 6,
+    flexWrap: "wrap",
+  },
+  pinnedChip: {
+    padding: "4px 9px",
+    borderRadius: 5,
+    border: "1px solid rgba(167,139,250,0.42)",
+    background: "rgba(167,139,250,0.12)",
+    color: "#C4B5FD",
+    fontSize: 10,
+  },
+  searchChip: {
+    padding: "4px 9px",
+    borderRadius: 5,
+    border: "1px dashed #334155",
+    color: "#64748B",
+    fontSize: 10,
+  },
+  explorePath: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    flexWrap: "wrap",
+  },
+  termGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, minmax(70px, 1fr))",
+    gap: 7,
+    width: "100%",
+  },
+  termCard: {
+    border: "1px solid rgba(255,255,255,0.07)",
+    borderRadius: 8,
+    background: "rgba(15,23,42,0.8)",
+    padding: 8,
+  },
+  termTitle: {
+    color: "#64748B",
+    fontSize: 9,
+    marginBottom: 6,
+  },
+  termCourse: {
+    color: "#4ADE80",
+    border: "1px solid rgba(74,222,128,0.25)",
+    borderRadius: 4,
+    padding: "3px 5px",
+    fontSize: 9,
+    marginBottom: 4,
+  },
+  termCourseMuted: {
+    color: "#60A5FA",
+    border: "1px solid rgba(96,165,250,0.25)",
+    borderRadius: 4,
+    padding: "3px 5px",
+    fontSize: 9,
+  },
+  progressPreview: {
+    display: "flex",
+    alignItems: "center",
+    gap: 16,
+    width: "100%",
+  },
+  progressRing: {
+    width: 78,
+    height: 78,
+    borderRadius: "50%",
+    border: "8px solid rgba(251,146,60,0.75)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#FB923C",
+    fontFamily: "'Syne', sans-serif",
+    fontWeight: 850,
+    flexShrink: 0,
+  },
+  progressLabel: {
+    display: "flex",
+    justifyContent: "space-between",
+    color: "#94A3B8",
+    fontSize: 10,
+    marginBottom: 3,
+  },
+  progressTrack: {
+    height: 5,
+    borderRadius: 999,
+    background: "#1E293B",
+    overflow: "hidden",
+  },
+  progressFill: {
+    height: "100%",
+    borderRadius: 999,
+  },
+  aiBox: {
+    width: "100%",
+    border: "1px solid rgba(167,139,250,0.22)",
+    borderRadius: 9,
+    background: "rgba(167,139,250,0.08)",
+    padding: 13,
+  },
+  aiPills: {
+    display: "flex",
+    gap: 6,
+    flexWrap: "wrap",
+    marginTop: 10,
+    color: "#A78BFA",
+    fontSize: 9,
+  },
+};

@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useStore } from "@/lib/store";
-import { MAJORS, MAJOR_META, SUB_MAJOR_REGISTRY } from "@/data/majors";
+import { MAJOR_META, SUB_MAJOR_REGISTRY } from "@/data/majors";
 import { FACULTY_LIST, FACULTIES } from "@/data/faculties";
+import type { FacultyId, MajorId, SubMajorId } from "@/types";
 
 function totalProgramsForFaculty(majorIds: string[]): number {
   return majorIds.reduce((sum, id) => {
@@ -11,8 +12,6 @@ function totalProgramsForFaculty(majorIds: string[]): number {
     return sum + (subCount > 0 ? subCount : 1);
   }, 0);
 }
-import type { FacultyId, MajorId, SubMajorId } from "@/types";
-
 type Panel = "faculty" | "major" | "submajor" | null;
 
 // ── Sub-components ────────────────────────────────────────────────────────────

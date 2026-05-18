@@ -3,7 +3,8 @@
 import { useMemo } from "react";
 import { useStore, subjectsFromCodes, levelsFromCodes } from "../lib/store";
 import { MAJORS, DEFAULT_MAJOR_ID } from "../data/majors";
-import { TAG_COLORS, COURSE_COLORS } from "../data/courses";
+import { COURSE_COLORS, COURSE_DATA } from "../data/courses";
+import { getAncestors, getDescendants } from "../lib/graph";
 import type { TierFilter } from "../types";
 
 const MAX_EXPLORE = 5;
@@ -29,6 +30,8 @@ export default function FilterBar() {
     activeMajorId,
     activeSubjects,
     activeLevels,
+    exploreActiveSubjects,
+    exploreActiveLevels,
     tierFilter,
     showMyCourses,
     getMajorCourses,
@@ -44,11 +47,24 @@ export default function FilterBar() {
 
   const major = MAJORS[activeMajorId] ?? MAJORS[DEFAULT_MAJOR_ID];
 
-  const majorCodes = useMemo(() => getMajorCourses(), [activeMajorId]);
+  const majorCodes = getMajorCourses();
   const subjects   = useMemo(() => subjectsFromCodes(majorCodes), [majorCodes]);
-  const levels     = useMemo(() => levelsFromCodes(majorCodes), [majorCodes]);
+  const exploreContextCodes = useMemo(() => {
+    const codes = new Set<string>();
+    for (const code of exploreCodes) {
+      getAncestors(code).forEach((c) => { if (COURSE_DATA[c]) codes.add(c); });
+      getDescendants(code).forEach((c) => { if (COURSE_DATA[c]) codes.add(c); });
+    }
+    return Array.from(codes);
+  }, [exploreCodes]);
+  const levels     = useMemo(
+    () => levelsFromCodes(exploreMode ? exploreContextCodes : majorCodes),
+    [exploreMode, exploreContextCodes, majorCodes]
+  );
 
-  const allLevelsActive = activeLevels === null;
+  const activeSubjectsState = exploreMode ? exploreActiveSubjects : activeSubjects;
+  const activeLevelsState   = exploreMode ? exploreActiveLevels : activeLevels;
+  const allLevelsActive     = activeLevelsState === null;
   const hasTiers = major.requirementGroups.some((g) => g.tier !== undefined);
 
   return (
@@ -118,72 +134,74 @@ export default function FilterBar() {
         </div>
       )}
 
-      {/* ── Normal filters (hidden in explore mode) ───────────────────────── */}
-      {!exploreMode && (
-        <>
-          {hasTiers && (
-            <div style={{ display: "flex", gap: 3 }}>
-              {TIER_OPTIONS.map(({ value, label, title }) => {
-                const active = tierFilter === value;
-                return (
-                  <button
-                    key={value}
-                    onClick={() => setTierFilter(value)}
-                    title={title}
-                    style={{
-                      padding:        "3px 10px",
-                      borderRadius:   5,
-                      border:         `1px solid ${active ? major.color : "#2D3748"}`,
-                      background:     active ? `${major.color}22` : "rgba(15,23,42,0.8)",
-                      color:          active ? major.color : "#475569",
-                      fontSize:       10,
-                      fontFamily:     "inherit",
-                      fontWeight:     active ? 600 : 400,
-                      cursor:         "pointer",
-                      backdropFilter: "blur(6px)",
-                      transition:     "all 0.15s",
-                      letterSpacing:  "0.04em",
-                      whiteSpace:     "nowrap",
-                    }}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-          )}
+      {/* ── Normal filters ───────────────────────────────────────────── */}
+      {hasTiers && !exploreMode && (
+        <div style={{ display: "flex", gap: 3 }}>
+          {TIER_OPTIONS.map(({ value, label, title }) => {
+            const active = tierFilter === value;
+            return (
+              <button
+                key={value}
+                onClick={() => setTierFilter(value)}
+                title={title}
+                style={{
+                  padding:        "3px 10px",
+                  borderRadius:   5,
+                  border:         `1px solid ${active ? major.color : "#2D3748"}`,
+                  background:     active ? `${major.color}22` : "rgba(15,23,42,0.8)",
+                  color:          active ? major.color : "#475569",
+                  fontSize:       10,
+                  fontFamily:     "inherit",
+                  fontWeight:     active ? 600 : 400,
+                  cursor:         "pointer",
+                  backdropFilter: "blur(6px)",
+                  transition:     "all 0.15s",
+                  letterSpacing:  "0.04em",
+                  whiteSpace:     "nowrap",
+                }}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, boxSizing: "border-box", paddingRight: 8 }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-              {subjects.map((subject) => {
-                const active = activeSubjects === null || (activeSubjects?.has(subject) ?? false);
-                return (
-                  <Chip
-                    key={subject}
-                    label={subject}
-                    active={active}
-                    color={subjectColor(subject)}
-                    onClick={() => toggleSubject(subject)}
-                    title={`Toggle ${subject} courses`}
-                  />
-                );
-              })}
-            </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, boxSizing: "border-box", paddingRight: 8 }}>
+        {!exploreMode && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+            {subjects.map((subject) => {
+              const active = activeSubjectsState === null || (activeSubjectsState?.has(subject) ?? false);
+              return (
+                <Chip
+                  key={subject}
+                  label={subject}
+                  active={active}
+                  color={subjectColor(subject)}
+                  onClick={() => toggleSubject(subject)}
+                  title={`Toggle ${subject} courses`}
+                />
+              );
+            })}
+          </div>
+        )}
 
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 3, width: "100%" }}>
-              {levels.map((level) => {
-                const active = allLevelsActive || (activeLevels?.has(level) ?? false);
-                return (
-                  <Chip
-                    key={level}
-                    label={`${level / 100}xx`}
-                    active={active}
-                    color={major.color}
-                    onClick={() => toggleLevel(level)}
-                    title={`Toggle ${level / 100}xx level courses`}
-                  />
-                );
-              })}
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 3, width: "100%" }}>
+          {levels.map((level) => {
+            const active = allLevelsActive || (activeLevelsState?.has(level) ?? false);
+            return (
+              <Chip
+                key={level}
+                label={`${level / 100}xx`}
+                active={active}
+                color={exploreMode ? "#A78BFA" : major.color}
+                onClick={() => toggleLevel(level)}
+                title={`Toggle ${level / 100}xx level courses`}
+              />
+            );
+          })}
+          {!exploreMode && (
+            <>
               <div style={{ width: "1px", height: "18px", background: "rgba(255, 255, 255, 0.15)", margin: "0 4px" }} />
               <Chip
                 label="My Roadmap"
@@ -192,10 +210,10 @@ export default function FilterBar() {
                 onClick={toggleMyCourses}
                 title="Show only completed & planned courses with their prerequisites"
               />
-            </div>
-          </div>
-        </>
-      )}
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

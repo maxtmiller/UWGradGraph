@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useState, useMemo, useRef, useCallback } from "react";
 import { useStore } from "../lib/store";
 import { COURSE_DATA, TAG_COLORS, STATUS_COLORS } from "../data/courses";
 import { getConnectedNodes, getHighlightedEdges } from "../lib/graph";
@@ -10,17 +10,18 @@ const QUICK_PICKS = ["CS 135","CS 246","CS 341","CS 350","CS 480","STAT 230"];
 export default function SearchPalette() {
   const {
     searchOpen, setSearchOpen, setActiveTab, setSelectedNode, setHighlight,
-    getCourseStatus, setPanToNode, clearSubjectFilter, clearLevelFilter,
+    getCourseStatus, setPanToNode,
     exploreMode, exploreCodes, addExploreCode, setExploreOverflowPopup,
   } = useStore();
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(8);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Reset query and visible count on close
-  useEffect(() => { if (!searchOpen) setQuery(""); }, [searchOpen]);
-  // Reset visible count on new query
-  useEffect(() => { setVisibleCount(8); }, [query]);
+  const closeSearch = () => {
+    setSearchOpen(false);
+    setQuery("");
+    setVisibleCount(8);
+  };
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
@@ -60,22 +61,31 @@ export default function SearchPalette() {
   }, [query]);
 
   const navigate = (code: string) => {
-    setSearchOpen(false);
+    closeSearch();
     setActiveTab("graph");
-    const connected = getConnectedNodes(code);
+    
+    // Only highlight connections if the course is actually in the current graph
+    const isVisible = useStore.getState().getMajorCourses().includes(code);
     setSelectedNode(code);
-    setHighlight(connected, getHighlightedEdges(connected));
+    
+    if (isVisible) {
+      const connected = getConnectedNodes(code);
+      setHighlight(connected, getHighlightedEdges(connected));
+    } else {
+      setHighlight(new Set(), new Set());
+    }
+    
     setPanToNode(code);
   };
 
   const addToExplore = (code: string) => {
     if (exploreCodes.length >= 5) {
       setExploreOverflowPopup(true);
-      setSearchOpen(false);
+      closeSearch();
       return;
     }
     addExploreCode(code);
-    setSearchOpen(false);
+    closeSearch();
     const connected = getConnectedNodes(code);
     setSelectedNode(code);
     setHighlight(connected, getHighlightedEdges(connected));
@@ -100,7 +110,7 @@ export default function SearchPalette() {
                background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)",
                display: "flex", alignItems: "flex-start", justifyContent: "center",
                paddingTop: 100 }}
-      onClick={(e) => { if (e.target === e.currentTarget) setSearchOpen(false); }}
+      onClick={(e) => { if (e.target === e.currentTarget) closeSearch(); }}
     >
       <div
         className="slide-in"
@@ -116,7 +126,10 @@ export default function SearchPalette() {
           <input
             autoFocus
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setVisibleCount(8);
+            }}
             placeholder={exploreMode ? "Search any course to explore…" : "Search courses by code or title…"}
             style={{ flex: 1, background: "none", border: "none", outline: "none",
                      color: "#E2E8F0", fontSize: 14, fontFamily: "'DM Mono', monospace" }}
@@ -131,7 +144,7 @@ export default function SearchPalette() {
           )}
           {query && results.length === 0 && (
             <div style={{ padding: 24, textAlign: "center", color: "#475569", fontSize: 12 }}>
-              No courses found for "{query}"
+              No courses found for &quot;{query}&quot;
             </div>
           )}
           {results.slice(0, visibleCount).map((course) => (

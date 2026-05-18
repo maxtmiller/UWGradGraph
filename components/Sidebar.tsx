@@ -77,9 +77,6 @@ export default function Sidebar() {
     [auditResults]
   );
 
-  // Show the first three audit groups as progress bars; the rest are in the audit tab.
-  const previewGroups = auditResults.slice(0, 3);
-
   // 1. Separate the Core groups from the Elective groups
   const { coreGroups, electiveGroup } = useMemo(() => {
     // 1. ADD THIS GUARD: If there's no major, there are no groups.

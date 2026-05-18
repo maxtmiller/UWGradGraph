@@ -1,52 +1,12 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-17
+// Last refreshed: 2026-05-18
 
 import type { CourseMap } from "@/types";
 
 type RawCourse = Omit<CourseMap[string], "leadsTo">;
 
 export const RAW_COURSES: RawCourse[] = [
-  {
-    code: "AB 101W",
-    title: "Elementary Modern Standard Arabic I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "AB 102W",
-    title: "Elementary Modern Standard Arabic II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "AB 201W",
-    title: "Intermediate Arabic 1 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "AB 245W",
-    title: "Arab Spring: Cultural Approach (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
   {
     code: "ACTSC 127",
     title: "Introduction to Global Capital Markets and Financial Analytics",
@@ -2361,16 +2321,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 100W",
-    title: "Cultures Today (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 105",
     title: "Prehistoric Peoples and Places",
     units: 0.5,
@@ -2448,26 +2398,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 224W",
-    title: "Anthropology of the Lifecourse (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 232W",
-    title: "Special Topics",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 233",
     title: "Inuit Cultures",
     units: 0.5,
@@ -2479,30 +2409,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 237W",
-    title: "Cross-cultural Studies of Change (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 241",
     title: "Food as Culture",
     units: 0.5,
     description: "The course addresses the topic of food from an anthropological perspective. It examines how the acquisition of food has shaped human biology and forms of social organization. Topics examined include the relationship of food to colonialism, political economy, ritual, and taboo.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 242W",
-    title: "Race, Ethnicity and Nationalism (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -2617,16 +2527,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 307W",
-    title: "Special Topics in Anthropology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 309",
     title: "The Archaeology of North America",
     units: 0.5,
@@ -2701,36 +2601,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 322W",
-    title: "Religion, Ritual and Magic",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 324W",
-    title: "Symbolic Systems & Ideologies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 326W",
-    title: "Culture as Performance (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 330",
     title: "Environmental Anthropology",
     units: 0.5,
@@ -2757,16 +2627,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 334W",
-    title: "Folklore, Myth & Oral Narrative (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 335",
     title: "Arctic Archaeology",
     units: 0.5,
@@ -2774,36 +2634,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["ANTH 201", "CLAS 221", "ANTH 233"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 336W",
-    title: "Culture, Power and Politics",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 341W",
-    title: "Kinship, Marriage and Gender (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 344W",
-    title: "Writing Cultures (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -2821,16 +2651,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 346W",
-    title: "Transnationalism and Cosmopolitanism (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 347",
     title: "Medical Anthropology",
     units: 0.5,
@@ -2838,16 +2658,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ANTH 202"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 347W",
-    title: "Science, Technology, & Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -2878,17 +2688,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 350W",
-    title: "Violence and Terrorism (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 355",
     title: "Human Osteology",
     units: 0.5,
@@ -2902,17 +2701,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 356W",
-    title: "Applied Anthropology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 365",
     title: "Human Evolution",
     units: 0.5,
@@ -2920,17 +2708,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ANTH 204"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 370W",
-    title: "Introduction to Osteology",
-    units: 0.5,
-    description: "Introduction to Osteology",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -3031,16 +2808,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 400W",
-    title: "Doing Fieldwork (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 415",
     title: "Archaeologies of Landscape",
     units: 0.5,
@@ -3089,16 +2856,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 450W",
-    title: "Contemporary Theory in Ethnography (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 455",
     title: "Skeletal Biology and Forensics",
     units: 0.5,
@@ -3112,46 +2869,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ANTH 455W",
-    title: "Directed Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 458W",
-    title: "Special Topics in Anthropology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 461W",
-    title: "Anthropology of the Body (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 463W",
-    title: "Environments, Environmentalisms and Nature/culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ANTH 465",
     title: "Borders, Boundaries, and Crossings",
     units: 0.5,
@@ -3159,16 +2876,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ANTH 202"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ANTH 465W",
-    title: "Cultures of Business Work (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -3979,209 +3686,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ARCHL 101W",
-    title: "Archaeology: An Introduction (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 102W",
-    title: "Archaeology: Methods, Theory and Practice(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 104W",
-    title: "Greece: Minotaur to Alexander",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 105W",
-    title: "Ancient Rome: Not Just Caesar (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 214W",
-    title: "Greek Art & Archaeology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 215W",
-    title: "Roman Art & Archaeology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 217W",
-    title: "Archaeological Lab Methods (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 219W",
-    title: "Introduction to Field Archaeology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 225W",
-    title: "History of Ancient Greece (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 235W",
-    title: "North American Prehistory (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 246W",
-    title: "Environmental Archaeology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 313W",
-    title: "Technology 1: Tools, Techniques and Material Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 333W",
-    title: "Archaeology of Disasters (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 336W",
-    title: "Cultural Resource Management (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 338W",
-    title: "Current Issues in Class Arch (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 341W",
-    title: "Analytical Archaeology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 344W",
-    title: "Archaeological Science (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 347W",
-    title: "Archaeology of Syria and Jordan",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 390W",
-    title: "Special Topics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARCHL 460W",
-    title: "Paradigms in Archaeology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ARTS 111",
     title: "Career Development and Decision-Making",
     units: 0.5,
@@ -4274,17 +3778,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Second-Year Topics in Arts Disciplines",
     units: 0.5,
     description: "This topics course will be offered from time to time by particular disciplines in Arts, to cover areas of emerging research and teaching interest.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ARTS 293W",
-    title: "Studies: Dungeons & Dragons (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calender for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -4413,26 +3906,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ASL 201R"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ASTRN 101W",
-    title: "Astronomy I: Our place in the cosmos (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ASTRN 102W",
-    title: "Astronomy II: Journey to the Cosmos (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -5010,26 +4483,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 110W",
-    title: "Unifying Life Processes (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 111W",
-    title: "Biological Diversity and Evolution (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 130",
     title: "Introductory Cell Biology",
     units: 0.5,
@@ -5082,17 +4535,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["BIOL 130"] }
     ],
     antireqs: ["BIOL 301"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 206W",
-    title: "Ecology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -5242,16 +4684,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 276W",
-    title: "Life on Earth: Microbes (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 280",
     title: "Introduction to Biophysics",
     units: 0.5,
@@ -5296,16 +4728,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["BIOL 130", "BIOL 239"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 308W",
-    title: "Animal Behaviour (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -5362,17 +4784,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 330W",
-    title: "Fundamentals of Histology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 331",
     title: "Advanced Cell Biology",
     units: 0.5,
@@ -5409,17 +4820,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["BIOL 240"] },
       { type: "AND", reqs: ["BIOL 241"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 341W",
-    title: "Lab Methods: Cell & Molecular (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -5483,17 +4883,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Synthetic Biology Project Design",
     units: 0.5,
     description: "Synthetic biology involves developing new approaches, based on engineering principles, for genetic engineering of biological systems. Students will prepare a comprehensive research proposal for a synthetic biology project of their own design, under the supervision of a faculty member. Attendance at a weekly journal club focused on synthetic biology will be mandatory.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 349W",
-    title: "Embryology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -5567,17 +4956,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 358W",
-    title: "Animals: Form and Function (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 359",
     title: "Evolution 1: Mechanisms",
     units: 0.5,
@@ -5625,17 +5003,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["BIOL 239"] },
       { type: "OR", reqs: ["BIOL 266", "CHEM 140", "CS 116", "CS 136"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 369W",
-    title: "Plant Physiology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -5733,27 +5100,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 393W",
-    title: "Biostatistics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 396W",
-    title: "Special Topics in Biology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 403",
     title: "Developmental Biology and Embryology",
     units: 0.5,
@@ -5767,36 +5113,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 405W",
-    title: "Community Ecology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 407W",
-    title: "Animal Communication (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 409W",
-    title: "Conservation Biology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 414",
     title: "Parasitology",
     units: 0.5,
@@ -5805,16 +5121,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["BIOL 359"] },
       { type: "OR", reqs: ["BIOL 110", "BIOL 241"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 416W",
-    title: "Pathophysiology",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -5896,17 +5202,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BIOL 308"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 441W",
-    title: "Adv Molecular Biotechnology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -6089,17 +5384,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 459W",
-    title: "Endocrinology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 461",
     title: "Advanced Biostatistics",
     units: 0.5,
@@ -6126,26 +5410,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 463W",
-    title: "Environmental Stress Biology of Plants (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 464W",
-    title: "Plants and People (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 465",
     title: "Structural Bioinformatics",
     units: 0.5,
@@ -6154,16 +5418,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["BIOL 266", "BIOL 366", "BIOL 365"] },
       { type: "OR", reqs: ["CHEM 233", "CHEM 237"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 468W",
-    title: "Plant Biodiversity and Conservation (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -6191,16 +5445,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["BIOL 350", "BIOL 351"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 470W",
-    title: "Biomedical Virology (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -6259,17 +5503,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 476W",
-    title: "Microbial Disease (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 477L",
     title: "Techniques in Animal Physiology",
     units: 0.25,
@@ -6320,17 +5553,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 484W",
-    title: "Fundamentals of Parasitology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 485",
     title: "Conservation Biology",
     units: 0.5,
@@ -6352,17 +5574,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["CS 115", "CS 135", "CS 200"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 488W",
-    title: "Invertebrate Biodiversity and Conservation (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -6442,16 +5653,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "BIOL 496W",
-    title: "Special Topics in Advanced Biology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "BIOL 498A",
     title: "Short Biology Field Course 1",
     units: 0.5,
@@ -6497,17 +5698,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Senior Honours Project",
     units: 0.5,
     description: "A senior-year research project.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BIOL 499W",
-    title: "Thesis (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -7292,17 +6482,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BME 399"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "BUS -----",
-    title: "Business Courses Taught at Wifrid Laurier University",
-    units: 0.5,
-    description: "For details regarding Business courses offered at WLU please see notes above.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -9447,82 +8626,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CC 100W",
-    title: "Introduction to Criminology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CC 102W",
-    title: "Introduction to the Criminal Justice System (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CC 202W",
-    title: "Multiple Murder",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CC 205W",
-    title: "Gangsters, Goodfellas, Wiseguy (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CC 313W",
-    title: "Mean Justice: Criminal Injustice, Ethics & Rights",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CC 325W",
-    title: "Crimes Against Humanity (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CC 499W",
-    title: "Contested Issues in Justice System (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CDNST 101",
     title: "Introduction to Canadian Studies",
     units: 0.5,
@@ -10114,16 +9217,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CHEM 111W",
-    title: "Fundamentals of Chemistry II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CHEM 120",
     title: "General Chemistry 1",
     units: 0.5,
@@ -10146,16 +9239,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CHEM 120W",
-    title: "Introductory Chemistry(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CHEM 121",
     title: "Physical and Chemical Properties of Matter",
     units: 0.5,
@@ -10173,16 +9256,6 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Selected experiments for students taking CHEM121. This course is an introduction to the chemistry laboratory environment and focuses on the development of basic lab skills.",
     prereqs: [],
     antireqs: ["CHEM 120L"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 121W",
-    title: "Introduction to Chemical Kinetics & Equilibrium (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -10267,46 +9340,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CHEM 202W",
-    title: "Organic Chem 1: Fundamentals (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 203W",
-    title: "Organic Chemistry II: Structure and Functional Group Chemistry (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 204W",
-    title: "Introduction to Organic Chemistry I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 205W",
-    title: "Introduction to Organic Chemistry II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CHEM 209",
     title: "Introductory Spectroscopy and Structure",
     units: 0.5,
@@ -10327,16 +9360,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["CHEM 123", "CHEM 125"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 212W",
-    title: "Physical Chemistry (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -10395,16 +9418,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CHEM 226W",
-    title: "Inorganic Chemistry II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CHEM 233",
     title: "Fundamentals of Biochemistry",
     units: 0.5,
@@ -10426,26 +9439,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["CHEM 123L", "CHEM 125L"] }
     ],
     antireqs: ["CHEM 237L"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 233W",
-    title: "Environment Atmospheric Chemistry (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 234W",
-    title: "Environmental Aquatic (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -10495,16 +9488,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["CHEM 140"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 250W",
-    title: "Introductory Biochemistry (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -10634,26 +9617,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["CHEM 266L"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 301W",
-    title: "Organic Chemistry III: Synthetic Methods (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 302W",
-    title: "Intermediate Organic Chemistry (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -10800,27 +9763,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["CHEM 250L"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 350W",
-    title: "Biochemistry I: Bioenergetics and Catabolic Pathways (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 354W",
-    title: "Biochemistry II (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -10996,16 +9938,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CHEM 419W",
-    title: "Prin. of Biochem. Toxicology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CHEM 430",
     title: "Special Topics in Biochemistry",
     units: 0.5,
@@ -11045,16 +9977,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CHEM 440W",
-    title: "Introduction to Nanomaterials (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CHEM 464",
     title: "Spectroscopy in Organic Chemistry",
     units: 0.5,
@@ -11062,17 +9984,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["CHEM 265"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CHEM 480W",
-    title: "Special Topics in Chemistry (WLU)",
-    units: 0.5,
-    description: "Special Topics in Chemistry (WLU)",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -11999,26 +10910,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CLAS 101W",
-    title: "The Greek World (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CLAS 102W",
-    title: "Roman Civilization (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CLAS 103",
     title: "Colossos: The Major Figures of Classical Antiquity",
     units: 0.5,
@@ -12096,40 +10987,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CLAS 206W",
-    title: "Greek & Roman Mythology: Heroes(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CLAS 210",
     title: "History of Ancient Law",
     units: 0.5,
     description: "A historical introduction to law in the ancient world. Babylonian, Assyrian, Hittite, and Roman law, legal practices, and concepts will be examined.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CLAS 215W",
-    title: "Roman Art & Archaeology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CLAS 216W",
-    title: "Sports in Greece & Rome (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -12163,26 +11024,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Classics in Political Thought",
     units: 0.5,
     description: "Where do the core tenets of Western political philosophy come from? In this course students will trace the development of political philosophy by examining Ancient Greek plays (e.g., Antigone, Medea) and foundational political texts (e.g., Plato's Republic, Aristotle's Politics) which set the stage for modern Western political thought (Machiavelli and after).",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CLAS 225W",
-    title: "History of Ancient Greece(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CLAS 226W",
-    title: "History of Ancient Rome (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -12304,16 +11145,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Sex and Gender in the Ancient World",
     units: 0.5,
     description: "This course examines a variety of issues around sexuality and gender relations in antiquity, including sexual mores and behaviours; literary, artistic, and philosophical constructs of gender; the roots of misogyny; and the legal and social restrictions placed on women in most ancient societies.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CLAS 319W",
-    title: "Gender and Sexuality in the Ancient World (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -12937,17 +11768,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["MATH 229", "MATH 239", "MATH 249"] },
       { type: "OR", reqs: ["CO 227", "CO 250", "CO 255", "CO 352"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CO 456W",
-    title: "Introduction to Game Theory (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -13816,157 +12636,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "COMST 100W",
-    title: "Introduction to Media History (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 101W",
-    title: "Canadian Communication in Context (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 202W",
-    title: "Nonverbal Communication (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 206W",
-    title: "Public Communication (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 212W",
-    title: "Language, Communication & Culture  (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 213W",
-    title: "Technology and Society (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 235W",
-    title: "Communication Research Methods (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 260W",
-    title: "Communication, Culture, Policy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 304W",
-    title: "Canadian Communication Thought (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 322W",
-    title: "Gender, Communication & Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 400W",
-    title: "Sen. Sem in Comm Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "COMST 405W",
-    title: "Research Seminar (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CRGC 280W",
-    title: "Special Topics in Public Ethics and Spirituality",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CRGC 354W",
-    title: "Sounds of the Sacred",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CRGC 380W",
-    title: "Special Topics in Christian Studies and Global Citizenship (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CROAT 101",
     title: "Elementary Croatian 1",
     units: 0.5,
@@ -14011,27 +12680,6 @@ export const RAW_COURSES: RawCourse[] = [
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 102W",
-    title: "Information Processing with Microcomputer Systems",
-    units: 0.5,
-    description: "WLU cross registration",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 104W",
-    title: "Introduction to Programming (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
     offered: ["F", "W", "S"]
   },
   {
@@ -14181,17 +12829,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CS 164W",
-    title: "Data Structures I",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CS 200",
     title: "Concepts for Advanced Computer Usage",
     units: 0.5,
@@ -14201,41 +12838,6 @@ export const RAW_COURSES: RawCourse[] = [
     tags: [],
     majors: ["any"],
     exclMajors: ["cs", "ds", "se"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 202W",
-    title: "Web Site Design (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "OR", reqs: ["CS 116", "CS 136", "CS 146"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 212W",
-    title: "Windows App. Programming (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "OR", reqs: ["CS 116", "CS 146"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 213W",
-    title: "Introduction to Object-Oriented Programming (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
     offered: ["F", "W", "S"]
   },
   {
@@ -14424,27 +13026,6 @@ export const RAW_COURSES: RawCourse[] = [
     antireqs: ["BME 292", "BME 393", "CS 251", "ECE 222", "ME 262", "MTE 262", "SYDE 192"],
     tags: [],
     majors: ["cs", "ds", "se"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 264W",
-    title: "Data Structures II (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 317W",
-    title: "Software Engineering",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
     offered: ["F", "W", "S"]
   },
   {
@@ -14920,16 +13501,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "CS 460W",
-    title: "Applied Cryptography (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "CS 462",
     title: "Formal Languages and Parsing",
     units: 0.5,
@@ -14963,27 +13534,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MATH 235"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 468W",
-    title: "Artificial Intelligence(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CS 469W",
-    title: "iPhone Application Programming (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -15215,48 +13765,6 @@ export const RAW_COURSES: RawCourse[] = [
     antireqs: [],
     tags: [],
     majors: ["cs", "ds", "se"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CULT 101W",
-    title: "Exploring Cultural Studies (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CULT 205W",
-    title: "Cartoons and Comics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CULT 215W",
-    title: "Game Cultures (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "CULT 340KW",
-    title: "Hip Hop Publics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
     offered: ["F", "W", "S"]
   },
   {
@@ -15495,16 +14003,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Topics in Advanced Game Design",
     units: 0.5,
     description: "This course advances the skills developed in the foundational game design course. Students deepen their capacity to analyze and produce games within a particular genre (e.g., RPG, strategy), field (e.g., social activism), or platform (e.g., table-top, mobile, computer). They will contribute work to their digital portfolio.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "DHUM 299AW",
-    title: "ChatGPT and the Humanities (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -17672,28 +16170,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 120W",
-    title: "Introduction to Microeconomics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: ["ECON 101"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 140W",
-    title: "Introduction to Macroeconomics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: ["ECON 102"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 201",
     title: "Microeconomic Theory for Business and Policy",
     units: 0.5,
@@ -17704,18 +16180,6 @@ export const RAW_COURSES: RawCourse[] = [
     antireqs: [],
     tags: [],
     majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 205W",
-    title: "Introduction to Applied Statistics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: ["BUS 255W"],
-    tags: [],
-    majors: ["any"],
-    exclMajors: ["math"],
     offered: ["F", "W", "S"]
   },
   {
@@ -17741,27 +16205,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 207W",
-    title: "Economic Development (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 210AW",
-    title: "Macro Economic Perspective on Public Finance (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -17806,27 +16249,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 223W",
-    title: "Economics of the Canadian Banking and Financial System (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 229W",
-    title: "Economics of China (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 231",
     title: "Introduction to International Economics",
     units: 0.5,
@@ -17835,57 +16257,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] },
       { type: "AND", reqs: ["ECON 102"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 233W",
-    title: "Public Economics: Expenditure (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 234W",
-    title: "Sports Economics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 236W",
-    title: "Economics and Demography (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 238W",
-    title: "Environmental Economics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 239W",
-    title: "Introduction to International Trade (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -17901,68 +16272,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ECON 102"] }
     ],
     antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 246W",
-    title: "Economics of Inequality (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["ECON 120W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 247W",
-    title: "Historical Development of the International Economy (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["ECON 120W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 248W",
-    title: "Economics of Health (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "OR", reqs: ["ECON 101", "ECON 120W"] },
-      { type: "OR", reqs: ["ECON 102", "ECON 140W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 249W",
-    title: "International Finance (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["ECON 120W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 250W",
-    title: "Intermediate Macroeconomic Analysis for Management (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [
-      { type: "AND", reqs: ["ECON 120W"] }
-    ],
-    antireqs: ["ECON 202"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -17994,18 +16303,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 255W",
-    title: "Managerial Statistics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: ["BUS 205W"],
-    tags: [],
-    majors: ["any"],
-    exclMajors: ["math"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 256",
     title: "Introduction to Health Economics",
     units: 0.5,
@@ -18014,19 +16311,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["ECON 101", "ECON 100", "COMM 103"] }
     ],
     antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 260W",
-    title: "Intermediate Microeconomic Analysis for Management (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [
-      { type: "AND", reqs: ["ECON 120W"] }
-    ],
-    antireqs: ["ECON 201"],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -18056,84 +16340,11 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 270W",
-    title: "Microeconomic Theory I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 275W",
-    title: "Business Decision Models (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 290",
     title: "Models of Choice in Competitive Markets",
     units: 0.5,
     description: "Choice lies at the heart of all economic models. This course focuses on choice by consumers and firms. It explains the notion and use of utility functions and budgets, and shows how their interaction allows economists to make predictions about behaviour. The constrained maximization techniques from ECON 211 are used extensively, and extended to situations covering uncertainty (risk) and time. Profit maximization by firms is explored.",
     prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 290W",
-    title: "Intermediate Macroeconomics I: Static Analysis (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 295W",
-    title: "Introductory Econometrics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 301W",
-    title: "Transportation Economics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 304W",
-    title: "Industrial Organization (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 305W",
-    title: "Behavioural Economics (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["ECON 260W"] }
-    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -18154,102 +16365,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 306W",
-    title: "Economics of Wages and Employment (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 307W",
-    title: "Economics of Growth (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 310EW",
-    title: "Econ, Tech and Innovation (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 310FW",
-    title: "Sports Economics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 310GW",
-    title: "Economics of China (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 310IW",
-    title: "Market Design (WLU)",
-    units: 0.5,
-    description: "Market Design (WLU)",
-    prereqs: [
-      { type: "OR", reqs: ["ECON 260W", "ECON 270W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 310JW",
-    title: "Computational Economics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 310YW",
-    title: "Intl Econ Policy & Institution (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 310ZW",
-    title: "Behavioural Economics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 311",
     title: "Mathematical Economics",
     units: 0.5,
@@ -18258,48 +16373,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ECON 201"] },
       { type: "AND", reqs: ["ECON 391"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 313W",
-    title: "Public Economics:Taxation (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 315W",
-    title: "Forecasting Methods(WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 316W",
-    title: "Economics & Gender (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 318W",
-    title: "Natural Resource Economics (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -18321,16 +16394,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 322W",
-    title: "Economic Analysis of Law (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 323",
     title: "Econometric Analysis 2",
     units: 0.5,
@@ -18338,26 +16401,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ECON 322"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 325W",
-    title: "Game Theory and Economics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 327W",
-    title: "History of Economic Analysis (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -18372,26 +16415,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ECON 206"] },
       { type: "OR", reqs: ["ECON 201", "ECON 290"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 335W",
-    title: "Economics of Management and Strategy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 345W",
-    title: "Mathematical Economics (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -18454,17 +16477,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 370W",
-    title: "Microeconomic Theory II (WLU)",
-    units: 0.5,
-    description: "An examination of decision making, equilibrium, and efficiency in different economic environments. Topics may include strategic behaviour, information, risk, intertemporal choice, product differentiation, general equilibrium, externalities, and public good.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 371",
     title: "Business Finance 1",
     units: 0.5,
@@ -18514,16 +16526,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 390W",
-    title: "Intermediate Macroeconomics II: Dynamic Analysis (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 391",
     title: "Equilibrium in Market Economies",
     units: 0.5,
@@ -18557,17 +16559,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ECON 391"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 395W",
-    title: "Applied Economics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -18735,17 +16726,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 439W",
-    title: "International Trade (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 441",
     title: "Public Economics",
     units: 0.5,
@@ -18785,16 +16765,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 450W",
-    title: "Advanced Macroeconomics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 451",
     title: "Law and Economics",
     units: 0.5,
@@ -18817,16 +16787,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ECON 391"] },
       { type: "OR", reqs: ["ECON 323", "STAT 221", "STAT 231", "STAT 241"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 455W",
-    title: "Econometrics 1:Time Series Analysis (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -18888,16 +16848,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ECON 470W",
-    title: "Advanced Microeconomic Theory (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ECON 472",
     title: "Senior Honours Essay",
     units: 0.5,
@@ -18916,36 +16866,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ECON 323"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 480KW",
-    title: "Directed Research (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 480QW",
-    title: "Directed Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ECON 480W",
-    title: "Directed Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -19028,58 +16948,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ECON 306"] },
       { type: "OR", reqs: ["ECON 323", "STAT 221", "STAT 231", "STAT 241"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "EDMI 101W",
-    title: "Images of Education in Media (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "EDMI 110W",
-    title: "Foundations of Teaching (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "EDMI 202W",
-    title: "The Educational Divide (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "EDMI 203W",
-    title: "Learn 280 Characters or Less (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "EDMI 300W",
-    title: "Teaching in Non-School Context (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -19739,16 +17607,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ENGL 119W",
-    title: "Reading Fiction (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ENGL 129R",
     title: "Written Academic English",
     units: 1,
@@ -19936,16 +17794,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ENGL 207W",
-    title: "Comic Drama (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ENGL 208A",
     title: "Forms of Fantasy",
     units: 0.5,
@@ -20049,16 +17897,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Advanced Academic Writing",
     units: 0.5,
     description: "This course will explore relationships between audience, situation, purpose, and form in academic writing in the disciplines. Students will explore the rhetorical features of knowledge creation across fields of study. They will practice situated inquiry and argumentation through a variety of research-based written exercises, including a significant research project in a field of their choice.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENGL 209W",
-    title: "Special Topics (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -20341,16 +18179,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ENGL 272W",
-    title: "Introduction to Creative Writing (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ENGL 275",
     title: "Fiction and Film",
     units: 0.5,
@@ -20366,26 +18194,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Literatures of Migration",
     units: 0.5,
     description: "This course explores the literatures and cultures of diasporic and immigrant communities in North America, such as African, Asian, Caribbean, Middle Eastern, and Latin American. Topics to be covered may include memory, race, hybridity, home, and belonging.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENGL 281W",
-    title: "Cyborg Fictions (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENGL 286W",
-    title: "Young Adult Literature (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -21223,16 +19031,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ENGL 410W",
-    title: "Topics in Gender (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ENGL 411",
     title: "Eighteenth-Century Literature: Sex, Satire, and Sentiment",
     units: 0.5,
@@ -21292,16 +19090,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Topics in Creative Writing",
     units: 0.5,
     description: "This course will focus on a selected genre, approach, creative method, or other aspect of creative writing. See course instructor for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENGL 450W",
-    title: "Texts and Contexts (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -21558,46 +19346,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ENGL 495A"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENTR 200W",
-    title: "The Entrepreneurial Method (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENTR 300W",
-    title: "Business Model Creation (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENTR 301W",
-    title: "Business Model Execution (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENTR 310AW",
-    title: "Entrepreneurship in a Start-Up Nation (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -22001,41 +19749,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ENVS 101W",
-    title: "Introduction to Environmental Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENVS 102W",
-    title: "Environmental Problems (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ENVS 105",
     title: "Environmental Sustainability and Ethics",
     units: 0.5,
     description: "This course examines and evaluates the reasons why the compatibility of commercial activity, ethics and environmental stewardship has been challenged or defended by stakeholders in government, business and civil society organizations. Concepts and activities by which stakeholders describe and debate this compatibility will be discussed. Different cultural perspectives on the compatibility debate will be considered, compared and evaluated. Case studies will test whether and to what extent compatibility may be defended adequately. Private and non-profit enterprises will be considered.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENVS 110W",
-    title: "Enviro, Sustain & Society (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -22142,28 +19859,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ENVS 274W",
-    title: "One Earth, One Health (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENVS 275W",
-    title: "EcoCommunications (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ENVS 278",
     title: "Applied Statistics for Environmental Research",
     units: 0.5,
@@ -22172,26 +19867,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ENVS 178"] }
     ],
     antireqs: ["ARTS 280", "ECON 221", "SDS 250R", "PSCI 314", "PSYCH 292", "REC 371", "SOC 280", "STAT 202"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENVS 290W",
-    title: "Global Resource and Environmental Issues (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENVS 295W",
-    title: "Ecotourism and the Environment (WLU)`",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -22247,16 +19922,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Field Studies in Environment",
     units: 0.5,
     description: "Detailed field analysis of a selected destination with one or more themes related to environmental studies. Field study will be two to three weeks duration. Offering dependent upon faculty availability and student enrolment.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ENVS 392W",
-    title: "Environmental Impact Assessment (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -23146,214 +20811,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ERS 498W",
-    title: "Environmental Thought (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "EVST 274W",
-    title: "One Earth, One Health (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 101W",
-    title: "Film & Narrative (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 102W",
-    title: "Film and the Photographic Image (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 103W",
-    title: "Film and Genre (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 238W",
-    title: "Bollywood Film (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 240W",
-    title: "Film History to 1950 (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 246W",
-    title: "German Film (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 252W",
-    title: "Film Noir (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 254W",
-    title: "Science Fiction Film (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 257W",
-    title: "The Western (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 261W",
-    title: "Film Adaptation (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 264W",
-    title: "Classical Hollywood Film (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 309QW",
-    title: "The Superhero Film (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 309W",
-    title: "Special Topics in Film Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 333W",
-    title: "East Asian Film (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 355W",
-    title: "Indigenous Film",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 361W",
-    title: "Reading Gothic Film (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 370W",
-    title: "Introduction to Film Editing (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FILM 374W",
-    title: "Screenwriting & Directing (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "FINE 100",
     title: "Studio Fundamentals",
     units: 0.5,
@@ -24086,36 +21543,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "FR 101W",
-    title: "Introductory French I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 102W",
-    title: "Introductory French II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 150W",
-    title: "Practical French I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "FR 151",
     title: "Basic French 1",
     units: 0.5,
@@ -24124,16 +21551,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["FR 101"] }
     ],
     antireqs: ["FR 152", "FR 192A", "FR 192B"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 151W",
-    title: "Practical French II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -24202,33 +21619,12 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "FR 237W",
-    title: "Quebec Culture: Language, Nation, and Identity(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "FR 250",
     title: "Intermediate Spoken French",
     units: 0.5,
     description: "This course is designed to enhance oral expression skills in French at the intermediate level by applying fundamental principles of grammar, pronunciation, and prosody. It also provides cultural insights from various regions of the Francophone world. Students will improve their listening comprehension, expand their vocabulary, and identify common language errors. This will be achieved by utilizing multimedia sources, engaging in a variety of spoken activities, and participating in peer evaluations.",
     prereqs: [],
     antireqs: ["FR 250A"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 250W",
-    title: "Language through Popular Culture 1 (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -24347,26 +21743,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "FR 330W",
-    title: "Advanced Translation 1 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 331W",
-    title: "Advanced Translation ll (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "FR 332",
     title: "17th-Century French Literature",
     units: 0.5,
@@ -24375,38 +21751,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["FR 296"] },
       { type: "AND", reqs: ["FR 297"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 334W",
-    title: "Self and Other (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 335W",
-    title: "Contemporary Literature (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 337W",
-    title: "Quebec Cinema: The Politics of Memory (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -24480,16 +21824,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "FR 360W",
-    title: "Atelier Composition Stylistics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "FR 363",
     title: "20th-Century French Literature",
     units: 0.5,
@@ -24551,16 +21885,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["FR 276"] },
       { type: "OR", reqs: ["FR 296", "FR 297"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 385W",
-    title: "Innovations in French Cinema (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -24631,27 +21955,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "FR 435W",
-    title: "Literature in Revolt (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 438W",
-    title: "Family Feuds in Franco Lit (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "FR 452",
     title: "Advanced French Language",
     units: 0.5,
@@ -24659,16 +21962,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["FR 351"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 460W",
-    title: "Atelier in Oral Expression Through Drama (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -24723,16 +22016,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["FR 276", "FR 297"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "FR 485W",
-    title: "Adaptation:French Novels into Film (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -24854,16 +22137,6 @@ export const RAW_COURSES: RawCourse[] = [
     description: "Students will be introduced to basic business knowledge, with a focus on the opportunities and challenges of doing business in a global context. This course will include discussions about globalization, international trade, national business including emerging markets, cross-cultural business environments, and international business management.",
     prereqs: [],
     antireqs: ["GBDA 211"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GBDA 200W",
-    title: "Digital Narratives (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -25180,17 +22453,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Special Topics in Interaction Design",
     units: 0.5,
     description: "A study of selected topics in interaction design. Topics will be chosen by the professor according to their area of specialization.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GC 280SW",
-    title: "Jewish Community Music (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -25707,30 +22969,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 101W",
-    title: "Introduction to Physical Geography (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 102",
     title: "Global Environmental Systems: Processes and Change",
     units: 0.5,
     description: "An introductory course in the study of the energy and mass flows that impact the climate and landscape of the Earth system. There is focus on understanding processes of change and variability as well as the impacts of humans on these systems that increasingly define the Anthropocene.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 102W",
-    title: "Introduction to Human Geography (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -25867,16 +23109,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 231W",
-    title: "Risk & Disasters: A Geographical Introduction (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 233",
     title: "Geography of Tourism",
     units: 0.5,
@@ -25884,97 +23116,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["GEOG 101", "REC 101", "ENVS 195"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 250W",
-    title: "Canada (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 251W",
-    title: "Cartography I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 255W",
-    title: "Selected Thematic Geographical Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 256W",
-    title: "Selected Ontario Regions (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 260W",
-    title: "Geography & the Global Economy (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 261W",
-    title: "Geography of Energy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 262W",
-    title: "Travel Behaviour  (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 263W",
-    title: "Globilization (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 265W",
-    title: "Urban Spatial Behaviour (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -25992,16 +23133,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 270W",
-    title: "Cultural Geographies  (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 271",
     title: "Earth from Space Using Remote Sensing",
     units: 0.5,
@@ -26009,26 +23140,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["GEOG 181", "GEOG 187"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 271W",
-    title: "Temporal Perspectives on the City (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 273W",
-    title: "Geog of Health & Disease (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -26059,26 +23170,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 282W",
-    title: "Geomorphology and Soils (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 290W",
-    title: "Global Resource and Environmental Issues (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 293",
     title: "Approaches to Research in Human Geography",
     units: 0.5,
@@ -26101,26 +23192,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 294W",
-    title: "Geography of Tourism (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 297W",
-    title: "Geography of Water Resources - Canada (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 300",
     title: "Geomorphology and the Southern Ontario Environment",
     units: 0.5,
@@ -26128,16 +23199,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["GEOG 209", "GEOG 305"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 300W",
-    title: "Direct Studies in Geography (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -26361,16 +23422,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 336W",
-    title: "Coastal Processes and Landforms (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 349",
     title: "Urban Form and Spatial Structure",
     units: 0.5,
@@ -26384,60 +23435,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 350W",
-    title: "Canadian Issues (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 351",
     title: "Geography of Transportation",
     units: 0.5,
     description: "Focuses on Canadian transportation systems and issues and is organized into three modules: links between transportation and regional economic development, urban land use - transportation interactions, and sustainable transportation. Approximately one-quarter of the course focuses on analytic techniques including network analysis, category analysis, and the gravity model. Particular attention is paid to trends in air travel and related issues.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 352W",
-    title: "A Selected World Region (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 353W",
-    title: "Western Europe (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 354W",
-    title: "The Canadian North (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 355W",
-    title: "Remote Sensing for Geography & Environmental Studies (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -26493,36 +23494,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 361W",
-    title: "Spatial Analysis",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 365W",
-    title: "Canadian Urban Spaces (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 367W",
-    title: "Geog of Human Dev (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 368",
     title: "Ecology and Conservation for Planning",
     units: 0.5,
@@ -26549,30 +23520,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 373W",
-    title: "Landscape and Identities (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 374",
     title: "Special Topics in Geography",
     units: 0.5,
     description: "These courses allow for additions to the program on a short-term basis, and for the development of future permanent courses.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 376W",
-    title: "Cultural Heritage Landscapes (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -26593,16 +23544,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 385W",
-    title: "Natural Environments (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 387",
     title: "Spatial Databases",
     units: 0.5,
@@ -26610,16 +23551,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["PLAN 281"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 387W",
-    title: "Catchment and Global Biogeochemistry (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -26649,56 +23580,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ENVS 278"] }
     ],
     antireqs: ["GEOG 391"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 393W",
-    title: "Geography of Recreation (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 394W",
-    title: "Geography of Tourism Marketing(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 395W",
-    title: "The World's Problem Environments (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 396W",
-    title: "Natural Hazards (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 398W",
-    title: "Parks and Protected Areas(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -27042,16 +23923,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 461W",
-    title: "Seminar in Urban Geography (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 462",
     title: "Global Food and Agricultural Politics",
     units: 0.5,
@@ -27123,26 +23994,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 481W",
-    title: "Seminar on Cold Regions (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 482W",
-    title: "Hydrology of Cold Regions (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 483",
     title: "Civic Technology and Digital Infrastructures",
     units: 0.5,
@@ -27180,16 +24031,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GEOG 489W",
-    title: "Paleoclimatology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GEOG 490A",
     title: "Honours Thesis Preparation",
     units: 0.5,
@@ -27210,46 +24051,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["GEOG 490A"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 493W",
-    title: "Problems in Land Resources Management (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 494W",
-    title: "Northern Resources and Environments (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 495W",
-    title: "Seminar in Tourism Research (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GEOG 499W",
-    title: "Direct Studies in Geog (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -27285,27 +24086,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["GER 101"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GER 110W",
-    title: "Introductory German 1 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GER 111W",
-    title: "Introductory German II",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -27564,16 +24344,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["GER 202", "GER 211"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GER 311W",
-    title: "Advanced German II (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -27905,202 +24675,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "GESC 151W",
-    title: "Our Digital Earth (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GESC 231W",
-    title: "Risks and Disasters (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GESC 290W",
-    title: "Enviro Concepts & Approaches (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GESC 291W",
-    title: "Development & the Environment (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GESC 362W",
-    title: "Agricultural Geography (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GESC 391W",
-    title: "Wildlife and Rural Land Resources Management (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GESC 449W",
-    title: "Degrowth: Alternative Development (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 101W",
-    title: "One Planet, Many Worlds (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 212W",
-    title: "Issues in International Development (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 222W",
-    title: "Contemporary Western Societies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 323W",
-    title: "Global Migrations, Refugees and Diasporas (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 327W",
-    title: "Tourists, Tourism & the Globe (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 331W",
-    title: "Contemporary Global Conflicts and the Search for Peace (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 350W",
-    title: "Direct Studies  (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 388W",
-    title: "Field Course in Global Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 391W",
-    title: "Orienting your Global Experience",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLOBAL 488W",
-    title: "Senior Field Course in Global Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLST 364W",
-    title: "Social Innovation in the City (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GLST 388W",
-    title: "Field Course in Global Studies (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "GRK 101",
     title: "Introductory Ancient Greek 1",
     units: 0.5,
@@ -28266,50 +24840,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Senior Studies in Greek: Independent Study",
     units: 0.5,
     description: "Under special circumstances, and with the approval of the department, a student or small group of students may arrange to pursue individualized readings under the supervision of a faculty member.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GS -",
-    title: "Continuing Graduate Studies",
-    units: 0.5,
-    description: "Continuing Graduate Studies",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GS .",
-    title: "Graduate Studies Research",
-    units: 0.5,
-    description: "Graduate Studies Research",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GS *",
-    title: "Co-operative Work Term",
-    units: 0.5,
-    description: "Co-operative Work Term.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "GS ~",
-    title: "Leave of Absence",
-    units: 0.5,
-    description: "Leave of Absence",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -28807,16 +25337,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HBIO 210W",
-    title: "Human Anatomy",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HEALTH 100",
     title: "Foundations of a Healthy Lifestyle",
     units: 0.5,
@@ -28876,48 +25396,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Interdisciplinary Health Topics",
     units: 0.5,
     description: "This course will cover interdisciplinary health topics of emerging research and teaching interest.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HESC 227W",
-    title: "Aging: Realities and Myths (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HESC 340W",
-    title: "Human Anatomy II (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HESC 431W",
-    title: "Pathophysiology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HESC 435W",
-    title: "Exercise is Medicine (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -29090,16 +25568,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 101W",
-    title: "Medieval Europe 500-1100 AD(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 102",
     title: "War and Society in Europe, 1914-1945",
     units: 0.5,
@@ -29199,59 +25667,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 121W",
-    title: "Anicent History in Global Context",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 123W",
-    title: "Great Battles in History (WLU)",
-    units: 0.5,
-    description: "Great Battles in History (WLU)",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 128W",
-    title: "Revolution in the Modern World (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 129W",
-    title: "History from Renaissance to Now",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 130W",
-    title: "Problems in History since 1945 (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 191",
     title: "Special Topics in History",
     units: 0.5,
@@ -29278,16 +25693,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Columbus and After: New Worlds in the Americas",
     units: 0.5,
     description: "Beginning with Columbus, this course introduces the history of early America as it was shaped by the encounters between colonizers and colonized. Particular attention is paid to the varied nature of these encounters, and their contested interpretation by historians and others.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 201W",
-    title: "Early Modern Europe,1450-1789 (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -29332,16 +25737,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "The Victorian Age",
     units: 0.5,
     description: "During the reign of Queen Victoria (1837-1901), Britain experienced profound change with the expansion of its population, industry, and empire. Poverty and gender and racial discrimination persisted in spite of a marked expansion in political rights. This course will address both progressive and regressive forces during this era, focusing on issues of culture, politics, imperialism, and society.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 206W",
-    title: "Russia:Rev to Collapse 1917-91 (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -29415,16 +25810,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 213W",
-    title: "French Canada After Confederation (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 216",
     title: "From Gutenberg to Zuckerberg: A (Long) History of the Internet",
     units: 0.5,
@@ -29436,30 +25821,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 218W",
-    title: "Brit Pol & Soc 1714-1914 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 220",
     title: "The Vietnam War",
     units: 0.5,
     description: "The Vietnam War, the longest war in U.S. history, was fought on two fronts, by American GIs abroad and anti-war protesters at home. Those two subjects, as well as a history of the war from Vietnamese perspectives, are the focus of this course.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 220W",
-    title: "War and Society: From Knights to the Thin Red Line (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -29511,16 +25876,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 225W",
-    title: "History Of Ancient Greece (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 226",
     title: "Canada in World War 2",
     units: 0.5,
@@ -29532,40 +25887,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 226W",
-    title: "Hist of Ancient Rome (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 227",
     title: "The French Revolution and Napoleonic Europe",
     units: 0.5,
     description: "This course will examine the causes and consequences of the French Revolution and the impact of Napoleon's reign in France and Europe.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 228W",
-    title: "Survey of Modern Asian History (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 229W",
-    title: "Survey of African History (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -29716,16 +26041,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 248W",
-    title: "WWII: The European Theatre (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 250",
     title: "What is History? An Introduction to Historical Thinking",
     units: 0.5,
@@ -29807,17 +26122,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "The United States Since the Civil War Era",
     units: 0.5,
     description: "This course begins in the aftermath of the Civil War and ends at the present day. Topics may include major social movements, the place of the United States in world politics, immigration and imperialism, and the economy.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 258W",
-    title: "Indigenous Peoples and Empires (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -29968,50 +26272,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 284W",
-    title: "The History of Sexuality in Western Civilization (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 285W",
-    title: "Ancient Art Beyond the West (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 291",
     title: "Special Topics in History",
     units: 0.5,
     description: "One or more term courses will be offered from time to time as announced by the Department of History. Topics will be dependent upon special research and/or instructional interests of faculty.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 293W",
-    title: "Canada Since Confederation (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 299W",
-    title: "Special Topics (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30052,30 +26316,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 304W",
-    title: "Fascism Europe 1919-1945 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 305",
     title: "Historical Memory and National Identity",
     units: 0.5,
     description: "What factors create a national identity: historical events or socially-constructed historical memory? By analyzing key themes such as elite and popular culture, historical sites and commemorations, sports, and iconic public events, this course demonstrates how nation-states and other communities have created a series of evolving national identities.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 306W",
-    title: "War and Society in Africa (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30131,16 +26375,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "The American Civil Rights Movement",
     units: 0.5,
     description: "This course will explore the Civil Rights movement in the United States from the 1950s to the 1970s. Topics will include the origins and evolution of the movement, tactics, key figures, and the role of the federal government.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 314W",
-    title: "Contemporary Europe (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30214,16 +26448,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 321W",
-    title: "Social History of Pre-Industrial Canada(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 322",
     title: "Global History of the Detention Camp",
     units: 0.5,
@@ -30257,41 +26481,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 324W",
-    title: "English Government and Society, 1558-1660",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 325W",
-    title: "Imperialism, Race and the Post-Colonial Legacy (WLU)",
-    units: 0.5,
-    description: "A study of the evolution of the relationships, roles and occupations of the sexes from Biblical times to the Industrial Revolution. Particular attention will be placed on the roles and responsibilities of women within this context.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 327",
     title: "We are all Treaty People",
     units: 0.5,
     description: "Canada is a nation built upon treaties, and as such, every individual who occupies this land has a responsibility to uphold the terms of these agreements; to share, respect, and protect the land for future generations. Students will develop understandings of kinship, reciprocity, and responsibility as critical elements to the establishment and maintenance of these relationships through time. Throughout the course, students will investigate the changing nature of treaties and treaty-making in Canada. Upon completion, students will be able to critically reflect on their roles and responsibilities as treaty people and examine solutions for moving forward in the spirit of reconciliation.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 327W",
-    title: "Quebec in 20th Century (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30334,40 +26527,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 334W",
-    title: "American Society and Politics Since the 1930's (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 336W",
-    title: "Capitalism (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 341",
     title: "The Nazi Occupation of Europe",
     units: 0.5,
     description: "This course examines the nature and impact of Nazi occupation on Western and Eastern Europe preceding and during World War II and the responses of the people occupied.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 341W",
-    title: "Canadian Military History(WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30381,26 +26544,6 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course explores the Cold War through a Canadian perspective, highlighting and studying the political and cultural dynamics of the period and their implications for the state and ordinary citizens. Students will use historical research to evaluate and analyze how the Canadian state and public responded to the ever-changing political, military/strategic, cultural, economic, and social experiences of the period. Course assignments will cultivate interpretive reading, writing, and oral presentation skills.",
     prereqs: [],
     antireqs: ["HIST 391", "HIST 422"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 345W",
-    title: "Native Peoples of Western Canada(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 346W",
-    title: "Directed Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -30428,32 +26571,12 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 348W",
-    title: "History of International Relations, 1780-1890 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 349",
     title: "Tibet: History, Religion, and Myth",
     units: 0.5,
     description: "Tibet: the rooftop of the world. The land of Tibet has occupied a contested zone between history and myth for hundreds of years, from a proud Central Asian empire to a Buddhist hermit kingdom, and from a mystical Land of Snows to a militarized ethnic and religious region of China today. In this course we will confront myths, religion, political controversies, and the country's portrayal in popular culture, in search of the historical Tibet. Learning activities may include active discussion of readings and films, a debate project based on team research, short answer/essay exam(s), and a comprehensive historical analysis paper.",
     prereqs: [],
     antireqs: ["HIST 391"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 349W",
-    title: "History of International Relations, 1890-1991 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -30474,16 +26597,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Canada: The Immigrant Experience",
     units: 0.5,
     description: "Immigrants and immigration have always been central to Canadians' perceptions of themselves as a country and as a society. This course will examine the immigrant experience and Canada's changing policies and attitudes toward immigration and immigrants from New France to the present.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 354W",
-    title: "France in World War II: Origins and History of the Vichy Regime (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30528,46 +26641,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Fascism Beyond Germany",
     units: 0.5,
     description: "This course offers a comparative analysis of fascism in Italy, Spain, France, Hungary, Romania, Yugoslavia, and Ukraine. Topics include social conditions facilitating the emergence of fascism, fascist ideologies, the popular appeal of fascism, the social composition of fascist parties, and the methods fascists used to take and keep power.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 360W",
-    title: "Great War Aftermath 1914-1921(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 362W",
-    title: "History of Poland Since the Partitions, 1795 to the Present (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 363W",
-    title: "Jews in Modern Europe 1750-1938 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 364W",
-    title: "The Holocaust: Nazi Germany and the Genocide of European Jews (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30630,40 +26703,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 373W",
-    title: "Modern China since 1890 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 374",
     title: "Canada's Social History",
     units: 0.5,
     description: "A topical consideration of key themes, approaches, and chronologies in the history of society in Canada.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 374W",
-    title: "Jews, 'Witches' & Heretics: Persecution & Toleration in Pre-Modern Europe c.1050-1700 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 375W",
-    title: "Seeking Justice: The Family and Law in Canada 1867-1969(WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30697,16 +26740,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "History of the Canadian North: From Pre-contact to the Creation of Nunavut",
     units: 0.5,
     description: "The idea of \"northerness\" is central to our national identity, yet few \"southern\" Canadians have an appreciation of the historical development of Northern Canada. This course will focus on political, social, cultural, and environmental histories, and will introduce students to major themes in Canadian Northern history, from pre-contact to the creation of the territory of Nunavut in 1999.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 383W",
-    title: "England in the Central and Late Middle Ages, 1066-1485 (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30758,16 +26791,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 394W",
-    title: "Researching Local/Family History (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 397",
     title: "Directed Studies in Special Topics",
     units: 0.5,
@@ -30783,16 +26806,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Directed Studies in Special Topics",
     units: 0.5,
     description: "Study in a limited field under tutorial guidance. A high standard of written work will be expected.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HIST 398W",
-    title: "The Historian's Craft (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30833,16 +26846,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HIST 431W",
-    title: "Sem Tudor/Early Stuart Eng (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HIST 450",
     title: "Making History",
     units: 0.5,
@@ -30869,17 +26872,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introduction to Health 1",
     units: 0.5,
     description: "This course will be of interest to students pursuing careers in health and those with a general interest in health and health care. Various perspectives of the concepts of health and illness will be introduced. Emphasis is on understanding the origins, factors and conditions that determine health throughout the lifespan, how these factors influence one another and the role/impact of health care. Additional topics include how health is measured, the leading causes of death, illness and disability, as well as how health status has changed throughout history. Students will also learn how to research and critically analyze the health literature and discuss important health issues with their peers.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HLTH 101W",
-    title: "Physic. Determinant of Health (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -30944,17 +26936,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HLTH 201W",
-    title: "Canadian Health Care Systems (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HLTH 202",
     title: "Principles of Public and Population Health",
     units: 0.5,
@@ -30983,17 +26964,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introduction to Health Research",
     units: 0.5,
     description: "This course will provide students with an introduction to health research and serve as a foundational course for subsequent courses in health research methods. An overview of multiple topics will be addressed. Selected topics might include developing research questions, observations, data sources and types. Students will also be introduced to qualitative, quantitative, and mixed-methods research design approaches.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HLTH 208W",
-    title: "Autism: Individual and Social Issues across the Spectrum",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -31035,17 +27005,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
     antireqs: ["HLTH 320", "GERON 320"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HLTH 220W",
-    title: "Epidemiology & Public Health (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -32013,170 +27972,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "HS A&G",
-    title: "High School Algebra & Geometry",
-    units: 0.5,
-    description: "High School Algebra & Geometry (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS ACC",
-    title: "High School Accounting",
-    units: 0.5,
-    description: "High School Accounting (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS CALC",
-    title: "High School Calculus",
-    units: 0.5,
-    description: "High School Calculus (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS CHEM",
-    title: "High School Chemistry",
-    units: 0.5,
-    description: "High School Chemistry (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS CS",
-    title: "High School Computer Science",
-    units: 0.5,
-    description: "High School Computer Science (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS FMATH",
-    title: "High School Finite Math",
-    units: 0.5,
-    description: "High School Finite Mathematics (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS FR",
-    title: "High School French",
-    units: 1,
-    description: "High School French (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS GER",
-    title: "High School German",
-    units: 1,
-    description: "High School German (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS PHYS",
-    title: "High School Physics",
-    units: 0.5,
-    description: "High School Physics (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS PORT",
-    title: "High School Portuguese",
-    units: 0.5,
-    description: "High School Portuguese (OAC, CGEP, etc.) - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HS SPAN",
-    title: "High School Spanish",
-    units: 0.5,
-    description: "High School Spanish - for requisite use only",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HUMN 100W",
-    title: "Human Rights & Human Diversity (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HUMN 252W",
-    title: "Niagara Falls (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HUMN 260W",
-    title: "Introduction to Human Rights (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "HUMSC 100W",
-    title: "Human Rights & Human Diversity (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "HUMSC 101",
     title: "Great Dialogues: Reflection and Action",
     units: 0.5,
@@ -32710,17 +28505,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "INDG 303W",
-    title: "Indigenous Pedagogy (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "INDG 305",
     title: "Indigenous Rights in Global Context",
     units: 0.5,
@@ -32752,16 +28536,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["INDG 201", "INDG 272"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "INDS 200W",
-    title: "Gladue Principles (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -33138,16 +28912,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ITAL 101W",
-    title: "Introduction to Italian I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ITAL 102",
     title: "Introduction to Italian Language 2",
     units: 0.5,
@@ -33156,16 +28920,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["ITAL 101"] }
     ],
     antireqs: ["ITAL 155"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ITAL 102W",
-    title: "Introduction to Italian II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -33195,16 +28949,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ITAL 201W",
-    title: "Intermediate Italian I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ITAL 202",
     title: "Intermediate Italian 2",
     units: 0.5,
@@ -33218,17 +28962,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "ITAL 202W",
-    title: "Intermediate Italian II (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfred Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "ITAL 251",
     title: "Issues in Contemporary Italian Society",
     units: 0.5,
@@ -33236,27 +28969,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["ITAL 202"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ITAL 324W",
-    title: "Cinema Italia (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ITAL 395W",
-    title: "Special Topics in Italian Studies (WLU)",
-    units: 0.5,
-    description: "WLU cross registration",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -33807,17 +29519,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "KIN 100W",
-    title: "Movement Skill & Phys Literacy (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "KIN 104",
     title: "Fundamentals of Kinesiology",
     units: 0.5,
@@ -33883,28 +29584,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introduction to Human Nutrition",
     units: 0.5,
     description: "An introductory course on human nutrition. Students will be introduced to core topics in nutrition including function of nutrients, nutrient requirements, diet assessment and planning, food composition and the complex interrelationships between food, nutrition, and health. Factors that affect the human diet such as biology, psychology, sociology, environment and political policy will also be examined, as well as key areas of nutrition focus for life stage groups.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KIN 161W",
-    title: "Motor Learning & Control (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KIN 200W",
-    title: "Movement Skills and Athlete Development (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -34003,27 +29682,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "KIN 221W",
-    title: "Functional Human Anatomy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KIN 231W",
-    title: "Fundamentals of Health (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "KIN 232",
     title: "Research Design and Statistics",
     units: 0.5,
@@ -34057,17 +29715,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["BIOL 273"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KIN 300W",
-    title: "Teaching & Coaching Act/Sport (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -34230,17 +29877,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "KIN 342W",
-    title: "Neuromechanics: Human Movement",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "KIN 343",
     title: "Micronutrient Metabolism",
     units: 0.5,
@@ -34367,17 +30003,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["KIN 414"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KIN 390W",
-    title: "Inferential Statistics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -34625,16 +30250,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "KIN 432W",
-    title: "Neuromechanics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "KIN 433",
     title: "Senior Essay",
     units: 0.5,
@@ -34860,187 +30475,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "KPE 100W",
-    title: "Fundamental Movement Skills and Physical Literacy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 112W",
-    title: "Physical Fitness (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 118W",
-    title: "Strength Training (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 141W",
-    title: "Historical and Philosophical Foundations of Kinesiology",
-    units: 0.5,
-    description: "Historical and Philosophical Foundations of Kinesiology",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 200W",
-    title: "Applied Movement Skills and Athlete Development (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 211W",
-    title: "Sociology of Physical Activity (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 217W",
-    title: "Physical Activity, Sport and the Social Sciences (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 221W",
-    title: "Functional Human Anatomy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 300W",
-    title: "Teaching and Coaching Sport and Physical Activity (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 311W",
-    title: "Gender and Media in Sport (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 340W",
-    title: "Special Topics (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 371W",
-    title: "Disability & Physical Activity (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 411W",
-    title: "Advanced Sociology of Physical Activity (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 435W",
-    title: "Exercise is Medicine (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 471W",
-    title: "Adapted Physical Activity for Individuals with Developmental Disabilities(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "KPE 472W",
-    title: "Athletic Injuries (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "LAT 101",
     title: "Introductory Latin 1",
     units: 0.5,
     description: "A course designed for students beginning the study of Latin. Students will learn to memorize basic vocabulary and grammatical concepts and several patterns of declension and conjugation, will apply them to Latin sentences. Students also will learn to identify linguistic challenges and address them systematically. Instruction exposes students to Latin texts as soon as possible; for greater competence in reading Latin students are encouraged, upon completion of this course, to proceed to LAT102.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "LAT 101W",
-    title: "Introductory Latin I (WLU)",
-    units: 0.5,
-    description: "Introductory Latin I (WLU)",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -35055,16 +30493,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["LAT 101"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "LAT 102W",
-    title: "Introductory Latin II (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -35090,30 +30518,6 @@ export const RAW_COURSES: RawCourse[] = [
     description: "This course is designed to follow LAT201 and to expand students' experience of reading and translating Latin texts. Students will engage with longer passages of adapted and unadapted texts, thereby consolidating their theoretical and practical understanding of grammar and internalize conventional translation techniques. Students also will strengthen their ability to master linguistic problems systematically. Typically, one text is drawn from prose authors such as Caesar or Nepos, and one from a poet such as Ovid.",
     prereqs: [
       { type: "AND", reqs: ["LAT 201"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "LAT 203W",
-    title: "Intermediate Latin (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "OR", reqs: ["LAT 100B", "LAT 102"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "LAT 204W",
-    title: "Selections from Latin Authors (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["LAT 203"] }
     ],
     antireqs: [],
     tags: [],
@@ -35269,17 +30673,6 @@ export const RAW_COURSES: RawCourse[] = [
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
-  },
-  {
-    code: "LS 200W",
-    title: "Gladue Principles (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F"]
   },
   {
     code: "LS 201",
@@ -36298,32 +31691,12 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MATH 101W",
-    title: "Calculus 1 for the Natural Sciences (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MATH 103",
     title: "Introductory Algebra for Arts and Social Science",
     units: 0.5,
     description: "An introduction to applications of algebra to business, the behavioural sciences, and the social sciences. Topics will be chosen from linear equations, systems of linear equations, linear inequalities, functions, set theory, permutations and combinations, binomial theorem, probability theory.",
     prereqs: [],
     antireqs: ["MATH 106", "NE 112"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 103W",
-    title: "Calculus 1 (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -36340,16 +31713,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MATH 104W",
-    title: "Calculus ll (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MATH 106",
     title: "Applied Linear Algebra 1",
     units: 0.5,
@@ -36361,16 +31724,6 @@ export const RAW_COURSES: RawCourse[] = [
     tags: [],
     majors: ["any"],
     exclMajors: ["cs"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 110W",
-    title: "Introduction to Differential and Integral Calculus",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
     offered: ["F", "W", "S"]
   },
   {
@@ -36444,26 +31797,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MATH 121W",
-    title: "Introduction to Mathematical Proofs (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 122W",
-    title: "Introductory Linear Algebra (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MATH 124",
     title: "Calculus and Vector Algebra for Kinesiology",
     units: 0.5,
@@ -36496,16 +31829,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["MATH 116", "MATH 117", "MATH 127", "MATH 137", "MATH 147"] }
     ],
     antireqs: ["MATH 118"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 129W",
-    title: "Introductory Calculus for Business and Social Sciences (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -36607,30 +31930,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MATH 170W",
-    title: "Introduction to Mathematics for Finance (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MATH 199",
     title: "Mathematical Discovery and Invention",
     units: 0.5,
     description: "A course in problem solving in which intriguing and difficult problems are solved. Problems are taken mainly from the elementary parts of applied mathematics, computer science, statistics and actuarial science, pure mathematics, and combinatorics and optimization. Material relevant to the problems is taught in depth.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 201W",
-    title: "Multivariable Calculus (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -36796,16 +32099,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MATH 235W",
-    title: "Introduction to Game Theory (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MATH 237",
     title: "Calculus 3 for Honours Mathematics",
     units: 0.5,
@@ -36868,46 +32161,6 @@ export const RAW_COURSES: RawCourse[] = [
     antireqs: ["CO 220", "MATH 229"],
     tags: [],
     majors: ["math"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 304W",
-    title: "Introduction to Complex Analysis (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 305W",
-    title: "Differential Equations II",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 455W",
-    title: "Partial Differential Equations (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MATH 475W",
-    title: "Ring And Field Theory (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
     offered: ["F", "W", "S"]
   },
   {
@@ -37408,28 +32661,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MEDVL 100W",
-    title: "Discovering the Middle Ages (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MEDVL 101W",
-    title: "Harry Potter & Medieval Culture (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MEDVL 105",
     title: "Introduction to Medieval Studies",
     units: 0.5,
@@ -37702,28 +32933,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["ECON 344", "MGMT 244", "ARBUS 302", "ENBUS 211", "ENBUS 311"] }
     ],
     antireqs: ["ECON 345", "ARBUS 303"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MLST 304W",
-    title: "Medievalism in Science Fiction (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MLST 306W",
-    title: "Medievalism and the Digital (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -38936,17 +34145,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 100W",
-    title: "Music and its Contexts (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 110",
     title: "How Music Matters",
     units: 0.5,
@@ -38962,16 +34160,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Fundamentals of Music Theory",
     units: 0.5,
     description: "An introduction to the language of music in the Western art music tradition. Students will learn the fundamentals of musical notation and performance through practice exercises and creative projects. Students will also develop their musicianship skills through listening, sight-singing and analysis.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 113W",
-    title: "Music Ensemble (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -39003,136 +34191,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 121W",
-    title: "History of Rock Music (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 122W",
-    title: "Music Appreciation: Baroque and Classical (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 140",
     title: "Popular Music and Culture",
     units: 0.5,
     description: "An examination of the styles, forms, and development of 20th century popular music. The social, commercial, and technological aspects of popular music are considered.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 152W",
-    title: "VOX:Pop Mus & Theatre Ensemble",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 158W",
-    title: "Introduction to Music Therapy (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 160W",
-    title: "Composition 1A (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 161W",
-    title: "Theory I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 162W",
-    title: "Theory 2 (WLU)",
-    units: 0.5,
-    description: "Individual instruction in voice, piano, organ, classical guitar, and orchestral instruments.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 181AW",
-    title: "Ensemble (WLU)",
-    units: 0.5,
-    description: "MUSIC 181AW is typically held in the Fall and must be taken before MUSIC 181BW. MUSIC 181AW and 181BW are quarter credit courses. A grade for MUSIC 181AW will be submitted only after completion of 181BW.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 181BW",
-    title: "Ensemble (WLU)",
-    units: 0.5,
-    description: "MUSIC 181AW and 181BW are each 0.25 credit course, that must both be completed in order to receive credit. A grade for MUSIC 181AW will be submitted only after completion of 181BW.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 202W",
-    title: "Approaches to Music Education (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 203W",
-    title: "Methods for Teaching Music (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 208W",
-    title: "Introduction to Elementary Music Education (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -39166,16 +34228,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 218W",
-    title: "Introduction to the Structure of Music II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 222",
     title: "Conducting 1",
     units: 0.5,
@@ -39183,27 +34235,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MUSIC 270"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 224W",
-    title: "Music of 19th & 20th Cent(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 225W",
-    title: "Entrepreneurship in Music (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -39221,16 +34252,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 226W",
-    title: "Monetizing Musical Creations",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 227",
     title: "Music Studio",
     units: 0.5,
@@ -39238,17 +34259,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MUSIC 226"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 227W",
-    title: "Record Deals & Music Product (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -39301,17 +34311,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 242W",
-    title: "Structure of Commercial Music (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 246",
     title: "Soundtracks: Music in Film",
     units: 0.5,
@@ -39345,16 +34344,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 252W",
-    title: "Electro-Acoustic Music (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 260",
     title: "Music for Orchestra",
     units: 0.5,
@@ -39377,36 +34366,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 264W",
-    title: "Theory III and IV  (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 265W",
-    title: "Jazz Harmony I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 266W",
-    title: "Theory III (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 270",
     title: "Music Theory 1",
     units: 0.5,
@@ -39414,16 +34373,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MUSIC 111"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 270W",
-    title: "Music History II (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -39450,26 +34399,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MUSIC 100", "MUSIC 110"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 275W",
-    title: "Music of the World (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 280W",
-    title: "Selected Topics (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -39596,30 +34525,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 353W",
-    title: "Inclusive Arts for Children (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: ["MUSIC 380W", "MUSIC 380E"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 355",
     title: "Music and Culture Travel Course",
     units: 0.5,
     description: "A spring term seminar approximately three weeks long, taught on location including daily lectures, attendance at music performances, and tours to places of cultural importance. Past and possible future locations include Vienna, London, Leipzig, South Africa, Morocco, Bali, and Estonia.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 359W",
-    title: "Directed Studies (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -39725,52 +34634,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 380KW",
-    title: "Women and Music",
-    units: 0.5,
-    description: "This course examines the role of women in Western art music from the Middle Ages through the 20th Century, whether as composer, patron, or performer. Special attention is paid to the broader cultural and socio-political contexts in which these musical activities took place.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 380LW",
-    title: "Hip-Hop to the World (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 380W",
-    title: "Special Topics in Music (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 381",
     title: "Directed Study in Music",
     units: 0.5,
     description: "An independent term project completed under tutorial guidance of a faculty advisor.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 381W",
-    title: "Ensemble (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -39793,16 +34660,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Special Topics in Global Music",
     units: 0.5,
     description: "A study of a selected topic in global music. Consult department for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 394W",
-    title: "Conducting 1  (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -39875,26 +34732,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "MUSIC 475W",
-    title: "Music Aesthetics & Criticism (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 481W",
-    title: "Ensemble (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "MUSIC 491",
     title: "Senior Research Project",
     units: 0.5,
@@ -39913,37 +34750,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["MUSIC 491"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "MUSIC 494W",
-    title: "Conducting ll (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "NAST 105W",
-    title: "Billionaires, Beavers, and Banditos (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "NAST 240W",
-    title: "North American: Business & Society (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -40713,38 +35519,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "OLRD 140W",
-    title: "Leadership Foundations (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "OLRD 201W",
-    title: "Applying Leadership Experience (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "OLRD 481W",
-    title: "Project Management (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "OPTOM 103",
     title: "Pathophysiology",
     units: 0.5,
@@ -41448,17 +36222,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Exit Exam Remediation",
     units: 0.5,
     description: "Remediation in areas failed during clinical exit examinations. On-site clinical rotations and self-study guided by the faculty.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "ORLD 224W",
-    title: "Organizational Leadership (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -42791,26 +37554,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 110W",
-    title: "Values and Society (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 111W",
-    title: "Knowledge and Reality (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 118J",
     title: "Virtue and the Good Life",
     units: 0.5,
@@ -42888,16 +37631,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 201W",
-    title: "Reasoning & Argumentation (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 202",
     title: "Gender Issues",
     units: 0.5,
@@ -42909,31 +37642,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 203W",
-    title: "Social and Political Philosophy (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 204J",
     title: "Philosophy and Culture",
     units: 0.5,
     description: "An exploration of the nature of culture and its role in the life and development of the human being through an analysis of the assumptions of Western popular culture in such areas as technology and the internet, individual freedom, sexuality, and the global economy.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 204W",
-    title: "Formal Logic (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -42996,16 +37708,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 209W",
-    title: "Philosophy of Religion (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 210J",
     title: "Human Nature",
     units: 0.5,
@@ -43028,26 +37730,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 213W",
-    title: "Legal Philosophy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 214W",
-    title: "Philosophy of Mind (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 215",
     title: "Professional and Business Ethics",
     units: 0.5,
@@ -43059,40 +37741,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 215W",
-    title: "Aesthetics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 216",
     title: "Probability and Decision Making",
     units: 0.5,
     description: "This course covers a set of related topics in probability, inductive reasoning, game theory, and decision theory which are of both theoretical and practical interest, having application to the philosophy of science, epistemology, political philosophy, ethics, political science, and economics. The course begins with probability theory, introduces utility theory, and discusses approaches to the theory of decision making with attention to their epistemological, social, and ethical implications.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 216W",
-    title: "Critical Social Theory (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 217W",
-    title: "Medical Ethics (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -43122,32 +37774,12 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 219W",
-    title: "Feminist Philosophy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 220J",
     title: "Philosophy of Friendship",
     units: 0.5,
     description: "Friendship is an essential part of a happy life. Ancient western philosophers made friendship one of the cornerstones of their ethics. This course is an exploration of their views on problems such as the necessity of friendship, its nature, its species, and its relationship to happiness and the political community.",
     prereqs: [],
     antireqs: ["PHIL 403"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 220W",
-    title: "Indian Philosophy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -43164,40 +37796,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 223W",
-    title: "Contemporary Moral Issues (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 224",
     title: "Environmental Ethics",
     units: 0.5,
     description: "Philosophical perspectives on such issues as climate change, pollution, use of scarce resources, biodiversity, and our relations with animals and future generations. This course will also consider bioactivism and other approaches to environmental problems.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 224W",
-    title: "Philosophy & Environment (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 225W",
-    title: "Theories of Knowledge (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -43249,26 +37851,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 230W",
-    title: "The Quest for World Peace (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 233W",
-    title: "Philosophy of Sex, Love and Friendship",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 237",
     title: "Introduction to the Philosophy of Religion",
     units: 0.5,
@@ -43295,16 +37877,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Scientific Revolutions",
     units: 0.5,
     description: "How has scientific knowledge developed over time? Have some changes in scientific theory constituted scientific revolutions? In this course, students will analyze examples of scientific developments ranging from antiquity to modernity. Students will evaluate whether the concept of a \"revolution\" aptly describes past processes of theory change, and examine what drove natural philosophers and scientists to espouse one scientific theory over another. Specific topics may be drawn from the history and philosophy of chemistry, cosmology, evolutionary biology, geology, and physics.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 247W",
-    title: "Business Ethics (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -43349,17 +37921,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introduction to Cognitive Science",
     units: 0.5,
     description: "Cognitive science is the interdisciplinary study of mind and intelligence. This course will draw on philosophy, psychology, artificial intelligence, linguistics, neuroscience, and anthropology to address central questions about the nature of thinking. Topics discussed will include mental representation, computational models of mind, and consciousness.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 256W",
-    title: "Ancient Greek Philosophy I (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -43415,16 +37976,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Postmodernist Philosophy",
     units: 0.5,
     description: "A critical examination of postmodernism as a philosophical movement that has profoundly influenced the contemporary world. The course will introduce students to the main tenets of postmodernist philosophy in areas such as rationality, morality, politics, religion, art, and culture.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 264W",
-    title: "20th Century Philosophy (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -43672,16 +38223,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["PHIL 250B", "PHIL 251", "PHIL 255", "PHIL 284"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 350W",
-    title: "Special Topics in History (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -43982,16 +38523,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHIL 470W",
-    title: "Seminar in Metaphysics and Epistemology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHIL 471",
     title: "Special Topics",
     units: 0.5,
@@ -44029,16 +38560,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Special Topics",
     units: 0.5,
     description: "Advanced study of special topics, as announced by the department.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHIL 490W",
-    title: "Direct Studies (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -44184,63 +38705,12 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PHYS 132W",
-    title: "Thermodynamics & Waves (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHYS 141W",
-    title: "Mechanics for the Life Sciences (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHYS 142W",
-    title: "Thermodynamics & Waves (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHYS 152W",
-    title: "Thermodynamics & Waves (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PHYS 160L",
     title: "Introductory Measurement Laboratory",
     units: 0.25,
     description: "Biweekly lab for students following the Honours Physics plan.",
     prereqs: [],
     antireqs: ["PHYS 132L"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHYS 161W",
-    title: "Introduction to Mechanics for Life Sciences (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -44264,16 +38734,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introduction to the Universe Laboratory",
     units: 0.25,
     description: "For students who are taking PHYS175.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHYS 212W",
-    title: "Electricity and Magnetism (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -44320,16 +38780,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["MATH 128", "MATH 138", "MATH 148"] }
     ],
     antireqs: ["CHEM 356", "NE 232", "PHYS 233", "ECE 405"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHYS 237W",
-    title: "Optics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -44522,17 +38972,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "OR", reqs: ["PHYS 267", "PHYS 236"] }
     ],
     antireqs: ["PHYS 239"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PHYS 351W",
-    title: "Quantum Computing (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -45855,116 +40294,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PLCG 100W",
-    title: "Models of Policing (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 101W",
-    title: "Communications for Policing (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 200W",
-    title: "Police Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 201W",
-    title: "Intercultural Communication in Policing (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 202W",
-    title: "Leadership and Career Development in Law Enforcement (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 203W",
-    title: "Diversity in Policing (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 205W",
-    title: "Psychology of Law Enforcement (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 206W",
-    title: "Public Safety Policy Analysis (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 291W",
-    title: "Introduction to Policing (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 302W",
-    title: "Indigenous Peoples' Political Structures (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PLCG 306W",
-    title: "Ethics, Corruption, and Police Accountability (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PMATH 320",
     title: "Euclidean Geometry",
     units: 0.5,
@@ -46469,37 +40798,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 209W",
-    title: "Legal Writing (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 210W",
-    title: "Introduction to Law (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 212W",
-    title: "Law and Politics in Multicultural Democracies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 224",
     title: "Research and Methods in Political Science",
     units: 0.5,
@@ -46524,16 +40822,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 225W",
-    title: "U.S. Government I: The Polarization of American Politics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 226",
     title: "Modern Political Thought",
     units: 0.5,
@@ -46541,16 +40829,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["PSCI 100", "PSCI 101", "PSCI 150", "PSCI 225", "CLAS 225"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 226W",
-    title: "US Gov II: Dysfunction Amer Pol (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -46678,16 +40956,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 263W",
-    title: "Politics and Government in Canada (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 264",
     title: "American Government and Politics",
     units: 0.5,
@@ -46703,16 +40971,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "International Relations of East Asia",
     units: 0.5,
     description: "This course explores key topics in the international relations of East Asia after World War 2. Classes examine literature on major developments of East Asian relations, including the Cold War, East Asian regionalism, and the foreign policies of China, Japan, and Korea.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 280W",
-    title: "Big Debates in Mod Pol Thought (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -46854,26 +41112,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 310W",
-    title: "Special Topics I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 311W",
-    title: "Special Topics II (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 314",
     title: "Quantitative Analysis",
     units: 0.5,
@@ -46897,30 +41135,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 319W",
-    title: "African Politics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 324",
     title: "Issues in Contemporary Political Theory",
     units: 0.5,
     description: "What is freedom? What does justice require? How does equality matter? Students will study 20th- and 21st-century thinkers' interpretations of these, and other, key political values. Theoretical analysis will be grounded in current problems, such as poverty, racism, sexism, global inequalities, colonialism, and environmental degradation.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 324W",
-    title: "American Political Controversies (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -46939,40 +41157,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 329W",
-    title: "The Politics of Trade (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 331",
     title: "Public Administration",
     units: 0.5,
     description: "What is the role of the public service in Canada? Students will study the structures and functions of Canada's political system by examining the ways in which the public service relates to other institutions, such as the political executive and the legislature.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 332W",
-    title: "Global Governance (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 333W",
-    title: "International Law (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -46991,30 +41179,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 334W",
-    title: "Canadian Foreign Policy Analysis (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 346",
     title: "Global Crisis of Democracy",
     units: 0.5,
     description: "This course will seek to explain why democracy has weakened and why global political development is increasingly tilting towards populist and authoritarian regimes. We study how democracy functions throughout the world and what made democracy so successful in the 20th century. We will interrogate why democracy is now floundering with political rights and civil liberties in decline and voters losing trust in democratic institutions. The course will also explore what can be done to restore the promise of democracy globally. Through research-based reading and writing assignments and in-class discussion, students will critically reflect on the strengths and weaknesses of democracy in comparison to other systems and explain the major regional differences in democratization and development.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 347W",
-    title: "Canadian Public Administration I (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -47033,40 +41201,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 349W",
-    title: "Political Communication (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 350W",
-    title: "Theories of Justice (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 351",
     title: "Power Sharing in Divided Societies",
     units: 0.5,
     description: "How does the sharing of power ease or worsen conflict within society? Students will study different forms of power sharing, including pluralism, corporatism, consociationalism, and federalism.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 351W",
-    title: "Corruption, Scandal and Political Ethics (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -47221,16 +41359,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 370W",
-    title: "The Political Economy of Eastern Asia (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 373",
     title: "Political Parties, Elections, and Political Marketing",
     units: 0.5,
@@ -47272,17 +41400,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Canada in Global Context",
     units: 0.5,
     description: "Students will demonstrate familiarity with the structures, interests, and processes of the institutions that shape Canada¿s policies at the intersection of the domestic and the foreign, and show how political and policy making processes are shaped by global dynamics. Students will consider the political and historical context of Canada¿s relationship to the United States and other great powers as well as to Indigenous people in Canada. Students will use primary source analysis, case studies, and policy analysis to demonstrate their understanding of Canada¿s place in the global economy and global security, Canadian diplomacy, and the effects of climate change on domestic and foreign policy.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 383W",
-    title: "Law, Gender and Sexuality (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -47470,16 +41587,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 424W",
-    title: "Amer. Political Controversies",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 426",
     title: "Selected Subjects in Political Philosophy",
     units: 0.5,
@@ -47616,17 +41723,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 459W",
-    title: "Politics and Governance Beyond the State (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 460",
     title: "The Cultural Politics of Israel/Palestine",
     units: 0.5,
@@ -47684,30 +41780,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 471W",
-    title: "Issues in Third World Politics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 472",
     title: "Gender and Public Policy",
     units: 0.5,
     description: "How, if at all, do gendered and intersecting forms of oppression (e.g., misogyny, racism, classism, ableism, colonialism, heterosexism) inform public policy? Reviewing developments in Canada and elsewhere, students will reflect on the significance of feminist approaches to public policy. Using peer-reviewed publications, government reports, and think tank analyses, students complete a variety of written assignments that require them to think critically and analytically about how public policy issues are framed in ways that privilege certain groups and marginalize others.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 478W",
-    title: "Social Science Theories (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -47846,26 +41922,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSCI 497W",
-    title: "Special Topics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSCI 498W",
-    title: "Selected Topics ll (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSCI 499A",
     title: "Special Honours Essay",
     units: 0.5,
@@ -47890,16 +41946,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSYCH 100W",
-    title: "Introduction to Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSYCH 101",
     title: "Introductory Psychology",
     units: 0.5,
@@ -47915,26 +41961,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Introductory Psychology",
     units: 1,
     description: "A general survey course designed to provide the student with an understanding of the basic concepts and techniques of modern psychology as a behavioural science.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 101W",
-    title: "Introduction to Psychology I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 102W",
-    title: "Introduction to Psychology II (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -48107,16 +42133,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSYCH 240W",
-    title: "Sex, Evolution & Behaviour (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSYCH 253",
     title: "Social Psychology",
     units: 0.5,
@@ -48180,40 +42196,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSYCH 260W",
-    title: "Introduction to Cognitive Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSYCH 261",
     title: "Physiological Psychology",
     units: 0.5,
     description: "Introduction to brain, basic physiological processes, and their roles in behaviour. Topics may include sensing and perceiving, neural bases of action, motivation, learning and memory, and consciousness. Both experimental and clinical data are considered.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 262W",
-    title: "Introduction to Perception (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 263W",
-    title: "Biopsychology (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -48229,106 +42215,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["PSYCH 291"] }
     ],
     antireqs: ["PSYCH 464"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 264W",
-    title: "Motivation and Emotion (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 268W",
-    title: "Drugs and Behaviour (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 270W",
-    title: "Social Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 271W",
-    title: "Personality (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 275W",
-    title: "Developmental Psychology 1 : Infancy and Childhood (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 276W",
-    title: "Introduction to Developmental Psychology: Adolescence and Young Adulthood (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 280W",
-    title: "Abnormal Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 283W",
-    title: "Educational Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 286W",
-    title: "Sport Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 288W",
-    title: "Behaviour Modification (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -48356,36 +42242,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["MATH 103"] }
     ],
     antireqs: ["ARTS 280", "ECON 221", "ENVS 278", "HLTH 204", "KIN 222", "PSCI 214", "PSCI 314", "REC 371", "SDS 250R", "SRF 230", "LS 280", "STAT 202", "SWREN 250R"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 292W",
-    title: "Introduction to Statistics(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 295W",
-    title: "Intro to Research Methods (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 296W",
-    title: "Introduction to Statistics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -48818,27 +42674,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSYCH 366W",
-    title: "Introduction to Psycholinguistics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 371W",
-    title: "Atypical Development (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSYCH 372",
     title: "Environmental Psychology",
     units: 0.5,
@@ -48846,27 +42681,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["PSYCH 101", "PSYCH 101R"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 373W",
-    title: "Close Relationships (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 374W",
-    title: "Applied Social Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -48897,16 +42711,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSYCH 381W",
-    title: "Introduction to Clinical Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSYCH 389",
     title: "Social Science Advanced Research Methods Topics",
     units: 0.5,
@@ -48929,16 +42733,6 @@ export const RAW_COURSES: RawCourse[] = [
       { type: "AND", reqs: ["PSYCH 207"] }
     ],
     antireqs: ["PSYCH 392"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 390W",
-    title: "History of Psychology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]
@@ -49076,17 +42870,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Independent Study",
     units: 1,
     description: "An independent in-depth study of a selected area of concern to the student within the discipline of psychology. Available to individuals or small groups of third- or fourth-year Social Development Studies majors and arranged with one of the faculty members from the program.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 410W",
-    title: "History of Psychology (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -49473,17 +43256,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "PSYCH 487W",
-    title: "Psychological Measurement and Testing (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "PSYCH 490R",
     title: "Special Studies",
     units: 1,
@@ -49502,28 +43274,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["PSYCH 391"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 492AW",
-    title: "Applied Community Research (WLU)",
-    units: 0.5,
-    description: "PSYCH 492AW is typically held in the Fall and must be taken before PSYCH 492BW. PSYCH 492AW and 492BW are half credit courses. A grade for PSYCH 492AW will be submitted only after completion of 492BW.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "PSYCH 492BW",
-    title: "Applied Community Research (WLU)",
-    units: 0.5,
-    description: "PSYCH 492AW and 492BW are each 0.50 credit course, that must both be completed in order to receive credit. A grade for PSYCH 492AW will be submitted only after completion of 492BW.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -51438,434 +45188,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "RELC 103W",
-    title: "Love and Its Myths (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 104W",
-    title: "Evil and Its Symbols (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 106W",
-    title: "Religion and Visual Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 203W",
-    title: "Science and Religion (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 204W",
-    title: "Introduction to Judaism (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 207W",
-    title: "Studying Religion (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 213W",
-    title: "The Religious Heritage of Islam (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 214W",
-    title: "Bahai Religion in Its Cultural Settings (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 215W",
-    title: "Christianity and Culture: Early to Pre-Modern (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 216W",
-    title: "Christianity & Modern Culture (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 220W",
-    title: "Religion & Pop Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 227W",
-    title: "Religions and Cultures of the Middle East (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 233W",
-    title: "Stories and the Sacred (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 265W",
-    title: "Cults, Sects and New Religious Movements (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 285W",
-    title: "Rel&Cul African Diaspora(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 300W",
-    title: "Readings in Religious Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 302AW",
-    title: "Introduction to Sanskrit I (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 302W",
-    title: "Introduction to Pre-modern South Asian Language Studies",
-    units: 0.5,
-    description: "Introduction to Pre-modern South Asian Language Studies",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 304W",
-    title: "Judaism in the Modern World (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 307W",
-    title: "Reading Religious Texts (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 308W",
-    title: "Conducting Fieldwork (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 312W",
-    title: "Human Life Cycle/ReligDev(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 313W",
-    title: "Grief, Death & Dying (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 319W",
-    title: "Rites of Passage (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 320W",
-    title: "Religion and Cultural Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 321W",
-    title: "Gandhi: Non-Violence and the Struggle for Freedom (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 323W",
-    title: "Global Migration & Refugees (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 330W",
-    title: "Controver Rel Issue/Mvmts(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 333W",
-    title: "Food and Religion (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 335W",
-    title: "Jesus of Nazareth (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 336W",
-    title: "Religious Experience (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 337W",
-    title: "Asian Spiritual Disciplines (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 342W",
-    title: "Direct Studies (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 344W",
-    title: "Apocalypticism (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 348W",
-    title: "Psychology & Religion (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 349W",
-    title: "Special Topics in Religion and Culture (WLU)",
-    units: 0.5,
-    description: "This course surveys the significance of the land of Israel in Judaism from historical, textual, and religious perspectives. Topics covered include the politics of Ancient Israel; the concept of Israel in prayer and the rabbinic and medieval Jewish imagination; portrayals of Israel in Christian and Muslim texts; and the origins, visions, and challenges of Zionism and the modern State of Israel.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 366W",
-    title: "Religion & Violence (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 372W",
-    title: "Women Lives/Relig Values(WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 377W",
-    title: "Gender and Islam (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 380W",
-    title: "Religion & Social Change (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RELC 449W",
-    title: "Special Topics in Religion and Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "RS 201W",
-    title: "Religious Heritage of Islam (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "RSCH 100",
     title: "Research",
     units: 0.5,
@@ -51992,16 +45314,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Workshop 6: Challenges in Globalizing Science and Technology",
     units: 0.5,
     description: "This workshop addresses the implications for Canadian science and technology based firms of competing in the global competitive environment.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SCI 100W",
-    title: "Science of Everyday Life (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -53490,26 +46802,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 101W",
-    title: "Introduction to Sociology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 102W",
-    title: "Critical Analysis of Social Issues (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 200",
     title: "Sociology of Marriage and Family",
     units: 0.5,
@@ -53536,16 +46828,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 201W",
-    title: "Sociology of Families (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 202",
     title: "Classical Sociological Theory",
     units: 0.5,
@@ -53553,16 +46835,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 203W",
-    title: "Sociological Theory (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -53621,16 +46893,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 207W",
-    title: "Social Theory I (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 210",
     title: "Sociology of Sport",
     units: 0.5,
@@ -53638,16 +46900,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 210W",
-    title: "Social Inequality (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -53732,16 +46984,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 224W",
-    title: "Sociology of Work (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 227",
     title: "Criminology",
     units: 0.5,
@@ -53794,16 +47036,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 231W",
-    title: "Sociology of Suicide (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 232",
     title: "Technology and Social Change",
     units: 0.5,
@@ -53811,16 +47043,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 232W",
-    title: "Sociology of Mental Illness (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -53847,26 +47069,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["SOC 101", "SOC 101R"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 241W",
-    title: "Sociology of Crime: Structural Perspectives (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 242W",
-    title: "Sociology of Crime: Interpretive Perspectives (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -54012,16 +47214,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 281W",
-    title: "Qualitative Methods (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 302",
     title: "Contemporary Sociological Theory",
     units: 0.5,
@@ -54087,26 +47279,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 307W",
-    title: "Political Sociology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 309W",
-    title: "Special Topics in Sociology (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 310",
     title: "Social Networks",
     units: 0.5,
@@ -54133,16 +47305,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 321W",
-    title: "Sociology of Medicine (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 322",
     title: "Field Research Methods",
     units: 0.5,
@@ -54154,26 +47316,6 @@ export const RAW_COURSES: RawCourse[] = [
     tags: [],
     majors: ["any"],
     exclMajors: ["math"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 322W",
-    title: "Sociology of Health and Illness (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 323W",
-    title: "Sociology of Health, Illness and Medicine (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
     offered: ["F", "W", "S"]
   },
   {
@@ -54268,40 +47410,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 332W",
-    title: "Sociology of Race & Ethnicity (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 334",
     title: "Public Policy",
     units: 0.5,
     description: "Students will gain an understanding of the dynamics of public policy development in Canada. They will learn to identify key actors, interests, and institutions involved in policy development and articulate diverse perspectives on policy problems. Using sources such as peer-reviewed publications, government reports, and think tank analyses, students will complete research-based writing assignments to analyze the social context of public problems and identify, compare, and recommend potential solutions.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 334W",
-    title: "Sociology of Gender (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 338W",
-    title: "Women and Development (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -54422,16 +47534,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 382W",
-    title: "Social Statistics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 383",
     title: "Ethnomethodology in Theory and Practice",
     units: 0.5,
@@ -54484,26 +47586,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 389W",
-    title: "Contemporary Social Theory (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 390W",
-    title: "Resistance & Revolt (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 398R",
     title: "Independent Study",
     units: 1,
@@ -54543,16 +47625,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Religion and Spirituality in the Social and Legal World",
     units: 0.5,
     description: "This course examines key substantive, theoretical, and methodological issues in the field of sociology of religion. Students will critically analyze high-profile media and legal cases surrounding the role of religion, spirituality, and secularity in Canadian society. Students will also further their knowledge by completing their own projects in this thematic area, developing both their research and written skills.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 404W",
-    title: "Ethnomethodology (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -54610,30 +47682,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 409W",
-    title: "The Sociology of Men and Masculinities (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 413",
     title: "Surveillance and Society",
     units: 0.5,
     description: "An examination of the way monitoring technologies alter and shape social life in terms of security, fear, control, and vulnerability.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 413W",
-    title: "Sociology of Embodiment and Disability (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -54867,30 +47919,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SOC 450W",
-    title: "Advanced  Directed Studies in Sociology  (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SOC 452",
     title: "Humanitarianism",
     units: 0.5,
     description: "This course examines how humanitarianism and its actors shape human displacements and mobilities, marginalized groups, and civil conflicts. Students will learn how to use and apply key concepts related to humanitarianism, and will study their implications for problem solving, developing social policy, and conveying the limits of the field of humanitarianism.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOC 452W",
-    title: "Advanced Special Topics (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -54979,17 +48011,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Senior Honours Essay",
     units: 0.5,
     description: "Directed reading and research in a selected area of sociology inquiry.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SOCE 200W",
-    title: "Social Entrepreneurship (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -55193,30 +48214,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SPAN 100W",
-    title: "Introduction to Spanish (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SPAN 101",
     title: "Introduction to Spanish 1",
     units: 0.5,
     description: "This course is for students with no previous knowledge of Spanish. The basic elements of Spanish grammar will be studied, with emphasis on group and individual oral practice. Focus will be given to the development of skills in listening/comprehension, speaking, reading, and writing. Multimedia exercises accompany each chapter of the textbook. Students will be expected to use them in the multimedia language centre and at home.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 101W",
-    title: "Intro to Spanish 1 (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -55231,16 +48232,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "AND", reqs: ["SPAN 101"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 102W",
-    title: "Introduction to Spanish 2 (WLU)",
-    units: 0.5,
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -55284,30 +48275,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SPAN 201W",
-    title: "Intermediate Spanish 1 (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 102"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 202W",
-    title: "Intermediate Spanish II (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 201B"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SPAN 210",
     title: "Spanish Conversation",
     units: 0.5,
@@ -55332,76 +48299,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SPAN 220W",
-    title: "Topics in Spanish Culture(WLU)",
-    units: 0.5,
-    description: "This course is designed to provide students with the opportunity to explore and develop their knowledge of Spanish culture. The course will offer a wide-ranging survey of cultural topics. It will take a broad view of the country by covering aspects of daily life, history, and social, economic and political changes. [Note: Taught in English. Only offered at WLU.]",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 223W",
-    title: "Introduction to Spanish Literature (WLU)",
-    units: 0.5,
-    description: "This course will study some of the most significant texts from medieval time to the 18th century. Special emphasis is placed on textual analysis. [Note: Only offered at WLU.]",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 222W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SPAN 234",
     title: "Parallel Revolutions in a Nascent Continent",
     units: 0.5,
     description: "This course provides a broad foundation to the varied and complex geographical, ethnic, social, and historical forces that have shaped contemporary Latin American nations from the early 19th-century independence period to current affairs. Students will be introduced to the diverse regions of the continent: Mexico, Central America, the Caribbean, the Bolivarian republics, and the Southern Cone. Students will analyze and discuss nation-building factors such as European-African-Asian-New World interactions, ethnic mixtures, military takeovers, revolutions, U.S. interventions in the region, and migratory experiences. Discussions will also be aimed at contrasting and comparing the contemporary and diverse cultural manifestations of the peoples living in Latin America and the cultural transformation of Latin Americans who have emigrated to other parts of the world, as well as the perceptions of Latin Americans in other cultures.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 260W",
-    title: "Hispanic Cultural Representations (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 202W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 266W",
-    title: "Approaches to Literary Text (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 267W",
-    title: "Intellectual History of Spain and Latin America (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 288W",
-    title: "Study Abroad (WLU)",
-    units: 0.5,
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -55459,97 +48360,11 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SPAN 301W",
-    title: "Composition and Conversation I (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 202W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 302W",
-    title: "Composition and Conversation II (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 301W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 303W",
-    title: "Business Spanish 1 (WLU)",
-    units: 0.5,
-    description: "Intensive study of the Spanish language for business, emphasizing vocabulary development, grammar and syntax. The focus is on the strengthening of written and verbal (both oral and aural) communication skills using diverse multimedia resources. Newspapers, magazines and business documents will be studied. [Note: Only offered at WLU.]",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 202W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 304W",
-    title: "Business Spanish II (WLU)",
-    units: 0.5,
-    description: "A continuation of SPAN 261. [Note: Only offered at WLU.]",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 202W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SPAN 317",
     title: "Afro-Latin America",
     units: 0.5,
     description: "The African diaspora is central to understanding the historical development and contemporary expressions of Latin American identity. Through the study of historical events, cultural production, and current affairs, this course examines African cultural legacies in Latin America, and explains the economic, societal, and political challenges faced by Afro-Latin Americans today.",
     prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 321W",
-    title: "Intellectual History of Spain and Latin America",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 324W",
-    title: "A Journey Through Multicultural Spain (WLU)",
-    units: 0.5,
-    description: "Introduction to the cultures of Spain-Basque, Catalan and Galician - with emphasis on their contemporary works translated into Spanish. Through the readings students will get a glimpse of the multicultural nature of Spain and will learn about the contemporary trends that define the cultures of the Basque country, Catalonia and Galicia. Samples of contemporary music, cinema and art will also be introduced. [Note: Only offered at WLU.]",
-    prereqs: [
-      { type: "OR", reqs: ["SPAN 222W", "SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 325W",
-    title: "Spanish Art, Music and Media (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -55567,47 +48382,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SPAN 327W",
-    title: "Quixotic Adventures: Knights, Damsels and Windmills (WLU)",
-    units: 0.5,
-    description: "A general introduction to literature in its historical and cultural background. A special study through the close analysis of representative works. Emphasis will be given to the study of Don Quijote. [Note: Only offered at WLU.]",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 328W",
-    title: "Contemporary Hispanic Theatre (WLU)",
-    units: 0.5,
-    description: "This course is a survey of the most representative contemporary theatre produced in the Americas and in the Spanish Peninsula. The course will study text and production, and will analyze as well their adaptation to other media such as cinema and dance.",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SPAN 329",
     title: "Lights, Camera, Action! Film Production in Spain and Latin America",
     units: 0.5,
     description: "This course explores how Spanish and Latin American films address the intersection of class, gender, and ethnicity, and the construction of regional, national, and cultural identities.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 335W",
-    title: "Spanish and Latin American Cinema (WLU)",
-    units: 0.5,
-    description: "The objective of this course is to provide students with the background to analyse and understand the rapid evolution/regression of Spanish and Latin American cultures in the 20th century. The movies presented will be studied in their socio-historical context. A reading list based on a selection of pertinent literature on the course topics will provide the necessary background to understand the content of the films. [Note: Taught in English. Only offered at WLU.]",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -55685,30 +48463,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SPAN 401W",
-    title: "Advanced Communication Strategies (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "OR", reqs: ["SPAN 251B", "SPAN 301B"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 405W",
-    title: "Re-Thinking the Female Body in Hispanic Art and Literature (WLU)",
-    units: 0.5,
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SPAN 410",
     title: "Visual Culture in the Contemporary Hispanic World",
     units: 0.5,
@@ -55731,125 +48485,12 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "SPAN 436W",
-    title: "Reading Across the Genre Divide (WLU)",
-    units: 0.5,
-    description: "Taught in Spanish. This seminar course focuses on works by major writers in Spanish. Through this course, students will form intertextual bridges over the genre divide that will encourage literary comparisons underlining the significance of each one. At the same time, the course will analyze critical works of the texts studied.",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 438W",
-    title: "Special Topics (WLU)",
-    units: 0.5,
-    description: "This course focuses on a specific topic or question in Hispanic studies. [Note: Offered only at WLU.]",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 446W",
-    title: "Love in Medieval Spanish Literature (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 451W",
-    title: "Stylistics and Professional Writing(WLU)",
-    units: 0.5,
-    description: "This course will develop writing skills in Spanish by exploring various stylistic procedures of writing. It will focus on a number of features essential in effective writing to help students develop the organizational skills and linguistic abilities needed to communicate successfully. Special attention is given to the role of stylistics in creative writing, journal writing, magazine pieces, and advertising. [Note: Only offered at WLU.]",
-    prereqs: [
-      { type: "OR", reqs: ["SPAN 352W", "SPAN 362W", "SPAN 401B"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 461W",
-    title: "Hispanic Linguistics",
-    units: 0.5,
-    description: "This course explores several branches of linguistics in the Spanish language. The first part of the course is an introduction to linguistics as a cognitive study in which special emphasis is placed on language acquisition and the mental processes of language. The second part of the course is dedicated to the study of sounds (phonetics and phonology), the formation of words (morphology), sentence structure (syntax), and speech variation (dialectology).",
-    prereqs: [
-      { type: "OR", reqs: ["SPAN 301B", "SPAN 352W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 465W",
-    title: "Spanish & Latin America Cinema (WLU)",
-    units: 0.5,
-    description: "Both in Latin America and in Spain, there is a rich and lengthy tradition of authors crossing over the shadowy boundaries which separate the field of journalism and that of literature. This course will study the processes and methods of this particular variety of genre transfer, by analyzing classic and recent works from the second part of the 20th century by celebrated Hispanic writers.",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 466W",
-    title: "Subversive Narratives in the Hispanic World (WLU)",
-    units: 0.5,
-    description: "This course will look into Hispanic narratives of the XIX, XX, and XXI centuries whose purpose was to defy the political, ideological, social and aesthetic status quo prevalent in the majority of Spanish-speaking countries. The course will explore texts with alleged universal implications produced not only within the field of literature, but also oratorical and journalistic pieces, proclamations, speeches, films by writers, intellectuals, political and social activists and leaders of the Hispanic world. Lectures will be combined with discussion sessions.",
-    prereqs: [
-      { type: "AND", reqs: ["SPAN 223W"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 467W",
-    title: "Directed Studies (WLU)",
-    units: 0.5,
-    description: "By special arrangement, students can follow a course of study under direct supervision. [Note: Only offered at WLU.]",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "SPAN 490",
     title: "Advanced Translation",
     units: 0.5,
     description: "This course is designed for students enrolled in the third and fourth year of the General or Honours program in Spanish. Fluency in both Spanish and English is required. The objective of this course is to refine translation techniques in order to enable the student to provide accurate and idiomatic translations of English texts in Spanish and vice versa.",
     prereqs: [
       { type: "AND", reqs: ["SPAN 301A"] }
-    ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "SPAN 498W",
-    title: "Literary Adaptation in Hispanic Cinema",
-    units: 0.5,
-    description: "Literary adaptations are usually considered to be secondary forms of the original. This course explores original literary works and their cinematic adaptation. In the process, the possibilities and limitations found in the process of adaptation will be analysed. Students will explore issues relevant to each medium as well as larger questions related to adaptation, style, translation and interpretation.",
-    prereqs: [
-      { type: "OR", reqs: ["SPAN 352W", "SPAN 401B"] }
     ],
     antireqs: [],
     tags: [],
@@ -56447,16 +49088,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "STAT 231W",
-    title: "Statistics for Life & Health Science (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "STAT 240",
     title: "Probability (Advanced Level)",
     units: 0.5,
@@ -56626,17 +49257,6 @@ export const RAW_COURSES: RawCourse[] = [
     prereqs: [
       { type: "OR", reqs: ["MATH 237", "STAT 230", "STAT 240", "STAT 241"] }
     ],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "STAT 362W",
-    title: "Regression Analysis (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
     antireqs: [],
     tags: [],
     majors: ["any"],
@@ -56932,17 +49552,6 @@ export const RAW_COURSES: RawCourse[] = [
     title: "Readings in Statistics 2",
     units: 0.5,
     description: "Reading course as announced by the Department.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "STAT 473W",
-    title: "Financial Data Analysis (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -58361,16 +50970,6 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "TS -",
-    title: "Theogolical Studies Continuing Graduate Student",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "UCR 191E",
     title: "Communication in the Engineering Profession (AE, CIVE, ENVE, GEOE)",
     units: 0.5,
@@ -58395,194 +50994,10 @@ export const RAW_COURSES: RawCourse[] = [
     offered: ["F", "W", "S"]
   },
   {
-    code: "UNDC 100W",
-    title: "Introduction to the United Nations Office on Drugs and Crime (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UNDC 101W",
-    title: "Integrity and Ethics (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UNDC 103W",
-    title: "Trafficking in Persons/Smuggling of Migrants (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UNDC 202W",
-    title: "Global Crime and Justice (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UNDC 203W",
-    title: "Digital Technologies and Crime (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
     code: "UNIV 101",
     title: "Strategies and Skills for Academic Success",
     units: 0.5,
     description: "The goal for this course is to help students become successful independent learners. It takes a modelled approach to teaching learning strategies to students who struggle to meet the demands of a university curriculum. In the lectures, students will be taught various learning strategies that they will be able to apply to successfully meet the demands of their other courses. Students will then apply these modelled strategies in their other courses during a weekly application seminar. Students will be expected to demonstrate their understanding of the material through a variety of assignments.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UU 100W",
-    title: "Mental Health Literacy (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Calendar for details.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UU 101W",
-    title: "Perspectives on Sustainability",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UU 150W",
-    title: "Foundations for Community Engagement and Service (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UU 201W",
-    title: "Computational Thinking (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 100W",
-    title: "Design Thinking I: Foundations (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 103W",
-    title: "UX Strategy (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 115W",
-    title: "UX Research Methods I (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 205W",
-    title: "Information Design (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 230W",
-    title: "Interaction Design (WLU)",
-    units: 0.5,
-    description: "Interaction Design (WLU)",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 300W",
-    title: "Information Design",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 306W",
-    title: "Design of Immersive Spaces (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "UX 307W",
-    title: "Trends in UX (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
     prereqs: [],
     antireqs: [],
     tags: [],
@@ -59028,109 +51443,6 @@ export const RAW_COURSES: RawCourse[] = [
     description: "A work-term report presenting in detail a technical project, activity, or analysis engaged by the student normally during the preceding work term. The report is evaluated on the basis of written communication skills and technical proficiency in the subject matter as demonstrated by the report. Work-term reports are required courses for the degree but their grades are not included in the average. However, failed work-term report evaluations may delay a student's progress as indicated in the Examinations and Promotions section of this calendar. Details regarding the evaluation of the work-term reports can be obtained from the student's program advisor.",
     prereqs: [],
     antireqs: ["MSE 491", "NE 450", "WKRPT 401"],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 100W",
-    title: "Introduction to Women's Studies (WLU)",
-    units: 0.5,
-    description: "An introduction to the interdisciplinary field of Women's Studies that addresses the history of feminist thought, the main strands of feminist theory, the activism of second wave feminists and topics of contemporary concern. Topics may include: representations of gender in the media, sexual politics, reproductive technology, health, globalization and women's movements.",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 202W",
-    title: "Women & Gender in Canada (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 203W",
-    title: "Girls, Women and Popular Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 204W",
-    title: "Women, Gender & Work (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 205W",
-    title: "Women, Gender & Visual Culture (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 208W",
-    title: "Violence Against Women (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 211W",
-    title: "Diverse Masculinities",
-    units: 0.5,
-    description: "Diverse Masculinities",
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 303W",
-    title: "Feminist Theory (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "WS 306W",
-    title: "Women and Social Justice (WLU)",
-    units: 0.5,
-    prereqs: [],
-    antireqs: [],
-    tags: [],
-    majors: ["any"],
-    offered: ["F", "W", "S"]
-  },
-  {
-    code: "YC 230W",
-    title: "Children & Music (WLU)",
-    units: 0.5,
-    description: "Taught at Wilfrid Laurier University. Refer to WLU Undergraduate Calendar for course description.",
-    prereqs: [],
-    antireqs: [],
     tags: [],
     majors: ["any"],
     offered: ["F", "W", "S"]

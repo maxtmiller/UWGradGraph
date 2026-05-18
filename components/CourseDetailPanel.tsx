@@ -1,30 +1,11 @@
 import { useState } from "react";
-import { useStore } from "../lib/store";
+import { useStore, MAJOR_ID_MAP_INV, FACULTY_ID_MAP } from "../lib/store";
 import { COURSE_DATA } from "../data/courses";
-import { MAJORS } from "../data/majors";
-import { Requisite } from "../types/index"
+import { MAJORS, SUB_MAJOR_REGISTRY } from "../data/majors";
+import type { Requisite, TermKey } from "../types";
 import { getConnectedNodes, getHighlightedEdges } from "../lib/graph";
 
-// Scan all course data once to infer relationships for incomplete courses
-function inferRelationships(code: string) {
-  const inferredLeadsTo: string[] = [];
-  const inferredAntireqs: string[] = [];
-
-  const collectCodes = (req: string | Requisite): string[] => {
-    if (typeof req === "string") return [req];
-    return req.reqs.flatMap(collectCodes);
-  };
-
-  for (const c of Object.values(COURSE_DATA)) {
-    const prereqCodes = c.prereqs.flatMap(collectCodes);
-    if (prereqCodes.includes(code)) inferredLeadsTo.push(c.code);
-    if (c.antireqs.includes(code)) inferredAntireqs.push(c.code);
-  }
-
-  return { inferredLeadsTo, inferredAntireqs };
-}
-
-const TERM_KEYS = ["1A","1B","2A","2B","3A","3B","4A","4B"] as const;
+const TERM_KEYS: TermKey[] = ["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B"];
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -40,75 +21,62 @@ export default function CourseDetailPanel() {
   if (!selectedNode) return null;
   const course = COURSE_DATA[selectedNode];
 
-  // ── Stub panel for courses not yet in COURSE_DATA ─────────────────────────
-  if (!course) {
-    const { inferredLeadsTo, inferredAntireqs } = inferRelationships(selectedNode);
-    return (
-      <div
-        className="slide-in"
-        style={{
-          position: "absolute", top: 16, right: 16, width: 260,
-          background: "rgba(15,23,42,0.95)", border: "1px solid rgba(249,115,22,0.3)",
-          borderRadius: 12, padding: 16, backdropFilter: "blur(12px)", zIndex: 10,
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-          <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 700, color: "#FB923C" }}>
-            {selectedNode}
-          </div>
-          <button onClick={clearSelection} style={{ background: "none", border: "none", color: "#475569", cursor: "pointer", fontSize: 18, lineHeight: 1 }}>×</button>
-        </div>
-        <div style={{ fontSize: 10, color: "#FB923C", background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 6, padding: "6px 8px", marginBottom: 12 }}>
-          This course hasn't been fully added yet. Details like prerequisites and description may be incomplete.
-        </div>
-        {inferredLeadsTo.length > 0 && (
-          <div style={{ marginBottom: 10 }}>
-            <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
-              Inferred — Unlocks
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-              {inferredLeadsTo.map((c) => (
-                <button key={c} onClick={() => { const cn = getConnectedNodes(c); setSelectedNode(c); setHighlight(cn, getHighlightedEdges(cn)); setPanToNode(c); }}
-                  style={{ padding: "2px 8px", borderRadius: 4, border: "1px solid #334155", background: "transparent", color: "#64748B", fontSize: 10, cursor: "pointer", fontFamily: "inherit" }}>
-                  {c}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-        {inferredAntireqs.length > 0 && (
-          <div>
-            <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>
-              Inferred — Anti-requisites
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-              {inferredAntireqs.map((c) => (
-                <span key={c} style={{ padding: "2px 8px", borderRadius: 4, border: "1px solid rgba(249,115,22,0.3)", color: "#FB923C", fontSize: 10 }}>{c}</span>
-              ))}
-            </div>
-          </div>
-        )}
-        {inferredLeadsTo.length === 0 && inferredAntireqs.length === 0 && (
-          <div style={{ fontSize: 10, color: "#334155" }}>No relationships could be inferred from existing course data.</div>
-        )}
-      </div>
-    );
-  }
+  // Helper to find the best display name for a major/faculty ID
+  const findDisplayName = (id: string) => {
+    if (MAJORS[id as keyof typeof MAJORS]) return MAJORS[id as keyof typeof MAJORS].name;
+    // Search sub-majors
+    for (const subMap of Object.values(SUB_MAJOR_REGISTRY)) {
+      if (subMap[id]) return subMap[id].name;
+    }
+    // Search by short ID mapping
+    const fullMajor = Object.values(MAJORS).find(m => MAJOR_ID_MAP_INV[m.id] === id);
+    if (fullMajor) return fullMajor.name;
+    // Check faculty mapping
+    if (id === "math") return "Mathematics Faculty";
+    if (id === "eng")  return "Engineering Faculty";
+    if (id === "sci")  return "Science Faculty";
+    if (id === "arts") return "Arts Faculty";
+    if (id === "env")  return "Environment Faculty";
+    if (id === "hea")  return "Health Faculty";
+    return id;
+  };
 
   // Compute program restriction info for this course
   const programRestriction = (() => {
     const majorsList = course.majors ?? [];
     const exclList   = course.exclMajors ?? [];
-    if (exclList.includes(activeMajorId)) {
-      const name = MAJORS[activeMajorId as keyof typeof MAJORS]?.name ?? activeMajorId;
+
+    const majorShortId   = MAJOR_ID_MAP_INV[activeMajorId];
+    const activeMajor    = MAJORS[activeMajorId as keyof typeof MAJORS];
+    const facultyShortId = activeMajor ? FACULTY_ID_MAP[activeMajor.faculty] : null;
+
+    // 1. Check Exclusions
+    const isExcluded = 
+      exclList.includes(activeMajorId) || 
+      (majorShortId && exclList.includes(majorShortId)) ||
+      (facultyShortId && exclList.includes(facultyShortId));
+
+    if (isExcluded) {
+      const name = activeMajor?.name ?? activeMajorId;
       return { type: "excluded" as const, message: `Not available to ${name} students` };
     }
-    const specificMajors = majorsList.filter((id): id is string => id !== "any");
-    if (specificMajors.length > 0 && !specificMajors.includes(activeMajorId)) {
-      const names = specificMajors
-        .map((id) => MAJORS[id as keyof typeof MAJORS]?.name ?? id)
-        .slice(0, 4);
-      const suffix = specificMajors.length > 4 ? ` +${specificMajors.length - 4} more` : "";
+
+    // 2. Check Whitelist
+    const isAllowed = 
+      majorsList.includes("any") || 
+      majorsList.includes(activeMajorId) || 
+      (majorShortId && majorsList.includes(majorShortId)) ||
+      (facultyShortId && majorsList.includes(facultyShortId));
+
+    if (!isAllowed && majorsList.length > 0) {
+      // Filter out technical IDs for the display message
+      const displayMajors = majorsList.filter(id => id !== "any");
+      const names = displayMajors
+        .map(findDisplayName)
+        .slice(0, 3);
+      
+      const count = displayMajors.length;
+      const suffix = count > 3 ? ` +${count - 3} more` : "";
       return { type: "restricted" as const, message: `Only for: ${names.join(", ")}${suffix}` };
     }
     return null;
@@ -348,7 +316,7 @@ function ActionButton({
 
 // ── Term picker ───────────────────────────────────────────────────────────────
 
-function TermPicker({ onSelect, onClose }: { onSelect: (t: string) => void; onClose: () => void }) {
+function TermPicker({ onSelect, onClose }: { onSelect: (t: TermKey) => void; onClose: () => void }) {
   return (
     <>
       {/* Invisible backdrop to close on outside click */}

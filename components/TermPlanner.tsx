@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { COURSE_DATA } from "../data/courses";
 import { useStore, courseSubject, subjectsFromCodes } from "../lib/store";
+import { areRequisitesSatisfied } from "../lib/requisites";
 import type { TermKey } from "../types";
 
 const TERMS: TermKey[] = ["1A","1B","2A","2B","3A","3B","4A","4B"];
@@ -21,14 +22,7 @@ function getPlannerStatus(code: string, completed: Set<string>): PlannerStatus {
   if (completed.has(code)) return "completed";
   const course = COURSE_DATA[code];
   if (!course || course.prereqs.length === 0) return "available";
-  const prereqsMet = course.prereqs.every((req: any) => {
-    const deps: string[] = (req.reqs ?? req.courses ?? []).filter(
-      (r: any) => typeof r === "string"
-    );
-    return req.type === "OR"
-      ? deps.some((c) => completed.has(c))
-      : deps.every((c) => completed.has(c));
-  });
+  const prereqsMet = areRequisitesSatisfied(course.prereqs, completed);
   return prereqsMet ? "available" : "locked";
 }
 
@@ -63,7 +57,7 @@ export default function TermPlanner() {
   );
 
   // Scope everything to the active major/sub-major
-  const majorCodes    = useMemo(() => getMajorCourses(), [termPlan]);
+  const majorCodes    = getMajorCourses();
   const majorCodesSet = useMemo(() => new Set(majorCodes), [majorCodes]);
 
   // Unplanned = major courses not yet placed in any term bucket
@@ -99,7 +93,8 @@ export default function TermPlanner() {
   const toggleSubjectFilter = (subject: string) => {
     setActiveSubjectFilter((prev) => {
       const next = new Set(prev);
-      next.has(subject) ? next.delete(subject) : next.add(subject);
+      if (next.has(subject)) next.delete(subject);
+      else next.add(subject);
       return next;
     });
   };
@@ -288,7 +283,7 @@ export default function TermPlanner() {
               const code = e.dataTransfer.getData("course");
               // Dropping here removes the course from all terms (back to unplanned)
               if (code) {
-                const { termPlan: tp, moveCourseToTerm: mv } = useStore.getState();
+                const { termPlan: tp } = useStore.getState();
                 const inTerm = Object.entries(tp).find(([, cs]) => (cs as string[]).includes(code));
                 if (inTerm) {
                   // Remove from its term by moving to a non-existent key — cleaner: dispatch directly
@@ -341,8 +336,6 @@ function TermBucket({
   onToggleDone:     (code: string) => void;
 }) {
   const allDone  = courses.length > 0 && courses.every((c) => completedCourses.has(c));
-  const someDone = courses.some((c) => completedCourses.has(c));
-
   return (
     <div
       style={{
@@ -480,7 +473,6 @@ function TermPill({
 
 function UnplannedPill({ code, status }: { code: string; status: PlannerStatus }) {
   const color   = PLANNER_COLORS[status];
-  const shortTitle = COURSE_DATA[code]?.title.split(" ").slice(0, 3).join(" ");
 
   return (
     <div

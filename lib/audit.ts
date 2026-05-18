@@ -447,10 +447,7 @@ export function runAudit(
   const courses   = [...allCourses];
 
   // 2. Run maximum bipartite matching on normal (non-double-count) slots
-  const { courseToSlot, slotToCourse } = hopcroftKarp(courses, allNormal);
-
-  // Courses consumed by normal matching
-  const usedCourses = new Set(courseToSlot.keys());
+  const { slotToCourse } = hopcroftKarp(courses, allNormal);
 
   // 3. Resolve double-count slots (can reuse already-matched courses)
   const allDC = dcSlotsByGroup.flat();

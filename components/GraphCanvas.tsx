@@ -19,6 +19,8 @@ export default function GraphCanvas() {
     activeSubMajorId,
     activeSubjects,
     activeLevels,
+    exploreActiveSubjects,
+    exploreActiveLevels,
     tierFilter,
     completedCourses,
     plannedCourses,
@@ -39,8 +41,9 @@ export default function GraphCanvas() {
   // Re-derive visible codes whenever any filter changes.
   const visibleCodes = useMemo(
     () => new Set(getFilteredCourses()),
+    // getFilteredCourses reads the store internally, so these state fields are intentional invalidation keys.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeMajorId, activeSubMajorId, activeSubjects, activeLevels, tierFilter, showMyCourses, completedCourses, plannedCourses, exploreMode, exploreCodes, getFilteredCourses]
+    [activeMajorId, activeSubMajorId, activeSubjects, activeLevels, exploreActiveSubjects, exploreActiveLevels, tierFilter, showMyCourses, completedCourses, plannedCourses, exploreMode, exploreCodes, getFilteredCourses]
   );
 
   // Courses that are "next up" — available (unlocked) and still needed for the degree.
@@ -134,7 +137,7 @@ export default function GraphCanvas() {
     major.requirementGroups.forEach((group: RequirementGroup) => findAvailableInGroup(group));
 
     return next;
-  }, [activeMajorId, activeSubMajorId, visibleCodes, completedCourses, plannedCourses]);
+  }, [activeMajorId, activeSubMajorId, visibleCodes, getCourseStatus]);
 
   // Courses in antirequisite conflict (completed/planned/termPlan vs each other)
   const antireqConflicts = useMemo(() => {

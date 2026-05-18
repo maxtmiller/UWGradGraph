@@ -63,7 +63,6 @@ export default function ProgressAudit() {
     completedCourses,
     plannedCourses,
     termPlan,
-    getCourseStatus,
     setActiveTab,
     setSelectedNode,
     setHighlight,
@@ -92,17 +91,6 @@ export default function ProgressAudit() {
     return <div style={{ padding: 24, color: "#64748B" }}>Select a major to begin audit.</div>;
   }
 
-  const highlightGroup = (result: AuditGroupResult) => {
-    const codes =
-      result.claimedCourses.size > 0
-        ? result.claimedCourses
-        : new Set(result.displayCourses);
-    if (codes.size === 0) return;
-    setActiveTab("graph");
-    setSelectedNode([...codes][0]);
-    setHighlight(codes, getHighlightedEdges(codes));
-  };
-
   const goToGraph = (code: string) => {
     setActiveTab("graph");
     const connected = getConnectedNodes(code);
@@ -130,8 +118,6 @@ export default function ProgressAudit() {
           key={result.group.title}
           result={result}
           completedCourses={completedCourses}
-          getCourseStatus={getCourseStatus}
-          onGroupClick={highlightGroup}
           onCourseClick={goToGraph}
         />
       ))}
@@ -474,14 +460,10 @@ function SiblingAccordion({
 function RequirementGroupCard({
   result,
   completedCourses,
-  getCourseStatus,
-  onGroupClick,
   onCourseClick,
 }: {
   result:           AuditGroupResult;
   completedCourses: Set<string>;
-  getCourseStatus:  (code: string) => string;
-  onGroupClick:     (result: AuditGroupResult) => void;
   onCourseClick:    (code: string) => void;
 }) {
   const { group, doneCount, completedDoneCount, plannedDoneCount, target, displayCourses, claimedCourses, plannedClaimedCourses } = result;

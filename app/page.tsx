@@ -39,8 +39,6 @@ export default function GradGraphPage() {
     setSearchOpen,
     antireqWarning,
     clearSelection,
-    theme,
-    toggleTheme,
   } = useStore();
 
   const subMajorMap  = SUB_MAJOR_REGISTRY[activeMajorId];

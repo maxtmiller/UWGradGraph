@@ -1,5 +1,6 @@
-import type { PositionMap, GraphEdge, Requisite } from "../types";
+import type { PositionMap, GraphEdge } from "../types";
 import { COURSE_DATA } from "../data/courses";
+import { getAllRequisiteCourseCodes } from "./requisites";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -17,21 +18,13 @@ function assignLayers(codes: string[]): Record<string, number> {
   const visited = new Set<string>();
   const queue: string[] = [];
 
-  // Seed roots (courses with no prerequisites in the visible set)
-  const extractFromTree = (item: Requisite): string[] => {
-    return item.reqs.flatMap((sub) => {
-      if (typeof sub === "string") return [sub];
-      return extractFromTree(sub);
-    });
-  };
-
   // 2. Main layering loop
   for (const code of codes) {
     const course = COURSE_DATA[code];
     if (!course) continue;
 
     // Use the recursive helper to get ALL prerequisite codes
-    const allPrereqs = course.prereqs.flatMap((r) => extractFromTree(r));
+    const allPrereqs = getAllRequisiteCourseCodes(course.prereqs);
 
     // Filter to only those that are actually in the current visible set (codes)
     const deps = allPrereqs.filter((c) => codeSet.has(c));
@@ -104,31 +97,10 @@ export function getAncestors(code: string, visited = new Set<string>()): Set<str
   const course = COURSE_DATA[code];
   if (!course || !course.prereqs) return visited;
 
-  // 2. Process the top-level Requisite array
-  for (const req of course.prereqs) {
-    // 3. Process each item in the 'reqs' array
-    for (const item of req.reqs) {
-      if (typeof item === "string") {
-        // It's a course code: recurse normally
-        getAncestors(item, visited);
-      } else {
-        // It's a nested Requisite object: 
-        // Use a helper to find all course codes inside it and recurse on them
-        handleNestedRequisite(item, visited);
-      }
-    }
+  for (const prereq of getAllRequisiteCourseCodes(course.prereqs)) {
+    getAncestors(prereq, visited);
   }
   return visited;
-}
-
-function handleNestedRequisite(req: Requisite, visited: Set<string>) {
-  for (const item of req.reqs) {
-    if (typeof item === "string") {
-      getAncestors(item, visited);
-    } else {
-      handleNestedRequisite(item, visited);
-    }
-  }
 }
 
 /** Returns all transitive dependants of a course (inclusive). */
@@ -156,20 +128,12 @@ export function getConnectedNodes(code: string): Set<string> {
 export function getHighlightedEdges(nodeSet: Set<string>): Set<string> {
   const edges = new Set<string>();
 
-  // Helper to extract all course codes from a single Requisite tree
-  const extractFromTree = (item: Requisite): string[] => {
-    return item.reqs.flatMap((sub) => {
-      if (typeof sub === "string") return [sub];
-      return extractFromTree(sub);
-    });
-  };
-
   for (const code of nodeSet) {
     const course = COURSE_DATA[code];
     if (!course) continue;
 
     // 1. Flatten all levels of prerequisites into a simple list of codes
-    const allPrereqCodes = course.prereqs.flatMap((req) => extractFromTree(req));
+    const allPrereqCodes = getAllRequisiteCourseCodes(course.prereqs);
 
     // 2. Now 'dep' is strictly a string
     for (const dep of allPrereqCodes) {
@@ -194,21 +158,13 @@ export function buildEdges(
 ): GraphEdge[] {
   const result: GraphEdge[] = [];
 
-  // Reusable flattening helper
-  const extractFromTree = (item: Requisite): string[] => {
-    return item.reqs.flatMap((sub) => {
-      if (typeof sub === "string") return [sub];
-      return extractFromTree(sub);
-    });
-  };
-
   for (const code of visibleCodes) {
     const course = COURSE_DATA[code];
     const to = positions[code];
     if (!course || !to) continue;
 
     // 1. Flatten all levels of logic into a deduplicated list of codes
-    const allPrereqCodes = [...new Set(course.prereqs.flatMap((req) => extractFromTree(req)))];
+    const allPrereqCodes = getAllRequisiteCourseCodes(course.prereqs);
 
     for (const dep of allPrereqCodes) {
       // 2. Now 'dep' is strictly a string (e.g., "MATH 135")

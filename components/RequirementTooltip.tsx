@@ -365,7 +365,7 @@ const TooltipPortal = forwardRef<
         wordBreak:      "normal",
       }}>
         {lines.map((line, i) => (
-          <TooltipLine key={i} line={line} color={color} isFirst={i === 0} />
+          <TooltipLine key={i} line={line} color={color} />
         ))}
       </div>
     </div>
@@ -381,11 +381,10 @@ const TooltipPortal = forwardRef<
 // ─────────────────────────────────────────────────────────────────────────────
 
 function TooltipLine({
-  line, color, isFirst,
+  line, color,
 }: {
   line:    TooltipLine;
   color:   string;
-  isFirst: boolean;
 }) {
   if (line.kind === "heading") {
     return (
