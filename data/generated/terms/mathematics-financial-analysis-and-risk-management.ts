@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const MATHEMATICS_FINANCIAL_ANALYSIS_AND_RISK_MANAGEMENT_PLAN = {
   "1A": ["AFM 101", "ECON 101", "ECON 102", "CS 135", "MATH 135", "MATH 137"],

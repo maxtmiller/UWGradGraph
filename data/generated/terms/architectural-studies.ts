@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const ARCHITECTURAL_STUDIES_PLAN = {
   "1A": ["ARCH 110", "ARCH 120", "ARCH 142", "ARCH 172", "ARCH 192"],

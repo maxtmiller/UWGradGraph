@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const SCIENCE_PLAN = {
   "1A": ["PHYS 111", "CHEM 120", "EARTH 121", "EARTH 122", "CHEM 125", "CHEM 125L", "EARTH 121L", "EARTH 122L", "PHYS 111L"],

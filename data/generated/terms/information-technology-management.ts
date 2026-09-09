@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const INFORMATION_TECHNOLOGY_MANAGEMENT_PLAN = {
   "1A": ["AFM 101", "AFM 102", "BUS 111W", "CS 135", "MATH 135", "MATH 137"],

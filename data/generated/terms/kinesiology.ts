@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const KINESIOLOGY_PLAN = {
   "1A": ["KIN 100", "KIN 104", "PHYS 111", "KIN 120", "BIOL 130", "KIN 100L", "KIN 104L"],

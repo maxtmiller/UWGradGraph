@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const ARCHITECTURAL_ENGINEERING_PLAN = {
   "1A": ["AE 100", "AE 101", "AE 104", "AE 115", "CHE 102", "MATH 116"],

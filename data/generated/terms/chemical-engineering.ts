@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const CHEMICAL_ENGINEERING_PLAN = {
   "1A": ["CHE 100", "CHE 102", "CHE 120", "CHE 180", "MATH 115", "MATH 116"],

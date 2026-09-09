@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const OPTOMETRY_PLAN = {
   "1A": ["OPTOM 103", "OPTOM 105", "OPTOM 108", "OPTOM 114", "OPTOM 126", "OPTOM 150", "OPTOM 122L", "OPTOM 132L"],

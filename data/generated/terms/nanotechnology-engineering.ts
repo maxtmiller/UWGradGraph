@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const NANOTECHNOLOGY_ENGINEERING_PLAN = {
   "1A": ["MATH 117", "NE 100", "NE 109", "NE 111", "NE 112", "NE 121"],

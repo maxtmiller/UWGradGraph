@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const MEDICINAL_CHEMISTRY_PLAN = {
   "1A": ["PHYS 111", "CHEM 121", "MATH 127", "BIOL 130", "COMMST 193", "CHEM 121L"],

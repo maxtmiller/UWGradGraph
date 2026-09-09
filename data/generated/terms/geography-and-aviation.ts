@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const GEOGRAPHY_AND_AVIATION_PLAN = {
   "1A": ["AVIA 100", "GEOG 102", "ENVS 131", "AVIA 142", "GDS 181"],

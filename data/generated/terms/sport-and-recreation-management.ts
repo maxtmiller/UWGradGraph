@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const SPORT_AND_RECREATION_MANAGEMENT_PLAN = {
   "1A": ["BET 100", "REC 101", "HEALTH 107", "AFM 123"],

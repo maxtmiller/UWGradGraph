@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const SCIENCE_AND_FINANCIAL_MANAGEMENT_PLAN = {
   "1A": ["ECON 101", "AFM 112", "AFM 121", "AFM 182", "COMMST 193"],

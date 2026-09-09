@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const COMPUTING_AND_FINANCIAL_MANAGEMENT_PLAN = {
   "1A": ["CFM 101", "ENGL 101B", "ENGL 109", "ENGL 119", "ENGL 129", "CS 135", "MATH 135", "MATH 137"],

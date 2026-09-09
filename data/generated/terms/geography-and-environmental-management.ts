@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const GEOGRAPHY_AND_ENVIRONMENTAL_MANAGEMENT_PLAN = {
   "1A": ["GEOG 100", "ENVS 131", "GDS 181"],

@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const ELECTRICAL_ENGINEERING_PLAN = {
   "1A": ["ECE 105", "ECE 150", "ECE 190", "ECE 198", "MATH 115", "MATH 117", "COMMST 192"],

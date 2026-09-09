@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const INTERNATIONAL_DEVELOPMENT_PLAN = {
   "1A": ["INDEV 100", "ECON 101", "INDEV 101", "ENVS 105", "ENVS 195"],

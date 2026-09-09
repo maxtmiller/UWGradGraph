@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const ENVIRONMENT_RESOURCES_AND_SUSTAINABILITY_PLAN = {
   "1A": ["ERS 101", "ENVS 131", "ENVS 195"],

@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const MATERIALS_AND_NANOSCIENCES_PLAN = {
   "1A": ["MNS 101", "CS 114", "PHYS 121", "CHEM 125", "MATH 128", "COMMST 193", "CHEM 125L", "PHYS 121L"],

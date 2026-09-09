@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const MATHEMATICAL_ECONOMICS_PLAN = {
   "1A": ["ECON 101", "CS 135", "MATH 135", "MATH 137"],

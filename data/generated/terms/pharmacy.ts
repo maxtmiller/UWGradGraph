@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const PHARMACY_PLAN = {
   "1A": ["PHARM 110", "PHARM 120", "PHARM 125", "PHARM 127", "PHARM 130", "PHARM 151"],

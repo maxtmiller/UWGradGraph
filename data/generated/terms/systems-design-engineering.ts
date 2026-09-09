@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const SYSTEMS_DESIGN_ENGINEERING_PLAN = {
   "1A": ["MATH 115", "MATH 117", "SYDE 101", "SYDE 121", "SYDE 151", "SYDE 161"],

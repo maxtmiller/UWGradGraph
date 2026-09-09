@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const KNOWLEDGE_INTEGRATION_PLAN = {
   "1A": ["INTEG 120", "ENVS 131", "ENVS 195"],

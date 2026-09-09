@@ -1,6 +1,6 @@
 // AUTO-GENERATED — do not edit by hand.
 // Run `npm run refresh-courses` to update.
-// Last refreshed: 2026-05-18
+// Last refreshed: 2026-09-09
 
 export const CIVIL_ENGINEERING_PLAN = {
   "1A": ["CHE 102", "CIVE 100", "CIVE 104", "MATH 116", "CIVE 115", "COMMST 191"],
