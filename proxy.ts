@@ -13,7 +13,7 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(5, "60 s"),
 });
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || '127.0.0.1';
   console.log("Rate limiting for IP:", ip);
   
