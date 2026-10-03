@@ -869,10 +869,12 @@ export const useStore = create<GradGraphState>()(
         if (!rehydrated) return;
         rehydrated.completedCourses = toSet(rehydrated.completedCourses);
         rehydrated.plannedCourses   = toSet(rehydrated.plannedCourses);
-        rehydrated.activeSubjects   = toSet(rehydrated.activeSubjects);
-        rehydrated.exploreActiveSubjects = toSet(rehydrated.exploreActiveSubjects);
-        rehydrated.activeLevels = toSet<number>(rehydrated.activeLevels);
-        rehydrated.exploreActiveLevels = toSet<number>(rehydrated.exploreActiveLevels);
+        // null means "no filter" for these, so it must survive rehydration instead of becoming an empty Set.
+        const toFilterSet = <T,>(v: unknown) => (v === null ? null : toSet<T>(v));
+        rehydrated.activeSubjects   = toFilterSet<string>(rehydrated.activeSubjects);
+        rehydrated.exploreActiveSubjects = toFilterSet<string>(rehydrated.exploreActiveSubjects);
+        rehydrated.activeLevels = toFilterSet<number>(rehydrated.activeLevels);
+        rehydrated.exploreActiveLevels = toFilterSet<number>(rehydrated.exploreActiveLevels);
 
         // Reset stale major IDs from previous data shape
         if (!MAJORS[rehydrated.activeMajorId]) {

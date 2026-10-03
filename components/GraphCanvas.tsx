@@ -170,6 +170,13 @@ export default function GraphCanvas() {
     [visibleCodes, positions, highlightedEdges, selectedNode, highlightedNodes]
   );
 
+  const statusMap = useMemo(
+    () => new Map([...visibleCodes].map((code) => [code, getCourseStatus(code)])),
+    // getCourseStatus reads the store internally, so these state fields are intentional invalidation keys.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [visibleCodes, completedCourses, plannedCourses, termPlan, getCourseStatus]
+  );
+
   // ── Pan to node ─────────────────────────────────────────────────────────────
   useEffect(() => {
     if (!panToNode) return;
@@ -197,6 +204,60 @@ export default function GraphCanvas() {
     setSelectedNode(code);
     setHighlight(connected, edgeSet);
   }, [selectedNode, setSelectedNode, setHighlight, clearSelection]);
+
+  // Built separately from the transform wrapper so panning and zooming don't re-render every node and edge.
+  const worldContent = useMemo(() => (
+    <>
+      {/* SVG Edges */}
+      <svg style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
+                    pointerEvents: "none", overflow: "visible" }}>
+        <defs>
+          <marker id="arrow"      markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#1E3A5F" />
+          </marker>
+          <marker id="arrow-gold" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#FFD54F" />
+          </marker>
+        </defs>
+
+        {edges.map(({ key, x1, y1, x2, y2, mx, isSelected }) => (
+          <path
+            key={key}
+            d={`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`}
+            fill="none"
+            stroke={isSelected ? "#FFD54F" : "#1E3A5F"}
+            strokeWidth={isSelected ? 2 : 1}
+            opacity={selectedNode ? (isSelected ? 1 : 0.15) : 0.5}
+            markerEnd={isSelected ? "url(#arrow-gold)" : "url(#arrow)"}
+            style={{ transition: "all 0.2s" }}
+          />
+        ))}
+      </svg>
+
+      {/* Course Nodes */}
+      {[...visibleCodes].map((code) => {
+        const pos = positions[code];
+        const status = statusMap.get(code);
+        if (!pos || !status) return null;
+        const isSelected = selectedNode === code;
+        const isDimmed   = !!selectedNode && !highlightedNodes.has(code) && selectedNode !== code;
+
+        return (
+          <CourseNode
+            key={code}
+            code={code}
+            status={status}
+            isSelected={isSelected}
+            isDimmed={isDimmed}
+            isNextUp={!isSelected && !isDimmed && nextUpCodes.has(code)}
+            isConflict={antireqConflicts.has(code)}
+            onClick={handleNodeClick}
+            style={{ left: pos.x, top: pos.y }}
+          />
+        );
+      })}
+    </>
+  ), [edges, visibleCodes, positions, statusMap, selectedNode, highlightedNodes, nextUpCodes, antireqConflicts, handleNodeClick]);
 
   // ── Wheel zoom ──────────────────────────────────────────────────────────────
   const handleWheel = useCallback((e: WheelEvent) => {
@@ -259,54 +320,7 @@ export default function GraphCanvas() {
           width:           canvasW,
           height:          canvasH,
         }}>
-          {/* SVG Edges */}
-          <svg style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%",
-                        pointerEvents: "none", overflow: "visible" }}>
-            <defs>
-              <marker id="arrow"      markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L6,3 L0,6 Z" fill="#1E3A5F" />
-              </marker>
-              <marker id="arrow-gold" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L6,3 L0,6 Z" fill="#FFD54F" />
-              </marker>
-            </defs>
-
-            {edges.map(({ key, x1, y1, x2, y2, mx, isSelected }) => (
-              <path
-                key={key}
-                d={`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`}
-                fill="none"
-                stroke={isSelected ? "#FFD54F" : "#1E3A5F"}
-                strokeWidth={isSelected ? 2 : 1}
-                opacity={selectedNode ? (isSelected ? 1 : 0.15) : 0.5}
-                markerEnd={isSelected ? "url(#arrow-gold)" : "url(#arrow)"}
-                style={{ transition: "all 0.2s" }}
-              />
-            ))}
-          </svg>
-
-          {/* Course Nodes */}
-          {[...visibleCodes].map((code) => {
-            const pos = positions[code];
-            if (!pos) return null;
-            const status     = getCourseStatus(code);
-            const isSelected = selectedNode === code;
-            const isDimmed   = !!selectedNode && !highlightedNodes.has(code) && selectedNode !== code;
-
-            return (
-              <CourseNode
-                key={code}
-                code={code}
-                status={status}
-                isSelected={isSelected}
-                isDimmed={isDimmed}
-                isNextUp={!isSelected && !isDimmed && nextUpCodes.has(code)}
-                isConflict={antireqConflicts.has(code)}
-                onClick={handleNodeClick}
-                style={{ left: pos.x, top: pos.y }}
-              />
-            );
-          })}
+          {worldContent}
         </div>
 
         {/* Zoom controls */}

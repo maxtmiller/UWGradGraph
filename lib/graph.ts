@@ -12,68 +12,86 @@ const MIN_H   = 600;
 
 // ── Topological Layer Assignment ──────────────────────────────────────────────
 
-function assignLayers(codes: string[]): Record<string, number> {
+function visiblePrereqs(codes: string[]): Record<string, string[]> {
   const codeSet = new Set(codes);
-  const layers: Record<string, number> = {};
-  const visited = new Set<string>();
-  const queue: string[] = [];
-
-  // 2. Main layering loop
+  const deps: Record<string, string[]> = {};
   for (const code of codes) {
     const course = COURSE_DATA[code];
-    if (!course) continue;
+    deps[code] = course
+      ? getAllRequisiteCourseCodes(course.prereqs).filter((c) => c !== code && codeSet.has(c))
+      : [];
+  }
+  return deps;
+}
 
-    // Use the recursive helper to get ALL prerequisite codes
-    const allPrereqs = getAllRequisiteCourseCodes(course.prereqs);
+/** Longest-path layering: every course sits one column right of its furthest-right prerequisite. */
+function assignLayers(codes: string[], deps: Record<string, string[]>): Record<string, number> {
+  const layers: Record<string, number> = {};
+  const onStack = new Set<string>();
 
-    // Filter to only those that are actually in the current visible set (codes)
-    const deps = allPrereqs.filter((c) => codeSet.has(c));
-
-    if (deps.length === 0) {
-      layers[code] = 0;
-      queue.push(code);
+  // Edges back into the current DFS path are prereq cycles; they're ignored so layering terminates.
+  function layerOf(code: string): number {
+    if (layers[code] !== undefined) return layers[code];
+    onStack.add(code);
+    let layer = 0;
+    for (const dep of deps[code]) {
+      if (!onStack.has(dep)) layer = Math.max(layer, layerOf(dep) + 1);
     }
+    onStack.delete(code);
+    layers[code] = layer;
+    return layer;
   }
 
-  // BFS layer propagation
-  while (queue.length > 0) {
-    const cur = queue.shift()!;
-    if (visited.has(cur)) continue;
-    visited.add(cur);
-
-    const course = COURSE_DATA[cur];
-    if (!course) continue;
-
-    for (const next of course.leadsTo.filter((c) => codeSet.has(c))) {
-      layers[next] = Math.max(layers[next] ?? 0, (layers[cur] ?? 0) + 1);
-      queue.push(next);
-    }
-  }
-
-  // Fallback for any disconnected nodes
-  for (const code of codes) {
-    if (layers[code] === undefined) layers[code] = 0;
-  }
-
+  for (const code of codes) layerOf(code);
   return layers;
+}
+
+/**
+ * Orders each column to reduce edge crossings (barycenter heuristic): alternately sweeps
+ * left-to-right placing courses near the average row of their prerequisites, and
+ * right-to-left placing them near the average row of the courses they unlock.
+ */
+function orderColumns(columns: string[][], deps: Record<string, string[]>): void {
+  const unlocks: Record<string, string[]> = {};
+  for (const col of columns) for (const code of col) unlocks[code] = [];
+  for (const col of columns) for (const code of col) for (const dep of deps[code]) unlocks[dep].push(code);
+
+  // Rows are measured from the column's centre because columns are rendered vertically centred.
+  const row: Record<string, number> = {};
+  const index = (col: string[]) => col.forEach((code, i) => { row[code] = i - (col.length - 1) / 2; });
+  columns.forEach(index);
+
+  const sortByNeighbours = (col: string[], neighbours: Record<string, string[]>) => {
+    const key: Record<string, number> = {};
+    for (const code of col) {
+      const ns = neighbours[code];
+      key[code] = ns.length ? ns.reduce((sum, n) => sum + row[n], 0) / ns.length : row[code];
+    }
+    col.sort((a, b) => key[a] - key[b]);
+    index(col);
+  };
+
+  for (let sweep = 0; sweep < 4; sweep++) {
+    for (let l = 1; l < columns.length; l++) sortByNeighbours(columns[l], deps);
+    for (let l = columns.length - 2; l >= 0; l--) sortByNeighbours(columns[l], unlocks);
+  }
 }
 
 // ── Layout Engine ─────────────────────────────────────────────────────────────
 
 export function computeLayout(codes: string[]): PositionMap {
-  const layers = assignLayers(codes);
+  const deps   = visiblePrereqs(codes);
+  const layers = assignLayers(codes, deps);
 
-  // Group nodes by layer column
-  const byLayer: Record<number, string[]> = {};
-  for (const [code, layer] of Object.entries(layers)) {
-    if (!byLayer[layer]) byLayer[layer] = [];
-    byLayer[layer].push(code);
+  const columns: string[][] = [];
+  for (const code of [...codes].sort()) {
+    (columns[layers[code]] ??= []).push(code);
   }
+  orderColumns(columns, deps);
 
   const positions: PositionMap = {};
 
-  for (const [layerStr, nodeCodes] of Object.entries(byLayer)) {
-    const layer = Number(layerStr);
+  for (const [layer, nodeCodes] of columns.entries()) {
     const x = layer * (NODE_W + GAP_X) + 40;
     const totalH = nodeCodes.length * (NODE_H + GAP_Y) - GAP_Y;
     const startY = Math.max(24, (Math.max(MIN_H, totalH + 24) - totalH) / 2);

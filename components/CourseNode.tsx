@@ -66,7 +66,6 @@ export default function CourseNode({
         cursor:          "pointer",
         opacity:         isDimmed ? 0.2 : 1,
         transition:      "all 0.2s ease",
-        backdropFilter:  "blur(8px)",
         userSelect:      "none",
         boxSizing:       "border-box",
         ...style,
